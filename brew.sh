@@ -20,6 +20,7 @@ brew install nvim
 brew install ripgrep
 brew install lazygit
 cd $HOME/Library/Fonts && wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Meslo.zip | bsdtar -xvf-
+ln -s ~/profile/nvim-lazyvim ~/.config/nvim-lazyvim
 
 #python
 brew install pyenv
