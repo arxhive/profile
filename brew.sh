@@ -55,7 +55,7 @@ brew install --cask spotify
 
 brew install alt-tab
 brew install mackup
-echo "[storage]\nengine = icloud" >>~/.mackup.cfg
+echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
 mackup restore
 
 #unix
