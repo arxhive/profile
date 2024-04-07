@@ -1,0 +1,81 @@
+{
+  "app": [
+    {
+      "domainName": "com.jetbrains.datagrip",
+      "keys": [
+        {
+          "action": "Quit DataGrip",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "notion.id",
+      "keys": [
+        {
+          "action": "Quit Notion",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "com.axosoft.gitkraken",
+      "keys": [
+        {
+          "action": "Quit GitKraken",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "com.googlecode.iterm2",
+      "keys": [
+        {
+          "action": "Quit iTerm2",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "NSGlobalDomain",
+      "keys": [
+        {
+          "action": "Minimize",
+          "key": "@`"
+        },
+        {
+          "action": "Emoji & Symbols",
+          "key": "@~^$e"
+        }
+      ]
+    },
+    {
+      "domainName": "com.google.Chrome",
+      "keys": [
+        {
+          "action": "Quit Google Chrome",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "com.microsoft.VSCode",
+      "keys": [
+        {
+          "action": "Quit Visual Studio Code",
+          "key": "@~^$q"
+        }
+      ]
+    },
+    {
+      "domainName": "com.tinyspeck.slackmacgap",
+      "keys": [
+        {
+          "action": "Quit Slack",
+          "key": "@~^$q"
+        }
+      ]
+    }
+  ],
+  "service": []
+}
