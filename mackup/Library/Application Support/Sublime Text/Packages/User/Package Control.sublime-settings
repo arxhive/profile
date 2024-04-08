@@ -1,0 +1,17 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Compare Side-By-Side",
+		"Enki Theme",
+		"Night Owl",
+		"OpenInBrowser",
+		"Package Control",
+		"Pretty JSON",
+		"Status Bar File Size",
+		"URLEncode",
+	],
+}
