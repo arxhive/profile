@@ -3,15 +3,20 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 
+#Company specific aliases
+for script in ~/profile/zsh/*.sh; do
+  . "$script"
+done
+
 alias dps="docker ps"
 alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias vim=nvim
 alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
-alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
-alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
-alias lua="v .config/nvim-lazyvim/lua/plugins/"
+# alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
+# alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
+alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
 
 alias cfg_zsh="st ~/.zshrc"
 alias cfg_aws="st ~/.aws/config"
