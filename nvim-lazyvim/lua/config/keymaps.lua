@@ -13,3 +13,9 @@ vim.keymap.set("n", "<C-S-Up>", "<cmd>resize +5<CR>", { desc = "Increase window 
 vim.keymap.set("n", "<C-S-Down>", "<cmd>resize -5<CR>", { desc = "Decrease window height" })
 
 -- vim.keymap.set("n", "<C-d>", "<cmd>copy .<CR>", { desc = "Duplicate line" })
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
+
+vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
+vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
+
+vim.keymap.set("i", "C-k", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
