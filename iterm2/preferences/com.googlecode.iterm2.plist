@@ -16,6 +16,10 @@
 	<string>Amniplatform-dev</string>
 	<key>Default Bookmark Guid</key>
 	<string>D5B2A634-DF3E-41F9-A4B0-935A6E1D73AC</string>
+	<key>DisableFullscreenTransparency</key>
+	<false/>
+	<key>EnableProxyIcon</key>
+	<false/>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -33,6 +37,17 @@
 			<string></string>
 			<key>Text</key>
 			<string>D5B2A634-DF3E-41F9-A4B0-935A6E1D73AC</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<key>0x44-0x120000-0x2</key>
+		<dict>
+			<key>Action</key>
+			<integer>13</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string></string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -64,6 +79,17 @@
 			<integer>32</integer>
 			<key>Text</key>
 			<string></string>
+		</dict>
+		<key>0xd-0x100000-0x24</key>
+		<dict>
+			<key>Action</key>
+			<integer>13</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>1</integer>
 		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
@@ -155,6 +181,8 @@
 	<key>HideFromDockAndAppSwitcher</key>
 	<true/>
 	<key>HideMenuBarInFullscreen</key>
+	<false/>
+	<key>HideTab</key>
 	<false/>
 	<key>Hotkey</key>
 	<true/>
@@ -1855,6 +1883,12 @@
 		</dict>
 	</dict>
 	<key>SoundForEsc</key>
+	<false/>
+	<key>SplitPaneDimmingAmount</key>
+	<real>0.24975462682038835</real>
+	<key>TabsHaveCloseButton</key>
+	<false/>
+	<key>UseBorder</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
