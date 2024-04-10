@@ -4,6 +4,7 @@
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.ui.mini-animate",
     "lazyvim.plugins.extras.editor.mini-files",
     "lazyvim.plugins.extras.editor.mini-move",
     "lazyvim.plugins.extras.formatting.prettier",
@@ -19,3 +20,4 @@
   },
   "version": 3
 }
+
