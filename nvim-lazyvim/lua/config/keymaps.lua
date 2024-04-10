@@ -18,4 +18,4 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 
-vim.keymap.set("i", "C-k", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
+vim.keymap.set("i", "<C-k>", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
