@@ -4139,6 +4139,17 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
+		<key>0x3f-0x120000-0x2c</key>
+		<dict>
+			<key>Action</key>
+			<integer>38</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>gc</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
 		<key>0x44-0x120000-0x2</key>
 		<dict>
 			<key>Action</key>
@@ -5132,7 +5143,7 @@
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
-			<false/>
+			<integer>2</integer>
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
@@ -5169,6 +5180,8 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Session Close Undo Timeout</key>
+			<integer>50</integer>
 			<key>Shortcut</key>
 			<string>E</string>
 			<key>Show Status Bar</key>
@@ -6025,7 +6038,7 @@
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
-	<false/>
+	<true/>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>SoundForEsc</key>
