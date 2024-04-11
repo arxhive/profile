@@ -32,16 +32,33 @@ vim.keymap.set("i", "<C-k>", "vim.lsp.buf.signature_help", { desc = "Signature h
 -- https://github.com/ThePrimeagen/refactoring.nvim
 vim.keymap.set({ "n", "x" }, "<leader>rr", function()
   require("refactoring").select_refactor()
-end)
+end, { desc = "Refactor Menu" })
 
-vim.keymap.set("x", "<leader>re", ":Refactor extract ")
-vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ")
+vim.keymap.set("x", "<leader>re", ":Refactor extract ", { desc = "Extract Function" })
+vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ", { desc = "Extract Function to File" })
 
-vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ")
+vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ", { desc = "Extract Variable" })
 
-vim.keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
+vim.keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var", { desc = "Inline Variable" })
 
-vim.keymap.set("n", "<leader>rI", ":Refactor inline_func")
+vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Function" })
 
-vim.keymap.set("n", "<leader>rb", ":Refactor extract_block")
-vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file")
+vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
+vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
+
+-- Harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+vim.keymap.set("n", "<leader>a", function()
+  harpoon:list():add()
+end, { desc = "Harpoon File" })
+vim.keymap.set("n", "<C-S-E>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon Menu" })
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function()
+  harpoon:list():prev()
+end, { desc = "Prev Harpoon" })
+vim.keymap.set("n", "<C-S-N>", function()
+  harpoon:list():next()
+end, { desc = "Next Harpoon" })
