@@ -66,3 +66,6 @@ end, { desc = "Next Harpoon" })
 vim.keymap.set("n", "<C-S-W>", function()
   require("oil").open()
 end)
+
+-- UndoTree
+vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle)
