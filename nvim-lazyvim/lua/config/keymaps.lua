@@ -33,7 +33,9 @@ vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste overwrite" })
 
 -- Semantic
-vim.keymap.set("i", "<C-k>", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
+vim.keymap.set({ "i", "n" }, "<C-a>", function()
+  vim.lsp.buf.signature_help()
+end, { desc = "Signature help on edit mode" })
 
 -- Refactoring
 -- https://github.com/ThePrimeagen/refactoring.nvim
