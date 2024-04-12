@@ -2,6 +2,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
+export SC='~/sources'
 
 #Company specific aliases
 for script in ~/profile/zsh/*.sh; do
@@ -17,7 +18,9 @@ alias vim=nvim
 alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
 # alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
+
 alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
+alias sc="cd $SC && ls"
 
 alias cfg_zsh="st ~/.zshrc"
 alias cfg_aws="st ~/.aws/config"
