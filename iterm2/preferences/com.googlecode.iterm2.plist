@@ -4135,7 +4135,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>gcc</string>
+			<string>hhgcc</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -4146,7 +4146,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>gc</string>
+			<string>hhgc</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -4212,7 +4212,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>:wa\n</string>
+			<string>hh:wa\n</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
