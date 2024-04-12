@@ -27,6 +27,7 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste overwrite" })
 
 -- Semantic
 vim.keymap.set("i", "<C-k>", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
@@ -48,6 +49,8 @@ vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Func
 
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
+
+vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex" })
 
 -- Harpoon
 local harpoon = require("harpoon")
