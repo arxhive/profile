@@ -35,6 +35,9 @@ vim.keymap.set("i", "kk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "hh", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "ii", "<ESC>", { desc = "Escape edit mode" })
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 
