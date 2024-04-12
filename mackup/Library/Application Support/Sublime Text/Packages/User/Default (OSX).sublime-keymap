@@ -1,5 +1,5 @@
 [
-	{ "keys": ["command+shift+t"], "command": "new_file" },
+	{ "keys": ["command+t"], "command": "new_file" },
 	{ "keys": ["command+alt+w"], "command": "close_file" },
 	{ "keys": ["command+d"], "command": "duplicate_line" },
 	{ "keys": ["command+w"], "command": "expand_selection", "args": {"to": "word"} }
