@@ -8,22 +8,25 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Resume" }
 )
 -- Buffers
-vim.keymap.set("n", "<C-`>", "<cmd>BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
+vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
 
 -- Resize windows
-vim.keymap.set("n", "<C-S-Right>", "<cmd>vertical resize +10<CR>", { desc = "Increase window width" })
-vim.keymap.set("n", "<C-S-Left>", "<cmd>vertical resize -10<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-S-Up>", "<cmd>resize +5<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-S-Down>", "<cmd>resize -5<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-S-Right>", ":vertical resize +10<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-S-Left>", ":vertical resize -10<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-S-Up>", ":resize +5<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-S-Down>", ":resize -5<CR>", { desc = "Decrease window height" })
 
--- vim.keymap.set("n", "<C-d>", "<cmd>copy .<CR>", { desc = "Duplicate line" })
--- vim.keymap.set("n", "<T-j>", "<cmd>m +1<CR>", { desc = "" })
--- vim.keymap.set("n", "<M-j>", "<cmd>m +1<CR>", { desc = "" })
+-- Move lines
+vim.keymap.set("n", "<C-j>", ":m +1<CR>", { desc = "Move line down" })
+vim.keymap.set("n", "<C-k>", ":m -2<CR>", { desc = "Move line up" })
+
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
+vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 
 -- Semantic
 vim.keymap.set("i", "<C-k>", "vim.lsp.buf.signature_help", { desc = "Signature help on edit mode" })
