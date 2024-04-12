@@ -4,8 +4,8 @@
 		"Vintage",
 	],
 	"update_check": false,
-	"color_scheme": "Packages/Enki Theme/scheme/Enki-Tokyo-night.tmTheme",
-	"theme": "Enki-Theme.sublime-theme",
+	"color_scheme": "Catppuccin Macchiato.sublime-color-scheme",
+	"theme": "Adaptive.sublime-theme",
 	"index_files": true,
 	"enki_theme_bold_tab": false, // Bold tab labels
 	"enki_theme_compact_panel": true, // Compact panel
