@@ -14,6 +14,7 @@ git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-m
 #devenv
 brew install tfenv
 brew install wget
+brew install jq
 
 #vim
 brew install nvim
