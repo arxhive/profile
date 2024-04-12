@@ -72,7 +72,12 @@ vim.keymap.set("n", "<C-S-N>", function()
   harpoon:list():next()
 end, { desc = "Next Harpoon" })
 
+-- Oil
 vim.keymap.set("n", "<C-S-W>", function()
+  require("oil").toggle_float()
+end)
+
+vim.keymap.set("n", "<C-S-O>", function()
   require("oil").open()
 end)
 

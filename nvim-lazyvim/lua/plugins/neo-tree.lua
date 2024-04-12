@@ -26,4 +26,7 @@ return {
       show_root = true,
     },
   },
+  keys = {
+    { "<C-S-Q>", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+  },
 }
