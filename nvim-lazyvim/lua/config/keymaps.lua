@@ -24,8 +24,8 @@ vim.keymap.set("n", "<C-k>", ":m -2<CR>", { desc = "Move line up" })
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
-vim.keymap.set("n", "<S-N>", "_i<CR><ESC>", { desc = "Append line above" })
-vim.keymap.set("n", "<S-M>", "<CR>_i<CR><ESC>kk", { desc = "Append line below" })
+vim.keymap.set("n", "<S-N>", "_i<CR><ESC>_", { desc = "Append line above" })
+vim.keymap.set("n", "<S-M>", "<CR>_i<CR><ESC>kk_", { desc = "Append line below" })
 
 -- Navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
