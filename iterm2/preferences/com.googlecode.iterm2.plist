@@ -4186,11 +4186,11 @@
 		<key>0x71-0x100000-0xc</key>
 		<dict>
 			<key>Action</key>
-			<integer>38</integer>
+			<integer>13</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>gK</string>
+			<string></string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
