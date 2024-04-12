@@ -95,4 +95,4 @@ vim.keymap.set("n", "<C-S-O>", function()
 end)
 
 -- UndoTree
-vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
