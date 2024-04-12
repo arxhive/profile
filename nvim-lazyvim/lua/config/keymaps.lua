@@ -33,7 +33,6 @@ vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "kj", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "kk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "hh", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "ii", "<ESC>", { desc = "Escape edit mode" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

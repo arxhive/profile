@@ -12,6 +12,7 @@ alias dps="docker ps"
 alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
+alias h=history
 alias vim=nvim
 alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
