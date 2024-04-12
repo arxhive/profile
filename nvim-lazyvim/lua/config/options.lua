@@ -4,3 +4,7 @@
 vim.opt.swapfile = false
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
+
+require("lazyvim.util").on_attach(function()
+  vim.opt.signcolumn = "yes"
+end)
