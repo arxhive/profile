@@ -1,5 +1,5 @@
 return {
-  "itaranto/plantuml.nvim",
+  "https://gitlab.com/itaranto/plantuml.nvim",
   version = "*",
   config = {
     renderer = {

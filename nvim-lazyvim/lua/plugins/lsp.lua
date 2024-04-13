@@ -1,0 +1,16 @@
+return {}
+-- return {
+--   {
+--     "neovim/nvim-lspconfig",
+--     opts = {
+--       servers = {
+--         pyright = {
+--           mason = false,
+--         },
+--         ruff_lsp = {
+--           mason = false,
+--         },
+--       },
+--     },
+--   },
+-- }
