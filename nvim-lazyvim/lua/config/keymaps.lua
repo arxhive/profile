@@ -50,7 +50,7 @@ vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste overwrite" })
-vim.keymap.set("i", "uu", "<ESC>u", { desc = "Escape and undo" })
+vim.keymap.set("i", "uu", "<ESC>u", { silent = true, noremap = true })
 
 -- Semantic
 vim.keymap.set({ "i", "n" }, "<C-a>", function()
