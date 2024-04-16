@@ -27,11 +27,11 @@ vim.keymap.set("n", "<C-S-Up>", ":resize +5<CR>", { desc = "Increase window heig
 vim.keymap.set("n", "<C-S-Down>", ":resize -5<CR>", { desc = "Decrease window height" })
 
 -- Move lines
-vim.keymap.set("n", "<C-j>", ":m +1<CR>", { desc = "Move line down" })
-vim.keymap.set("n", "<C-k>", ":m -2<CR>", { desc = "Move line up" })
+vim.keymap.set("n", "<C-S-j>", ":m +1<CR>", { desc = "Move line down" })
+vim.keymap.set("n", "<C-S-k>", ":m -2<CR>", { desc = "Move line up" })
 
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<C-S-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<C-S-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "<S-Q>", "_i<CR><ESC>_", { desc = "Append line above" })
 vim.keymap.set("n", "q", "<CR>_i<CR><ESC>kk_", { desc = "Append line below" })
@@ -75,7 +75,12 @@ vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Func
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
 
-vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex" })
+vim.keymap.set(
+  "n",
+  "<leader>rx",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace by regex - old/new" }
+)
 
 -- Harpoon
 local harpoon = require("harpoon")
@@ -104,3 +109,28 @@ end)
 
 -- UndoTree
 vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
+
+-- DAP
+local dap = require("dap")
+local dapui = require("dapui")
+vim.keymap.set("n", "<F1>", function()
+  dap.step_into()
+end, { desc = "Step Into" })
+vim.keymap.set("n", "<F2>", function()
+  dap.step_over()
+end, { desc = "Step Over" })
+vim.keymap.set("n", "<F3>", function()
+  dap.step_back()
+end, { desc = "Step Back" })
+vim.keymap.set("n", "<F4>", function()
+  dap.continue()
+end, { desc = "Continue" })
+vim.keymap.set("n", "<F5>", function()
+  dap.run_to_cursor()
+end, { desc = "Run to Cursor" })
+vim.keymap.set("n", "<F6>", function()
+  dap.repl.toggle()
+end, { desc = "Toggle REPL" })
+vim.keymap.set({ "n", "v" }, "<F7>", function()
+  dapui.eval()
+end, { desc = "Evaluate" })

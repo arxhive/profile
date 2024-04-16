@@ -5174,7 +5174,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>:copy .\n</string>
+			<string>hh:copy .\n</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
