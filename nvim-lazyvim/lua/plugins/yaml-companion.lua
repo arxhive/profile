@@ -1,6 +1,7 @@
 return {
   {
     "someone-stole-my-name/yaml-companion.nvim",
+    lazy = true,
     ft = { "yaml" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
