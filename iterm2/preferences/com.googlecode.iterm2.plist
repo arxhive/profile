@@ -5134,6 +5134,17 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
+		<key>0x3f-0x60000-0x2c</key>
+		<dict>
+			<key>Action</key>
+			<integer>38</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>hhgc</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
 		<key>0x44-0x120000-0x2</key>
 		<dict>
 			<key>Action</key>
