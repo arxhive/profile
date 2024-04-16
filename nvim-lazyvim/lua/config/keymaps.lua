@@ -2,20 +2,10 @@
 vim.keymap.set("n", "<Bslash>", ":")
 
 -- Telescope
-vim.keymap.set(
-  "n",
-  "<leader>sx",
-  require("telescope.builtin").resume,
-  { noremap = true, silent = true, desc = "Resume" }
-)
+vim.keymap.set("n", "<leader>sx", require("telescope.builtin").resume, { noremap = true, silent = true, desc = "Resume" })
 
 require("telescope").load_extension("luasnip")
-vim.keymap.set(
-  "n",
-  "<leader>sl",
-  require("telescope").extensions.luasnip.luasnip,
-  { noremap = true, silent = true, desc = "luasnip" }
-)
+vim.keymap.set("n", "<leader>sl", require("telescope").extensions.luasnip.luasnip, { noremap = true, silent = true, desc = "luasnip" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
@@ -75,12 +65,7 @@ vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Func
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
 
-vim.keymap.set(
-  "n",
-  "<leader>rx",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Replace by regex - old/new" }
-)
+vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex - old/new" })
 
 -- Harpoon
 local harpoon = require("harpoon")
