@@ -68,8 +68,8 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon File" })
 vim.keymap.set("n", "<C-S-E>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
 -- Toggle previous & next buffers stored within Harpoon list
--- vim.keymap.set("n", "<C-TAB>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
--- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
+vim.keymap.set("n", "<PageUp>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
+vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
 
 -- Oil
 vim.keymap.set("n", "<C-S-W>", function() require("oil").toggle_float() end)
