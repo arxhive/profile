@@ -39,7 +39,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste overwrite" })
 vim.keymap.set("i", "uu", "<ESC>u", { silent = true, noremap = true })
 
 -- Semantic
@@ -69,8 +68,8 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon File" })
 vim.keymap.set("n", "<C-S-E>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
+-- vim.keymap.set("n", "<C-TAB>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
+-- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
 
 -- Oil
 vim.keymap.set("n", "<C-S-W>", function() require("oil").toggle_float() end)
@@ -89,3 +88,12 @@ vim.keymap.set("n", "<F4>", function() dap.run_to_cursor() end, { desc = "Run to
 vim.keymap.set("n", "<F5>", function() dap.continue() end, { desc = "Continue" })
 vim.keymap.set("n", "<F6>", function() dap.repl.toggle() end, { desc = "Toggle REPL" })
 vim.keymap.set({ "n", "v" }, "<F7>", function() dapui.eval() end, { desc = "Evaluate" })
+
+-- Yanky
+vim.keymap.set({"n","x", "i"}, "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" })
+
+vim.keymap.set("x", "p", [["_d<Plug>(YankyPutAfter)]], { desc = "Paste and keep in buffer" })
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste in keep in buffer" })
+
+vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
