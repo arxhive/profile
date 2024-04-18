@@ -2,8 +2,6 @@
 vim.keymap.set("n", "<Bslash>", ":")
 
 -- Telescope
-vim.keymap.set("n", "<leader>sx", require("telescope.builtin").resume, { noremap = true, silent = true, desc = "Resume" })
-
 require("telescope").load_extension("luasnip")
 vim.keymap.set("n", "<leader>sl", require("telescope").extensions.luasnip.luasnip, { noremap = true, silent = true, desc = "luasnip" })
 
