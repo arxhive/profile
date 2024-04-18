@@ -14,6 +14,8 @@ return {
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
+      table.insert(opts.sources, { name = "cmp_yanky" })
+
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
