@@ -20,6 +20,7 @@ alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
 
 alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
+alias sc-lua="cd ~/profile/nvim-lazyvim/lua/plugins/"
 alias sc="cd $SC && ls"
 
 alias cfg_zsh="st ~/.zshrc"
