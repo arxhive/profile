@@ -6,7 +6,7 @@ return {
       opts.tabline = { 
         lualine_a = {'mode'},
         lualine_b = {},
-        lualine_c = { { 'filename', file_status = true, path = 1  }},
+        lualine_c = { {'filetype', icon_only = true }, { 'filename', file_status = true, path = 1  }},
         lualine_x = {},
         lualine_y = {
         {
