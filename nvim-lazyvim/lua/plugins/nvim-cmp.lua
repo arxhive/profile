@@ -1,5 +1,4 @@
 return {
-  -- { "hrsh7th/cmp-cmdline" }, -- Warning, conflicts with nvim-cmp
   {
   -- disable default <tab> and <s-tab> behavior in LuaSnip
     "L3MON4D3/LuaSnip",
@@ -9,8 +8,8 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependecies = {
-       -- "hrsh7th/cmp-cmdline" -- Warning, breaks cmd autocomplete
+    dependencies = {
+       "hrsh7th/cmp-cmdline"
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
