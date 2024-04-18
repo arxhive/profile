@@ -30,6 +30,20 @@ return {
     },
   },
   keys = {
-    { "<C-S-Q>", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+    { "<C-S-Q>", function()
+        require("neo-tree.command").execute({ toggle = true, source="filesystem", dir = LazyVim.root() })
+      end,
+      desc = "NeoTree (Root Dir)", remap = true
+    },
+    { "<C-S-B>", function()
+        require("neo-tree.command").execute({ toggle = true, source="buffers", position="left" })
+      end,
+      desc = "NeoTree buffers", remap = true
+    },
+    { "<C-S-G>", function()
+        require("neo-tree.command").execute({ toggle = true, source="git_status" })
+      end,
+      desc = "NeoTree git status", remap = true
+    },
   },
 }
