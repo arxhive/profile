@@ -33,6 +33,7 @@ return {
     "tpope/vim-dadbod",
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
     dependencies = {
+      "pbogut/vim-dadbod-ssh",
       "kristijanhusak/vim-dadbod-ui",
       { "kristijanhusak/vim-dadbod-completion", ft = sql_ft },
       { "jsborjesson/vim-uppercase-sql", ft = sql_ft },
