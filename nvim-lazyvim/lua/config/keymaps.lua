@@ -1,4 +1,5 @@
 -- Keymaps are automatically loaded on the VeryLazy event Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua Add any additional keymaps here
+-- stylua: ignore start
 vim.keymap.set("n", "<Bslash>", ":")
 
 -- Telescope
@@ -81,6 +82,7 @@ local dap = require("dap")
 local dapui = require("dapui")
 vim.keymap.set("n", "<F1>", function() dap.step_into() end, { desc = "Step Into" })
 vim.keymap.set("n", "<F2>", function() dap.step_over() end, { desc = "Step Over" })
+
 vim.keymap.set("n", "<F3>", function() dap.step_back() end, { desc = "Step Back" })
 vim.keymap.set("n", "<F4>", function() dap.run_to_cursor() end, { desc = "Run to Cursor" })
 vim.keymap.set("n", "<F5>", function() dap.continue() end, { desc = "Continue" })
@@ -102,3 +104,5 @@ vim.keymap.set("n", "<C-S-S>", function() require("aerial").toggle() end, { desc
 
 -- Database Explorer
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
+
+-- stylua: ignore end
