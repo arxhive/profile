@@ -4,6 +4,9 @@ brew install git
 
 git clone https://github.com/artesdi/profile.git ~/profile
 
+#fonts
+cp ~/profile/nerd-fonts/* ~/Library/Fonts/
+
 #terminal
 brew install --cask iterm2
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -20,7 +23,6 @@ brew install jq
 brew install nvim
 brew install ripgrep
 brew install lazygit
-cd $HOME/Library/Fonts && wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Meslo.zip | bsdtar -xvf-
 ln -s ~/profile/nvim-lazyvim ~/.config/nvim-lazyvim
 
 #python
