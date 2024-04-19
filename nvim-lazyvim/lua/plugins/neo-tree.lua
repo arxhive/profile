@@ -36,7 +36,7 @@ return {
       desc = "NeoTree (Root Dir)", remap = true
     },
     { "<C-S-B>", function()
-        require("neo-tree.command").execute({ toggle = true, source="buffers", position="left" })
+        require("neo-tree.command").execute({ toggle = true, source="buffers", position="float" })
       end,
       desc = "NeoTree buffers", remap = true
     },
