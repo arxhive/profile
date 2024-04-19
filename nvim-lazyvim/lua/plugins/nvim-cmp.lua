@@ -49,10 +49,10 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<CR>"] = function(fallback)
+        ["<CR>"] = cmp.mapping(function(fallback)
           cmp.abort()
           fallback()
-        end,
+        end),
       })
       -- `:` cmdline setup.
       cmp.setup.cmdline(":", {
