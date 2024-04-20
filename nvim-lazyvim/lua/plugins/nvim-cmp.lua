@@ -1,6 +1,6 @@
 return {
   {
-  -- disable default <tab> and <s-tab> behavior in LuaSnip
+    -- disable default <tab> and <s-tab> behavior in LuaSnip
     "L3MON4D3/LuaSnip",
     keys = function()
       return {}
@@ -9,9 +9,11 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-       "hrsh7th/cmp-cmdline",
-       "chrisgrieser/cmp_yanky"
+      "hrsh7th/cmp-cmdline",
+      "chrisgrieser/cmp_yanky",
     },
+    lazy = false,
+
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       table.insert(opts.sources, { name = "cmp_yanky" })
@@ -24,8 +26,7 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
-    
-    -- setup tab complete for cmp and luasnip
+      -- setup tab complete for cmp and luasnip
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -54,27 +55,69 @@ return {
           fallback()
         end),
       })
+
+      -- cmdline setup
+      local cmdLineMapping = {
+
+        ["<Tab>"] = {
+          c = function()
+            if cmp.visible() then
+              cmp.confirm({ select = true })
+            else
+              cmp.complete()
+            end
+          end,
+        },
+        ["<Up>"] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              cmp.complete()
+            end
+          end,
+        },
+        ["<Down>"] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              cmp.complete()
+            end
+          end,
+        },
+      }
+
       -- `:` cmdline setup.
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
         sources = cmp.config.sources({
           { name = "path" },
         }, {
-            {
-              name = "cmdline",
-              option = {
-                ignore_cmds = { "Man", "!" },
-              },
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
             },
-          }),
+          },
+        }),
       })
-     -- `:/` cmdline setup.
-     cmp.setup.cmdline("/", {
-       mapping = cmp.mapping.preset.cmdline(),
-       sources = {
-         { name = "buffer" },
-       },
-     })
+
+      -- `/` cmdline setup.
+      cmp.setup.cmdline("/", {
+        mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      -- `?` cmdline setup.
+      cmp.setup.cmdline("?", {
+        mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
+        sources = {
+          { name = "buffer" },
+        },
+      })
     end,
   },
 }
