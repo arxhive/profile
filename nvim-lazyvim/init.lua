@@ -3,6 +3,7 @@ require("config.lazy")
 require("telescope").load_extension("luasnip")
 require("refactoring").setup()
 require("netman")
+require("s3edit").setup()
 require("neo-tree").setup({
   sources = {
     "filesystem",
