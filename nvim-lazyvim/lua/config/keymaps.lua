@@ -72,7 +72,6 @@ vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc =
 vim.keymap.del("n", "<leader>h")
 -- vim.keymap.del("n", "<leader>H")
 
-
 -- Oil
 vim.keymap.set("n", "<C-S-W>", function() require("oil").toggle_float() end)
 vim.keymap.set("n", "<C-S-O>", function() require("oil").open() end)
@@ -109,5 +108,8 @@ vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "T
 
 -- Noice
 vim.keymap.set("n", "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" })
+
+-- Noice cmdline
+vim.keymap.set("n", "<S-CR>", ":!", { desc = "Cmdline shell" })
 
 -- stylua: ignore end
