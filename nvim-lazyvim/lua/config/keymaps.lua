@@ -23,7 +23,7 @@ vim.keymap.set("v", "<C-S-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" 
 
 vim.keymap.set("n", "<S-Q>", "O<ESC>j_", { desc = "Append line above" })
 vim.keymap.set("n", "q", "o<ESC>k_", { desc = "Append line below" })
-vim.keymap.set("n", "<BS>", "i<CR><ESC>", { desc = "Append line below" })
+vim.keymap.set("n", "<BS>", "i<CR><ESC>kg_", { desc = "<Break the line" })
 
 -- Navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
