@@ -12,7 +12,8 @@ return {
       "hrsh7th/cmp-cmdline",
       "chrisgrieser/cmp_yanky",
     },
-    lazy = false,
+    lazy = true,
+    event = { "InsertEnter", "CmdlineEnter" },
 
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
