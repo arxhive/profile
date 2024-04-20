@@ -6,7 +6,7 @@ return {
         file_ignore_patterns = {
           "node_modules",
           "venv",
-          "public/docs"
+          "public/docs",
         },
       },
     },

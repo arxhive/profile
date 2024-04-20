@@ -10,3 +10,5 @@ require("neo-tree").setup({
     "netman.ui.neo-tree",
   },
 })
+require("remote-sshfs").setup({})
+require("telescope").load_extension("remote-sshfs")

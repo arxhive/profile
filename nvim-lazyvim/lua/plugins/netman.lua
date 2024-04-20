@@ -1,1 +1,3 @@
-return { { "miversen33/netman.nvim" } }
+return {
+  { "miversen33/netman.nvim", lazy = true },
+}
