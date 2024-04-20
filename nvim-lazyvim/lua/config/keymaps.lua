@@ -3,7 +3,6 @@
 vim.keymap.set("n", "<Bslash>", ":")
 
 -- Telescope
-require("telescope").load_extension("luasnip")
 vim.keymap.set("n", "<leader>sl", require("telescope").extensions.luasnip.luasnip, { noremap = true, silent = true, desc = "luasnip" })
 
 -- Buffers

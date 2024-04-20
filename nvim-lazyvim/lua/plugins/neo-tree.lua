@@ -1,5 +1,12 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  dependencies = {
+    "miversen33/netman.nvim",
+  },
+  sources = {
+    "filesystem",
+    "netman.ui.neo-tree",
+  },
   opts = {
     filesystem = {
       filtered_items = {
@@ -44,6 +51,14 @@ return {
         require("neo-tree.command").execute({ toggle = true, source = "buffers", position = "float" })
       end,
       desc = "NeoTree buffers",
+      remap = true,
+    },
+    {
+      "<C-S-R>",
+      function()
+        require("neo-tree.command").execute({ toggle = true, source = "remote", position = "left" })
+      end,
+      desc = "NeoTree remote",
       remap = true,
     },
     -- { "<C-S-G>", function()
