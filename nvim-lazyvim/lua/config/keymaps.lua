@@ -21,14 +21,12 @@ vim.keymap.set("n", "<C-S-k>", ":m -2<CR>", { desc = "Move line up" })
 vim.keymap.set("v", "<C-S-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<C-S-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
-vim.keymap.set("n", "<S-Q>", "_i<CR><ESC>_", { desc = "Append line above" })
-vim.keymap.set("n", "q", "<CR>_i<CR><ESC>kk_", { desc = "Append line below" })
+vim.keymap.set("n", "<S-Q>", "O<ESC>j_", { desc = "Append line above" })
+vim.keymap.set("n", "q", "o<ESC>k_", { desc = "Append line below" })
 
 -- Navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "kj", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "kk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "hh", "<ESC>", { desc = "Escape edit mode" })
 
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz")
