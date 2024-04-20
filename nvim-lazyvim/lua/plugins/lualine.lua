@@ -19,10 +19,10 @@ return {
             return schema.result[1].name
           end,
         },
-        -- or rest client env
-        {
-          "rest",
-        },
+        -- or rest client env (disabled because the rest client is very expensive to load: 50ms)
+        -- {
+        --   "rest",
+        -- },
       },
       lualine_z = {},
     }
