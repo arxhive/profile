@@ -9,6 +9,7 @@ for script in ~/profile/zsh/*.sh; do
   . "$script"
 done
 
+alias t=touch
 alias dps="docker ps"
 alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
