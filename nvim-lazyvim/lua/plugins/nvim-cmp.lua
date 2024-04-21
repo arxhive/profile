@@ -55,6 +55,15 @@ return {
           cmp.abort()
           fallback()
         end),
+        ["<S-CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }, function()
+              vim.cmd("stopinsert")
+            end)
+          else
+            fallback()
+          end
+        end),
       })
 
       -- cmdline setup
