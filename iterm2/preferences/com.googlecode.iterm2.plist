@@ -7044,7 +7044,7 @@
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.24975462682038835</real>
+	<real>0.12000000000000001</real>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
 	<key>TabViewType</key>
