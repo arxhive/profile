@@ -20,8 +20,14 @@ alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
 # alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
 
+# secure ssh config
+#chmod 600 ~/.ssh/config
+
+# secure pem keys
+#chmod 0400
+
 alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
-alias sc-lua="cd ~/profile/nvim-lazyvim/lua/plugins/"
+alias sc-lua="cd ~/profile/nvim-lazyvim/"
 alias sc="cd $SC && ls"
 
 alias cfg_zsh="st ~/.zshrc"

@@ -5,12 +5,13 @@ return {
     "miversen33/netman.nvim",
   },
   init = function()
-    if vim.fn.argc(-1) == 1 then
-      local stat = vim.uv.fs_stat(vim.fn.argv(0))
-      if stat and stat.type == "directory" then
-        require("neo-tree")
-      end
-    end
+    -- uncomment to enable auto open on dir
+    -- if vim.fn.argc(-1) == 1 then
+    --   local stat = vim.uv.fs_stat(vim.fn.argv(0))
+    --   if stat and stat.type == "directory" then
+    --     require("neo-tree")
+    --   end
+    -- end
   end,
   opts = {
     config = function(_, opts)
