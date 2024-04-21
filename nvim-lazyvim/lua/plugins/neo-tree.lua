@@ -68,6 +68,7 @@ return {
     window = {
       mappings = {
         ["<space>"] = "none",
+        ["s"] = "none",
         ["Y"] = {
           function(state)
             local node = state.tree:get_node()
