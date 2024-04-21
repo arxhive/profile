@@ -4,11 +4,12 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export SC='~/sources'
 
-#Company specific aliases
+## Company specific aliases
 for script in ~/profile/zsh/*.sh; do
   . "$script"
 done
 
+## Aliases and fuctions
 alias t=touch
 alias dps="docker ps"
 alias aws-sso="aws sso login"
@@ -19,6 +20,10 @@ alias vim=nvim
 alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
 # alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
+# vv() {
+#   select config in lazyvim kickstart nvchad astrovim lunarvim
+#   do NVIM_APPNAME=nvim-$config nvim $@; break; done
+# }
 
 # secure ssh config
 #chmod 600 ~/.ssh/config
@@ -30,14 +35,18 @@ alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
 alias sc-lua="cd ~/profile/nvim-lazyvim/"
 alias sc="cd $SC && ls"
 
-alias cfg_zsh="st ~/.zshrc"
-alias cfg_aws="st ~/.aws/config"
-alias cfg_mackup="st ~/.mackup.cfg"
+alias cfg_zsh="v ~/.zshrc"
+alias cfg_aws="v ~/.aws/config"
+alias cfg_mackup="v ~/.mackup.cfg"
 
-# vv() {
-#   select config in lazyvim kickstart nvchad astrovim lunarvim
-#   do NVIM_APPNAME=nvim-$config nvim $@; break; done
-# }
+vdlogs() {
+	docker logs $0 >& container_logs
+	v container_logs
+	rm container_logs
+}
+
+
+## ZSH plugings and configs
 
 eval "$(pyenv virtualenv-init -)"
 
@@ -56,7 +65,6 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	sublime # stt
-	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	aws # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
 	aliases # als
 	docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
@@ -65,6 +73,7 @@ plugins=(
 	npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
+	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 ZVM_VI_ESCAPE_BINDKEY=jk
 # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
@@ -92,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 #   fi
 # }
 
-#SDKMAN
+# SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
