@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  lazy = true,
   dependencies = {
     "miversen33/netman.nvim",
   },
@@ -7,6 +8,14 @@ return {
     "filesystem",
     "netman.ui.neo-tree",
   },
+  config = function()
+    require("neo-tree").setup({
+      sources = {
+        "filesystem",
+        "netman.ui.neo-tree",
+      },
+    })
+  end,
   opts = {
     filesystem = {
       filtered_items = {
