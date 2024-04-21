@@ -70,10 +70,6 @@ vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc =
 vim.keymap.del("n", "<leader>h")
 -- vim.keymap.del("n", "<leader>H")
 
--- Oil
-vim.keymap.set("n", "<C-S-W>", function() require("oil").toggle_float() end)
-vim.keymap.set("n", "<C-S-O>", function() require("oil").open() end)
-
 -- UndoTree
 vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
 

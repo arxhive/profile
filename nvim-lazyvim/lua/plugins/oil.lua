@@ -10,4 +10,8 @@ return {
   },
   -- Optional dependencies
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  -- stylua: ignore
+  keys = {
+    { "<C-S-W>", function() require("oil").open() end, desc = "Oil open" },
+  },
 }
