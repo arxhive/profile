@@ -9,7 +9,7 @@
   },
   {
     "shortcut_key_binding" : null,
-    "shortcut_name" : "MoveToUpperLeft"
+    "shortcut_name" : "MoveToLowerRight"
   },
   {
     "shortcut_key_binding" : null,
@@ -32,7 +32,7 @@
     "shortcut_name" : "MoveToLowerLeft"
   },
   {
-    "shortcut_key_binding" : "ctrl+alt+shift+right",
+    "shortcut_key_binding" : null,
     "shortcut_name" : "MakeLarger"
   },
   {
@@ -65,10 +65,10 @@
   },
   {
     "shortcut_key_binding" : null,
-    "shortcut_name" : "MoveToPreviousThird"
+    "shortcut_name" : "MoveToUpperLeft"
   },
   {
     "shortcut_key_binding" : null,
-    "shortcut_name" : "MoveToLowerRight"
+    "shortcut_name" : "MoveToPreviousThird"
   }
 ]
