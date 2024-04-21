@@ -5109,7 +5109,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>hhgcc</string>
+			<string>©gcc</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -5120,7 +5120,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>hhgc</string>
+			<string>©gc</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -5131,7 +5131,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>hhgc</string>
+			<string>©gc</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -5164,7 +5164,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>hh:copy .\n</string>
+			<string>©:copy .\n</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
@@ -5197,7 +5197,7 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>hh:wa\n</string>
+			<string>©:wa\n</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>

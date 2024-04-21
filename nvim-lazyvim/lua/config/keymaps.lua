@@ -27,8 +27,8 @@ vim.keymap.set("n", "<BS>", "i<CR><ESC>kg_", { desc = "<Break the line" })
 
 -- Navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "kj", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "hh", "<ESC>", { desc = "Escape edit mode" })
+vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
+vim.keymap.set("i", "©", "<ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz")
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz")
