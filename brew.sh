@@ -18,7 +18,11 @@ git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-m
 brew install tfenv
 brew install wget
 brew install jq
-brew install sshfs
+
+brew install --cask macfuse
+# brew install sshfs 
+# use macfuse on install sshfs on MacOs
+# https://github.com/osxfuse/sshfs/releases
 
 #vim
 brew install nvim
