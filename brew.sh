@@ -18,6 +18,7 @@ git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-m
 brew install tfenv
 brew install wget
 brew install jq
+brew install derailed/k9s/k9s
 
 brew install --cask macfuse
 # brew install sshfs
