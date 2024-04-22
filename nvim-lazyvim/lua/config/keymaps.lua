@@ -72,9 +72,6 @@ vim.keymap.set("n", "<PageUp>", function() harpoon:list():prev() end, { desc = "
 vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
 -- vim.keymap.del("n", "<leader>H")
 
--- UndoTree
-vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
-
 -- Yanky
 vim.keymap.set({"n","x", "i"}, "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" })
 
