@@ -38,6 +38,7 @@ alias sc="cd $SC && ls"
 alias cfg_zsh="v ~/.zshrc"
 alias cfg_aws="v ~/.aws/config"
 alias cfg_mackup="v ~/.mackup.cfg"
+alias cfg_mybrew="v ~/profile/brew.sh"
 
 vdlogs() {
 	docker logs $0 >& container_logs

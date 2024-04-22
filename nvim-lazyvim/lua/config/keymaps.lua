@@ -1,6 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua Add any additional keymaps here
 -- stylua: ignore start
-vim.keymap.set("n", "<Bslash>", ":")
+vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 
 -- Telescope
 vim.keymap.set("n", "<leader>sl", require("telescope").extensions.luasnip.luasnip, { noremap = true, silent = true, desc = "luasnip" })
@@ -30,8 +30,10 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 vim.keymap.set("i", "©", "<ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
 
 vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
 vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
@@ -58,6 +60,7 @@ vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract B
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
 
 vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex - old/new" })
+vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/_\1_]], { desc = "Suround by regex - old/new" })
 
 -- Harpoon
 local harpoon = require("harpoon")
@@ -67,7 +70,6 @@ vim.keymap.set("n", "<C-S-E>", function() harpoon.ui:toggle_quick_menu(harpoon:l
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<PageUp>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
 vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
-vim.keymap.del("n", "<leader>h")
 -- vim.keymap.del("n", "<leader>H")
 
 -- UndoTree
@@ -76,8 +78,8 @@ vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
 -- Yanky
 vim.keymap.set({"n","x", "i"}, "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" })
 
-vim.keymap.set("x", "p", [["_d<Plug>(YankyPutAfter)]], { desc = "Paste and keep in buffer" })
--- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste in keep in buffer" })
+-- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
+vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
 
 vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")

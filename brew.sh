@@ -20,12 +20,13 @@ brew install wget
 brew install jq
 
 brew install --cask macfuse
-# brew install sshfs 
+# brew install sshfs
 # use macfuse on install sshfs on MacOs
 # https://github.com/osxfuse/sshfs/releases
 
 #vim
 brew install nvim
+brew install gnu-sed
 brew install ripgrep
 brew install lazygit
 ln -s ~/profile/nvim-lazyvim ~/.config/nvim-lazyvim
