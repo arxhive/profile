@@ -1,18 +1,7 @@
+-- oil opts are configured in init.lua
 return {
   "stevearc/oil.nvim",
   lazy = true,
-  opts = {
-    default_file_explorer = true,
-    skip_confirm_for_simple_edits = true,
-    prompt_save_on_select_new_entry = false,
-    view_options = {
-      show_hidden = true,
-    },
-    keymaps = {
-      ["<bs>"] = "actions.parent",
-    },
-  },
-  -- Optional dependencies
   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- stylua: ignore
   keys = {
