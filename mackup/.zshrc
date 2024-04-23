@@ -90,9 +90,10 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NVM autocomplete
-export NVM_DIR="$HOMEBREW_PREFIX/opt/nvm"
-alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Loads nvm scripts async
-[ -s "$NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+export HOMEBREW_NVM_DIR="$HOMEBREW_PREFIX/opt/nvm"
+alias nvm="unalias nvm; [ -s "$HOMEBREW_NVM_DIR/nvm.sh" ] && . "$HOMEBREW_NVM_DIR/nvm.sh"; nvm $@" # Loads nvm scripts async
+[ -s "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
 

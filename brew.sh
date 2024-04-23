@@ -44,6 +44,7 @@ brew install golang
 #node
 mkdir ~/.nvm
 brew install nvm
+nvm install node
 
 #sdkman
 curl -s "https://get.sdkman.io" | bash
