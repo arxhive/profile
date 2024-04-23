@@ -1,4 +1,6 @@
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
+# track open time:
+# /usr/bin/time zsh -i -c exit
 
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
@@ -38,7 +40,6 @@ alias sc="cd $SC && ls"
 alias cfg_zsh="v ~/.zshrc"
 alias cfg_aws="v ~/.aws/config"
 alias cfg_mackup="v ~/.mackup.cfg"
-alias cfg_mybrew="v ~/profile/brew.sh"
 
 vdlogs() {
 	docker logs $0 >& container_logs
@@ -85,12 +86,13 @@ export PYTHON_AUTO_VRUN=true
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 
-#NVM
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+# NVM autocomplete
+export NVM_DIR="$HOMEBREW_PREFIX/opt/nvm"
+alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Loads nvm scripts async
+[ -s "$NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
 
 # DOCKER
 # useful only for Mac OS Silicon M1, M2
