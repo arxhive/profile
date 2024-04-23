@@ -1,10 +1,5 @@
 return {
   {
-    "benfowler/telescope-luasnip.nvim",
-    lazy = true,
-    module = "telescope._extensions.luasnip",
-  },
-  {
     "nvim-telescope/telescope.nvim",
     lazy = true,
     opts = {
@@ -15,6 +10,20 @@ return {
           "public/docs",
         },
       },
+    },
+    -- stylua: ignore
+    keys = {
+      { "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" } },
+      { "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" } },
+    },
+  },
+  {
+    "benfowler/telescope-luasnip.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
+    module = "telescope._extensions.luasnip", -- used for lazy loading
+    keys = {
+      -- stylua: ignore
+      { "<leader>sl", function() require("telescope").extensions.luasnip.luasnip() end, { noremap = true, silent = true, desc = "luasnip" } },
     },
   },
 }

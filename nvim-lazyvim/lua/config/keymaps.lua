@@ -2,9 +2,6 @@
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 
--- Telescope
-vim.keymap.set("n", "<leader>sl", require("telescope").extensions.luasnip.luasnip, { noremap = true, silent = true, desc = "luasnip" })
-
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
 
@@ -72,9 +69,6 @@ vim.keymap.set("n", "<PageUp>", function() harpoon:list():prev() end, { desc = "
 vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
 -- vim.keymap.del("n", "<leader>H")
 
--- Yanky
-vim.keymap.set({"n","x", "i"}, "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" })
-
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
 vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
 
@@ -86,9 +80,6 @@ vim.keymap.set("n", "<C-S-S>", function() require("aerial").toggle() end, { desc
 
 -- Database Explorer
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
-
--- Noice
-vim.keymap.set("n", "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" })
 
 -- Noice cmdline
 vim.keymap.set("n", "<S-CR>", ":!", { desc = "Cmdline shell" })
