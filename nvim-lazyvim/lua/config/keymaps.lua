@@ -75,9 +75,6 @@ vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste an
 vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
--- Aerial
-vim.keymap.set("n", "<C-S-S>", function() require("aerial").toggle() end, { desc = "Toggle Aerial" })
-
 -- Database Explorer
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
 
