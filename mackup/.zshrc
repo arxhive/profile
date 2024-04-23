@@ -50,7 +50,7 @@ vdlogs() {
 
 ## ZSH plugings and configs
 
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)" # 20ms to load
 
 # ZSH_THEME="avit"
 ZSH_THEME="refined"
