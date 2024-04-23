@@ -12,6 +12,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
     { import = "plugins/go" },
+    { import = "local" },
   },
   defaults = {
     lazy = false,
