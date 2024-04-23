@@ -13,6 +13,7 @@ done
 
 ## Aliases and fuctions
 alias t=touch
+alias python=python3
 alias dps="docker ps"
 alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
@@ -40,6 +41,7 @@ alias sc="cd $SC && ls"
 alias cfg_zsh="v ~/.zshrc"
 alias cfg_aws="v ~/.aws/config"
 alias cfg_mackup="v ~/.mackup.cfg"
+alias cfg_brew="v ~/profile/brew.sh"
 
 vdlogs() {
 	docker logs $0 >& container_logs

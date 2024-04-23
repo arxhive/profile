@@ -38,7 +38,7 @@ git clone https://github.com/momo-lab/pyenv-install-latest.git "$(pyenv root)"/p
 pyenv install-latest
 brew install pyenv-virtualenv
 
-# go
+#go
 brew install golang
 
 #node
