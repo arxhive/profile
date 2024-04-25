@@ -67,6 +67,7 @@ brew install --cask caffeine
 brew install --cask docker
 brew install --cask visual-studio-code
 brew install --cask spotify
+brew install --cask git-credential-manager
 
 brew install alt-tab
 brew install mackup
