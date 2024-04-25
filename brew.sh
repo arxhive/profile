@@ -78,6 +78,7 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 
 #after
+mkdir ~/sources
 cd ~/profile
 git config user.name "Artem Kolomeetc"
 git config user.email "artesdi@gmail.com"
