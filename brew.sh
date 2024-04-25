@@ -76,3 +76,10 @@ brew install --cask temurin
 brew install telnet
 brew install fzf
 $(brew --prefix)/opt/fzf/install
+
+#after
+cd ~/profile
+git config user.name "Artem Kolomeetc"
+git config user.email "artesdi@gmail.com"
+
+cp ~/profile/dotfiles/com.lwouis.alt-tab-macos.plist ~/Library/Preferences/com.lwouis.alt-tab-macos.plist
