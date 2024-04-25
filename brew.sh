@@ -87,4 +87,5 @@ cd ~/profile
 git config user.name "Artem Kolomeetc"
 git config user.email "artesdi@gmail.com"
 
+rm ~/Library/Preferences/com.lwouis.alt-tab-macos.plist
 cp -rf ~/profile/dotfiles/ ~/
