@@ -13,7 +13,7 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, { desc = "Telescope yank history" } },
+      { "<C-S-P>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, { desc = "Telescope yank history" } },
       { "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" } },
     },
   },
