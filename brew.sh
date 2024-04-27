@@ -1,8 +1,8 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install git
-
-git clone https://github.com/artesdi/profile.git ~/profile
+brew install --cask git-credential-manager
+git clone https://github.com/arxhive/profile.git ~/profile
 
 #fonts
 cp ~/profile/nerd-fonts/* ~/Library/Fonts/
@@ -19,6 +19,7 @@ brew install tfenv
 brew install wget
 brew install jq
 brew install derailed/k9s/k9s
+brew install graphviz
 
 brew install --cask macfuse
 # brew install sshfs
@@ -68,7 +69,9 @@ brew install --cask docker
 brew install --cask visual-studio-code
 brew install --cask spotify
 
+brew install speedtest-cli
 brew install alt-tab
+
 brew install mackup
 echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
 mackup restore
@@ -81,8 +84,31 @@ brew install telnet
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 
+#clouds
+#brew install awscli
+#brew install azure-cli
+
+#database
+#brew install postgresql
+#brew services start postgresql
+#brew install --cask datagrip
+
+#jetbrain
+#brew install --cask jetbrains-toolbox
+#brew install --cask pycharm-ce
+#brew install --cask intellij-idea-ce
+
 #after
-mkdir ~/sources
+mkdir -p ~/sources
+mkdir -p ~/sources/diagrams
+
+#https://github.com/mingrammer/diagrams
+cd ~/sources/diagrams
+python -m venv venv
+source venv/bin/activate
+pip install diagrams
+deactivate
+
 cd ~/profile
 git config user.name "Artem Kolomeetc"
 git config user.email "artesdi@gmail.com"
