@@ -93,8 +93,12 @@ source $ZSH/oh-my-zsh.sh
 # NVM autocomplete
 export NVM_DIR="$HOME/.nvm"
 export HOMEBREW_NVM_DIR="$HOMEBREW_PREFIX/opt/nvm"
-alias nvm="unalias nvm; [ -s "$HOMEBREW_NVM_DIR/nvm.sh" ] && . "$HOMEBREW_NVM_DIR/nvm.sh"; nvm $@" # Loads nvm scripts async
-[ -s "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+alias nvm="unalias nvm; [ -s "$HOMEBREW_NVM_DIR/nvm.sh" ] && . "$HOMEBREW_NVM_DIR/nvm.sh"; nvm $@" # Use alias instead of loading nvm on start
+[ -s "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion is file exists
+
+# azure-cli autocomplete
+# test if the file exists and executes
+[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && \. "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
 
 
 
