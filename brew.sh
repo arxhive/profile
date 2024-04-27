@@ -1,8 +1,8 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install git
-
-git clone https://github.com/artesdi/profile.git ~/profile
+brew install --cask git-credential-manager
+git clone https://github.com/arxhive/profile.git ~/profile
 
 #fonts
 cp ~/profile/nerd-fonts/* ~/Library/Fonts/
@@ -67,9 +67,10 @@ brew install --cask caffeine
 brew install --cask docker
 brew install --cask visual-studio-code
 brew install --cask spotify
-brew install --cask git-credential-manager
 
+brew install speedtest-cli
 brew install alt-tab
+
 brew install mackup
 echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
 mackup restore
@@ -81,6 +82,20 @@ brew install --cask temurin
 brew install telnet
 brew install fzf
 $(brew --prefix)/opt/fzf/install
+
+#clouds
+#brew install awscli
+#brew install azure-cli
+
+#database
+#brew install postgresql
+#brew services start postgresql
+#brew install --cask datagrip
+
+#jetbrain
+#brew install --cask jetbrains-toolbox
+#brew install --cask pycharm-ce
+#brew install --cask intellij-idea-ce
 
 #after
 mkdir ~/sources
