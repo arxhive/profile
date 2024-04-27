@@ -19,6 +19,7 @@ brew install tfenv
 brew install wget
 brew install jq
 brew install derailed/k9s/k9s
+brew install graphviz
 
 brew install --cask macfuse
 # brew install sshfs
@@ -98,7 +99,16 @@ $(brew --prefix)/opt/fzf/install
 #brew install --cask intellij-idea-ce
 
 #after
-mkdir ~/sources
+mkdir -p ~/sources
+mkdir -p ~/sources/diagrams
+
+#https://github.com/mingrammer/diagrams
+cd ~/sources/diagrams
+python -m venv venv
+source venv/bin/activate
+pip install diagrams
+deactivate
+
 cd ~/profile
 git config user.name "Artem Kolomeetc"
 git config user.email "artesdi@gmail.com"
