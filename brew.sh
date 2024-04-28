@@ -46,6 +46,7 @@ brew install pyenv-virtualenv
 
 #go
 brew install golang
+curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
 
 #node
 mkdir ~/.nvm
