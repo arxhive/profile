@@ -18,8 +18,14 @@ vim.keymap.set("n", "<C-S-k>", ":m -2<CR>", { desc = "Move line up" })
 vim.keymap.set("v", "<C-S-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<C-S-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
-vim.keymap.set("n", "<S-Q>", "O<ESC>j_", { desc = "Append line above" })
-vim.keymap.set("n", "q", "o<ESC>k_", { desc = "Append line below" })
+vim.keymap.set("n", "<S-q>", function()
+  local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line - 1, false, {""})
+end, { desc = "Append line above" })
+vim.keymap.set("n", "q", function()
+  local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_buf_set_lines(0, cursor_line, cursor_line, false, {""})
+end, { desc = "Append line below" })
 vim.keymap.set("n", "<BS>", "i<CR><ESC>kg_", { desc = "<Break the line" })
 
 -- Navigation
