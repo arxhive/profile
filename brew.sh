@@ -21,6 +21,11 @@ brew install jq
 brew install derailed/k9s/k9s
 brew install graphviz
 
+#gnu
+brew install base64
+brew install findutils
+
+#fuse
 brew install --cask macfuse
 # brew install sshfs
 # use macfuse on install sshfs on MacOs
