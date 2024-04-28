@@ -2,6 +2,8 @@
 # track open time:
 # /usr/bin/time zsh -i -c exit
 
+export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
+
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export SC='~/sources'
