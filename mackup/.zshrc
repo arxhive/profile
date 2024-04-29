@@ -48,9 +48,8 @@ vdlogs() {
 	rm container_logs
 }
 
-
 ## ZSH plugings and configs
-
+source ~/zsh-defer/zsh-defer.plugin.zsh
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
 # ZSH_THEME="avit"
@@ -60,7 +59,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 zstyle ':omz:update' mode auto      # update automatically without asking
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="falsest"
+ENABLE_CORRECTION="false"
 
 plugins=(
 	zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
@@ -80,13 +79,13 @@ plugins=(
 	)
 ZVM_VI_ESCAPE_BINDKEY=jk
 # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-zvm_after_init_commands+=('source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh')
+zvm_after_init_commands+=('zsh-defer source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh')
 
 zstyle ':omz:plugins:nvm' lazy yes
 export PYTHON_AUTO_VRUN=true
 
-source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zsh-defer source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && zsh-defer source ~/.fzf.zsh
 
 # DOCKER
 # useful only for Mac OS Silicon M1, M2
@@ -100,17 +99,16 @@ source $ZSH/oh-my-zsh.sh
 
 # NVM autocomplete
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Use alias instead of loading nvm on start
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh"  # Delayed load of nvm
+[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # azure-cli autocomplete
 # test if the file exists and executes
-[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && \. "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
+[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && zsh-defer source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+# Envman: https://github.com/bitrise-io/envman 
+[ -s "$HOME/.config/envman/load.sh" ] && zsh-defer source "$HOME/.config/envman/load.sh"
