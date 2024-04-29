@@ -1,6 +1,9 @@
 return {
   "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  event = function()
+    return { "LazyFile" }
+  end,
   -- Tabline
   opts = function(_, opts)
     opts.tabline = {
