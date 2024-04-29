@@ -19,6 +19,8 @@ done
 alias vim='NVIM_APPNAME=lazyvim nvim'
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
+alias vp="vim . -c 'Telescope projects'"
+alias vr="vim . -c 'Telescope oldfiles'"
 alias t=touch
 alias z=zsh
 alias python=python3
@@ -38,11 +40,11 @@ alias lua="v ~/profile/lazyvim/lua/plugins/"
 alias sc-lua="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias cfg_zsh="v ~/.zshrc"
-alias cfg_aws="v ~/.aws/config"
-alias cfg_mackup="v ~/.mackup.cfg"
-alias cfg_brew="v ~/profile/brew.sh"
-alias cfg_ssh="v ~/.ssh/config"
+alias config_zsh="v ~/.zshrc"
+alias config_aws="v ~/.aws/config"
+alias cconfig_mackup="v ~/.mackup.cfg"
+alias config_brew="v ~/profile/brew.sh"
+alias config_ssh="v ~/.ssh/config"
 
 vdlogs() {
 	docker logs $0 >& container_logs
