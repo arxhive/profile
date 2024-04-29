@@ -18,7 +18,9 @@ done
 ## Aliases and fuctions
 alias vim='NVIM_APPNAME=lazyvim nvim'
 alias v=vim
+alias vs="vim -c \"lua require('persistence').load({ last = true })\""
 alias t=touch
+alias z=zsh
 alias python=python3
 alias dps="docker ps"
 alias aws-sso="aws sso login"
