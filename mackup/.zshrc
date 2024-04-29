@@ -36,7 +36,7 @@ alias h=history
 # secure pem keys
 #chmod 0400
 
-alias lua="v ~/profile/lazyvim/lua/plugins/"
+alias lua="cd ~/profile/lazyvim/lua/plugins/ && v ."
 alias sc-lua="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
