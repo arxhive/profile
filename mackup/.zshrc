@@ -1,19 +1,23 @@
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
 # track open time:
-# /usr/bin/time zsh -i -c exit
-
-export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
+alias loadtime="/usr/bin/time zsh -i -c exit"
 
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export SC='~/sources'
 
-## Company specific aliases
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+## Machine-specific aliases
 for script in ~/profile/zsh/*.sh; do
   . "$script"
 done
 
 ## Aliases and fuctions
+alias vim='NVIM_APPNAME=lazyvim nvim'
+alias v=vim
 alias t=touch
 alias python=python3
 alias dps="docker ps"
@@ -21,14 +25,6 @@ alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias h=history
-alias vim=nvim
-alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
-# alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
-# alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
-# vv() {
-#   select config in lazyvim kickstart nvchad astrovim lunarvim
-#   do NVIM_APPNAME=nvim-$config nvim $@; break; done
-# }
 
 # secure ssh config
 #chmod 600 ~/.ssh/config
@@ -36,8 +32,8 @@ alias v='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # secure pem keys
 #chmod 0400
 
-alias lua="v ~/profile/nvim-lazyvim/lua/plugins/"
-alias sc-lua="cd ~/profile/nvim-lazyvim/"
+alias lua="v ~/profile/lazyvim/lua/plugins/"
+alias sc-lua="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
 alias cfg_zsh="v ~/.zshrc"
@@ -92,18 +88,6 @@ export PYTHON_AUTO_VRUN=true
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# NVM autocomplete
-export NVM_DIR="$HOME/.nvm"
-export HOMEBREW_NVM_DIR="$HOMEBREW_PREFIX/opt/nvm"
-alias nvm="unalias nvm; [ -s "$HOMEBREW_NVM_DIR/nvm.sh" ] && . "$HOMEBREW_NVM_DIR/nvm.sh"; nvm $@" # Use alias instead of loading nvm on start
-[ -s "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion is file exists
-
-# azure-cli autocomplete
-# test if the file exists and executes
-[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && \. "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
-
-
-
 # DOCKER
 # useful only for Mac OS Silicon M1, M2
 # docker() {
@@ -114,10 +98,19 @@ alias nvm="unalias nvm; [ -s "$HOMEBREW_NVM_DIR/nvm.sh" ] && . "$HOMEBREW_NVM_DI
 #   fi
 # }
 
+# NVM autocomplete
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Use alias instead of loading nvm on start
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# azure-cli autocomplete
+# test if the file exists and executes
+[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && \. "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
+
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

@@ -1,10 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = {
-    ensure_installed = {
+
+  opts = function(_, opts)
+    table.insert(opts.ensure_installed, {
       "http",
       "graphql",
       "jsonc",
-    },
-  },
+    })
+  end,
 }

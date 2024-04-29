@@ -36,7 +36,7 @@ brew install nvim
 brew install gnu-sed
 brew install ripgrep
 brew install lazygit
-ln -s ~/profile/nvim-lazyvim ~/.config/nvim-lazyvim
+ln -s ~/profile/lazyvim ~/.config/lazyvim
 
 #python
 brew install pyenv
@@ -46,11 +46,11 @@ brew install pyenv-virtualenv
 
 #go
 brew install golang
-curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
+brew install golangci-lint
+# curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
 
 #node
-mkdir ~/.nvm
-brew install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install node
 
 #sdkman

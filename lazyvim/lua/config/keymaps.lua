@@ -2,6 +2,10 @@
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 
+-- Telescope
+vim.keymap.set("n", "<C-f>", function() vim.cmd("Telescope live_grep") end, { desc = "Grep" })
+vim.keymap.set("n", "<C-S-f>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep string" })
+
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
 

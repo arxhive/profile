@@ -8,6 +8,7 @@ return {
           "node_modules",
           "venv",
           "public/docs",
+          "go/pkg",
         },
       },
     },
@@ -15,8 +16,6 @@ return {
     keys = {
       { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, { desc = "Telescope yank history" } },
       { "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" } },
-      { "<C-f>", function() vim.cmd("Telescope live_grep") end, { desc = "Grep" } },
-      { "<C-S-f>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep string" } },
     },
   },
   {
