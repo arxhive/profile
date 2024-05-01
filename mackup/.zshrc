@@ -29,6 +29,7 @@ alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias h=history
+alias git-whoami="git config user.email"
 
 # secure ssh config
 #chmod 600 ~/.ssh/config
@@ -93,13 +94,13 @@ zsh-defer source $ZSH/oh-my-zsh.sh
 
 # DOCKER
 # useful only for Mac OS Silicon M1, M2
-# docker() {
-#  if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
-#     /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
-#   else
-#      /usr/local/bin/docker "$@"
-#   fi
-# }
+docker() {
+ if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+    /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
+  else
+     /usr/local/bin/docker "$@"
+  fi
+}
 
 # NVM autocomplete
 export NVM_DIR="$HOME/.nvm"
