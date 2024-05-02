@@ -105,6 +105,7 @@ $(brew --prefix)/opt/fzf/install
 #brew install --cask intellij-idea-ce
 
 #after
+mkdir -p ~/logs
 mkdir -p ~/sources
 mkdir -p ~/sources/diagrams
 
