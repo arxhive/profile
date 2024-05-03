@@ -23,6 +23,7 @@ alias vp="vim . -c 'Telescope projects'"
 alias vr="vim . -c 'Telescope oldfiles'"
 alias t=touch
 alias z=zsh
+alias lg=lazygit
 alias python=python3
 alias dps="docker ps"
 alias aws-sso="aws sso login"
@@ -37,14 +38,14 @@ alias git-whoami="git config user.email"
 # secure pem keys
 #chmod 0400
 
-alias lua="cd ~/profile/lazyvim/lua/plugins/ && v ."
-alias sc-lua="cd ~/profile/lazyvim/"
+alias config-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
+alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
 alias config_zsh="v ~/.zshrc"
-alias config_aws="v ~/.aws/config"
+alias config-aws="v ~/.aws/config"
 alias cconfig_mackup="v ~/.mackup.cfg"
-alias config_brew="v ~/profile/brew.sh"
+alias config-brew="v ~/profile/brew.sh"
 alias config_ssh="v ~/.ssh/config"
 
 vdlogs() {
@@ -80,7 +81,7 @@ plugins=(
 	npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
-	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
+	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 ZVM_VI_ESCAPE_BINDKEY=jk
 # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
