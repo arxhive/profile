@@ -1,5 +1,9 @@
 return {
   "folke/which-key.nvim",
+  event = function(_, event)
+    return {}
+  end,
+  keys = { "<Leader>" },
   opts = {
     plugins = { spelling = true },
     defaults = {
