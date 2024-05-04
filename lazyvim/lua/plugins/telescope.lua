@@ -1,7 +1,6 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = true,
     opts = {
       defaults = {
         file_ignore_patterns = {
@@ -21,7 +20,6 @@ return {
   {
     "benfowler/telescope-luasnip.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
-    module = "telescope._extensions.luasnip", -- used for lazy loading
     keys = {
       -- stylua: ignore
       { "<leader>sl", function() require("telescope").extensions.luasnip.luasnip() end, { noremap = true, silent = true, desc = "luasnip" } }, -- fix whichkey
