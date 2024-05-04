@@ -5,7 +5,7 @@ vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn o
 
 -- Telescope
 vim.keymap.set("n", "<C-f>", function() vim.cmd("Telescope live_grep") end, { desc = "Grep" })
-vim.keymap.set("n", "<C-S-f>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep string" })
+vim.keymap.set({ "n","x" }, "<C-S-f>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep string" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
@@ -69,16 +69,6 @@ vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "
 
 vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex - old/new" })
 vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/_\1_]], { desc = "Suround by regex - old/new" })
-
--- Harpoon
-local harpoon = require("harpoon")
-harpoon:setup()
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon File" })
-vim.keymap.set("n", "<C-S-E>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<PageUp>", function() harpoon:list():prev() end, { desc = "Prev Harpoon" })
-vim.keymap.set("n", "<PageDown>", function() harpoon:list():next() end, { desc = "Next Harpoon" })
--- vim.keymap.del("n", "<leader>H")
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
 vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
