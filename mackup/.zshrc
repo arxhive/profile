@@ -42,11 +42,11 @@ alias config-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias config_zsh="v ~/.zshrc"
+alias config-zsh="v ~/.zshrc"
 alias config-aws="v ~/.aws/config"
-alias cconfig_mackup="v ~/.mackup.cfg"
+alias cconfig-mackup="v ~/.mackup.cfg"
 alias config-brew="v ~/profile/brew.sh"
-alias config_ssh="v ~/.ssh/config"
+alias config-ssh="v ~/.ssh/config"
 
 vdlogs() {
 	docker logs $0 >& container_logs
