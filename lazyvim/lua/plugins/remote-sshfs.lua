@@ -1,8 +1,7 @@
 return {
   {
     "nosduco/remote-sshfs.nvim",
-    lazy = true,
-    event = "CmdlineEnter",
+    cmd = { "RemoteSSHFSConnect", "RemoteSSHFSEdit", "RemoteSSHFSReload" },
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("remote-sshfs").setup({})
