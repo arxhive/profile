@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
-    require("lspconfig")
+    require("null-ls")
     require("refactoring")
     require("yaml-companion")
     require("telescope")
