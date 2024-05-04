@@ -1,16 +1,23 @@
 return {
   "nvim-lualine/lualine.nvim",
-  -- event = "VeryLazy",
-  event = function()
-    return { "LazyFile" }
-  end,
+  event = "VeryLazy",
   -- Tabline
   opts = function(_, opts)
     opts.tabline = {
       lualine_a = { "mode" },
       lualine_b = {},
       lualine_c = { { "filetype", icon_only = true }, { "filename", file_status = true, path = 1 } },
-      lualine_x = {},
+      lualine_x = {
+        {
+          function()
+            if KINDLED then
+              return ">_"
+            else
+              return ""
+            end
+          end,
+        },
+      },
       lualine_y = {
         -- display yaml/Kubernetes (~15ms)
         -- {

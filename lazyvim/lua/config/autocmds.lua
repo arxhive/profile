@@ -10,3 +10,11 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
     end
   end,
 })
+
+vim.api.nvim_create_user_command("Kindle", function()
+  if KINDLED == nil then
+    require("refactoring")
+
+    KINDLED = true
+  end
+end, {})

@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua Add any additional keymaps here
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
+vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
 -- Telescope
 vim.keymap.set("n", "<C-f>", function() vim.cmd("Telescope live_grep") end, { desc = "Grep" })
