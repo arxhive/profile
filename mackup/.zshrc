@@ -21,6 +21,7 @@ alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
 alias vp="vim . -c 'Telescope projects'"
 alias vr="vim . -c 'Telescope oldfiles'"
+alias vv="vim . -c 'Kindle'"
 alias t=touch
 alias z=zsh
 alias lg=lazygit
@@ -90,7 +91,7 @@ zvm_after_init_commands+=('zsh-defer source $HOME/.oh-my-zsh/plugins/zsh-interac
 zstyle ':omz:plugins:nvm' lazy yes
 export PYTHON_AUTO_VRUN=true
 
-zsh-defer source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && zsh-defer source ~/.fzf.zsh
 
 # DOCKER
