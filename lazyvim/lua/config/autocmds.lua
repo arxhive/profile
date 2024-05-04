@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
     require("refactoring")
+    require("yaml-companion")
 
     KINDLED = true
   end
