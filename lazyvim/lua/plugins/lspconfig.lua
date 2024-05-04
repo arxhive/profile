@@ -1,6 +1,9 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = function(_, event)
+      return {}
+    end,
     opts = {
       servers = {
         pyright = {
