@@ -55,7 +55,7 @@ vdlogs() {
 }
 
 ## ZSH plugings and configs
-source ~/zsh-defer/zsh-defer.plugin.zsh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
 # ZSH_THEME="avit"
