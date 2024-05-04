@@ -1,8 +1,7 @@
 return {
   {
     "someone-stole-my-name/yaml-companion.nvim",
-    lazy = true,
-    ft = { "yaml" },
+    -- ft = { "yaml" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-lua/plenary.nvim" },
@@ -13,6 +12,14 @@ return {
       require("lspconfig")["yamlls"].setup(cfg)
       require("telescope").load_extension("yaml_schema")
     end,
+    keys = {
+      {
+        "<Leader>y",
+        function()
+          vim.cmd("Telescope yaml_schema")
+        end,
+      },
+    },
   },
 }
 -- Telescope yaml_schema

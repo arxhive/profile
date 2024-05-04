@@ -20,15 +20,19 @@ return {
       },
       lualine_y = {
         -- display yaml/Kubernetes (~15ms)
-        -- {
-        --   function()
-        --     local schema = require("yaml-companion").get_buf_schema(0)
-        --     if schema.result[1].name == "none" then
-        --       return ""
-        --     end
-        --     return schema.result[1].name
-        --   end,
-        -- },
+        {
+          function()
+            if KINDLED then
+              local schema = require("yaml-companion").get_buf_schema(0)
+              if schema.result[1].name == "none" then
+                return ""
+              end
+              return schema.result[1].name
+            else
+              return ""
+            end
+          end,
+        },
         -- or rest client env (disabled because the rest client is very expensive to load: 50ms)
         -- {
         --   "rest",
