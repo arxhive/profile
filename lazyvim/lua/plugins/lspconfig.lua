@@ -2,19 +2,15 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = function(_, event)
-      return {}
+      return { "LazyFile" }
     end,
+    ---@class PluginLspOpts
     opts = {
+      ---@type lspconfig.options
       servers = {
-        pyright = {
-          mason = true,
-        },
-        ruff_lsp = {
-          mason = true,
-        },
-        gopls = {
-          mason = true,
-        },
+        pyright = {},
+        ruff_lsp = {},
+        gopls = {},
       },
     },
   },

@@ -16,6 +16,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("lspconfig")
     require("refactoring")
     require("yaml-companion")
+    require("telescope")
 
     KINDLED = true
   end
