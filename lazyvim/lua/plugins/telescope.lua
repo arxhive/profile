@@ -13,8 +13,8 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, { desc = "Telescope yank history" } },
-      { "<leader>snt", function() vim.cmd("Noice telescope") end, { desc = "Noice telescope" } },
+      { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
+      { "<leader>snt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
     },
   },
   {
@@ -22,7 +22,7 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
     keys = {
       -- stylua: ignore
-      { "<leader>sl", function() require("telescope").extensions.luasnip.luasnip() end, { noremap = true, silent = true, desc = "luasnip" } }, -- fix whichkey
+      { "<leader>sl", function() require("telescope").extensions.luasnip.luasnip() end, desc = "Luasnip" }, -- fix whichkey
     },
   },
 }

@@ -16,8 +16,9 @@ return {
     end,
     -- stalua: ignore
     keys = {
-      { "<leader>hr", "<cmd>Rest run<cr>", "Run request under the cursor" },
-      { "<leader>hl", "<cmd>Rest run last<cr>", "Re-run latest request" },
+      { "<leader>hr", "<cmd>Rest run<cr>", desc = "Run request under the cursor" },
+
+      { "<leader>hl", "<cmd>Rest run last<cr>", desc = "Re-run latest request" },
     },
   },
 }

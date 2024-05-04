@@ -12,13 +12,9 @@ return {
       require("lspconfig")["yamlls"].setup(cfg)
       require("telescope").load_extension("yaml_schema")
     end,
+    -- stylua: ignore
     keys = {
-      {
-        "<Leader>y",
-        function()
-          vim.cmd("Telescope yaml_schema")
-        end,
-      },
+      { "<Leader>y", function() vim.cmd("Telescope yaml_schema") end, desc = "Yaml schema" },
     },
   },
 }

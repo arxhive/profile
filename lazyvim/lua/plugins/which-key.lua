@@ -10,6 +10,7 @@ return {
       mode = { "n", "v" },
       ["<leader>r"] = { name = "+refactor" },
       ["<leader>h"] = { name = "+http client" },
+      ["<leader>k"] = { name = "+kubernetes" },
     },
   },
 }
