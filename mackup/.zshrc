@@ -68,7 +68,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 ENABLE_CORRECTION="false"
 
 plugins=(
-	zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
+	# zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 	git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
