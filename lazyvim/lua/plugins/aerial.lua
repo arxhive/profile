@@ -28,8 +28,8 @@ return {
     },
   -- stylua: ignore
     keys = {
-    { "<C-S-S>", function() require("aerial").toggle() end, { desc = "Toggle Aerial" }, },
-    { "<C-S-A>", function() require("aerial").open({ direction = "float" }) end, { desc = "Float Aerial" }, },
-  } ,
+        { "<C-S-S>", function() require("aerial").toggle() end, desc = "Toggle Aerial" },
+        { "<C-S-A>", function() require("aerial").open({ direction = "float" }) end, desc = "Float Aerial" },
+     },
   },
 }
