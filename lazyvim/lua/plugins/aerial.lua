@@ -1,6 +1,9 @@
 return {
   {
     "stevearc/aerial.nvim",
+    event = function(_, event)
+      return {}
+    end,
     opts = {
       lazy_load = true,
       highlight_on_hover = true,
