@@ -11,7 +11,7 @@ return {
         {
           function()
             if KINDLED then
-              return ">_"
+              return ""
             else
               return ""
             end
