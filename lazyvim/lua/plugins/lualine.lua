@@ -23,7 +23,7 @@ return {
         -- display yaml/Kubernetes (~15ms)
         {
           function()
-            if KINDLED then
+            if package.loaded["yaml-companion"] then
               local schema = require("yaml-companion").get_buf_schema(0)
               if schema.result[1].name == "none" then
                 return ""
@@ -35,9 +35,15 @@ return {
           end,
         },
         -- or rest client env (disabled because the rest client is very expensive to load: 50ms)
-        -- {
-        --   "rest",
-        -- },
+        {
+          function()
+            if package.loaded["rest"] then
+              return "rest"
+            else
+              return ""
+            end
+          end,
+        },
       },
       lualine_z = {},
     }
@@ -60,6 +66,30 @@ return {
         },
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { LazyVim.lualine.pretty_path() },
+      },
+      lualine_x = {
+        -- stylua: ignore
+        {
+          function() return require("noice").api.status.command.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+          color = LazyVim.ui.fg("Statement"),
+        },
+        -- stylua: ignore
+        {
+          function() return require("noice").api.status.mode.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+          color = LazyVim.ui.fg("Constant"),
+        },
+        -- stylua: ignore
+        {
+          function() return "  " .. require("dap").status() end,
+          cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+          color = LazyVim.ui.fg("Debug"),
+        }
+,
+      },
+      lualine_y = {
+        { "location", padding = { left = 0, right = 1 } },
       },
       lualine_z = {},
     }
