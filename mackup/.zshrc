@@ -1,7 +1,6 @@
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -18,7 +17,7 @@ export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 ## Machine-specific aliases
-for script in ~/profile/zsh/*.zsh; do
+for script in ~/profile/zsh-local/*.zsh; do
   source "$script"
 done
 
@@ -124,3 +123,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Envman: https://github.com/bitrise-io/envman 
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
