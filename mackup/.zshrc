@@ -92,17 +92,15 @@ plugins=(
 	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 # ZVM_VI_ESCAPE_BINDKEY=jk
-# zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-# zvm_after_init_commands+=('source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh')
-source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+
 zstyle ':omz:plugins:nvm' lazy yes
-export PYTHON_AUTO_VRUN=true
+export PYTHON_AUTO_VRUN=false
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# DOCKER
-# useful only for Mac OS Silicon M1, M2
+# Docker backward compatibility for Mac M1
 docker() {
  if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
     /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
@@ -113,7 +111,7 @@ docker() {
 
 # NVM autocomplete
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # Delayed load of nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # Don't need to source this because it's already sourced by brew
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # azure-cli autocomplete

@@ -21,6 +21,7 @@ brew install wget
 brew install jq
 brew install derailed/k9s/k9s
 brew install graphviz
+brew install node
 
 #gnu
 brew install base64
@@ -50,7 +51,7 @@ brew install golang
 brew install golangci-lint
 # curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
 
-#node
+#nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install node
 
