@@ -1,3 +1,4 @@
 .DS_Store
-/zsh/**
+/zsh-local/**
 /mackup/.config/karabiner/automatic_backups/**
+/lazyvim/lua/local/**
