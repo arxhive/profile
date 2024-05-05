@@ -1,5 +1,12 @@
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
-# track open time:
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Track zah load time:
 alias loadtime="/usr/bin/time zsh -i -c exit"
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -11,8 +18,8 @@ export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 ## Machine-specific aliases
-for script in ~/profile/zsh/*.sh; do
-  . "$script"
+for script in ~/profile/zsh/*.zsh; do
+  source "$script"
 done
 
 ## Aliases and fuctions
@@ -56,11 +63,11 @@ vdlogs() {
 }
 
 ## ZSH plugings and configs
-source $HOME/.oh-my-zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="avit"
-ZSH_THEME="refined"
+# ZSH_THEME="refined"
 # ZSH_THEME="nothing"
 DISABLE_MAGIC_FUNCTIONS=true
 zstyle ':omz:update' mode auto      # update automatically without asking
@@ -84,15 +91,15 @@ plugins=(
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
 	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
-ZVM_VI_ESCAPE_BINDKEY=jk
+# ZVM_VI_ESCAPE_BINDKEY=jk
 # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-zvm_after_init_commands+=('zsh-defer source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh')
-
+# zvm_after_init_commands+=('source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh')
+source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 zstyle ':omz:plugins:nvm' lazy yes
 export PYTHON_AUTO_VRUN=true
 
 source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && zsh-defer source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # DOCKER
 # useful only for Mac OS Silicon M1, M2
@@ -106,16 +113,16 @@ docker() {
 
 # NVM autocomplete
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh"  # Delayed load of nvm
-[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # Delayed load of nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # azure-cli autocomplete
 # test if the file exists and executes
-[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && zsh-defer source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
+[ -s "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ] && source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
-[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
+[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Envman: https://github.com/bitrise-io/envman 
-[ -s "$HOME/.config/envman/load.sh" ] && zsh-defer source "$HOME/.config/envman/load.sh"
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
