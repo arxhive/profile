@@ -21,6 +21,8 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("ibl")
     require("gitsigns")
 
+    vim.diagnostic.enable()
+
     KINDLED = true
   end
 end, {})
