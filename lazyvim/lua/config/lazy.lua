@@ -18,7 +18,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- always use the latEst git commit
   },
-  checker = { enabled = true, notify = false }, -- automatically check for plugin updates
+  checker = { enabled = false, notify = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
