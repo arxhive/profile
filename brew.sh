@@ -22,6 +22,8 @@ brew install jq
 brew install derailed/k9s/k9s
 brew install graphviz
 brew install node
+brew install nmap
+chmod go-w /opt/homebrew/Cellar
 
 #gnu
 brew install base64

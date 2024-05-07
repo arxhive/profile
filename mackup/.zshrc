@@ -45,15 +45,15 @@ alias git-whoami="git config user.email"
 # secure pem keys
 #chmod 0400
 
-alias config-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias config-zsh="v ~/.zshrc"
-alias config-aws="v ~/.aws/config"
-alias cconfig-mackup="v ~/.mackup.cfg"
-alias config-brew="v ~/profile/brew.sh"
-alias config-ssh="v ~/.ssh/config"
+alias conf-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
+alias conf-zsh="v ~/.zshrc"
+alias conf-aws="v ~/.aws/config"
+alias conf-mackup="v ~/.mackup.cfg"
+alias conf-brew="v ~/profile/brew.sh"
+alias conf-ssh="v ~/.ssh/config"
 
 vdlogs() {
 	docker logs $0 >& container_logs
