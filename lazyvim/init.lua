@@ -1,4 +1,9 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
+
+-- Use nvim 0.9+ new loader with byte-compilation cache
+-- https://neovim.io/doc/user/lua.html#vim.loader
+vim.loader.enable() 
+
 require("config.lazy")
 --
 -- must be in init.lua to support "v ."

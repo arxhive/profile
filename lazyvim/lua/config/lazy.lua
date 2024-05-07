@@ -15,7 +15,7 @@ require("lazy").setup({
     { import = "local" },
   },
   defaults = {
-    lazy = false,
+    lazy = true,
     version = false, -- always use the latEst git commit
   },
   checker = { enabled = false, notify = false }, -- automatically check for plugin updates
