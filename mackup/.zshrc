@@ -130,5 +130,12 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Envman: https://github.com/bitrise-io/envman 
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+# kubectl
+echo "[[ $commands[kubectl] ]] && source <(kubectl completion zsh)" >> ~/.zshrc 
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
