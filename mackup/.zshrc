@@ -39,12 +39,6 @@ alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 54
 alias h=history
 alias git-whoami="git config user.email"
 
-# secure ssh config
-#chmod 600 ~/.ssh/config
-
-# secure pem keys
-#chmod 0400
-
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
@@ -56,9 +50,21 @@ alias conf-brew="v ~/profile/brew.sh"
 alias conf-ssh="v ~/.ssh/config"
 
 vdlogs() {
-	docker logs $0 >& container_logs
+	docker logs $@ >& container_logs
 	v container_logs
 	rm container_logs
+}
+
+chmod-sh() {
+  chmod 744 $@
+}
+
+chmod-pem() {
+  chmod 0400 $@
+}
+
+chmod-ssh() {
+  chmod 600 $@
 }
 
 ## ZSH plugings and configs
