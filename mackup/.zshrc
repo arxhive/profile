@@ -86,6 +86,7 @@ plugins=(
 	git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
+  zsh-fzf-history-search
 	sublime # stt
 	aws # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
 	aliases # als
