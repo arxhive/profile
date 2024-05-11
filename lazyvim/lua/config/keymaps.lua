@@ -40,8 +40,13 @@ end, { desc = "Append line below" })
 vim.keymap.set("n", "<BS>", "i<CR><ESC>kg_", { desc = "<Break the line" })
 
 -- Navigation
-vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
-vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
+-- vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
+-- vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
+vim.keymap.set("n", "1", "<C-W>h", {desc = "Left window"})
+vim.keymap.set("n", "2", "<C-W>j", {desc = "Bottom window"})
+vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})
+vim.keymap.set("n", "4", "<C-W>l", {desc = "Right window"})
+
 vim.keymap.set("i", "©", "<ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -86,6 +91,6 @@ vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
 
 -- Noice cmdline
-vim.keymap.set("n", "<S-CR>", ":!", { desc = "Cmdline shell" })
+-- vim.keymap.set("n", "<S-CR>", ":!", { desc = "Cmdline shell" })
 
 -- stylua: ignore end
