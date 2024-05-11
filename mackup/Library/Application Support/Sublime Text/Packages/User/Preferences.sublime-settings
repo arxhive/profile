@@ -4,7 +4,7 @@
 		"Vintage",
 	],
 	"update_check": false,
-	"color_scheme": "Catppuccin Macchiato.sublime-color-scheme",
+	"color_scheme": "Catppuccin Mocha.sublime-color-scheme",
 	"theme": "Adaptive.sublime-theme",
 	"index_files": true,
 	"enki_theme_bold_tab": false, // Bold tab labels
