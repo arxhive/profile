@@ -21,8 +21,9 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("ibl")
     require("gitsigns")
 
-    vim.diagnostic.enable()
-
+    -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
+    --   LazyVim.toggle.diagnostics()
+    -- end
     KINDLED = true
   end
 end, {})
