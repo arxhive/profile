@@ -18,9 +18,9 @@ return {
         "Struct",
       },
       layout = {
-        max_width = { 40, 0.2 },
+        max_width = { 80, 0.4 },
         width = nil,
-        min_width = 30,
+        min_width = 50,
       },
       float = {
         border = "",
