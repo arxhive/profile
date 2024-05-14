@@ -1,0 +1,41 @@
+return {
+  "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  build = ":Copilot auth",
+  event = "InsertEnter",
+  opts = {
+    suggestion = {
+      enabled = true,
+      auto_trigger = true,
+      keymap = {
+        accept = "<S-CR>",
+        accept_word = false,
+        accept_line = false,
+        next = "<C-]>",
+        prev = "<C-[>",
+        dismiss = "<C-BS>",
+      },
+    },
+    panel = {
+      enabled = true,
+      layout = {
+        position = "right", -- | top | left | right
+        ratio = 0.3,
+      },
+      keymap = {
+        jump_prev = "<C-[>",
+        jump_next = "<C-]>",
+        accept = "<CR>",
+        refresh = "gr",
+        open = "<C-CR>",
+      },
+    },
+    filetypes = {
+      markdown = true,
+      help = true,
+    },
+  },
+  -- keys = {
+  --   { "<C-\\>", function() require("copilot.suggestion").accept_word() end, },
+  -- },
+}

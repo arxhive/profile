@@ -13,15 +13,12 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "chrisgrieser/cmp_yanky",
       "L3MON4D3/LuaSnip",
     },
     event = { "InsertEnter", "CmdlineEnter" },
 
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      table.insert(opts.sources, { name = "cmp_yanky" })
-
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -58,14 +55,9 @@ return {
           cmp.abort()
           fallback()
         end),
+        -- fallback to apply  Copilot ghost text
         ["<S-CR>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }, function()
-              vim.cmd("stopinsert")
-            end)
-          else
-            fallback()
-          end
+          fallback()
         end),
       })
 
