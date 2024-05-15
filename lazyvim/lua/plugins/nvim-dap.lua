@@ -9,6 +9,7 @@ return {
       { "<F4>", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
       { "<F5>", function() require("dap").continue() end, desc = "Continue" },
       { "<F6>", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
+      { "<F9>", function() require("dap").terminate() end, desc = "Terminate" },
     },
   },
   {
