@@ -88,6 +88,7 @@ return {
     },
     default_component_configs = {
       indent = {
+        with_markers = false,
         with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
         expander_collapsed = "",
         expander_expanded = "",

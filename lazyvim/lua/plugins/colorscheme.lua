@@ -11,7 +11,7 @@ return {
       highlight_overrides = {
         all = function(colors)
           local ucolors = require("catppuccin.utils.colors")
-          local telescope_results = ucolors.darken(colors.mantle, 1.15, "#000000")
+          local telescope_results = ucolors.darken(colors.mantle, 1.05, "#000000")
           local telescope_prompt = ucolors.darken(telescope_results, 0.95, "#000000")
           local telescope_text = colors.text
           local telescope_prompt_title = colors.lavender
@@ -33,7 +33,7 @@ return {
             },
             TelescopePreviewNormal = {
               bg = ucolors.darken(telescope_results, 0.95, "#000000"),
-              fg = telescope_results,
+              -- fg = telescope_results,
             },
             TelescopeResultsTitle = { fg = telescope_results, bg = telescope_preview_title },
             TelescopeMatching = { fg = telescope_prompt_title },
