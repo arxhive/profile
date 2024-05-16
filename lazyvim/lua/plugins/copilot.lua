@@ -9,8 +9,8 @@ return {
       auto_trigger = true,
       keymap = {
         accept = "<S-CR>",
-        accept_word = false,
-        accept_line = false,
+        accept_word = "<C-;>",
+        accept_line = "<C-'>",
         next = "<C-]>",
         prev = "<C-[>",
         dismiss = "<C-BS>",
@@ -35,7 +35,4 @@ return {
       help = true,
     },
   },
-  -- keys = {
-  --   { "<C-\\>", function() require("copilot.suggestion").accept_word() end, },
-  -- },
 }
