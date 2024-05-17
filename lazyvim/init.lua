@@ -2,7 +2,7 @@
 
 -- Use nvim 0.9+ new loader with byte-compilation cache
 -- https://neovim.io/doc/user/lua.html#vim.loader
-vim.loader.enable() 
+vim.loader.enable()
 
 require("config.lazy")
 --
