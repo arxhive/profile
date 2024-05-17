@@ -11,12 +11,13 @@ vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn o
 
 -- Terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
-vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (Root Dir)" })
+vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
 vim.keymap.set({ "n", "i", "x" }, "<C-/>", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
 
 -- Telescope
-vim.keymap.set("n", "<C-f>", function() vim.cmd("Telescope live_grep") end, { desc = "Grep" })
-vim.keymap.set({ "n","x" }, "<C-S-f>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep string" })
+vim.keymap.set("n", "<C-S-f>", LazyVim.telescope("live_grep"), { desc = "Grep (root)" })
+vim.keymap.set("n", "<C-f>", LazyVim.telescope("live_grep", { cwd = false }), { desc = "Grep (cwd)" })
+vim.keymap.set({"n", "x" }, "<C-s>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep current or selection (cwd)" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
