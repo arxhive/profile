@@ -1,9 +1,10 @@
--- Keymaps are automatically loaded on the VeryLazy event 
--- Default keymaps that are always set: 
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set:
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- or  ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua
 
 -- verbose map <leader>.. to describe existing shortcut
+vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
@@ -12,11 +13,11 @@ vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn o
 -- Terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
 vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
-vim.keymap.set({ "n", "i", "x" }, "<C-/>", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+vim.keymap.set({ "n", "i", "x" }, "<C-/>", function() LazyVim.terminal(nil, { cwd = vim.fn.expand("%:h:p")}) end, { desc = "Terminal (cwd)" })
 
 -- Telescope
 vim.keymap.set("n", "<C-S-f>", LazyVim.telescope("live_grep"), { desc = "Grep (root)" })
-vim.keymap.set("n", "<C-f>", LazyVim.telescope("live_grep", { cwd = false }), { desc = "Grep (cwd)" })
+vim.keymap.set("n", "<C-f>", LazyVim.telescope("live_grep", { cwd = vim.fn.expand("%:h:p") }), { desc = "Grep (cwd)" })
 vim.keymap.set({"n", "x" }, "<C-s>", function() vim.cmd("Telescope grep_string") end, { desc = "Grep current or selection (cwd)" })
 
 -- Buffers
