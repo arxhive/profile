@@ -14,10 +14,10 @@ return {
     -- stylua: ignore
     keys = {
       { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
-      { "<leader>snt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
+      { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep cwd " .. vim.fn.expand("%:h")}) end, desc = "Grep (cwd)" },
       { "<C-S-f>", LazyVim.telescope("live_grep", { prompt_title = "Grep root " .. LazyVim.root()}), desc = "Grep (root)" },
-      { "<C-f>", LazyVim.telescope("live_grep", { cwd = vim.fn.expand("%:h:p"), prompt_title="Grep cwd"}), desc = "Grep (cwd)" },
-      { "<C-s>", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" }
+      { "<C-s>", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
+      { "<leader>snt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
     },
   },
   {
