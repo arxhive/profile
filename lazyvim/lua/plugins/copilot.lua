@@ -35,4 +35,20 @@ return {
       help = true,
     },
   },
+  keys = {
+    {
+      "<leader>uo",
+      function()
+        local is_disabled = require("copilot.client").is_disabled()
+        if is_disabled then
+          require("copilot.command").enable()
+          print("Copilot enabled")
+        else
+          require("copilot.command").disable()
+          print("Copilot disabled")
+        end
+      end,
+      desc = "Toggle Copilot",
+    },
+  },
 }
