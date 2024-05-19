@@ -2,7 +2,7 @@ return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   build = ":Copilot auth",
-  event = "InsertEnter",
+  -- event = "InsertEnter", -- Used Kindle mode instead
   opts = {
     suggestion = {
       enabled = true,

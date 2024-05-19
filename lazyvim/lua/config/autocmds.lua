@@ -30,6 +30,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("telescope")
     require("ibl")
     require("gitsigns")
+    require("copilot")
 
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
     --   LazyVim.toggle.diagnostics()
