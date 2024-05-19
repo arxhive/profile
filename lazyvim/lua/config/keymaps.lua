@@ -26,11 +26,12 @@ vim.keymap.set("n", "<C-S-Up>", ":resize +5<CR>", { desc = "Increase window heig
 vim.keymap.set("n", "<C-S-Down>", ":resize -5<CR>", { desc = "Decrease window height" })
 
 -- Move lines
-vim.keymap.set("n", "<C-S-j>", ":m +1<CR>", { desc = "Move line down" })
-vim.keymap.set("n", "<C-S-k>", ":m -2<CR>", { desc = "Move line up" })
-
-vim.keymap.set("v", "<C-S-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<C-S-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("n", "<C-S-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+vim.keymap.set("n", "<C-S-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+vim.keymap.set("i", "<C-S-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+vim.keymap.set("i", "<C-S-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+vim.keymap.set("v", "<C-S-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+vim.keymap.set("v", "<C-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 vim.keymap.set("n", "<S-q>", function()
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
