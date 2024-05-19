@@ -1,5 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set:
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- or  ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua
 
@@ -10,6 +8,13 @@
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
+
+vim.keymap.set("n", "<leader>cd",
+  function()
+    vim.cmd("cd %:h")
+    print("cwd: " .. vim.uv.cwd())
+  end,
+  { desc = "Change cwd to the current folder" })
 
 -- Terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end

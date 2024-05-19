@@ -17,7 +17,9 @@ return {
       -- grep the current folder
       -- { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep current " .. vim.fn.expand("%:h")}) end, desc = "Grep (current)" },
       -- grep cwd
-      { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), prompt_title="Grep cwd " .. vim.fn.getcwd() }) end, desc = "Grep (cwd)" },
+      { "<C-f>", function()
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), prompt_title="Grep cwd " .. vim.fn.getcwd() })
+      end, desc = "Grep (cwd)" },
 
       -- grep root
       { "<C-S-f>", LazyVim.telescope("live_grep", { prompt_title = "Grep root " .. LazyVim.root()}), desc = "Grep (root)" },
