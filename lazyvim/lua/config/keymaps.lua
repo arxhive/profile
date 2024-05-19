@@ -3,6 +3,7 @@
 
 -- verbose map <leader>.. to describe existing shortcut
 -- help key-notation - describe special keys
+
 -- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
 -- stylua: ignore start
@@ -92,6 +93,7 @@ vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Func
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
 
+vim.keymap.set("n", "<leader>rs", [[:%s/]], { desc = "Simple replace by regex" })
 vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex - old/new" })
 vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/_\1_]], { desc = "Suround by regex - old/new" })
 
@@ -103,8 +105,5 @@ vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
 -- Database Explorer
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
-
--- Noice cmdline
--- vim.keymap.set("n", "<S-CR>", ":!", { desc = "Cmdline shell" })
 
 -- stylua: ignore end
