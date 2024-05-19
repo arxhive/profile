@@ -4,7 +4,8 @@
 -- or  ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua
 
 -- verbose map <leader>.. to describe existing shortcut
-vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
+-- help key-notation - describe special keys
+-- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
@@ -39,7 +40,9 @@ vim.keymap.set("n", "q", function()
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_buf_set_lines(0, cursor_line, cursor_line, false, {""})
 end, { desc = "Append line below" })
-vim.keymap.set("n", "<BS>", "i<CR><ESC>kg_", { desc = "<Break the line" })
+
+vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
+vim.keymap.set("n", "<BS>", "i<C-w><ESC>", { desc = "Delete a word" })
 
 -- Navigation
 -- vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })
