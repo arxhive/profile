@@ -110,6 +110,14 @@ return {
       remap = true,
     },
     {
+      "<C-S-N>",
+      function()
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", reveal = true, reveal_force_cwd = true })
+      end,
+      desc = "NeoTree reveal current file",
+      remap = true,
+    },
+    {
       "<C-S-B>",
       function()
         require("neo-tree.command").execute({ toggle = true, source = "buffers", position = "float" })
