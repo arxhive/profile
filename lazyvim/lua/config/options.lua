@@ -15,6 +15,8 @@ vim.opt.showtabline = 2 -- show always, to avoid conflicts with lualine config
 
 vim.opt.list = false -- hide ident marks in the insert mode
 
+vim.o.splitright = true -- splitting a window will put the new window right of the current one
+
 require("lazyvim.util").lsp.on_attach(function()
   vim.opt.signcolumn = "yes"
 end)

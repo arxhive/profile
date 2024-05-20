@@ -39,6 +39,7 @@ vim.keymap.set("i", "<C-S-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 vim.keymap.set("v", "<C-S-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 vim.keymap.set("v", "<C-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
+-- Append lines
 vim.keymap.set("n", "<S-q>", function()
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line - 1, false, {""})
@@ -76,6 +77,23 @@ vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 -- Semantic
 vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
 vim.keymap.set("n", "=", "gg=G")
+
+-- Open defintion in vertical split
+vim.keymap.set("n", "<tab>", function ()
+  local original_window = vim.api.nvim_get_current_win()
+  vim.api.nvim_command("vsplit | vertical resize 100")
+  vim.lsp.buf.definition()
+
+  -- Wait LSP server response
+  vim.wait(100, function() end)
+
+  vim.api.nvim_set_current_win(original_window)
+end, { silent = true, desc = "Vert split definition" })
+
+vim.keymap.set("n", "<S-tab>", function ()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
+  -- vim.cmd("close")
+end, { silent = true, desc = "Close a right window" })
 
 -- Refactoring
 -- https://github.com/ThePrimeagen/refactoring.nvim
