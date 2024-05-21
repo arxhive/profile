@@ -42,6 +42,7 @@ brew install gnu-sed
 brew install ripgrep
 brew install lazygit
 ln -s ~/profile/lazyvim ~/.config/lazyvim
+ln -s ~/profile/dotfiles/.config/git ~/.config/git
 
 #python
 brew install pyenv

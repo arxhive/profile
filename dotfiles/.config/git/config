@@ -1,0 +1,3 @@
+[alias]
+fresh = !git stash && git fetch origin master:master && git merge master && git stash apply
+
