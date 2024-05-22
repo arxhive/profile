@@ -82,6 +82,7 @@ vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
 
 vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 
+
 -- Semantic
 vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
 vim.keymap.set("n", "=", "gg=G")
@@ -100,8 +101,10 @@ end, { silent = true, desc = "Vert split definition" })
 
 vim.keymap.set("n", "<S-tab>", function ()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
-  -- vim.cmd("close")
 end, { silent = true, desc = "Close a right window" })
+
+-- by default, <C-i> = <tab>. Restore a proper navigation behavour
+vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true })
 
 -- Refactoring
 -- https://github.com/ThePrimeagen/refactoring.nvim
