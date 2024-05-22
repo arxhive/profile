@@ -1,3 +1,4 @@
 [alias]
 fresh = !git stash && git fetch origin master:master && git merge master && git stash apply
+fresh-b = "!f() { git switch master && git pull && git checkout -b $1; }; f"
 

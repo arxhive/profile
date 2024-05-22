@@ -49,6 +49,7 @@ alias conf-aws="v ~/.aws/config"
 alias conf-mackup="v ~/.mackup.cfg"
 alias conf-brew="v ~/profile/brew.sh"
 alias conf-ssh="v ~/.ssh/config"
+alias conf-git="v ~/.config/git/config"
 
 vdlogs() {
 	docker logs $@ >& container_logs
