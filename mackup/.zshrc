@@ -28,7 +28,8 @@ alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
 alias vp="vim . -c 'Telescope projects'"
 alias vr="vim . -c 'Telescope oldfiles'"
-alias vv="vim -c 'Kindle'"
+alias vv="vim . -c 'Kindle'"
+# alias vvs="vim -c \"lua require('persistence').load({ last = true })\" -c 'Kindle'" 
 alias t=touch
 alias z=zsh
 alias lg=lazygit
