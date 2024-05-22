@@ -122,9 +122,9 @@ vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Func
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
 
-vim.keymap.set("n", "<leader>rs", [[:%s/]], { desc = "Simple replace by regex" })
-vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace by regex - old/new" })
-vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/_\1_]], { desc = "Suround by regex - old/new" })
+vim.keymap.set("n", "<leader>rs", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Simple replace by regex" })
+vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace selected by regex" })
+vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by regex - before and after" })
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
 vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })

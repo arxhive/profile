@@ -1,4 +1,5 @@
 [alias]
-fresh = !git stash && git fetch origin master:master && git merge master && git stash apply
-fresh-b = "!f() { git switch master && git pull && git checkout -b $1; }; f"
+  mranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+  fresh = !git stash && git fetch origin $(git mranch):$(git mranch) && git merge $(git mranch) && git stash pop
+  fresh-b = "!f() { git switch $(git mranch) && git pull --rebase --autostash && git checkout -b $1; }; f"
 
