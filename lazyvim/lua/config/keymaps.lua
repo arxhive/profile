@@ -20,7 +20,15 @@ vim.keymap.set("n", "<leader>cd",
 -- Terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
 vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
-vim.keymap.set({ "n", "i", "x" }, "<C-/>", function() LazyVim.terminal(nil, { cwd = vim.fn.expand("%:h:p")}) end, { desc = "Terminal (cwd)" })
+vim.keymap.set({ "n", "i", "x" }, "<C-/>",
+  function()
+    local path = vim.fn.expand("%:h:p")
+    -- handle oil explorer prefix: "oil:///..."
+    if string.find(path, "oil") then
+      path = string.sub(path, 6)
+    end
+    LazyVim.terminal(nil, { cwd = path })
+  end, { desc = "Terminal (current folder)" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
