@@ -21,6 +21,14 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
   end,
 })
 
+-- Set cwd as the current buffer folder on vim enter
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  callback = function()
+    local path = require("config.tricks").refined("%:h")
+    vim.cmd("cd " .. path)
+  end,
+})
+
 -- Go to coding mode
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
