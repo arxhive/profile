@@ -85,7 +85,7 @@ vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 
 -- Semantic
 vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
-vim.keymap.set("n", "=", "gg=G")
+vim.keymap.set("n", "=", "gg=G<C-o>")
 
 -- Open defintion in vertical split
 vim.keymap.set("n", "<tab>", function ()
