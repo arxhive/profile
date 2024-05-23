@@ -6,13 +6,17 @@
 
 -- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
+local tricks = require("config.tricks")
+
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
+-- handle oil prefix + autostart
 vim.keymap.set("n", "<leader>cd",
   function()
-    vim.cmd("cd %:h")
+    local path = tricks.refined("%:h")
+    vim.cmd("cd " .. path)
     print("cwd: " .. vim.uv.cwd())
   end,
   { desc = "Change cwd to the current folder" })
@@ -22,11 +26,7 @@ local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
 vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
 vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   function()
-    local path = vim.fn.expand("%:h:p")
-    -- handle oil explorer prefix: "oil:///..."
-    if string.find(path, "oil") then
-      path = string.sub(path, 6)
-    end
+    local path = tricks.refined("%:h:p")
     LazyVim.terminal(nil, { cwd = path })
   end, { desc = "Terminal (current folder)" })
 
