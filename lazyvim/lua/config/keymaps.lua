@@ -10,7 +10,7 @@ local tricks = require("config.tricks")
 
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
-vim.keymap.set("n", "<Enter>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
+vim.keymap.set({ "n", "i" }, "<F12>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
 -- handle oil prefix + autostart
 vim.keymap.set("n", "<leader>cd",
