@@ -27,6 +27,7 @@ return {
       -- files
       { "<leader><space>", LazyVim.telescope("files", { cwd = false, prompt_title = "Files cwd " ..  vim.fn.getcwd() }), desc = "Find Files (cwd)" },
       { "<S-space>", LazyVim.telescope("files", { prompt_title = "Files root " .. LazyVim.root()}), desc = "Find Files (Root Dir)" },
+      { "<C-S-h>", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
     },
   },
   {
