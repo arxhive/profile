@@ -14,7 +14,7 @@ return {
       remap = true,
     },
     {
-      "<C-S-H>",
+      "<leader>gh",
       function()
         if next(require("diffview.lib").views) == nil then
           require("diffview").file_history()
@@ -22,8 +22,8 @@ return {
           require("diffview").close()
         end
       end,
-      desc = "Diffview Toggle",
-      remap = true,
+      desc = "Git History",
+      -- remap = true,
     },
   },
 }
