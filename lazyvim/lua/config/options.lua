@@ -6,6 +6,7 @@ vim.opt.guicursor = ""
 vim.opt.swapfile = false
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
+vim.opt.fillchars:append({ diff = " " })
 
 -- disable netrw
 vim.g.loaded_netrw = 1
