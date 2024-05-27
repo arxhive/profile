@@ -11,6 +11,8 @@ return {
       ["<leader>r"] = { name = "+refactor" },
       ["<leader>h"] = { name = "+http client" },
       ["<leader>k"] = { name = "+kubernetes" },
+      ["<leader>tg"] = { name = "+ray-x go" },
+      ["<leader>cg"] = { name = "+ray-x go" },
 
       ["<leader>2"] = { name = "" },
       ["<leader>3"] = { name = "" },
