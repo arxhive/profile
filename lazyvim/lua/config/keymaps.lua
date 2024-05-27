@@ -10,7 +10,7 @@ local tricks = require("config.tricks")
 
 -- stylua: ignore start
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
-vim.keymap.set({ "n", "i" }, "<F12>",function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
+vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
 -- handle oil prefix + autostart
 vim.keymap.set("n", "<leader>cd",
@@ -29,6 +29,10 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
     local path = tricks.refined("%:h:p")
     LazyVim.terminal(nil, { cwd = path })
   end, { desc = "Terminal (current folder)" })
+
+-- Git aliases
+vim.keymap.set("n", "<leader>gr", ":!git fresh<CR>", { desc = "Git refresh from master" })
+vim.keymap.set("n", "<leader>gn", ":!git fresh-b ", { desc = "New branch" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
