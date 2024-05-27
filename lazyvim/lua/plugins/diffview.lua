@@ -14,7 +14,7 @@ return {
       remap = true,
     },
     {
-      "<leader>gh",
+      "<leader>gt",
       function()
         if next(require("diffview.lib").views) == nil then
           require("diffview").file_history()
