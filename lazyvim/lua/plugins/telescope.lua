@@ -38,4 +38,18 @@ return {
       { "<leader>sl", function() require("telescope").extensions.luasnip.luasnip() end, desc = "Luasnip" }, -- fix whichkey
     },
   },
+  {
+    "jemag/telescope-diff.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+    keys = {
+    -- stylua: ignore start
+      -- { "<leader>sC", function() require("telescope").extensions.diff.diff_files({ hidden = true }) end, desc = "Compare 2 files" },
+      { "<leader>sc", function() require("telescope").extensions.diff.diff_current({ hidden = true }) end, desc = "Compare with current" }
+,
+
+      -- stylua: ignore end
+    },
+  },
 }
