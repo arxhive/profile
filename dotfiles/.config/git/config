@@ -10,5 +10,5 @@
   fresh = !git pull origin $(git mranch) && git merge $(git mranch) 
   fresh-b = "!f() { git switch $(git mranch) && git pull && git checkout -b $1; }; f"
   swibr = "!f() { stash_me=$(git stash save 'on-switch'); stashed=$(echo $stash_me|grep 'on-switch'); git switch $1; if [ '$stashed' ]; then git stash pop; fi; }; f"
-  drop = !git reset --hard
+  drop = !git rebase --abort && git reset --hard
 
