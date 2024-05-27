@@ -1,5 +1,12 @@
 gui:
   sidePanelWidth: 0.2 # gives you more space to show things side-by-side
+  showFileTree: false
+  showCommandLog: false
+  showRandomTip: false
+  border: hidden
+  theme:
+    selectedLineBgColor:
+      - black
 git:
   paging:
     colorArg: never
