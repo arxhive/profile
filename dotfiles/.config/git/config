@@ -1,6 +1,8 @@
 [pull]
   ; rebase = true
   autoStash = true
+[push]
+  autoSetupRemote = true
 [rebase]
   autoStash = true
 [mergetool]
