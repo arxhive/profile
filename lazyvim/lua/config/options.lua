@@ -6,7 +6,13 @@ vim.opt.guicursor = ""
 vim.opt.swapfile = false
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
+
+-- dissable slash chars for empty lines in merge tools
 vim.opt.fillchars:append({ diff = " " })
+
+-- disable transparent background for cmp
+vim.opt.pumblend = 0
+vim.opt.winblend = 0
 
 -- disable netrw
 vim.g.loaded_netrw = 1
