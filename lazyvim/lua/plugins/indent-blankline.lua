@@ -3,4 +3,7 @@ return {
   event = function(_, event)
     return {}
   end,
+  opts = {
+    scope = { enabled = false },
+  },
 }

@@ -12,6 +12,12 @@ return {
         ruff_lsp = {},
         gopls = {},
       },
+      inlay_hints = {
+        enabled = true,
+      },
+      document_highlight = {
+        enabled = false,
+      },
     },
   },
 }

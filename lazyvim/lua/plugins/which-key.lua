@@ -13,6 +13,7 @@ return {
       ["<leader>k"] = { name = "+kubernetes" },
       ["<leader>tg"] = { name = "+ray-x go" },
       ["<leader>cg"] = { name = "+ray-x go" },
+      ["<leader>gh"] = { name = "+hunks" },
 
       ["<leader>2"] = { name = "" },
       ["<leader>3"] = { name = "" },

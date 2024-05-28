@@ -18,11 +18,16 @@ vim.opt.winblend = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.showtabline = 2 -- show always, to avoid conflicts with lualine config
+-- show always, to avoid conflicts with lualine config
+vim.opt.showtabline = 2
 
-vim.opt.list = false -- hide ident marks in the insert mode
+-- hide ident marks in the insert mode
+vim.opt.list = false
 
-vim.o.splitright = true -- splitting a window will put the new window right of the current one
+-- splitting a window will put the new window right of the current one
+vim.o.splitright = true
+
+vim.g.deprecation_warnings = false
 
 require("lazyvim.util").lsp.on_attach(function()
   vim.opt.signcolumn = "yes"
