@@ -7,4 +7,5 @@ return {
   { "nosduco/remote-sshfs.nvim", enabled = false },
   { "echasnovski/mini.indentscope", enabled = false },
   { "zbirenbaum/copilot-cmp", enabled = false },
+  { "stevanmilic/nvim-lspimport.nvim", enabled = false }, -- module not found, test it later
 }
