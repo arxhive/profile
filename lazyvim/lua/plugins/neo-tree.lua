@@ -70,6 +70,7 @@ return {
       mappings = {
         ["<space>"] = "none",
         ["s"] = "none",
+        ["<C-f>"] = "none",
         ["Y"] = {
           function(state)
             local node = state.tree:get_node()
