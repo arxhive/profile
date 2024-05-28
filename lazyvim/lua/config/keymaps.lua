@@ -139,4 +139,11 @@ vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 -- Database Explorer
 vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
 
+-- Code runner
+vim.keymap.set("n", "<leader>R",
+  function()
+    local current_file = vim.fn.expand("%:p")
+    vim.cmd("!python " .. current_file)
+  end, { desc = "Run code" })
+
 -- stylua: ignore end
