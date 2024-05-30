@@ -81,15 +81,15 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 
-vim.keymap.set("n", "]]", "j0[[%/{<CR>", { desc = "Go to prev usage of" })
-vim.keymap.set("n", "[[", "?{<CR>w99[{", { desc = "Go to next usage of" })
-
 vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 
 
 -- Semantic
 vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
-vim.keymap.set("n", "=", "gg=G<C-o>")
+vim.keymap.set("n", "+", "gg=G<C-o>")
+
+vim.keymap.set("n", "!", function () require('illuminate').goto_prev_reference() end, { desc = "Prev reference" })
+vim.keymap.set("n", "@", function () require('illuminate').goto_next_reference() end, { desc = "Next reference" })
 
 -- Open defintion in vertical split
 vim.keymap.set("n", "<tab>", function ()
