@@ -59,6 +59,10 @@ brew install golang
 brew install golangci-lint
 # curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
 
+#C#
+# https://learn.microsoft.com/en-us/dotnet/core/install/macos
+brew install --cask dotnet-sdk
+
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install node
