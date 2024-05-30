@@ -143,7 +143,31 @@ vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "T
 vim.keymap.set("n", "<leader>R",
   function()
     local current_file = vim.fn.expand("%:p")
-    vim.cmd("!python " .. current_file)
+
+    if string.find(current_file, ".py") then
+      vim.cmd("!python " .. current_file)
+    elseif string.find(current_file, ".cs") then
+      vim.cmd("!dotnet run")
+    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
+      vim.cmd("!node" .. current_file)
+    else LazyVim.info("Can't run this file")
+    end
   end, { desc = "Run code" })
+
+
+-- Builder
+vim.keymap.set("n", "<leader>B",
+  function()
+    local current_file = vim.fn.expand("%:p")
+
+    if string.find(current_file, ".py") then
+      vim.cmd("!pip install -r requirements.txt")
+    elseif string.find(current_file, ".cs") then
+      vim.cmd("!dotnet build")
+      elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
+        vim.cmd("!npm install")
+    else LazyVim.info("Can't build this file")
+    end
+  end, { desc = "Build" })
 
 -- stylua: ignore end
