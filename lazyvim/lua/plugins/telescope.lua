@@ -28,6 +28,10 @@ return {
       { "<leader><space>", LazyVim.telescope("files", { cwd = false, prompt_title = "Files cwd " ..  vim.fn.getcwd() }), desc = "Find Files (cwd)" },
       { "<S-space>", LazyVim.telescope("files", { prompt_title = "Files root " .. LazyVim.root()}), desc = "Find Files (Root Dir)" },
       { "<C-S-h>", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
+      -- disabled default lazyvim copilot-chat mapping
+      { "<leader>ap", mode = { "n", "x", "o" }, false },
+      { "<leader>ad", mode = { "n", "x", "o" }, false },
+
     },
   },
   {
