@@ -34,6 +34,7 @@ alias vvs="vim . -c 'KindleLastSession'"
 alias t=touch
 alias z=zsh
 alias lg=lazygit
+alias ld=lazydocker
 alias python=python3
 alias dps="docker ps"
 alias aws-sso="aws sso login"
@@ -45,13 +46,13 @@ alias git-whoami="git config user.email"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias conf-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
-alias conf-zsh="v ~/.zshrc"
-alias conf-aws="v ~/.aws/config"
-alias conf-mackup="v ~/.mackup.cfg"
-alias conf-brew="v ~/profile/brew.sh"
-alias conf-ssh="v ~/.ssh/config"
-alias conf-git="v ~/.config/git/config"
+alias make-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
+alias make-zsh="v ~/.zshrc"
+alias make-aws="v ~/.aws/config"
+alias make-mackup="v ~/.mackup.cfg"
+alias make-brew="v ~/profile/brew.sh"
+alias make-ssh="v ~/.ssh/config"
+alias make-git="v ~/.config/git/config"
 
 vdlogs() {
 	docker logs $@ >& container_logs

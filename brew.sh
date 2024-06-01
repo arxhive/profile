@@ -24,6 +24,8 @@ brew install derailed/k9s/k9s
 brew install graphviz
 brew install node
 chmod go-w /opt/homebrew/Cellar
+brew install jesseduffield/lazydocker/lazydocker
+# brew install grpcui
 
 #gnu
 brew install base64

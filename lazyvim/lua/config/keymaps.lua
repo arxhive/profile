@@ -88,8 +88,8 @@ vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
 vim.keymap.set("n", "+", "gg=G<C-o>")
 
-vim.keymap.set("n", "<PageUp>", function () require('illuminate').goto_next_reference() end, { desc = "Next reference" })
-vim.keymap.set("n", "<PageDown>", function () require('illuminate').goto_prev_reference() end, { desc = "Prev reference" })
+vim.keymap.set("n", "<PageUp>", function() require('illuminate').goto_next_reference() end, { desc = "Next reference" })
+vim.keymap.set("n", "<PageDown>", function() require('illuminate').goto_prev_reference() end, { desc = "Prev reference" })
 
 -- Open defintion in vertical split
 vim.keymap.set("n", "<tab>", function ()
