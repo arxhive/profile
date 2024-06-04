@@ -57,7 +57,13 @@ return {
         end),
         -- fallback to apply  Copilot ghost text
         ["<S-CR>"] = cmp.mapping(function(fallback)
-          fallback()
+          if cmp.visible() then
+            cmp.confirm({ select = true })
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
         end),
       })
 

@@ -8,7 +8,7 @@ return {
       enabled = true,
       auto_trigger = true,
       keymap = {
-        accept = "<S-CR>",
+        accept = "<C-CR>",
         accept_word = "<C-;>",
         accept_line = "<C-'>",
         next = "<C-]>",
@@ -27,7 +27,7 @@ return {
         jump_next = "<C-]>",
         accept = "<CR>",
         refresh = "gr",
-        open = "<C-CR>",
+        open = "<C-S-CR>",
       },
     },
     filetypes = {

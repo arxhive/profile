@@ -35,6 +35,9 @@ brew install findutils
 brew install trivy
 brew install nmap
 
+#os
+# brew install --cask displaylink
+
 #fuse
 brew install --cask macfuse
 # brew install sshfs
