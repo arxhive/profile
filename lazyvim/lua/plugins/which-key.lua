@@ -8,8 +8,8 @@ return {
     plugins = { spelling = true },
     defaults = {
       mode = { "n", "v" },
+      ["<leader>a"] = { name = "+ai" },
       ["<leader>r"] = { name = "+refactor" },
-      ["<leader>h"] = { name = "+http client" },
       ["<leader>k"] = { name = "+kubernetes" },
       ["<leader>n"] = { name = "+noice" },
       ["<leader>tg"] = { name = "+ray-x go" },
