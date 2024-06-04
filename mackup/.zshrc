@@ -42,7 +42,6 @@ alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias h=history
 alias git-whoami="git config user.email"
-
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
@@ -70,6 +69,10 @@ chmod-pem() {
 
 chmod-ssh() {
   chmod 600 $@
+}
+
+psp() {
+  lsof -i :$@
 }
 
 ## ZSH plugings and configs
