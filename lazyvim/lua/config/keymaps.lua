@@ -1,8 +1,9 @@
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- or  ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua
 
--- verbose map <leader>.. to describe existing shortcut
--- help key-notation - describe special keys
+-- special keys:  h keycodes
+--             :  h key-notation
+-- describe existing shortcuts:  verbose map <leader>..
 
 -- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
