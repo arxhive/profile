@@ -9,6 +9,16 @@
 local tricks = require("config.tricks")
 
 -- stylua: ignore start
+-- Tabs are evil, remove all mapping
+vim.keymap.del( { "n" }, "<leader><Tab>d")
+vim.keymap.del( { "n" }, "<leader><Tab>f")
+vim.keymap.del( { "n" }, "<leader><Tab>l")
+vim.keymap.del( { "n" }, "<leader><Tab>[")
+vim.keymap.del( { "n" }, "<leader><Tab>]")
+vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
+
+vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
+
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
@@ -74,7 +84,6 @@ vim.keymap.set("n", "<BS>", "i<C-w><ESC>", { desc = "Delete a word" })
 -- vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})
 -- vim.keymap.set("n", "4", "<C-W>l", {desc = "Right window"})
 
-vim.keymap.set("i", "©", "<ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

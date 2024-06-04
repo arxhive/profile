@@ -27,11 +27,12 @@ return {
       { "<leader><space>", LazyVim.telescope("files", { cwd = false, prompt_title = "Files cwd " ..  vim.fn.getcwd() }), desc = "Find Files (cwd)" },
       { "<S-space>", LazyVim.telescope("files", { prompt_title = "Files root " .. LazyVim.root()}), desc = "Find Files (Root Dir)" },
       { "<leader>gh", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
-      { "<leader>p", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
+      { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "i", "x" }, desc = "Telescope yank history" },
       -- disabled default lazyvim copilot-chat mapping
       { "<leader>ap", mode = { "n", "x", "o" }, false },
       { "<leader>ad", mode = { "n", "x", "o" }, false },
-
+      { "<leader>fe", mode = { "n", "x", "o" }, false },
+      { "<leader>fe", mode = { "n", "x", "o" }, false },
     },
   },
   {
