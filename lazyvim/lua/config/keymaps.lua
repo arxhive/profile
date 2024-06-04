@@ -131,16 +131,13 @@ vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by regex - before and after" })
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
-vim.keymap.set("x", "<leader>p", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
+vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
 
 vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
--- Database Explorer
-vim.keymap.set("n", "<C-S-D>", function() vim.cmd("DBUIToggle") end, { desc = "Toggle Database Explorer" })
-
 -- Code runner
-vim.keymap.set("n", "<leader>R",
+vim.keymap.set("n", "<leader>br",
   function()
     local current_file = vim.fn.expand("%:p")
 
@@ -156,7 +153,7 @@ vim.keymap.set("n", "<leader>R",
 
 
 -- Builder
-vim.keymap.set("n", "<leader>B",
+vim.keymap.set("n", "<leader>bb",
   function()
     local current_file = vim.fn.expand("%:p")
 

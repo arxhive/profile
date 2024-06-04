@@ -13,21 +13,21 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<C-S-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
       -- grep the current folder
       -- { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep current " .. vim.fn.expand("%:h")}) end, desc = "Grep (current)" },
       -- grep cwd
-      { "<C-f>", function()
+      { "<leader>ff", function()
         require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), prompt_title="Grep cwd " .. vim.fn.getcwd() })
       end, desc = "Grep (cwd)" },
 
       -- grep root
-      { "<C-S-f>", LazyVim.telescope("live_grep", { prompt_title = "Grep root " .. LazyVim.root()}), desc = "Grep (root)" },
-      { "<C-s>", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
+      { "<leader>fF", LazyVim.telescope("live_grep", { prompt_title = "Grep root " .. LazyVim.root()}), desc = "Grep (root)" },
+      { "<leader>fs", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
       -- files
       { "<leader><space>", LazyVim.telescope("files", { cwd = false, prompt_title = "Files cwd " ..  vim.fn.getcwd() }), desc = "Find Files (cwd)" },
       { "<S-space>", LazyVim.telescope("files", { prompt_title = "Files root " .. LazyVim.root()}), desc = "Find Files (Root Dir)" },
-      { "<C-S-h>", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
+      { "<leader>gh", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
+      { "<leader>p", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
       -- disabled default lazyvim copilot-chat mapping
       { "<leader>ap", mode = { "n", "x", "o" }, false },
       { "<leader>ad", mode = { "n", "x", "o" }, false },

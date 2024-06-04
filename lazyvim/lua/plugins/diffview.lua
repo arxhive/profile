@@ -27,7 +27,7 @@ return {
   end,
   keys = {
     {
-      "<C-S-G>",
+      "<leader>gd",
       function()
         if next(require("diffview.lib").views) == nil then
           require("diffview").open()

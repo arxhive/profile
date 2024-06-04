@@ -70,7 +70,6 @@ return {
       mappings = {
         ["<space>"] = "none",
         ["s"] = "none",
-        ["<C-f>"] = "none",
         ["Y"] = {
           function(state)
             local node = state.tree:get_node()
@@ -103,7 +102,7 @@ return {
   end,
   keys = {
     {
-      "<C-S-Q>",
+      "<leader>wn",
       function()
         require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = LazyVim.root() })
       end,
@@ -111,7 +110,7 @@ return {
       remap = true,
     },
     {
-      "<C-S-N>",
+      "<leader>wc",
       function()
         require("neo-tree.command").execute({ toggle = true, source = "filesystem", reveal = true, reveal_force_cwd = true })
       end,
@@ -119,7 +118,7 @@ return {
       remap = true,
     },
     {
-      "<C-S-B>",
+      "<leader>wb",
       function()
         require("neo-tree.command").execute({ toggle = true, source = "buffers", position = "float" })
       end,
@@ -127,17 +126,19 @@ return {
       remap = true,
     },
     {
-      "<C-S-R>",
+      "<leader>wr",
       function()
         require("neo-tree.command").execute({ toggle = true, source = "remote", position = "left" })
       end,
       desc = "NeoTree remote",
       remap = true,
     },
-    -- { "<C-S-G>", function()
-    --     require("neo-tree.command").execute({ toggle = true, source="git_status" })
-    --   end,
-    --   desc = "NeoTree git status", remap = true
-    -- },
+    {
+      "<leader>ws",
+      function()
+        vim.cmd("DBUIToggle")
+      end,
+      desc = "Database Explorer (SQL)",
+    },
   },
 }

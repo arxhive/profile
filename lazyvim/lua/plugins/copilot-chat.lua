@@ -3,19 +3,19 @@ return {
   keys = function()
     return {
       {
-        "<C-S-c>",
+        "<leader>ac",
         function()
           return require("CopilotChat").toggle()
         end,
-        desc = "Toggle (CopilotChat)",
+        desc = "CopilotChat",
         mode = { "n", "v" },
       },
       {
-        "<C-x>",
+        "<leader>ax",
         function()
           return require("CopilotChat").reset()
         end,
-        desc = "Clear (CopilotChat)",
+        desc = "Clear CopilotChat",
         mode = { "n", "v" },
       },
       {

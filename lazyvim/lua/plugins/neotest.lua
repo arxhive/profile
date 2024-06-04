@@ -35,7 +35,6 @@ return {
 
       { "<leader>tw", "<cmd>lua require('neotest').run.run({ jestCommand = 'jest --watch ' })<cr>", desc = "Run Watch", },
       { "<leader>tu", function() require("neotest").summary.toggle() end, desc = "Toggle Summary UI" },
-      { "<C-S-T>", function() require("neotest").summary.toggle() end, desc = "Toggle Summary UI" },
     },
     opts = function(_, opts)
       table.insert(
