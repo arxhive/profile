@@ -31,7 +31,6 @@ brew install jesseduffield/lazydocker/lazydocker
 #gnu
 brew install base64
 brew install findutils
-brew install gnu-sed
 
 #security
 brew install trivy
