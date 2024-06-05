@@ -11,6 +11,7 @@ require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
+    { import = "plugins/lsp" },
     { import = "plugins/go" },
     { import = "plugins/python" },
     { import = "local" },
