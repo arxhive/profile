@@ -30,6 +30,22 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 })
 
 -- Go to coding mode
+-- Optional require. Example:
+--     myMod, err = want'myMod'
+--     if not myMod then print(err) end
+local function want(name)
+  local out
+  if xpcall(function()
+    out = require(name)
+  end, function(e)
+    out = e
+  end) then
+    return out -- success
+  else
+    return nil, out
+  end -- error
+end
+
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
     require("lspconfig")
@@ -39,7 +55,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("telescope")
     require("ibl")
     require("gitsigns")
-    require("copilot")
+    want("copilot")
 
     vim.cmd.LspStart()
 
