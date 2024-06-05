@@ -47,20 +47,20 @@ return {
       },
     },
   },
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "storm" },
-  },
-  {
-    "shaunsingh/nord.nvim",
-    lazy = true,
-  },
-  {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = true,
+  --   opts = { style = "storm" },
+  -- },
+  -- {
+  --   "shaunsingh/nord.nvim",
+  --   lazy = true,
+  -- },
+  -- {
+  --   "AlexvZyl/nordic.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  -- },
   {
     "LazyVim/LazyVim",
     opts = {
