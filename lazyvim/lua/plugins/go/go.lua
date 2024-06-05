@@ -1,7 +1,7 @@
 return {
   "ray-x/go.nvim",
-  lazy = false,
-  ft = { "go", "gomod" },
+  lazy = true,
+  -- ft = { "go", "gomod" },
   -- dependencies = { -- optional packages
   --   "ray-x/guihua.lua",
   -- },
