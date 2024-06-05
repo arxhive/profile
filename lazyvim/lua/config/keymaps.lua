@@ -18,12 +18,19 @@ vim.keymap.del( { "n" }, "<leader><Tab>[")
 vim.keymap.del( { "n" }, "<leader><Tab>]")
 vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 
+-- Clear yanky history mapping
+vim.keymap.del( { "n" }, "<leader>p")
+
+-- Clear default neotree mapping
+vim.keymap.del( { "n" }, "<leader>fe")
+vim.keymap.del( { "n" }, "<leader>fE")
+
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
--- handle oil prefix + autostart
+-- Handle oil prefix + autostart
 vim.keymap.set("n", "<leader>cd",
   function()
     local path = tricks.refined("%:h")
