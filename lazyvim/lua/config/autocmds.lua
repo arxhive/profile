@@ -55,6 +55,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("telescope")
     require("ibl")
     require("gitsigns")
+    require("lint")
     want("copilot")
 
     vim.cmd.LspStart()

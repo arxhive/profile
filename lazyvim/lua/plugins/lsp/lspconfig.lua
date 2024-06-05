@@ -24,6 +24,9 @@ return {
         omnisharp = {
           autostart = false,
         },
+        marksman = {
+          autostart = false,
+        },
       },
       inlay_hints = {
         enabled = true,
