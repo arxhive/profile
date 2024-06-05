@@ -32,6 +32,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 -- Go to coding mode
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
+    require("lspconfig")
     require("null-ls")
     require("refactoring")
     require("yaml-companion")
@@ -39,6 +40,8 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("ibl")
     require("gitsigns")
     require("copilot")
+
+    vim.cmd.LspStart()
 
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
     --   LazyVim.toggle.diagnostics()
