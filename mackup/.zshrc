@@ -99,8 +99,9 @@ plugins=(
 	aliases # als
 	docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 	macos # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
-	nvm
-	npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
+  zsh-nvm # lazy load and autocomplete
+	# nvm
+	# npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
 	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
@@ -109,6 +110,8 @@ plugins=(
 
 zstyle ':omz:plugins:nvm' lazy yes
 export PYTHON_AUTO_VRUN=false
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
@@ -124,9 +127,10 @@ docker() {
 }
 
 # NVM autocomplete
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # Don't need to source this because it's already sourced by brew
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Disabled because it is handled by zsh-nvm plugin for lazy load
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # Don't need to source this because it's already sourced by zsh/nvm
+# [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # azure-cli autocomplete
 # test if the file exists and executes
