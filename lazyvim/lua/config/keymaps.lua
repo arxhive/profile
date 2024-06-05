@@ -176,7 +176,8 @@ vim.keymap.set("x", "<leader>bs",
     local command = table.concat(lines, '\n')
     local bash = {}
     for word in string.gmatch(command, "%S+") do table.insert(bash, word) end
-    require("lazy.util").float_cmd(bash)
+
+    LazyVim.terminal(bash, { interactive = false })
   end, { desc = "Execute selected bash" })
 
 -- Builder
