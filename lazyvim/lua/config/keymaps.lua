@@ -153,6 +153,8 @@ vim.keymap.set("n", "<leader>br",
 
     if string.find(current_file, ".py") then
       vim.cmd("!python " .. current_file)
+    elseif string.find(current_file, ".sh") then
+      vim.cmd("source " .. current_file)
     elseif string.find(current_file, ".cs") then
       vim.cmd("!dotnet run")
     elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
@@ -161,6 +163,21 @@ vim.keymap.set("n", "<leader>br",
     end
   end, { desc = "Run code" })
 
+vim.keymap.set("x", "<leader>bs",
+  function()
+
+    local vstart = vim.fn.getpos("'<")
+    local vend = vim.fn.getpos("'>")
+
+    local line_start = vstart[2]
+    local line_end = vend[2]
+
+    local lines = vim.fn.getline(line_start,line_end)
+    local command = table.concat(lines, '\n')
+    local bash = {}
+    for word in string.gmatch(command, "%S+") do table.insert(bash, word) end
+    require("lazy.util").float_cmd(bash)
+  end, { desc = "Execute selected bash" })
 
 -- Builder
 vim.keymap.set("n", "<leader>bb",
