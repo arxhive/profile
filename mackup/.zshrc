@@ -33,6 +33,7 @@ alias vm="vim . -c 'DiffviewOpen'"
 alias vvs="vim . -c 'KindleLastSession'"
 alias t=touch
 alias z=zsh
+alias k=kubecolor
 alias lg=lazygit
 alias ld=lazydocker
 alias python=python3

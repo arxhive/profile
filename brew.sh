@@ -124,6 +124,9 @@ $(brew --prefix)/opt/fzf/install
 #brew install --cask pycharm-ce
 #brew install --cask intellij-idea-ce
 
+#k8s
+brew install kubecolor
+
 #after
 mkdir -p ~/logs
 mkdir -p ~/sources
