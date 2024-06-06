@@ -1,6 +1,6 @@
 [
 	{ "keys": ["command+t"], "command": "new_file" },
-	{ "keys": ["command+alt+w"], "command": "close_file" },
+	{ "keys": ["command+w"], "command": "close_file" },
 	{ "keys": ["command+d"], "command": "duplicate_line" },
-	{ "keys": ["command+w"], "command": "expand_selection", "args": {"to": "word"} }
+	{ "keys": ["ctrl+2"], "command": "expand_selection", "args": {"to": "word"} }
 ]
