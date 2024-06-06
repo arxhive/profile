@@ -6,6 +6,8 @@
 	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
+	<key>ClickToSelectCommand</key>
+	<false/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Chalkboard</key>
@@ -5729,40 +5731,12 @@
 					<key>Text</key>
 					<string>0xd</string>
 				</dict>
-				<key>0x30-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>0</string>
-				</dict>
-				<key>0x31-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>1</string>
-				</dict>
-				<key>0x32-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>2</string>
-				</dict>
 				<key>0x32-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x00</string>
-				</dict>
-				<key>0x33-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>3</string>
 				</dict>
 				<key>0x33-0x40000</key>
 				<dict>
@@ -5771,26 +5745,12 @@
 					<key>Text</key>
 					<string>0x1b</string>
 				</dict>
-				<key>0x34-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>4</string>
-				</dict>
 				<key>0x34-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x1c</string>
-				</dict>
-				<key>0x35-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>5</string>
 				</dict>
 				<key>0x35-0x40000</key>
 				<dict>
@@ -5799,26 +5759,12 @@
 					<key>Text</key>
 					<string>0x1d</string>
 				</dict>
-				<key>0x36-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>6</string>
-				</dict>
 				<key>0x36-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x1e</string>
-				</dict>
-				<key>0x37-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>7</string>
 				</dict>
 				<key>0x37-0x40000</key>
 				<dict>
@@ -5827,26 +5773,12 @@
 					<key>Text</key>
 					<string>0x1f</string>
 				</dict>
-				<key>0x38-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>8</string>
-				</dict>
 				<key>0x38-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
-				</dict>
-				<key>0x39-0x200000</key>
-				<dict>
-					<key>Action</key>
-					<integer>12</integer>
-					<key>Text</key>
-					<string>9</string>
 				</dict>
 				<key>0x7f-0x100000</key>
 				<dict>
