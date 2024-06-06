@@ -21,7 +21,6 @@ git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
 brew install tfenv
 brew install wget
 brew install jq
-brew install derailed/k9s/k9s
 brew install graphviz
 brew install node
 chmod go-w /opt/homebrew/Cellar
@@ -126,6 +125,11 @@ $(brew --prefix)/opt/fzf/install
 
 #k8s
 brew install kubecolor
+brew install derailed/k9s/k9s
+OUT="${XDG_CONFIG_HOME:-$HOME/Library/Application Support}/k9s/skins"
+mkdir -p "$OUT"
+curl -L https://github.com/catppuccin/k9s/archive/main.tar.gz | tar xz -C "$OUT" --strip-components=2 k9s-main/dist
+ln -s ~/profile/dotfiles/Library/Application\ Support/k9s/config.yaml ~/Library/Application\ Support/k9s/config.yaml
 
 #after
 mkdir -p ~/logs

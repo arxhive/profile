@@ -34,6 +34,7 @@ alias vvs="vim . -c 'KindleLastSession'"
 alias t=touch
 alias z=zsh
 alias k=kubecolor
+alias ks=k9s
 alias lg=lazygit
 alias ld=lazydocker
 alias python=python3
