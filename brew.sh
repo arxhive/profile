@@ -130,7 +130,7 @@ brew install derailed/k9s/k9s
 OUT="${XDG_CONFIG_HOME:-$HOME/Library/Application Support}/k9s/skins"
 mkdir -p "$OUT"
 curl -L https://github.com/catppuccin/k9s/archive/main.tar.gz | tar xz -C "$OUT" --strip-components=2 k9s-main/dist
-ln -s ~/profile/dotfiles/Library/Application\ Support/k9s/config.yaml ~/Library/Application\ Support/k9s/config.yaml
+ln -sf ~/profile/dotfiles/Library/Application\ Support/k9s/config.yaml ~/Library/Application\ Support/k9s/config.yaml
 
 #after
 mkdir -p ~/logs
