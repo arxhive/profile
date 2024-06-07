@@ -47,7 +47,7 @@ alias git-whoami="git config user.email"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias make-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
+alias make-me-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
 alias make-zsh="v ~/.zshrc"
 alias make-aws="v ~/.aws/config"
 alias make-mackup="v ~/.mackup.cfg"
