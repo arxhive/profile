@@ -27,6 +27,9 @@ return {
         marksman = {
           autostart = false,
         },
+        helm_ls = {
+          autostart = false,
+        },
       },
       inlay_hints = {
         enabled = true,
