@@ -11,6 +11,7 @@ alias loadtime="/usr/bin/time zsh -i -c exit"
 
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
+export NVIM_APPNAME=lazyvim
 export SC='~/sources'
 
 export GOPATH=$HOME/go
@@ -21,9 +22,8 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 for script in ~/profile/zsh-local/*.zsh; do
   source "$script"
 done
-
 ## Aliases and fuctions
-alias vim='NVIM_APPNAME=lazyvim nvim'
+alias vim='nvim'
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
 alias vp="vim . -c 'Telescope projects'"
