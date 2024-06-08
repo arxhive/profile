@@ -1,0 +1,48 @@
+write_target=~/bin/clear_notifications
+mkdir ~/bin
+cat << EOF > $write_target
+#!/usr/bin/osascript
+
+# Usage: clear_notifications [partial_title]
+#
+# Clears notifications from the notification center if they contain the string in [partial_title].
+# If no arg is passed in, all notifications are cleared.
+
+on run argv
+  tell application "System Events"
+     try
+       set _groups to groups of UI element 1 of scroll area 1 of group 1 of window "Notification Center" of application process "NotificationCenter"
+      repeat with _group in _groups
+        set temp to value of static text 1 of _group
+          set _actions to actions of _group # Get all the actions within this group
+          set isInScope to true
+
+          if (count of argv) > 0 then
+            set searchTerm to item 1 of argv
+            if temp does not contain searchTerm then
+              log "Didn't find any notifications matching " & searchTerm
+              set isInScope to false
+            end if
+          end if
+
+          if isInScope then
+            if exists (first action of _group where description is "Clear All") then
+              log "Found 'clear all' for " & temp
+              perform (first action of _group where description is "Clear All")
+            else if exists (first action of _group where description is "Close") then
+              log "Found close for " & temp
+              perform (first action of _group where description is "Close")
+            else
+              log "Didn't find close action for " & temp
+            end if
+          end if
+
+      end repeat
+    on error errMsg
+        log "Error: " & errMsg
+    end try
+  end tell
+end run
+EOF
+chmod u+x $write_target
+

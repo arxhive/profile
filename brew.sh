@@ -151,5 +151,6 @@ git config user.email "artesdi@gmail.com"
 rm ~/Library/Preferences/com.lwouis.alt-tab-macos.plist
 cp -rf ~/profile/dotfiles/ ~/
 
-#symlinks
+#custom macos apps
 ln -s ~/profile/macos/apps/LazyFinder.app /Applications/LazyFinder.app
+source ~/profile/macos/apps/clear_notifications_install
