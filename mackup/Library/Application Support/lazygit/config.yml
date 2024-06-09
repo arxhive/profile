@@ -3,10 +3,30 @@ gui:
   showFileTree: false
   showCommandLog: false
   showRandomTip: false
-  border: hidden
+  # border: hidden
   theme:
+    activeBorderColor:
+      - "#cba6f7"
+      - bold
+    inactiveBorderColor:
+      - "black"
+    optionsTextColor:
+      - "#89b4fa"
     selectedLineBgColor:
-      - black
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#cba6f7"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"
+
+authorColors:
+  "*": "#b4befe"
 git:
   paging:
     colorArg: never
