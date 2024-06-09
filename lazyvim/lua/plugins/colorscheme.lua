@@ -11,37 +11,39 @@ return {
       highlight_overrides = {
         all = function(colors)
           local ucolors = require("catppuccin.utils.colors")
-          local telescope_results = ucolors.darken(colors.mantle, 1.05, "#000000")
-          local telescope_prompt = ucolors.darken(telescope_results, 0.95, "#000000")
+          local popup_bg = ucolors.darken(colors.mantle, 1.05, "#000000") -- ligher
+          local prompt_bg = ucolors.darken(popup_bg, 0.95, "#000000") -- darker
           local telescope_text = colors.text
-          local telescope_prompt_title = colors.lavender
-          local telescope_preview_title = colors.lavender
+          local prompt_title_bg = colors.lavender
 
           return {
-            -- NoiceCmdlinePopup = { bg = colors.mantle },
-            NoiceMini = { bg = colors.mantle },
-            TelescopeBorder = { bg = telescope_results, fg = telescope_results },
-            TelescopePromptBorder = { bg = telescope_prompt, fg = telescope_prompt },
+            NoiceCmdlinePopup = { bg = popup_bg },
+            NoiceCmdlinePopupTitle = { fg = prompt_bg, bg = prompt_title_bg },
+
+            -- NoiceMini = { bg = colors.mantle },
+
+            TelescopeBorder = { bg = popup_bg, fg = popup_bg },
+            TelescopePromptBorder = { bg = prompt_bg, fg = prompt_bg },
             TelescopePromptCounter = { fg = telescope_text },
-            TelescopePromptNormal = { fg = telescope_text, bg = telescope_prompt },
-            TelescopePromptPrefix = { fg = telescope_prompt_title, bg = telescope_prompt },
-            TelescopePromptTitle = { fg = telescope_prompt, bg = telescope_prompt_title },
-            TelescopePreviewTitle = { fg = telescope_results, bg = telescope_preview_title },
+            TelescopePromptNormal = { fg = telescope_text, bg = prompt_bg },
+            TelescopePromptPrefix = { fg = prompt_title_bg, bg = prompt_bg },
+            TelescopePromptTitle = { fg = prompt_bg, bg = prompt_title_bg },
+            TelescopePreviewTitle = { fg = popup_bg, bg = prompt_title_bg },
             TelescopePreviewBorder = {
-              bg = ucolors.darken(telescope_results, 0.95, "#000000"),
-              fg = ucolors.darken(telescope_results, 0.95, "#000000"),
+              bg = ucolors.darken(popup_bg, 0.95, "#000000"),
+              fg = ucolors.darken(popup_bg, 0.95, "#000000"),
             },
             TelescopePreviewNormal = {
-              bg = ucolors.darken(telescope_results, 0.95, "#000000"),
+              bg = ucolors.darken(popup_bg, 0.95, "#000000"),
               -- fg = telescope_results,
             },
-            TelescopeResultsTitle = { fg = telescope_results, bg = telescope_preview_title },
-            TelescopeMatching = { fg = telescope_prompt_title },
-            TelescopeNormal = { bg = telescope_results },
+            TelescopeResultsTitle = { fg = popup_bg, bg = prompt_title_bg },
+            TelescopeMatching = { fg = prompt_title_bg },
+            TelescopeNormal = { bg = popup_bg },
             -- TelescopeSelection = { bg = telescope_prompt },
             -- TelescopeSelectionCaret = { fg = telescope_text },
-            TelescopeResultsNormal = { bg = telescope_results },
-            TelescopeResultsBorder = { bg = telescope_results, fg = telescope_results },
+            TelescopeResultsNormal = { bg = popup_bg },
+            TelescopeResultsBorder = { bg = popup_bg, fg = popup_bg },
           }
         end,
       },
