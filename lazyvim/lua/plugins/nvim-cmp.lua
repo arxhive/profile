@@ -33,10 +33,14 @@ return {
             entry_filter = function(entry, ctx)
               return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
             end,
+            option = {
+              get_bufnrs = function()
+                return {}
+              end,
+            },
           },
         }),
       })
-
       -- opts.sources = cmp.config.sources({
       --   { name = "lazydev" },
       --   { name = "snippets" },
