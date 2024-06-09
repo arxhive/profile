@@ -3,7 +3,7 @@ gui:
   showFileTree: false
   showCommandLog: false
   showRandomTip: false
-  # border: hidden
+  border: hidden
   theme:
     activeBorderColor:
       - "#cba6f7"
