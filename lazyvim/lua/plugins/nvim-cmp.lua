@@ -10,7 +10,6 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
@@ -19,6 +18,46 @@ return {
 
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
+      local cmp = require("cmp")
+      cmp.setup.buffer({
+        -- Dont suggest Text from nvm_lsp and buffer sources
+        sources = cmp.config.sources({
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry, ctx)
+              return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+            end,
+          },
+          {
+            name = "buffer",
+            entry_filter = function(entry, ctx)
+              return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+            end,
+          },
+        }),
+      })
+
+      -- opts.sources = cmp.config.sources({
+      --   { name = "lazydev" },
+      --   { name = "snippets" },
+      --   { name = "nvim_lsp" },
+      --   { name = "path" },
+      --   { name = "copilot" },
+      -- })
+
+      -- require("cmp").setup.buffer({ sources = cmp.config.sources })
+
+      -- print configures sources
+      -- local sources = opts.sources
+      -- LazyVim.info("sources: ", sources)
+      -- for i = #sources, 1, -1 do
+      --   LazyVim.info(sources[i].name)
+      --   if sources[i].name == "buffer" then
+      --     LazyVim.info("found buffer source!!!")
+      --     table.remove(sources, i)
+      --   end
+      -- end
+
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -26,14 +65,13 @@ return {
       end
 
       local luasnip = require("luasnip")
-      local cmp = require("cmp")
       -- setup tab complete for cmp and luasnip
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- this way you will only jump inside the snippet region
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
@@ -116,17 +154,11 @@ return {
       -- `/` cmdline setup.
       cmp.setup.cmdline("/", {
         mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
-        sources = {
-          { name = "buffer" },
-        },
       })
 
       -- `?` cmdline setup.
       cmp.setup.cmdline("?", {
         mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
-        sources = {
-          { name = "buffer" },
-        },
       })
     end,
   },
