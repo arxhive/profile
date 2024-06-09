@@ -166,7 +166,9 @@ vim.keymap.set("n", "<leader>br",
       vim.cmd("!dotnet run")
     elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
       vim.cmd("!node" .. current_file)
-    else LazyVim.info("Can't run this file")
+    elseif string.find(current_file, ".go") then
+      LazyVim.terminal({ "go", "run", current_file }, { interactive = false, esc_esc = true })
+    else LazyVim.info("Cannot run")
     end
   end, { desc = "Run code" })
 
@@ -196,9 +198,11 @@ vim.keymap.set("n", "<leader>bb",
       vim.cmd("!pip install -r requirements.txt")
     elseif string.find(current_file, ".cs") then
       vim.cmd("!dotnet build")
-      elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-        vim.cmd("!npm install")
-    else LazyVim.info("Can't build this file")
+    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
+      vim.cmd("!npm install")
+    elseif string.find(current_file, ".go") then
+      vim.cmd("!go build")
+    else LazyVim.info("Cannot build")
     end
   end, { desc = "Build" })
 
