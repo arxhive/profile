@@ -10,12 +10,16 @@ return {
       no_italic = true,
       highlight_overrides = {
         all = function(colors)
+          -- https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
+          -- https://github.com/catppuccin/catppuccin/blob/main/docs/translation-table.md
+
           local ucolors = require("catppuccin.utils.colors")
           local popup_bg = ucolors.darken(colors.mantle, 1.05, "#000000") -- ligher
           local prompt_bg = ucolors.darken(popup_bg, 0.95, "#000000") -- darker
           local telescope_text = colors.text
           local prompt_title_bg = "#F5BDE6" -- pink light
           -- local prompt_title_bg = colors.lavender
+
           -- ucolors.
 
           return {
