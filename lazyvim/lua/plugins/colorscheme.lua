@@ -17,7 +17,8 @@ return {
           local popup_bg = ucolors.darken(colors.mantle, 1.05, "#000000") -- ligher
           local prompt_bg = ucolors.darken(popup_bg, 0.95, "#000000") -- darker
           local telescope_text = colors.text
-          local prompt_title_bg = "#F5BDE6" -- pink light
+          -- local prompt_title_bg = "#F5BDE6" -- Pink light
+          local prompt_title_bg = "#C6A0F6" -- Mauve light
           -- local prompt_title_bg = colors.lavender
 
           -- ucolors.
