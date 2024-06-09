@@ -12,6 +12,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
+      "dmitmel/cmp-cmdline-history",
       "L3MON4D3/LuaSnip",
     },
     event = { "InsertEnter", "CmdlineEnter" },
@@ -146,6 +147,7 @@ return {
         mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
         sources = cmp.config.sources({
           { name = "path" },
+          { name = "cmdline_history" },
           {
             name = "cmdline",
             option = {
