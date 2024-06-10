@@ -7,6 +7,9 @@ return {
     size = 100,
   },
   cmd = { "ToggleTerm", "TermExec" },
+  keys = {
+    { "<leader>bt", ":ToggleTerm<CR>", desc = "Toggle Term" },
+  },
   -- init = function()
   --   require("toggleterm").setup()
   -- end,
