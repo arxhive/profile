@@ -172,10 +172,17 @@ vim.keymap.set("n", "<leader>br",
     end
   end, { desc = "Run code" })
 
-vim.keymap.set("x", "<leader>bs",
+vim.keymap.set("n", "<leader>bl",
   function()
+    local trim_spaces = true
+    require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 0 })
+  end, { desc = "Toggleterm line" })
+
+vim.keymap.set("x", "<leader>bl",
+  function()
+    local trim_spaces = true
     require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 0 })
-  end, { desc = "Execute selected in term" })
+  end, { desc = "Toggleterm selected" })
 
 -- Builder
 vim.keymap.set("n", "<leader>bb",
