@@ -12,7 +12,7 @@ alias loadtime="/usr/bin/time zsh -i -c exit"
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export NVIM_APPNAME=lazyvim
-export SC='~/sources'
+export SC="$HOME/sources"
 
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
@@ -115,13 +115,13 @@ export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_DIR="$HOME/.nvm"
 
-source $ZSH/oh-my-zsh.sh
-source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+source "$ZSH/oh-my-zsh.sh"
+source "$HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Docker backward compatibility for Mac M1
 docker() {
- if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+  if [[ $(uname -m) == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
     /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
   else
      /usr/local/bin/docker "$@"

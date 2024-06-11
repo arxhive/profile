@@ -9,6 +9,10 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        bashls = {
+          autostart = false,
+          filetypes = { "sh", "zsh" },
+        },
         pyright = {
           autostart = false,
         },
