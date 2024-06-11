@@ -4,6 +4,7 @@ return {
   opts = {
     presets = {
       bottom_search = false,
+      long_message_to_split = false
     },
     cmdline = {
       format = {
