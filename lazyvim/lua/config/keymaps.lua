@@ -153,39 +153,36 @@ vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep i
 vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
+-- Move to toggleterm keys, maybe
 -- Code runner
 vim.keymap.set("n", "<leader>br",
   function()
     local current_file = vim.fn.expand("%:p")
-
     if string.find(current_file, ".py") then
-      vim.cmd("!python " .. current_file)
+      tricks.sidecart("python " .. current_file)
     elseif string.find(current_file, ".sh") then
-      vim.cmd("source " .. current_file)
+      tricks.sidecart("source " .. current_file)
     elseif string.find(current_file, ".cs") then
-      vim.cmd("!dotnet run")
+      tricks.sidecart("dotnet run")
     elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-      vim.cmd("!node" .. current_file)
-    else LazyVim.info("Can't run this file")
+      tricks.sidecart("node" .. current_file)
+    elseif string.find(current_file, ".go") then
+      tricks.sidecart("go run " .. current_file)
+    else LazyVim.info("Cannot run")
     end
   end, { desc = "Run code" })
 
-vim.keymap.set("x", "<leader>bs",
+vim.keymap.set("n", "<leader>bl",
   function()
+    local trim_spaces = true
+    require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 0 })
+  end, { desc = "Toggleterm line" })
 
-    local vstart = vim.fn.getpos("'<")
-    local vend = vim.fn.getpos("'>")
-
-    local line_start = vstart[2]
-    local line_end = vend[2]
-
-    local lines = vim.fn.getline(line_start,line_end)
-    local command = table.concat(lines, '\n')
-    local bash = {}
-    for word in string.gmatch(command, "%S+") do table.insert(bash, word) end
-
-    LazyVim.terminal(bash, { interactive = false })
-  end, { desc = "Execute selected bash" })
+vim.keymap.set("x", "<leader>bl",
+  function()
+    local trim_spaces = true
+    require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 0 })
+  end, { desc = "Toggleterm selected" })
 
 -- Builder
 vim.keymap.set("n", "<leader>bb",
@@ -193,12 +190,14 @@ vim.keymap.set("n", "<leader>bb",
     local current_file = vim.fn.expand("%:p")
 
     if string.find(current_file, ".py") then
-      vim.cmd("!pip install -r requirements.txt")
+      tricks.sidecart("pip install -r requirements.txt")
     elseif string.find(current_file, ".cs") then
-      vim.cmd("!dotnet build")
-      elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-        vim.cmd("!npm install")
-    else LazyVim.info("Can't build this file")
+      tricks.sidecart("dotnet build")
+    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
+      tricks.sidecart("npm install")
+    elseif string.find(current_file, ".go") then
+      tricks.sidecart("go build")
+    else LazyVim.info("Cannot build")
     end
   end, { desc = "Build" })
 

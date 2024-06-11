@@ -16,7 +16,8 @@ export SC='~/sources'
 
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export SPICETIFYPATH=$HOME/.spicetify
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin:${SPICETIFYPATH}/bin"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
@@ -47,7 +48,7 @@ alias git-whoami="git config user.email"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
-alias make-me-lazy="cd ~/profile/lazyvim/lua/plugins/ && v ."
+alias make-me-lazy="cd ~/profile/lazyvim/lua/ && v ."
 alias make-zsh="v ~/.zshrc"
 alias make-aws="v ~/.aws/config"
 alias make-mackup="v ~/.mackup.cfg"
@@ -145,3 +146,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zprof
+

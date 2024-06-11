@@ -30,6 +30,9 @@ return {
         helm_ls = {
           autostart = false,
         },
+        lua_ls = {
+          autostart = false,
+        },
       },
       inlay_hints = {
         enabled = true,

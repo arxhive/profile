@@ -10,15 +10,22 @@ return {
       no_italic = true,
       highlight_overrides = {
         all = function(colors)
+          -- https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
+          -- https://github.com/catppuccin/catppuccin/blob/main/docs/translation-table.md
+
           local ucolors = require("catppuccin.utils.colors")
           local popup_bg = ucolors.darken(colors.mantle, 1.05, "#000000") -- ligher
           local prompt_bg = ucolors.darken(popup_bg, 0.95, "#000000") -- darker
           local telescope_text = colors.text
-          local prompt_title_bg = colors.lavender
+          local accent = colors.pink
+          -- local accent = colors.mauve
+          -- local prompt_title_bg = colors.lavender
+
+          -- ucolors.
 
           return {
             NoiceCmdlinePopup = { bg = popup_bg },
-            NoiceCmdlinePopupTitle = { fg = prompt_bg, bg = prompt_title_bg },
+            NoiceCmdlinePopupTitle = { fg = prompt_bg, bg = accent },
 
             -- NoiceMini = { bg = colors.mantle },
 
@@ -26,9 +33,9 @@ return {
             TelescopePromptBorder = { bg = prompt_bg, fg = prompt_bg },
             TelescopePromptCounter = { fg = telescope_text },
             TelescopePromptNormal = { fg = telescope_text, bg = prompt_bg },
-            TelescopePromptPrefix = { fg = prompt_title_bg, bg = prompt_bg },
-            TelescopePromptTitle = { fg = prompt_bg, bg = prompt_title_bg },
-            TelescopePreviewTitle = { fg = popup_bg, bg = prompt_title_bg },
+            TelescopePromptPrefix = { fg = accent, bg = prompt_bg },
+            TelescopePromptTitle = { fg = prompt_bg, bg = accent },
+            TelescopePreviewTitle = { fg = popup_bg, bg = accent },
             TelescopePreviewBorder = {
               bg = ucolors.darken(popup_bg, 0.95, "#000000"),
               fg = ucolors.darken(popup_bg, 0.95, "#000000"),
@@ -37,8 +44,8 @@ return {
               bg = ucolors.darken(popup_bg, 0.95, "#000000"),
               -- fg = telescope_results,
             },
-            TelescopeResultsTitle = { fg = popup_bg, bg = prompt_title_bg },
-            TelescopeMatching = { fg = prompt_title_bg },
+            TelescopeResultsTitle = { fg = popup_bg, bg = accent },
+            TelescopeMatching = { fg = accent },
             TelescopeNormal = { bg = popup_bg },
             -- TelescopeSelection = { bg = telescope_prompt },
             -- TelescopeSelectionCaret = { fg = telescope_text },

@@ -132,6 +132,10 @@ mkdir -p "$OUT"
 curl -L https://github.com/catppuccin/k9s/archive/main.tar.gz | tar xz -C "$OUT" --strip-components=2 k9s-main/dist
 ln -sf ~/profile/dotfiles/Library/Application\ Support/k9s/config.yaml ~/Library/Application\ Support/k9s/config.yaml
 
+#spotify marketplace
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh
+
 #after
 mkdir -p ~/logs
 mkdir -p ~/sources
