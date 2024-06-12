@@ -14,12 +14,15 @@ local tricks = require("config.tricks")
 vim.keymap.del( { "n" }, "<leader><Tab>d")
 vim.keymap.del( { "n" }, "<leader><Tab>f")
 vim.keymap.del( { "n" }, "<leader><Tab>l")
+vim.keymap.del( { "n" }, "<leader><Tab>o")
 vim.keymap.del( { "n" }, "<leader><Tab>[")
 vim.keymap.del( { "n" }, "<leader><Tab>]")
 vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 
 -- Clear yanky history mapping
 vim.keymap.del( { "n" }, "<leader>p")
+-- Clear harpoon mapping
+vim.keymap.del( { "n" }, "<leader>H")
 
 -- Clear default neotree mapping
 vim.keymap.del( { "n" }, "<leader>fe")
