@@ -44,15 +44,19 @@ alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias h=history
+
 alias git-whoami="git config user.email"
+alias gma="git ma"
+alias gt="git tree"
+alias gtt="git full-tree"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc="cd $SC && ls"
 
 alias make-me-lazy="cd ~/profile/lazyvim/lua/ && v ."
-alias make-zsh="v ~/.zshrc"
+alias make-my-zsh="v ~/.zshrc"
+alias make-my-mackup="v ~/.mackup.cfg"
+alias make-my-brew="v ~/profile/brew.sh"
 alias make-aws="v ~/.aws/config"
-alias make-mackup="v ~/.mackup.cfg"
-alias make-brew="v ~/profile/brew.sh"
 alias make-ssh="v ~/.ssh/config"
 alias make-git="v ~/.config/git/config"
 
