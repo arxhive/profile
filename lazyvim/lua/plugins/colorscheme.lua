@@ -8,6 +8,13 @@ return {
       -- flavour = "macchiato",
       flavour = "mocha",
       no_italic = true,
+      color_overrides = {
+        mocha = {
+          sky = "#F5C2E7", -- Pink
+          -- sky = "#F2CDCD", -- Flamingo
+          -- sky = "#CBA6F7", -- Mauve
+        },
+      },
       highlight_overrides = {
         all = function(colors)
           -- https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
@@ -21,8 +28,6 @@ return {
           -- local accent = colors.mauve
           local accent = colors.lavender
           -- local prompt_title_bg = colors.lavender
-
-          -- ucolors.
 
           return {
             NormalFloat = { bg = popup_bg },
