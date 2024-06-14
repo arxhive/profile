@@ -52,8 +52,14 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   end, { desc = "Terminal (current folder)" })
 
 -- Git aliases
-vim.keymap.set("n", "<leader>gn", ":!git fresh-b ", { desc = "New branch" })
 vim.keymap.set("n", "<leader>gr", function() tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
+vim.keymap.set("n", "<leader>gn",
+  function()
+    local new_branch_name = vim.fn.input("Branch name: ")
+    if new_branch_name ~= "" then 
+      tricks.sidecart("git fresh-b " .. new_branch_name)
+    end
+  end, { desc = "New Branch" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
