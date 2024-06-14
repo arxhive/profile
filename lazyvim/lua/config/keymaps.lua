@@ -52,8 +52,8 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   end, { desc = "Terminal (current folder)" })
 
 -- Git aliases
-vim.keymap.set("n", "<leader>gr", ":!git fresh<CR>", { desc = "Git refresh from master" })
 vim.keymap.set("n", "<leader>gn", ":!git fresh-b ", { desc = "New branch" })
+vim.keymap.set("n", "<leader>gr", function() tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
