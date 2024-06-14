@@ -25,6 +25,10 @@ return {
           -- ucolors.
 
           return {
+            NormalFloat = { bg = popup_bg },
+            FloatBorder = { bg = popup_bg, fg = popup_bg },
+            FloatTitle = { fg = prompt_bg, bg = accent },
+
             NoiceCmdlinePopup = { bg = popup_bg },
             NoiceCmdlinePopupTitle = { fg = prompt_bg, bg = accent },
 

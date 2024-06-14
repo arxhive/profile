@@ -15,9 +15,10 @@ export NVIM_APPNAME=lazyvim
 export SC="$HOME/sources"
 
 export GOPATH=$HOME/go
+export GOBIN=${GOPATH}/bin
 export GOROOT="$(brew --prefix golang)/libexec"
 export SPICETIFYPATH=$HOME/.spicetify
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin:${SPICETIFYPATH}/bin"
+export PATH="$PATH:${GOBIN}:${GOROOT}/bin:${SPICETIFYPATH}/bin"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
@@ -50,6 +51,7 @@ alias gma="git ma"
 alias gt="git tree"
 alias gtt="git full-tree"
 alias sc-lazy="cd ~/profile/lazyvim/"
+alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
 
 alias make-me-lazy="cd ~/profile/lazyvim/lua/ && v ."
