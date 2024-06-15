@@ -33,7 +33,6 @@ vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used f
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
 
--- Handle oil prefix + autostart
 vim.keymap.set("n", "<leader>cd",
   function()
     local path = tricks.refined("%:h")

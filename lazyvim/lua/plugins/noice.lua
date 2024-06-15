@@ -4,7 +4,7 @@ return {
   opts = {
     presets = {
       bottom_search = false,
-      long_message_to_split = false
+      long_message_to_split = false,
     },
     cmdline = {
       format = {
@@ -49,6 +49,8 @@ return {
       { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
       { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
       { "<leader>nt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
+      { "<leader>fp", function() LazyVim.info(vim.fn.expand("%:p")) require("noice").cmd("last") end, desc = "Print current file path" },
     }
-  end,
+  end
+,
 }
