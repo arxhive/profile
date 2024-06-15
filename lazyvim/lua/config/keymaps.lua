@@ -31,7 +31,7 @@ vim.keymap.del( { "n" }, "<leader>fE")
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
-vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc = "Turn on code mode"})
+vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
 
 vim.keymap.set("n", "<leader>cd",
   function()

@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     local path = require("config.tricks").refined("%:h")
-    vim.cmd("cd " .. path)
+    vim.api.nvim_command("cd " .. path)
   end,
 })
 

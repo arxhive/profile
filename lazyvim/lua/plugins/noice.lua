@@ -49,7 +49,13 @@ return {
       { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
       { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
       { "<leader>nt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
-      { "<leader>fp", function() LazyVim.info(vim.fn.expand("%:p")) require("noice").cmd("last") end, desc = "Print current file path" },
+      { "<leader>fp",
+        function()
+          local path = vim.fn.expand("%:p")
+          LazyVim.info(path)
+          require("noice").cmd("last")
+          vim.api.nvim_command("silent !echo '" .. path .. "' | pbcopy")
+        end, desc = "Print current file path" },
     }
   end
 ,
