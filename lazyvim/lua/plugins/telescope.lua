@@ -9,6 +9,9 @@ return {
           "public/docs",
           "go/pkg",
         },
+        layout_config = {
+          horizontal = { width = 0.95 },
+        },
       },
     },
     -- stylua: ignore
