@@ -159,8 +159,8 @@ vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by r
 -- vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
 vim.keymap.set("x", "p", "pgvy", { desc = "Paste and keep in register", silent = true })
 
-vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
-vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
+-- vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
+-- vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
 -- Move to toggleterm keys, maybe
 -- Code runner
