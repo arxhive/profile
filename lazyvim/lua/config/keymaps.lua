@@ -156,7 +156,8 @@ vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by regex - before and after" })
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
-vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
+-- vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
+vim.keymap.set("x", "p", "pgvy", { desc = "Paste and keep in register", silent = true })
 
 vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
