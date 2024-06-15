@@ -36,8 +36,8 @@ vim.keymap.set({ "n", "i" }, "<F12>", function() vim.cmd("Kindle") end, { desc =
 vim.keymap.set("n", "<leader>cd",
   function()
     local path = tricks.refined("%:h")
-    vim.cmd("cd " .. path)
-    print("cwd: " .. vim.uv.cwd())
+    vim.api.nvim_command("cd " .. path)
+    LazyVim.notify("cwd: " .. vim.uv.cwd())
   end,
   { desc = "Change cwd to the current folder" })
 
