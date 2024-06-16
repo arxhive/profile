@@ -3,6 +3,9 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
+        path_display = {
+          "truncate", -- truncate | smart | shorten
+        },
         file_ignore_patterns = {
           "node_modules",
           "venv",
