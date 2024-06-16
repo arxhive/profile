@@ -21,6 +21,7 @@ vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 
 -- Clear yanky history mapping
 vim.keymap.del( { "n" }, "<leader>p")
+
 -- Clear harpoon mapping
 vim.keymap.del( { "n" }, "<leader>H")
 
@@ -28,6 +29,12 @@ vim.keymap.del( { "n" }, "<leader>H")
 vim.keymap.del( { "n" }, "<leader>fe")
 vim.keymap.del( { "n" }, "<leader>fE")
 
+-- Clear others
+vim.keymap.del( { "n" }, "<leader>L")
+vim.keymap.del( { "n" }, "<leader>K")
+vim.keymap.del( { "n" }, "<leader>cm")
+
+--
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
@@ -162,7 +169,10 @@ vim.keymap.set("x", "p", "pgvy", { desc = "Paste and keep in register", silent =
 -- vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 -- vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
--- Move to toggleterm keys, maybe
+vim.keymap.set("n", "<leader>Ll", function() vim.api.nvim_command("Lazy") end, { desc = "Lazy" })
+vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtra") end, { desc = "LazyExta" })
+vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, { desc = "Mason" })
+
 -- Code runner
 vim.keymap.set("n", "<leader>br",
   function()
