@@ -170,7 +170,7 @@ vim.keymap.set("x", "p", "pgvy", { desc = "Paste and keep in register", silent =
 -- vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
 vim.keymap.set("n", "<leader>Ll", function() vim.api.nvim_command("Lazy") end, { desc = "Lazy" })
-vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtra") end, { desc = "LazyExta" })
+vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtra") end, { desc = "LazyExtas" })
 vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, { desc = "Mason" })
 
 -- Code runner
