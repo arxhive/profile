@@ -5,7 +5,6 @@
 vim.loader.enable()
 
 require("config.lazy")
---
 -- must be in init.lua to support "v ."
 require("oil").setup({
   default_file_explorer = true,
@@ -16,5 +15,7 @@ require("oil").setup({
   },
   keymaps = {
     ["<bs>"] = "actions.parent",
+    ["q"] = "actions.close",
+    ["p"] = "actions.preview",
   },
 })

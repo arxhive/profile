@@ -71,6 +71,7 @@ return {
         ["<space>"] = "none",
         ["s"] = "none",
         ["S"] = "open_vsplit",
+        ["<C-s>"] = "open_vsplit",
         ["Y"] = {
           function(state)
             local node = state.tree:get_node()
