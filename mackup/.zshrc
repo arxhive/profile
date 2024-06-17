@@ -52,7 +52,7 @@ alias h=history
 alias c='cd ./$(find . -type d -print | fzf)'
 
 alias git-whoami="git config user.email"
-alias gma="git ma" # master/main branch
+alias groot="git ma" # master/main branch
 alias gt="git tree"
 alias gtt="git full-tree"
 
