@@ -55,7 +55,7 @@ alias git-whoami="git config user.email"
 alias groot="git ma" # master/main branch
 alias gt="git tree"
 alias gtt="git full-tree"
-
+alias gsp="git stash-pull"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
@@ -105,7 +105,7 @@ ENABLE_CORRECTION="false"
 
 plugins=(
 	# zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
-	git
+	git # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
   zsh-fzf-history-search
