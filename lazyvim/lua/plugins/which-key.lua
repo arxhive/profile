@@ -12,6 +12,7 @@ return {
       ["<leader>r"] = { name = "+refactor" },
       ["<leader>k"] = { name = "+kubernetes" },
       ["<leader>n"] = { name = "+noice" },
+      ["<leader>L"] = { name = "+lazy" },
       ["<leader>tg"] = { name = "+ray-x go" },
       ["<leader>cg"] = { name = "+ray-x go" },
       ["<leader>gh"] = { name = "+hunks" },

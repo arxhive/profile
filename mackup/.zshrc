@@ -33,23 +33,29 @@ alias vr="vim . -c 'Telescope oldfiles'"
 alias vv="vim . -c 'Kindle'"
 alias vm="vim . -c 'DiffviewOpen'"
 alias vvs="vim . -c 'KindleLastSession'"
+
 alias t=touch
 alias z=zsh
 alias k=kubecolor
 alias ks=k9s
 alias lg=lazygit
 alias ld=lazydocker
+
 alias python=python3
 alias dps="docker ps"
+
 alias aws-sso="aws sso login"
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
+
 alias h=history
+alias c='cd ./$(find . -type d -print | fzf)'
 
 alias git-whoami="git config user.email"
-alias gma="git ma"
+alias gma="git ma" # master/main branch
 alias gt="git tree"
 alias gtt="git full-tree"
+
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
