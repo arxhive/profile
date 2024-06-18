@@ -1,5 +1,5 @@
 [pull]
-  ; rebase = true
+  rebase = false
   autoStash = true
 [push]
   autoSetupRemote = true
