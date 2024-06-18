@@ -50,6 +50,7 @@ alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 54
 
 alias h=history
 alias c='cd ./$(find . -type d -print | fzf)'
+alias pbpwd='pwd | pbcopy'
 
 alias git-whoami="git config user.email"
 alias groot="git ma" # master/main branch

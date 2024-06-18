@@ -39,7 +39,7 @@ return {
       remap = true,
     },
     {
-      "<leader>gt",
+      "<leader>gp",
       function()
         if next(require("diffview.lib").views) == nil then
           require("diffview").file_history()
@@ -47,7 +47,7 @@ return {
           require("diffview").close()
         end
       end,
-      desc = "Git History",
+      desc = "Project History (diffview)",
       -- remap = true,
     },
   },

@@ -39,7 +39,7 @@ return {
       { "<S-space>", function()
         require('telescope.builtin').fd({ cwd = LazyVim.root(), prompt_title = "Files root " .. LazyVim.root() })
       end, desc = "Find Files (Root Dir)" },
-      { "<leader>gh", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "Git File History" },
+      { "<leader>gt", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<C-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
     },
   },
