@@ -40,6 +40,7 @@ alias k=kubecolor
 alias ks=k9s
 alias lg=lazygit
 alias ld=lazydocker
+alias e="exit"
 
 alias python=python3
 alias dps="docker ps"
