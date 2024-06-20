@@ -107,6 +107,7 @@ brew install plantuml
 brew install --cask temurin
 
 brew install telnet
+brew install fd
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 
