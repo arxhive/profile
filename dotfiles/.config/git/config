@@ -24,7 +24,7 @@
   fresh = "!f() { stash_me=$(git stash save 'on-fresh'); stashed=$(echo $stash_me|grep 'on-fresh'); git fetch origin $(git mranch):$(git mranch); git merge $(git mranch); if [ '$stashed' ]; then git stash pop; fi; }; f"
   fresh-b = "!f() { git switch $(git mranch) && git pull && git checkout -b $1; }; f"
   swibr = "!f() { stash_me=$(git stash save 'on-switch'); stashed=$(echo $stash_me|grep 'on-switch'); git switch $1; if [ '$stashed' ]; then git stash pop; fi; }; f"
-  nuke = !git rebase --abort && git reset --hard && git clean -fd
+  nuke = !git rebase --abort & git reset --hard && git clean -fd
   tree = log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I:%S' --format=format:'%C(dim white)%>|(26)%h%C(reset)  %C(green)%ad%C(reset)  %C(blue)%<(16,trunc)%an%C(reset)  %C(bold 1)%d%C(reset) %C(bold white)%>|(1)%s%C(reset)' --all
   full-tree = log --graph --date=format:'%Y-%m-%d %H:%I:%S' --format=tformat:'%C(dim white)%h%C(reset) %C(green)%ad%C(reset) %C(bold blue)%aN%C(reset)%w(0,0,9)%n %C(bold magenta)%s%C(auto)%+d%C(reset)%w(0,0,10)%+b'
-
+  merge-no-more=merge --no-commit --no-ff
