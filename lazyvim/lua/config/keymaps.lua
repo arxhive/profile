@@ -183,8 +183,9 @@ vim.keymap.set("n", "<leader>br",
       tricks.sidecart("source " .. current_file)
     elseif string.find(current_file, ".cs") then
       tricks.sidecart("dotnet run")
-    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-      tricks.sidecart("node" .. current_file)
+    elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
+      -- tricks.sidecart("node " .. current_file)
+      tricks.sidecart("npm run start")
     elseif string.find(current_file, ".go") then
       tricks.sidecart("go run " .. current_file)
     else LazyVim.info("Cannot run")
@@ -213,7 +214,7 @@ vim.keymap.set("n", "<leader>bb",
     elseif string.find(current_file, ".cs") then
       tricks.sidecart("dotnet build")
     elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-      tricks.sidecart("npm install")
+      tricks.sidecart("npm install && npm run build")
     elseif string.find(current_file, ".go") then
       tricks.sidecart("go build")
     else LazyVim.info("Cannot build")
