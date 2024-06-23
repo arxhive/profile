@@ -2,7 +2,7 @@ return {
   "https://gitlab.com/itaranto/plantuml.nvim",
   lazy = true,
   version = "*",
-  config = {
+  opts = {
     renderer = {
       type = "text",
     },

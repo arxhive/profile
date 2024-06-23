@@ -57,7 +57,7 @@ vim.keymap.set("n", "<leader>tc", function()
     tricks.sidecart("jest .")
     -- tricks.sidecart("npm run test .") -- TODO: test it
   elseif string.find(current_file, ".go") then
-    tricks.sidecart("go test .")
+    tricks.sidecart("richgo test . -v")
   else
     LazyVim.info("Cannot run tests")
   end
@@ -74,7 +74,7 @@ vim.keymap.set("n", "<leader>tC", function()
     tricks.sidecart("jest ./...")
     -- tricks.sidecart("npm run test ./...") -- TODO: test it
   elseif string.find(current_file, ".go") then
-    tricks.sidecart("go test ./...")
+    tricks.sidecart("richgo test ./... -v")
   else
     LazyVim.info("Cannot run tests")
   end

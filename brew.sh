@@ -25,6 +25,8 @@ brew install graphviz
 brew install node
 chmod go-w /opt/homebrew/Cellar
 brew install jesseduffield/lazydocker/lazydocker
+brew install prettier
+brew install prettierd
 # brew install grpcui
 
 #gnu
@@ -63,6 +65,20 @@ brew install pyenv-virtualenv
 #go
 brew install golang
 brew install golangci-lint
+go install github.com/segmentio/golines@latest
+# go install github.com/cweill/gotests@latest
+go install gotest.tools/gotestsum@latestg
+go install golang.org/x/tools/cmd/callgraph@latest
+go install golang.org/x/tools/cmd/gorename@latest
+go install golang.org/x/tools/cmd/gonew@latest
+go install go.uber.org/mock/mockgen@latest
+go install github.com/davidrjenni/reftools/cmd/fillswitch@latest
+go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
+go install golang.org/x/vuln/cmd/govulncheck@latest
+go install github.com/kyoh86/richgo@latest
+go install github.com/abenz1267/gomvp@latest
+go install github.com/twpayne/go-jsonstruct/v3/cmd/gojsonstruct@latest
+go install golang.org/x/tools/cmd/guru@latest
 # curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | sh
 
 #C#
