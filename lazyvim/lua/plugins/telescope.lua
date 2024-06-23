@@ -30,8 +30,12 @@ return {
       end, desc = "Ignore tests" },
 
       -- grep root
-      { "<leader>fF", LazyVim.telescope("live_grep", { prompt_title = "Grep root " .. LazyVim.root()}), desc = "Grep (root)" },
+      { "<leader>fF", function()
+        require('telescope.builtin').live_grep({ cwd = LazyVim.root(), prompt_title = "Grep root " .. LazyVim.root() })
+      end, desc = "Grep (root)" },
+
       { "<leader>fs", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
+
       -- files
       { "<leader><space>", function()
         require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
@@ -39,6 +43,7 @@ return {
       { "<S-space>", function()
         require('telescope.builtin').fd({ cwd = LazyVim.root(), prompt_title = "Files root " .. LazyVim.root() })
       end, desc = "Find Files (Root Dir)" },
+
       { "<leader>gt", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<C-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
     },
