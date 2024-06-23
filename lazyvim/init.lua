@@ -5,6 +5,7 @@
 vim.loader.enable()
 
 require("config.lazy")
+require("config.generics")
 -- must be in init.lua to support "v ."
 require("oil").setup({
   default_file_explorer = true,

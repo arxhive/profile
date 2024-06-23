@@ -106,25 +106,29 @@ return {
     {
       "<leader>E",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root() })
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = LazyVim.root() })
       end,
-      desc = "Explorer NeoTree (root)",
+      desc = "NeoTree (root)",
     },
     {
       "<leader>e",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
       end,
-      desc = "Explorer NeoTree (cwd)",
+      desc = "NeoTree (cwd)",
     },
-    {
-      "<leader>wn",
-      function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = LazyVim.root() })
-      end,
-      desc = "NeoTree (root)",
-      remap = true,
-    },
+    -- {
+    --   "<leader>wE",
+    --   "<leader>E",
+    --   desc = "NeoTree (root)",
+    --   remap = true,
+    -- },
+    -- {
+    --   "<leader>we",
+    --   "<leader>e",
+    --   desc = "NeoTree (cwd)",
+    --   remap = true,
+    -- },
     {
       "<leader>wc",
       function()

@@ -9,6 +9,14 @@ return {
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
     { "<leader>bt", ":ToggleTerm<CR>", desc = "Toggle Term" },
+    {
+      "<leader>bc",
+      function()
+        -- i is either insert mode or alias iexit=exit 
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l>iexit<CR>", true, false, true), "m", false)
+      end,
+      desc = "Close Toggle Term",
+    },
   },
   -- init = function()
   --   require("toggleterm").setup()

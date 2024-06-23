@@ -25,7 +25,7 @@ vim.keymap.del( { "n" }, "<leader>p")
 -- Clear harpoon mapping
 vim.keymap.del( { "n" }, "<leader>H")
 
--- Clear default neotree mapping
+-- Clear default NeoTree mapping
 vim.keymap.del( { "n" }, "<leader>fe")
 vim.keymap.del( { "n" }, "<leader>fE")
 
@@ -34,19 +34,10 @@ vim.keymap.del( { "n" }, "<leader>L")
 vim.keymap.del( { "n" }, "<leader>K")
 vim.keymap.del( { "n" }, "<leader>cm")
 
---
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
-
-vim.keymap.set("n", "<leader>cd",
-  function()
-    local path = tricks.refined("%:h")
-    vim.api.nvim_command("cd " .. path)
-    LazyVim.notify("cwd: " .. vim.uv.cwd())
-  end,
-  { desc = "Change cwd to the current folder" })
 
 -- Terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
@@ -124,7 +115,7 @@ vim.keymap.set("n", "<PageUp>", function() require('illuminate').goto_prev_refer
 vim.keymap.set("n", "<PageDown>", function() require('illuminate').goto_next_reference() end, { desc = "Next reference" })
 
 -- Open defintion in vertical split
-vim.keymap.set("n", "<tab>", function ()
+vim.keymap.set("n", "<Tab>", function ()
   local original_window = vim.api.nvim_get_current_win()
   vim.api.nvim_command("vsplit | vertical resize 100")
   vim.lsp.buf.definition()
@@ -135,7 +126,7 @@ vim.keymap.set("n", "<tab>", function ()
   vim.api.nvim_set_current_win(original_window)
 end, { silent = true, desc = "Vert split definition" })
 
-vim.keymap.set("n", "<S-tab>", function ()
+vim.keymap.set("n", "<S-Tab>", function ()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
 end, { silent = true, desc = "Close a right window" })
 
@@ -174,52 +165,5 @@ vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtras") 
 vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, { desc = "Mason" })
 vim.keymap.set("n", "<leader>Lh", function() vim.api.nvim_command("LazyHealth") end, { desc = "Healthcheck" })
 vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
-
--- Code runner
-vim.keymap.set("n", "<leader>br",
-  function()
-    local current_file = vim.fn.expand("%:p")
-    if string.find(current_file, ".py") then
-      tricks.sidecart("python " .. current_file)
-    elseif string.find(current_file, ".sh") then
-      tricks.sidecart("source " .. current_file)
-    elseif string.find(current_file, ".cs") then
-      tricks.sidecart("dotnet run")
-    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-      tricks.sidecart("node" .. current_file)
-    elseif string.find(current_file, ".go") then
-      tricks.sidecart("go run " .. current_file)
-    else LazyVim.info("Cannot run")
-    end
-  end, { desc = "Run code" })
-
-vim.keymap.set("n", "<leader>bl",
-  function()
-    local trim_spaces = true
-    require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 0 })
-  end, { desc = "Toggleterm line" })
-
-vim.keymap.set("x", "<leader>bl",
-  function()
-    local trim_spaces = true
-    require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 0 })
-  end, { desc = "Toggleterm selected" })
-
--- Builder
-vim.keymap.set("n", "<leader>bb",
-  function()
-    local current_file = vim.fn.expand("%:p")
-
-    if string.find(current_file, ".py") then
-      tricks.sidecart("pip install -r requirements.txt")
-    elseif string.find(current_file, ".cs") then
-      tricks.sidecart("dotnet build")
-    elseif string.find(current_file, ".js") or  string.find(current_file, ".ts") then
-      tricks.sidecart("npm install")
-    elseif string.find(current_file, ".go") then
-      tricks.sidecart("go build")
-    else LazyVim.info("Cannot build")
-    end
-  end, { desc = "Build" })
 
 -- stylua: ignore end

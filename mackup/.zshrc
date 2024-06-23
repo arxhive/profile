@@ -49,6 +49,8 @@ alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 
 alias h=history
+alias iexit=exit
+alias e=exit
 alias cf='cd ./$(fd --type d | fzf)'
 alias pbpwd='pwd | pbcopy'
 
