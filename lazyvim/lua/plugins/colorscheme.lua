@@ -35,7 +35,11 @@ return {
             FloatTitle = { fg = prompt_bg, bg = accent },
 
             NoiceCmdlinePopup = { bg = popup_bg },
-            NoiceCmdlinePopupTitle = { fg = prompt_bg, bg = accent },
+            NoiceCmdlinePopupTitleCmdline = { fg = prompt_bg, bg = accent },
+            NoiceCmdlinePopupTitleSearch = { fg = prompt_bg, bg = accent },
+            NoiceCmdlinePopupTitleLua = { fg = prompt_bg, bg = accent },
+            NoiceCmdlinePopupTitleFilter = { fg = prompt_bg, bg = accent },
+            NoiceCmdlinePopupTitleInput = { fg = prompt_bg, bg = accent },
 
             -- NoiceMini = { bg = colors.mantle },
 
