@@ -10,7 +10,8 @@ vim.keymap.set("n", "<leader>br", function()
   elseif string.find(current_file, ".cs") then
     tricks.sidecart("dotnet run")
   elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
-    tricks.sidecart("node" .. current_file)
+    tricks.sidecart("npm run start")
+    -- tricks.sidecart("node " .. current_file)
   elseif string.find(current_file, ".go") then
     tricks.sidecart("go run " .. current_file)
   else
@@ -37,7 +38,7 @@ vim.keymap.set("n", "<leader>bb", function()
   elseif string.find(current_file, ".cs") then
     tricks.sidecart("dotnet build")
   elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
-    tricks.sidecart("npm install")
+    tricks.sidecart("npm install && npm build")
   elseif string.find(current_file, ".go") then
     tricks.sidecart("go build")
   else
@@ -54,8 +55,7 @@ vim.keymap.set("n", "<leader>tc", function()
   elseif string.find(current_file, ".cs") then
     LazyVim.info("Cannot test dotnet TBD")
   elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
-    tricks.sidecart("jest .")
-    -- tricks.sidecart("npm run test .") -- TODO: test it
+    tricks.sidecart("npm run test " .. current_file)
   elseif string.find(current_file, ".go") then
     tricks.sidecart("richgo test . -v")
   else
@@ -71,8 +71,7 @@ vim.keymap.set("n", "<leader>tC", function()
   elseif string.find(current_file, ".cs") then
     LazyVim.info("Cannot test dotnet TBD")
   elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
-    tricks.sidecart("jest ./...")
-    -- tricks.sidecart("npm run test ./...") -- TODO: test it
+    tricks.sidecart("npm run test")
   elseif string.find(current_file, ".go") then
     tricks.sidecart("richgo test ./... -v")
   else

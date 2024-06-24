@@ -166,5 +166,4 @@ vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, 
 vim.keymap.set("n", "<leader>Lh", function() vim.api.nvim_command("LazyHealth") end, { desc = "Healthcheck" })
 vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
 
-      tricks.sidecart("npm install && npm run build")
 -- stylua: ignore end
