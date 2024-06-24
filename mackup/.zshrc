@@ -28,10 +28,10 @@ done
 alias vim='nvim'
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
-alias vp="vim . -c 'Telescope projects'"
 alias vr="vim . -c 'Telescope oldfiles'"
 alias vv="vim . -c 'Kindle'"
 alias vm="vim . -c 'DiffviewOpen'"
+alias vf='vim $(fzf)'
 alias vvs="vim . -c 'KindleLastSession'"
 
 alias t=touch
@@ -50,7 +50,10 @@ alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 
 alias h=history
-alias c='cd ./$(find . -type d -print | fzf)'
+alias iexit=exit
+alias e=exit
+alias cf='cd ./$(fd --type d | fzf)'
+alias pbpwd='pwd | pbcopy'
 
 alias git-whoami="git config user.email"
 alias groot="git ma" # master/main branch
@@ -61,13 +64,13 @@ alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
 
-alias make-me-lazy="cd ~/profile/lazyvim/lua/ && v ."
-alias make-my-zsh="v ~/.zshrc"
-alias make-my-mackup="v ~/.mackup.cfg"
-alias make-my-brew="v ~/profile/brew.sh"
-alias make-aws="v ~/.aws/config"
-alias make-ssh="v ~/.ssh/config"
-alias make-git="v ~/.config/git/config"
+alias mm-lazy="cd ~/profile/lazyvim/lua/ && v ."
+alias mm-brew="v ~/profile/brew.sh"
+alias mm-zsh="v ~/.zshrc"
+alias mm-mackup="v ~/.mackup.cfg"
+alias mm-aws="v ~/.aws/config"
+alias mm-ssh="v ~/.ssh/config"
+alias mm-git="v ~/.config/git/config"
 
 vdlogs() {
 	docker logs $@ >& container_logs

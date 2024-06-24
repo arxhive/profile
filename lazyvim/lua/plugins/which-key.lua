@@ -1,8 +1,8 @@
 return {
   "folke/which-key.nvim",
-  event = function(_, event)
-    return {}
-  end,
+  -- event = function(_, event)
+  --   return { "VeryLazy" }
+  -- end,
   keys = { "<Leader>" },
   opts = {
     plugins = { spelling = true },
@@ -17,6 +17,7 @@ return {
       ["<leader>cg"] = { name = "+ray-x go" },
       ["<leader>gh"] = { name = "+hunks" },
       ["<leader>fi"] = { name = "+ignore" },
+      ["<leader>wS"] = { name = "+setup workspaces" },
 
       ["<leader>2"] = { name = "" },
       ["<leader>3"] = { name = "" },
@@ -25,7 +26,6 @@ return {
       ["<leader>H"] = { name = "" },
       ["<leader>K"] = { name = "" },
       ["<leader>L"] = { name = "" },
-
       ["<leader>`"] = { name = "" },
     },
   },
