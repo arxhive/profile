@@ -90,8 +90,12 @@ chmod-ssh() {
   chmod 600 $@
 }
 
-psp() {
+ports() {
   lsof -i :$@
+}
+
+lports() {
+  sudo lsof -i -P | grep LISTEN | grep :$@
 }
 
 ## ZSH plugings and configs
