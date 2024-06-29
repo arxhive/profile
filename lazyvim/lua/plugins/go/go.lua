@@ -21,6 +21,7 @@ return {
 
     { "<leader>cgt", function () vim.api.nvim_command("GoModTidy") end, desc = "Go Mod Tidy" },
     { "<leader>cgd", function () vim.api.nvim_command("GoDebug") end, desc = "Go Debug" },
+    { "<leader>cge", function () vim.api.nvim_command("GoIfErr") end, desc = "Go IfErr" },
     -- stylua: ignore end
   },
 }
