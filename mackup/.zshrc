@@ -64,13 +64,13 @@ alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
 
-alias mm-lazy="cd ~/profile/lazyvim/lua/ && v ."
-alias mm-brew="v ~/profile/brew.sh"
-alias mm-zsh="v ~/.zshrc"
-alias mm-mackup="v ~/.mackup.cfg"
-alias mm-aws="v ~/.aws/config"
-alias mm-ssh="v ~/.ssh/config"
-alias mm-git="v ~/.config/git/config"
+alias mmlazy="cd ~/profile/lazyvim/lua/ && v ."
+alias mmbrew="v ~/profile/brew.sh"
+alias mmzsh="v ~/.zshrc"
+alias mmmackup="v ~/.mackup.cfg"
+alias mmaws="v ~/.aws/config"
+alias mmssh="v ~/.ssh/config"
+alias mmgit="v ~/.config/git/config"
 
 vdlogs() {
 	docker logs $@ >& container_logs
