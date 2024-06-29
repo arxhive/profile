@@ -59,6 +59,15 @@ vim.api.nvim_create_user_command("Kindle", function()
     require("lint")
     want("copilot")
 
+    -- Remap LSP keys according to the documentation
+    -- https://www.lazyvim.org/plugins/lspi
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    keys[#keys + 1] = { "<leader>cc", false }
+    keys[#keys + 1] = { "<leader>cC", false }
+    keys[#keys + 1] = { "<leader>cl", false }
+    keys[#keys + 1] = { "<leader>cr", false }
+    keys[#keys + 1] = { "<leader>cR", false }
+
     vim.cmd.LspStart()
 
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then

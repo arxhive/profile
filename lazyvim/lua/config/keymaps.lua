@@ -28,14 +28,14 @@ vim.keymap.del("n", "<leader>K")
 vim.keymap.del("n", "<leader>cm")
 vim.keymap.del("n", "<leader>`")
 
-
--- Remap LazyVim default
+-- Remap LazyVim defaults
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
 vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
-vim.keymap.set("n", "<leader>cm", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add missing imports" })
+vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>rR", LazyVim.lsp.rename_file, { desc = "Rename File", })
 
-
--- Hacks
+-- Lifehacks
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
