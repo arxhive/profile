@@ -22,18 +22,20 @@ vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 -- Clear yanky history mapping
 vim.keymap.del( { "n" }, "<leader>p")
 
--- Clear harpoon mapping
-vim.keymap.del( { "n" }, "<leader>H")
-
--- Clear default NeoTree mapping
-vim.keymap.del( { "n" }, "<leader>fe")
-vim.keymap.del( { "n" }, "<leader>fE")
-
 -- Clear others
-vim.keymap.del( { "n" }, "<leader>L")
-vim.keymap.del( { "n" }, "<leader>K")
-vim.keymap.del( { "n" }, "<leader>cm")
+vim.keymap.set("n", "<leader>L", "", { desc = "+lazy"})
+vim.keymap.del("n", "<leader>K")
+vim.keymap.del("n", "<leader>cm")
+vim.keymap.del("n", "<leader>`")
 
+
+-- Remap LazyVim default
+vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
+vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+vim.keymap.set("n", "<leader>cm", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+
+
+-- Hacks
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
@@ -137,7 +139,7 @@ vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true
 -- https://github.com/ThePrimeagen/refactoring.nvim
 vim.keymap.set({ "n", "x" }, "<leader>rr", function() require("refactoring"):select_refactor() end, { desc = "Refactor Menu" })
 
-vim.keymap.set("x", "<leader>re", ":Refactor extract ", { desc = "Extract Function" })
+-- vim.keymap.set("x", "<leader>re", ":Refactor extract ", { desc = "Extract Function" })
 vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ", { desc = "Extract Function to File" })
 
 vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ", { desc = "Extract Variable" })

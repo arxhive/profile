@@ -147,7 +147,7 @@ return {
         mapping = vim.tbl_extend("force", cmp.mapping.preset.cmdline(), cmdLineMapping),
         sources = cmp.config.sources({
           { name = "path" },
-          { name = "cmdline_history" },
+          -- { name = "cmdline_history" },
           {
             name = "cmdline",
             option = {

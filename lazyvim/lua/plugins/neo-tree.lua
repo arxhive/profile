@@ -103,6 +103,9 @@ return {
     vim.cmd([[Neotree close]])
   end,
   keys = {
+    { "<leader>fc", false },
+    { "<leader>fe", false },
+    { "<leader>fE", false },
     {
       "<leader>E",
       function()

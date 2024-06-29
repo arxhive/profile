@@ -18,15 +18,6 @@ return {
       ["<leader>gh"] = { name = "+hunks" },
       ["<leader>fi"] = { name = "+ignore" },
       ["<leader>wS"] = { name = "+setup workspaces" },
-
-      ["<leader>2"] = { name = "" },
-      ["<leader>3"] = { name = "" },
-      ["<leader>4"] = { name = "" },
-      ["<leader>5"] = { name = "" },
-      ["<leader>H"] = { name = "" },
-      ["<leader>K"] = { name = "" },
-      ["<leader>L"] = { name = "" },
-      ["<leader>`"] = { name = "" },
     },
   },
 }
