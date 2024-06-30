@@ -1,7 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
-  -- event = "VeryLazy",
-  event = "VimEnter",
+  event = "VeryLazy",
   -- Tabline
   opts = function(_, opts)
     opts.tabline = {
