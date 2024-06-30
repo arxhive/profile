@@ -68,7 +68,10 @@ vim.api.nvim_create_user_command("Kindle", function()
     keys[#keys + 1] = { "<leader>cR", false }
 
     vim.cmd.LspStart()
-
+    -- stylua: ignore start
+    vim.keymap.set("n", "<leader>cl", function() vim.api.nvim_command("LspStart") end, { desc = "LSP Start" })
+    vim.keymap.set("n", "<leader>cL", function() vim.api.nvim_command("LspRestart") end, { desc = "LSP Restart" })
+    -- stylua: ignore end
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
     --   LazyVim.toggle.diagnostics()
     -- end
