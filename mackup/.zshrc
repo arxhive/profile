@@ -98,6 +98,10 @@ lports() {
   sudo lsof -i -P | grep LISTEN | grep :$@
 }
 
+grepy() {
+  grep -HIFrni --color=always $@ .
+}
+
 ## ZSH plugings and configs
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
