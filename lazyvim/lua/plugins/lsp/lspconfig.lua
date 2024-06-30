@@ -43,6 +43,9 @@ return {
         vtsls = {
           autostart = false,
         },
+        eslint = {
+          autostart = false,
+        },
       },
       inlay_hints = {
         enabled = true,
