@@ -25,7 +25,6 @@ vim.keymap.del( { "n" }, "<leader>p")
 -- Clear others
 vim.keymap.set("n", "<leader>L", "", { desc = "+lazy"})
 vim.keymap.del("n", "<leader>K")
-vim.keymap.del("n", "<leader>cm")
 vim.keymap.del("n", "<leader>`")
 
 -- Remap LazyVim defaults
@@ -150,6 +149,10 @@ vim.keymap.set("n", "<leader>Ll", function() vim.api.nvim_command("Lazy") end, {
 vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtras") end, { desc = "LazyExtas" })
 vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, { desc = "Mason" })
 vim.keymap.set("n", "<leader>Lh", function() vim.api.nvim_command("LazyHealth") end, { desc = "Healthcheck" })
+vim.keymap.set("n", "<leader>Lf", function()
+  vim.api.nvim_command("LazyFormatInfo")
+  vim.api.nvim_command("NoiceLast")
+end, { desc = "Format Info" })
 vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
 
 -- stylua: ignore end

@@ -31,10 +31,16 @@ return {
         marksman = {
           autostart = false,
         },
+        yamlls = {
+          autostart = false,
+        },
         helm_ls = {
           autostart = false,
         },
         lua_ls = {
+          autostart = false,
+        },
+        vtsls = {
           autostart = false,
         },
       },

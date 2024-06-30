@@ -49,7 +49,6 @@ end
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
     require("lspconfig")
-    require("null-ls")
     require("go") -- ray-x/go
     require("refactoring")
     require("yaml-companion")
