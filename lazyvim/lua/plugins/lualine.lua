@@ -33,16 +33,6 @@ return {
             end
           end,
         },
-        -- or rest client env (disabled because the rest client is very expensive to load: 50ms)
-        {
-          function()
-            if package.loaded["rest"] then
-              return "rest"
-            else
-              return ""
-            end
-          end,
-        },
       },
       lualine_z = {},
     }
