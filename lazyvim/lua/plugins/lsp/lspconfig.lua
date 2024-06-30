@@ -44,6 +44,14 @@ return {
       document_highlight = {
         enabled = false,
       },
+      codelens = {
+        enabled = false,
+      },
     },
+    -- doesn't work for some reasons, remap these keys from autocomand so far
+    -- config = function(_, opts)
+    --   local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    --   keys[#keys + 1] = { "<leader>cc", false }
+    -- end,
   },
 }

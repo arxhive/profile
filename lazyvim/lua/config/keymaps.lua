@@ -135,22 +135,6 @@ end, { silent = true, desc = "Close a right window" })
 -- by default, <C-i> = <tab>. Restore a proper navigation behavour
 vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true })
 
--- Refactoring
--- https://github.com/ThePrimeagen/refactoring.nvim
-vim.keymap.set({ "n", "x" }, "<leader>rr", function() require("refactoring"):select_refactor() end, { desc = "Refactor Menu" })
-
--- vim.keymap.set("x", "<leader>re", ":Refactor extract ", { desc = "Extract Function" })
-vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ", { desc = "Extract Function to File" })
-
-vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ", { desc = "Extract Variable" })
-
-vim.keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var", { desc = "Inline Variable" })
-
-vim.keymap.set("n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Function" })
-
-vim.keymap.set("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
-vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to file" })
-
 vim.keymap.set("n", "<leader>rs", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Simple replace by regex" })
 vim.keymap.set("n", "<leader>rx", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace selected by regex" })
 vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by regex - before and after" })
