@@ -31,7 +31,10 @@ vim.keymap.del("n", "<leader>`")
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
 vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
 vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add missing imports" })
-vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
+-- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>rr", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { desc = "Rename", expr = true })
 vim.keymap.set("n", "<leader>rR", LazyVim.lsp.rename_file, { desc = "Rename File", })
 
 -- Lifehacks
