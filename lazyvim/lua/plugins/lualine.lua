@@ -85,8 +85,7 @@ return {
           function() return "  " .. require("dap").status() end,
           cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
           color = LazyVim.ui.fg("Debug"),
-        }
-,
+        },
       },
       lualine_y = {
         { "location", padding = { left = 0, right = 1 } },

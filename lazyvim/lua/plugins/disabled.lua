@@ -10,4 +10,5 @@ return {
   { "stevanmilic/nvim-lspimport.nvim", enabled = false }, -- module not found, test it later
   { "rcarriga/nvim-notify", enabled = false }, -- prefer mini notify
   { "hrsh7th/cmp-buffer", enabled = false },
+  { "nvim-lualine/lualine.nvim", enabled = false },
 }
