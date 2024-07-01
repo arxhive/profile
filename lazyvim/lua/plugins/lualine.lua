@@ -8,31 +8,30 @@ return {
       lualine_b = {},
       lualine_c = { { "filetype", icon_only = true }, { "filename", file_status = true, path = 1 } },
       lualine_x = {
-        {
-          function()
-            if KINDLED then
-              return ""
-            else
+        -- display yaml/Kubernetes (~15ms)
+        function()
+          if package.loaded["yaml-companion"] then
+            local schema = require("yaml-companion").get_buf_schema(0)
+            if schema.result[1].name == "none" then
               return ""
             end
-          end,
-        },
+            return schema.result[1].name
+          else
+            return ""
+          end
+        end,
+        -- function()
+        --   if KINDLED then
+        --     return ""
+        --   else
+        --     return ""
+        --   end
+        -- end,
       },
       lualine_y = {
-        -- display yaml/Kubernetes (~15ms)
-        {
-          function()
-            if package.loaded["yaml-companion"] then
-              local schema = require("yaml-companion").get_buf_schema(0)
-              if schema.result[1].name == "none" then
-                return ""
-              end
-              return schema.result[1].name
-            else
-              return ""
-            end
-          end,
-        },
+        function()
+          return require("lsp-progress").progress()
+        end,
       },
       lualine_z = {},
     }
