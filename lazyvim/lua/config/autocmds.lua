@@ -76,6 +76,8 @@ vim.api.nvim_create_user_command("Kindle", function()
     --   LazyVim.toggle.diagnostics()
     -- end
     KINDLED = true
+  else
+    vim.cmd.LspStart()
   end
 end, {})
 

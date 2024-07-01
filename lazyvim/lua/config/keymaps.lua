@@ -37,6 +37,10 @@ vim.keymap.set("n", "<leader>rr", function()
 end, { desc = "Rename", expr = true })
 vim.keymap.set("n", "<leader>rR", LazyVim.lsp.rename_file, { desc = "Rename File", })
 
+vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true") end,  { desc = "Diagnostics"})
+vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true filter.buf=0") end,  { desc = "Buffer diagnostics"})
+vim.keymap.set("n","<leader>xe", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Diagnostics (telescope)"})
+
 -- Lifehacks
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping
 
