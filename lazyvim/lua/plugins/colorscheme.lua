@@ -34,6 +34,7 @@ return {
             FloatBorder = { bg = popup_bg, fg = popup_bg },
             FloatTitle = { fg = prompt_bg, bg = accent },
 
+            TroubleNormal = { bg = popup_bg },
             NoiceCmdlinePopup = { bg = popup_bg },
             NoiceCmdlinePopupTitleCmdline = { fg = prompt_bg, bg = accent },
             NoiceCmdlinePopupTitleSearch = { fg = prompt_bg, bg = accent },
