@@ -120,7 +120,7 @@ return {
         function()
           require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true, prompt_title = "Browse cwd " .. vim.fn.getcwd() })
         end,
-        desc = "File Browser (cwd)",
+        desc = "File Browser (buf)",
       },
     },
   },
