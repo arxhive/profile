@@ -30,7 +30,7 @@ vim.keymap.set("x", "<leader>bl", function()
 end, { desc = "Toggleterm selected" })
 
 -- Builder
-vim.keymap.set("n", "<leader>bb", function()
+vim.keymap.set("n", "<leader>bi", function()
   local current_file = vim.fn.expand("%:p")
 
   if string.find(current_file, ".py") then
@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>bb", function()
   else
     LazyVim.info("Cannot build")
   end
-end, { desc = "Build" })
+end, { desc = "Build and Install" })
 
 -- Run Tests in CLI
 vim.keymap.set("n", "<leader>tc", function()
