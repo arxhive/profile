@@ -4,13 +4,18 @@ return {
   config = function()
     require("lsp-progress").setup({
       client_format = function(client_name, spinner, series_messages)
-        if #series_messages == 0 then
+        do
+          -- Always nil to disable LSP load progress
           return nil
         end
-        return {
-          name = client_name,
-          body = spinner .. " " .. table.concat(series_messages, ", "),
-        }
+        -- LSP load progress
+        -- if #series_messages == 0 then
+        --   return nil
+        -- end
+        -- return {
+        --   name = client_name,
+        --   body = spinner .. " " .. table.concat(series_messages, ", "),
+        -- }
       end,
       format = function(client_messages)
         --- @param name string
