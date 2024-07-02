@@ -94,7 +94,7 @@ vim.keymap.set("n", "q", function()
 end, { desc = "Append line below" })
 
 vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
-vim.keymap.set("n", "<BS>", "i<C-w><ESC>", { desc = "Delete a word" })
+vim.keymap.set("n", "<BS>", "i<C-w><Del><ESC>", { desc = "Delete a word" })
 
 -- Navigation
 -- vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape edit mode" })

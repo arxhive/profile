@@ -36,6 +36,10 @@ return {
         border = {
           style = "solid",
         },
+        size = {
+          width = "80%",
+          height = "60%",
+        },
       },
     },
     ---@type table<string, NoiceCommand>
