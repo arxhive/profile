@@ -3,16 +3,18 @@ local tricks = require("config.tricks")
 -- Code runner
 vim.keymap.set("n", "<leader>br", function()
   local current_file = vim.fn.expand("%:p")
-  if string.find(current_file, ".py") then
+  local ext = current_file:match("^.+(%..+)$")
+
+  if ext == ".py" then
     tricks.sidecart("python " .. current_file)
-  elseif string.find(current_file, ".sh") then
+  elseif ext == ".sh" then
     tricks.sidecart("source " .. current_file)
-  elseif string.find(current_file, ".cs") then
+  elseif ext == ".cs" then
     tricks.sidecart("dotnet run")
-  elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
+  elseif ext == ".js" or ext == ".ts" then
     tricks.sidecart("npm run start")
     -- tricks.sidecart("node " .. current_file)
-  elseif string.find(current_file, ".go") then
+  elseif ext == ".go" then
     tricks.sidecart("go run " .. current_file)
   else
     LazyVim.info("Cannot run")
@@ -32,31 +34,33 @@ end, { desc = "Toggleterm selected" })
 -- Builder
 vim.keymap.set("n", "<leader>bi", function()
   local current_file = vim.fn.expand("%:p")
+  local ext = current_file:match("^.+(%..+)$")
 
-  if string.find(current_file, ".py") then
+  if ext == ".py" then
     tricks.sidecart("pip install -r requirements.txt")
-  elseif string.find(current_file, ".cs") then
+  elseif ext == ".cs" then
     tricks.sidecart("dotnet build")
-  elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
+  elseif ext == ".js" or ext == ".ts" then
     tricks.sidecart("npm install && npm build")
-  elseif string.find(current_file, ".go") then
+  elseif ext == ".go" then
     tricks.sidecart("go build")
   else
     LazyVim.info("Cannot build")
   end
-end, { desc = "Build and Install" })
+end, { desc = "Install and Build" })
 
 -- Run Tests in CLI
 vim.keymap.set("n", "<leader>tc", function()
   local current_file = vim.fn.expand("%:p")
+  local ext = current_file:match("^.+(%..+)$")
 
-  if string.find(current_file, ".py") then
+  if ext == ".py" then
     LazyVim.info("Cannot test py TBD")
-  elseif string.find(current_file, ".cs") then
+  elseif ext == ".cs" then
     LazyVim.info("Cannot test dotnet TBD")
-  elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
+  elseif ext == ".js" or ext == ".ts" then
     tricks.sidecart("npm run test " .. current_file)
-  elseif string.find(current_file, ".go") then
+  elseif ext == ".go" then
     tricks.sidecart("richgo test . -v")
   else
     LazyVim.info("Cannot run tests")
@@ -65,16 +69,17 @@ end, { desc = "Run Tests CLI" })
 
 vim.keymap.set("n", "<leader>tC", function()
   local current_file = vim.fn.expand("%:p")
+  local ext = current_file:match("^.+(%..+)$")
 
-  if string.find(current_file, ".py") then
+  if ext == ".py" then
     LazyVim.info("Cannot test py TBD")
-  elseif string.find(current_file, ".cs") then
+  elseif ext == ".cs" then
     LazyVim.info("Cannot test dotnet TBD")
-  elseif string.find(current_file, ".js") or string.find(current_file, ".ts") then
+  elseif ext == ".js" or ext == ".ts" then
     tricks.sidecart("npm run test")
-  elseif string.find(current_file, ".go") then
+  elseif ext == ".go" then
     tricks.sidecart("richgo test ./... -v")
   else
     LazyVim.info("Cannot run tests")
   end
-end, { desc = "Run All Tests CLI" })
+end, { desc = "Run ©ll Tests CLI" })
