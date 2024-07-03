@@ -66,6 +66,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     keys[#keys + 1] = { "<leader>cl", false }
     keys[#keys + 1] = { "<leader>cr", false }
     keys[#keys + 1] = { "<leader>cR", false }
+    keys[#keys + 1] = { "gd", false }
 
     vim.cmd.LspStart()
     -- stylua: ignore start

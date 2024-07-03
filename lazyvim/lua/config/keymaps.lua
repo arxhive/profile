@@ -29,6 +29,7 @@ vim.keymap.del("n", "<leader>`")
 
 -- Remap LazyVim defaults
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
+vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Goto defintion" })
 vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
 vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add missing imports" })
 -- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
