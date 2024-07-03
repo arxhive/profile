@@ -11,4 +11,7 @@ return {
       ["<cr>"] = "jump_close",
     },
   },
+  keys = {
+    { "<leader>cS", false },
+  },
 }
