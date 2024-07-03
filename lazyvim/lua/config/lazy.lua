@@ -37,3 +37,5 @@ require("lazy").setup({
     },
   },
 })
+
+_G.Tricks = require("config.tricks")

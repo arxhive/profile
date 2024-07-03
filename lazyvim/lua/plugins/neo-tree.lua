@@ -109,7 +109,7 @@ return {
     {
       "<leader>E",
       function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = LazyVim.root() })
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = Tricks.rootdir() })
       end,
       desc = "NeoTree (root)",
     },

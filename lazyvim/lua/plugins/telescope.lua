@@ -31,7 +31,7 @@ return {
 
       -- grep root
       { "<leader>fF", function()
-        require('telescope.builtin').live_grep({ cwd = LazyVim.root(), prompt_title = "Grep root " .. LazyVim.root() })
+        require('telescope.builtin').live_grep({ cwd = Tricks.rootdir(),  prompt_title = "Grep root " .. Tricks.rootdir() })
       end, desc = "Grep (root)" },
 
       { "<leader>fs", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
@@ -41,7 +41,7 @@ return {
         require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
       end, desc = "Find Files (cwd)" },
       { "<S-space>", function()
-        require('telescope.builtin').fd({ cwd = LazyVim.root(), prompt_title = "Files root " .. LazyVim.root() })
+        require('telescope.builtin').fd({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
       end, desc = "Find Files (Root Dir)" },
 
       { "<leader>gt", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
@@ -111,7 +111,7 @@ return {
       {
         "<leader>wW",
         function()
-          require("telescope").extensions.file_browser.file_browser({ path = LazyVim.root(), select_buffer = true, prompt_title = "Browse root " .. LazyVim.root() })
+          require("telescope").extensions.file_browser.file_browser({ path = Tricks.rootdir(), select_buffer = true, prompt_title = "Browse root " .. Tricks.rootdir() })
         end,
         desc = "File Browser (root)",
       },

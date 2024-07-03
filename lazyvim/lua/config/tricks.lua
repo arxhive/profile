@@ -29,4 +29,9 @@ function M.sidecart(cmd)
   term.exec(cmd, 0, 100, "%", "vertical", "sidecart", true, true)
 end
 
+-- simplified logic for root directory to avoid mess with root pattern after LSP start
+function M.rootdir()
+  return LazyVim.root.git()
+end
+
 return M

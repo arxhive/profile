@@ -7,8 +7,6 @@
 
 -- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
-local tricks = require("config.tricks")
-
 -- stylua: ignore start
 -- Tabs are evil, remove all mapping
 vim.keymap.del( { "n" }, "<leader><Tab>d")
@@ -49,21 +47,21 @@ vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
 
 -- Terminal
-local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
+local lazyterm = function() LazyVim.terminal(nil, { cwd = Tricks.rootdir() }) end
 vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
 vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   function()
-    local path = tricks.refined("%:h:p")
+    local path = Tricks.refined("%:h:p")
     LazyVim.terminal(nil, { cwd = path })
   end, { desc = "Terminal (current folder)" })
 
 -- Git aliases
-vim.keymap.set("n", "<leader>gr", function() tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
+vim.keymap.set("n", "<leader>gr", function() Tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
 vim.keymap.set("n", "<leader>gn",
   function()
     local new_branch_name = vim.fn.input("Branch name: ")
     if new_branch_name ~= "" then 
-      tricks.sidecart("git fresh-b " .. new_branch_name)
+      Tricks.sidecart("git fresh-b " .. new_branch_name)
     end
   end, { desc = "New Branch" })
 
