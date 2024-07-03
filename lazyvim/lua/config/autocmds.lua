@@ -29,6 +29,15 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
   end,
 })
 
+-- Auto-attach LSP if Kindled
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  callback = function()
+    if KINDLED then
+      vim.api.nvim_command("LspStart")
+    end
+  end,
+})
+
 -- Go to coding mode
 -- Optional require. Example:
 --     myMod, err = want'myMod'
