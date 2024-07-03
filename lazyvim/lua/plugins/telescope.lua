@@ -76,7 +76,7 @@ return {
       require("telescope").setup({
         extensions = {
           file_browser = {
-            depth = 3,
+            depth = 1,
             hidden = { file_browser = false, folder_browser = false },
             display_stat = { date = false, size = false, mode = false },
             git_status = false,
