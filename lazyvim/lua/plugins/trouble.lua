@@ -13,5 +13,6 @@ return {
   },
   keys = {
     { "<leader>cS", false },
+    { "<leader>xQ", false },
   },
 }
