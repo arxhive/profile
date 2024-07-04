@@ -161,6 +161,10 @@ vim.keymap.set("n", "<leader>Lf", function()
   vim.api.nvim_command("LazyFormatInfo")
   vim.api.nvim_command("NoiceLast")
 end, { desc = "Format Info" })
+vim.keymap.set("n", "<leader>Lr", function()
+  vim.api.nvim_command("LazyRoot")
+  vim.api.nvim_command("NoiceLast")
+end, { desc = "Roots Info" })
 vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
 
 -- stylua: ignore end
