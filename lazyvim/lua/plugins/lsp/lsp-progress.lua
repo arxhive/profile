@@ -35,7 +35,7 @@ return {
 
         if #lsp_clients > 0 then
           table.sort(lsp_clients, function(a, b)
-            if b == nil then
+            if a == nil or b == nil then
               return true
             end
             return a.name < b.name
