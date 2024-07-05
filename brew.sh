@@ -19,8 +19,6 @@ git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
 
 #devenv
 brew install tfenv
-brew install wget
-brew install jq
 brew install graphviz
 brew install node
 chmod go-w /opt/homebrew/Cellar
@@ -32,6 +30,11 @@ brew install prettierd
 #gnu
 brew install base64
 brew install findutils
+
+#utils
+brew install tree
+brew install jq
+brew install wget
 
 #security
 brew install trivy
