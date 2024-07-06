@@ -152,6 +152,7 @@ vim.keymap.set("x", "p", "pgvy", { desc = "Paste and keep in register", silent =
 -- vim.keymap.set("n", "<C-P>", "<Plug>(YankyPreviousEntry)")
 -- vim.keymap.set("n", "<C-N>", "<Plug>(YankyNextEntry)")
 
+-- Lazy Info
 vim.keymap.set("n", "<leader>Ll", function() vim.api.nvim_command("Lazy") end, { desc = "Lazy" })
 vim.keymap.set("n", "<leader>Lx", function() vim.api.nvim_command("LazyExtras") end, { desc = "LazyExtas" })
 vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, { desc = "Mason" })
@@ -168,4 +169,35 @@ vim.keymap.set("n", "<leader>Lr", function()
 end, { desc = "Roots Info" })
 vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
 
+
+-- Escape regex characters
+local function escape_regex(str)
+    local matches = {
+        ['%'] = '\\%',
+        ['('] = '\\(',
+        [')'] = '\\)',
+        ['.'] = '\\.',
+        ['%+'] = '\\+',
+        ['%-'] = '\\-',
+        ['*'] = '\\*',
+        ['?'] = '\\?',
+        ['['] = '\\[',
+        [']'] = '\\]',
+        ['^'] = '\\^',
+        ['$'] = '\\$',
+        ['{'] = '\\{',
+        ['}'] = '\\}',
+        ['|'] = '\\|',
+    }
+    return (str:gsub('.', matches))
+end
+
+vim.keymap.set("v", "<leader>ce", function()
+  local csrow, cscol, cerow, cecol = Tricks.get_visual_selection_range()
+  local text = Tricks.get_visual_selection()
+  local escaped = escape_regex(text)
+
+  -- indecies are 0-based against real rows and cols in an editor
+  vim.api.nvim_buf_set_text(0, csrow - 1, cscol - 1, cerow - 1, cecol - 1, { escaped })
+end, { desc = "Escape regex characters" })
 -- stylua: ignore end
