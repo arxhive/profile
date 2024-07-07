@@ -87,4 +87,9 @@ function M.tbl_length(T)
   return count
 end
 
+function M.get_last_yank()
+  return vim.fn.getreg("0") -- reg: "0
+  -- return vim.fn.getreg("+") -- this is a system clipboard
+end
+
 return M

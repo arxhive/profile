@@ -86,6 +86,8 @@ return {
           end,
           desc = "Open with System Application",
         },
+        ["<leader>fn"] = "grep_telescope",
+        ["<leader>sn"] = "files_telescope",
       },
     },
     default_component_configs = {
@@ -96,6 +98,28 @@ return {
         expander_expanded = "",
         expander_highlight = "NeoTreeExpander",
       },
+    },
+    commands = {
+      grep_telescope = function(state)
+        local node = state.tree:get_node()
+        local neopath = node:get_id()
+
+        if string.find(neopath, "%.") then
+          neopath = vim.fn.fnamemodify(neopath, ":h")
+        end
+
+        require("telescope.builtin").live_grep({ cwd = neopath, prompt_title = "Grep neotree " .. neopath })
+      end,
+      files_telescope = function(state)
+        local node = state.tree:get_node()
+        local neopath = node:get_id()
+
+        if string.find(neopath, "%.") then
+          neopath = vim.fn.fnamemodify(neopath, ":h")
+        end
+
+        require("telescope.builtin").fd({ cwd = neopath, prompt_title = "Files neotree " .. neopath })
+      end,
     },
   },
   cmd = "Neotree",
