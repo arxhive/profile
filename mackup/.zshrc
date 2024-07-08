@@ -86,8 +86,12 @@ chmod-pem() {
   chmod 0400 $@
 }
 
-chmod-ssh() {
-  chmod 600 $@
+chmod-pub() {
+  chmod 600 $@ # or 644 to make them readable for all
+}
+
+chmod-ssh-dir() {
+  chmod 700 $@
 }
 
 ports() {
