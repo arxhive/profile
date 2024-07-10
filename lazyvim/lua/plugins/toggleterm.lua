@@ -5,6 +5,21 @@ return {
   opts = {
     direction = "vertical",
     size = 100,
+    shade_terminals = false,
+    highlights = {
+      -- highlights which map to a highlight group name and a table of it's values
+      -- https://github.com/akinsho/toggleterm.nvim/blob/cd55bf6aab3f88c259fa29ea86bbdcb1a325687d/lua/toggleterm/colors.lua#L95
+      Normal = {
+        guibg = "#181825", -- mantle cattpuccin
+      },
+      -- NormalFloat = {
+      --   link = 'Normal'
+      -- },
+      -- FloatBorder = {
+      --   guifg = "<VALUE-HERE>",
+      --   guibg = "<VALUE-HERE>",
+      -- },
+    },
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
@@ -21,7 +36,4 @@ return {
       desc = "Close Toggle Term",
     },
   },
-  -- init = function()
-  --   require("toggleterm").setup()
-  -- end,
 }
