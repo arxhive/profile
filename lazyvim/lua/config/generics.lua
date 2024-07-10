@@ -82,4 +82,4 @@ vim.keymap.set("n", "<leader>tC", function()
   else
     LazyVim.info("Cannot run tests")
   end
-end, { desc = "Run ©ll Tests CLI" })
+end, { desc = "Run All Tests CLI" })
