@@ -22,6 +22,19 @@ return {
         gopls = {
           autostart = false,
         },
+        vtsls = {
+          autostart = false,
+          settings = {
+            typescript = {
+              preferences = {
+                importModuleSpecifier = "relative",
+              },
+            },
+          },
+        },
+        eslint = {
+          autostart = false,
+        },
         tsserver = {
           autostart = false,
         },
@@ -38,12 +51,6 @@ return {
           autostart = false,
         },
         lua_ls = {
-          autostart = false,
-        },
-        vtsls = {
-          autostart = false,
-        },
-        eslint = {
           autostart = false,
         },
       },
