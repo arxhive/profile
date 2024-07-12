@@ -26,7 +26,8 @@ function M.sidecart(cmd)
   --- @param go_back boolean? whether or not to return to original window
   --- @param open boolean? whether or not to open terminal window
 
-  term.exec(cmd, 0, 100, "%", "vertical", "sidecart", true, true)
+  local curDir = vim.fn.expand("%:h") -- % for cwd
+  term.exec(cmd, 0, 100, curDir, "vertical", "sidecart", true, true)
 end
 
 -- simplified logic for root directory to avoid mess with root pattern after LSP start
