@@ -40,6 +40,10 @@ return {
               end,
             },
           },
+          -- Warning: load time of path if pretty slow ~200ms
+          {
+            name = "path",
+          },
         }),
       })
       -- opts.sources = cmp.config.sources({
