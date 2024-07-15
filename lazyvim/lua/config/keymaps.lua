@@ -116,7 +116,11 @@ vim.keymap.set("i", "<C-u>", "<ESC>u", { silent = true, noremap = true })
 
 
 -- Semantic
-vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help on edit mode" })
+vim.keymap.set({ "i", "n" }, "<C-a>", function()
+  vim.lsp.buf.hover()
+  vim.lsp.buf.signature_help()
+end, { desc = "Quick definition or Signature help" })
+-- vim.keymap.set({ "i", "n" }, "<C-a>", function() vim.lsp.buf.signature_help() end, { desc = "Signature help" })
 vim.keymap.set("n", "+", "gg=G<C-o>")
 
 vim.keymap.set("n", "<PageUp>", function() require('illuminate').goto_prev_reference() end, { desc = "Prev reference" })
