@@ -45,9 +45,13 @@ alias e="exit"
 alias python=python3
 alias dps="docker ps"
 
-alias aws-sso="aws sso login"
+aws-sso() {
+  aws sso login --profile=$@
+  export AWS_PROFILE=$@
+}
 alias aws-whoami="aws sts get-caller-identity"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
+alias aws-logout="aws sso logout && unset AWS_PROFILE"
 
 alias h=history
 alias iexit=exit
