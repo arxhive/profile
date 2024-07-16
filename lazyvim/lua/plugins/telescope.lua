@@ -26,8 +26,11 @@ return {
         require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), prompt_title = "Grep cwd " .. vim.fn.getcwd() })
       end, desc = "Grep (cwd)" },
       { "<leader>fit", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), glob_pattern="!{*test*,*fixture*}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), glob_pattern="!{*test*,*fixture*,*.spec.*}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
       end, desc = "Ignore tests" },
+      { "<leader>fip", function()
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), glob_pattern="!{package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
+      end, desc = "Ignore packages" },
 
       -- grep root
       { "<leader>fF", function()
