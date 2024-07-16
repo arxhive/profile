@@ -163,6 +163,7 @@ vim.keymap.set("n", "<leader>Lm", function() vim.api.nvim_command("Mason") end, 
 vim.keymap.set("n", "<leader>Lh", function() vim.api.nvim_command("LazyHealth") end, { desc = "Healthcheck" })
 vim.keymap.set("n", "<leader>LM", function() vim.api.nvim_command("checkhealth mason") end, { desc = "Healthcheck Mason" })
 vim.keymap.set("n", "<leader>LL", function() vim.api.nvim_command("checkhealth lsp") end, { desc = "Healthcheck LSP" })
+vim.keymap.set("n", "<leader>Lc", function() vim.api.nvim_command("ConformInfo") end, { desc = "Conform Format Info" })
 vim.keymap.set("n", "<leader>Lf", function()
   vim.api.nvim_command("LazyFormatInfo")
   vim.api.nvim_command("NoiceLast")
