@@ -68,6 +68,9 @@ alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
 alias sc="cd $SC && ls"
 
+alias weight="du -hsx 2>/dev/null * | sort -hr | less"
+alias curweight="du -hs"
+
 alias mmlazy="cd ~/profile/lazyvim/lua/ && v ."
 alias mmbrew="v ~/profile/brew.sh"
 alias mmzsh="v ~/.zshrc"
