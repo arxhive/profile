@@ -22,6 +22,7 @@
   ; fresh = !git fetch origin $(git mranch):$(git mranch) && git merge $(git mranch) 
   stash-pull = "!f() { stash_me=$(git stash save 'on-fresh'); stashed=$(echo $stash_me|grep 'on-fresh'); git pull; if [ '$stashed' ]; then git stash pop; fi; }; f"
   fresh = "!f() { stash_me=$(git stash save 'on-fresh'); stashed=$(echo $stash_me|grep 'on-fresh'); git fetch origin $(git mranch):$(git mranch); git merge $(git mranch); if [ '$stashed' ]; then git stash pop; fi; }; f"
+  fresh = "!f() { stash_me=$(git stash save 'on-fresh'); stashed=$(echo $stash_me|grep 'on-fresh'); git fetch origin $(git mranch):$(git mranch); git merge $(git mranch) --no-edit; if [ '$stashed' ]; then git stash pop; fi; }; f"
   fresh-b = "!f() { git switch $(git mranch) && git pull && git checkout -b $1; }; f"
   swibr = "!f() { stash_me=$(git stash save 'on-switch'); stashed=$(echo $stash_me|grep 'on-switch'); git switch $1; if [ '$stashed' ]; then git stash pop; fi; }; f"
   nuke = !git rebase --abort & git reset --hard && git clean -fd
