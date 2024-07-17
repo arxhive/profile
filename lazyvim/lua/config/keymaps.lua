@@ -205,4 +205,10 @@ vim.keymap.set("v", "<leader>ce", function()
   -- indecies are 0-based against real rows and cols in an editor
   vim.api.nvim_buf_set_text(0, csrow - 1, cscol - 1, cerow - 1, cecol - 1, { escaped })
 end, { desc = "Escape regex characters" })
+
+-- Python helpers
+vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt") end, { desc = "Venv create" })
+vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate") end, { desc = "Venv activate" })
+vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end, { desc = "Venv deactivate" })
+
 -- stylua: ignore end
