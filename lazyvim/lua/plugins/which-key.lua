@@ -16,6 +16,7 @@ return {
       ["<leader>tg"] = { name = "+ray-x go" },
       ["<leader>cg"] = { name = "+go" },
       ["<leader>cp"] = { name = "+python" },
+      ["<leader>gm"] = { name = "+merge" },
       ["<leader>gh"] = { name = "+hunks" },
       ["<leader>fi"] = { name = "+ignore" },
       ["<leader>wS"] = { name = "+setup workspaces" },

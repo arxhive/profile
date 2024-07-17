@@ -211,4 +211,8 @@ vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv ve
 vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate") end, { desc = "Venv activate" })
 vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end, { desc = "Venv deactivate" })
 
+-- Git helpers
+vim.keymap.set("n", "<leader>gmc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
+vim.keymap.set("n", "<leader>gma", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
+
 -- stylua: ignore end
