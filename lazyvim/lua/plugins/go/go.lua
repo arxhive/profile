@@ -19,9 +19,12 @@ return {
     { "<leader>tgd", function () vim.api.nvim_command("GoDebug --test") end, desc = "Debug Test" },
     { "<leader>tgg", function () vim.api.nvim_command("GinkgoFunc") end, desc = "Test Ginkgo Func" },
 
-    { "<leader>cgt", function () vim.api.nvim_command("GoModTidy") end, desc = "Go Mod Tidy" },
+    -- { "<leader>cgt", function () vim.api.nvim_command("GoModTidy") end, desc = "Go Mod Tidy" },
     { "<leader>cgd", function () vim.api.nvim_command("GoDebug") end, desc = "Go Debug" },
     { "<leader>cge", function () vim.api.nvim_command("GoIfErr") end, desc = "Go IfErr" },
+    { "<leader>cgt", function () Tricks.sidecart("go mod tidy") end, desc = "Go mod tidy" },
+    { "<leader>cgc", function () Tricks.sidecart("go clean -modcache") end, desc = "Go clean cache" },
+    { "<leader>cgg", function () Tricks.sidecart("go generate ./...") end, desc = "Go generate" },
     -- stylua: ignore end
   },
 }
