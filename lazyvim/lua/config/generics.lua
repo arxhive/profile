@@ -5,20 +5,46 @@ vim.keymap.set("n", "<leader>br", function()
   local current_file = vim.fn.expand("%:p")
   local ext = current_file:match("^.+(%..+)$")
 
-  if ext == ".py" then
-    tricks.sidecart("python " .. current_file)
-  elseif ext == ".sh" then
-    tricks.sidecart("source " .. current_file)
-  elseif ext == ".cs" then
-    tricks.sidecart("dotnet run")
-  elseif ext == ".js" or ext == ".ts" then
-    tricks.sidecart("npm run start")
-    -- tricks.sidecart("node " .. current_file)
-  elseif ext == ".go" then
-    tricks.sidecart("go run " .. current_file)
-  else
-    LazyVim.info("Cannot run")
+  local run = function()
+    if ext == ".py" then
+      tricks.sidecart("python " .. current_file)
+    elseif ext == ".sh" then
+      tricks.sidecart("source " .. current_file)
+    elseif ext == ".cs" then
+      tricks.sidecart("dotnet run")
+    elseif ext == ".js" or ext == ".ts" then
+      tricks.sidecart("npm run start")
+      -- tricks.sidecart("node " .. current_file)
+    elseif ext == ".go" then
+      tricks.sidecart("go run " .. current_file)
+    else
+      LazyVim.info("Cannot run")
+    end
   end
+
+  -- close termnial if open for safe re-run
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><C-l><C-l>i<C-c>", true, false, true), "m", false)
+  vim.schedule(function()
+    run()
+  end)
+
+  -- more correct approach but not working:
+  -- vim.schedule(function()
+  --   local cur_sidecart = vim.fn.expand("%:p")
+  --   if string.find(cur_sidecart, "#toggleterm") then
+  --     -- close it
+  --     -- vim.schedule(function()
+  --     --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "m", false)
+  --     -- end)
+  --       -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i<C-c>", true, false, true), "m", false)
+  --         -- run()
+  --     -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("exit<CR>", true, false, true), "m", false)
+  --     -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<leader>bc", true, false, true), "m", false)
+  --     -- require("toggleterm").exec("exit", 0, 100, "%", "vertical", "sidecart", true, true)
+  --   else
+  --     run()
+  --   end
+  -- end)
 end, { desc = "Run code" })
 
 vim.keymap.set("n", "<leader>bl", function()
