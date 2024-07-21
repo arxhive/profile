@@ -27,5 +27,5 @@
   merge-no-more=merge --no-commit --no-ff
   nuke = !git rebase --abort & git reset --hard && git clean -fd
   ; tree = log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I' --format=format:'%C(dim white)%>|(26)%h%C(reset)  %C(green)%ad%C(reset)  %C(blue)%<(16,trunc)%an%C(reset)  %C(bold 1)%d%C(reset) %C(bold white)%>|(1)%s%C(reset)' --all
-  tree = log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I' --format=format:'%C(auto)%>|(20)%<(20)%d%C(reset)  %C(auto)%>|(20)%<(20)%s%C(reset)  %C(blue)%>|(-32)%an%C(reset)  %C(green)%>|(-14)%ad%C(reset)  %C(dim white)%>|(-1)%h%C(reset) %n' --all
-  full-tree = log --graph --date=format:'%Y-%m-%d %H:%I' --format=tformat:'%C(dim white)%h%C(reset) %C(green)%ad%C(reset) %C(bold blue)%aN%C(reset)%w(0,0,9)%n %C(bold magenta)%s%C(auto)%+d%C(reset)%w(0,0,10)%+b'
+  tree = log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I' --format=format:'%C(auto)%>|(20)%<(20)%d%C(reset)  %C(auto)%>|(20)%<(20)%s%C(reset)  %C(blue)%>|(-32)%an%C(reset)  %C(magenta)%>|(-14)%ad%C(reset)  %C(dim white)%>|(-1)%h%C(reset) %n' --all
+  full-tree = log --graph --date=format:'%Y-%m-%d %H:%I' --format=tformat:'%C(auto)%>|(10)%<(20)%d%C(reset) %C(dim white)%>|(12)%<(20)%h%C(reset)  %C(magenta)%ad%C(reset)  %C(bold blue)%aN%C(reset)%w(0,0,9)%n %C(yellow)%s%w(0,0,10)%n%n%C(white)%b%C(reset) %n'
