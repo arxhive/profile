@@ -41,7 +41,7 @@ function M.floatterm(cmd)
   --- @param open boolean? whether or not to open terminal window
 
   local curDir = vim.fn.expand("%:h") -- % for cwd
-  term.exec(cmd, 0, 100, curDir, "float", "FTerm", false, true)
+  term.exec(cmd, 0, 100, curDir, "float", " Toggle Term ", false, true)
 end
 
 -- simplified logic for root directory to avoid mess with root pattern after LSP start
