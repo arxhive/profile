@@ -144,18 +144,14 @@ return {
       end,
       desc = "NeoTree (cwd)",
     },
-    -- {
-    --   "<leader>wE",
-    --   "<leader>E",
-    --   desc = "NeoTree (root)",
-    --   remap = true,
-    -- },
-    -- {
-    --   "<leader>we",
-    --   "<leader>e",
-    --   desc = "NeoTree (cwd)",
-    --   remap = true,
-    -- },
+    {
+      "<leader>we",
+      function()
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
+        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
+      end,
+      desc = "Focus on NeoTree (cwd)",
+    },
     {
       "<leader>wc",
       function()
