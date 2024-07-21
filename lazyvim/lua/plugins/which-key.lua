@@ -20,6 +20,7 @@ return {
       ["<leader>gh"] = { name = "+hunks" },
       ["<leader>fi"] = { name = "+ignore" },
       ["<leader>wS"] = { name = "+setup workspaces" },
+      ["<leader>bo"] = { name = "+open in" },
     },
   },
 }

@@ -215,6 +215,27 @@ vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end,
 vim.keymap.set("n", "<leader>gmc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
 vim.keymap.set("n", "<leader>gma", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
 vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
-vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Full Tree" })
+vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
+
+-- Buffer helpers
+vim.keymap.set("n", "<leader>bot", function() 
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+
+    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
+    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+
+    vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
+end, { desc = "Open in TFS" })
+
+vim.keymap.set("n", "<leader>bog", function() 
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+
+    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
+    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+
+    vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
+end, { desc = "Open in Github" })
 
 -- stylua: ignore end
