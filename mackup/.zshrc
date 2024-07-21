@@ -56,6 +56,7 @@ alias aws-logout="aws sso logout && unset AWS_PROFILE"
 alias h=history
 alias iexit=exit
 alias e=exit
+alias q=exit
 alias cf='cd ./$(fd --type d | fzf)'
 alias pbpwd='pwd | pbcopy'
 

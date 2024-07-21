@@ -12,14 +12,27 @@ return {
       Normal = {
         guibg = "#181825", -- mantle cattpuccin
       },
-      -- NormalFloat = {
-      --   link = 'Normal'
-      -- },
-      -- FloatBorder = {
-      --   guifg = "<VALUE-HERE>",
-      --   guibg = "<VALUE-HERE>",
-      -- },
+      NormalFloat = {
+        -- guibg = "#181825",
+        -- link = 'Normal'
+      },
+      FloatBorder = {
+        guifg = "#1E1E2E", -- base cattpuccin
+        guibg = "#1E1E2E",
+      },
     },
+    float_opts = {
+      border = "single",
+      title_pos = "center",
+      winblend = 0,
+      width = function()
+        return math.ceil(vim.o.columns * 1)
+      end,
+      height = function()
+        return math.ceil(vim.o.lines * 1)
+      end,
+    },
+    -- close_on_exit = true,
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {

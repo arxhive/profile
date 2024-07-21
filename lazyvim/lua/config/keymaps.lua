@@ -214,5 +214,7 @@ vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end,
 -- Git helpers
 vim.keymap.set("n", "<leader>gmc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
 vim.keymap.set("n", "<leader>gma", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
+vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
+vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Full Tree" })
 
 -- stylua: ignore end

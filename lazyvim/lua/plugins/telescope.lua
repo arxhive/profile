@@ -47,7 +47,7 @@ return {
         require('telescope.builtin').fd({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
       end, desc = "Find Files (Root Dir)" },
 
-      { "<leader>gt", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
+      { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<C-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
     },
   },

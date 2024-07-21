@@ -30,6 +30,20 @@ function M.sidecart(cmd)
   term.exec(cmd, 0, 100, curDir, "vertical", "sidecart", true, true)
 end
 
+function M.floatterm(cmd)
+  --- @param cmd string
+  --- @param num number?
+  --- @param size number?
+  --- @param dir string?
+  --- @param direction string?
+  --- @param name string?
+  --- @param go_back boolean? whether or not to return to original window
+  --- @param open boolean? whether or not to open terminal window
+
+  local curDir = vim.fn.expand("%:h") -- % for cwd
+  term.exec(cmd, 0, 100, curDir, "float", "FTerm", false, true)
+end
+
 -- simplified logic for root directory to avoid mess with root pattern after LSP start
 function M.rootdir()
   return LazyVim.root.git()
