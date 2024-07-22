@@ -117,3 +117,15 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "LspProgressStatusUpdated",
   callback = require("lualine").refresh,
 })
+
+-- autosave for firevim
+if vim.g.started_by_firenvim == true then
+  vim.api.nvim_exec(
+    [[
+  autocmd TextChanged * ++nested silent write
+  autocmd TextChangedI * ++nested silent write
+  autocmd BufRead,BufNewFile * start
+]],
+    false
+  )
+end
