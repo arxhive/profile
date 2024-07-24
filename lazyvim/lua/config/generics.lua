@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader>br", function()
       tricks.sidecart("source " .. current_file)
     elseif ext == ".cs" then
       tricks.sidecart("dotnet run")
-    elseif ext == ".js" or ext == ".ts" then
+    elseif ext == ".js" or ext == ".ts" or ext == ".tsx" then
       tricks.sidecart("npm run start")
       -- tricks.sidecart("node " .. current_file)
     elseif ext == ".go" then
@@ -66,7 +66,7 @@ vim.keymap.set("n", "<leader>bi", function()
     tricks.sidecart("pip install -r requirements.txt")
   elseif ext == ".cs" then
     tricks.sidecart("dotnet build")
-  elseif ext == ".js" or ext == ".ts" then
+  elseif ext == ".js" or ext == ".ts" or ext == ".tsx" then
     tricks.sidecart("npm install && npm build")
   elseif ext == ".go" then
     tricks.sidecart("go build")
@@ -84,7 +84,7 @@ vim.keymap.set("n", "<leader>tc", function()
     LazyVim.info("Cannot test py TBD")
   elseif ext == ".cs" then
     LazyVim.info("Cannot test dotnet TBD")
-  elseif ext == ".js" or ext == ".ts" then
+  elseif ext == ".js" or ext == ".ts" or ext == ".tsx" then
     tricks.sidecart("npm run test " .. current_file)
   elseif ext == ".go" then
     tricks.sidecart("richgo test . -v")
@@ -101,7 +101,7 @@ vim.keymap.set("n", "<leader>tC", function()
     LazyVim.info("Cannot test py TBD")
   elseif ext == ".cs" then
     LazyVim.info("Cannot test dotnet TBD")
-  elseif ext == ".js" or ext == ".ts" then
+  elseif ext == ".js" or ext == ".ts" or ext == ".tsx" then
     tricks.sidecart("npm run test")
   elseif ext == ".go" then
     tricks.sidecart("richgo test ./... -v")
