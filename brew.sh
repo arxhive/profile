@@ -18,6 +18,7 @@ git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
 # git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
 #devenv
+brew install tmux
 brew install tfenv
 brew install graphviz
 brew install node
