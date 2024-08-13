@@ -35,13 +35,13 @@ alias vf='vim $(fzf)'
 alias vvs="vim . -c 'KindleLastSession'"
 
 alias x=tmux
-alias xn=tmux new -s
-alias xls=tmux ls
-alias xa=tmux a
-alias xat=tmux a -t
-alias xnuke=tmux kill-server
-alias xk=tmux kill-session
-alias xkt=tmux kill-session -t
+alias xn="tmux new -s"
+alias xls="tmux ls"
+alias xa="tmux a"
+alias xat="tmux a -t"
+alias xnuke="tmux kill-server"
+alias xk="tmux kill-session"
+alias xkt="tmux kill-session -t"
 
 alias t=touch
 alias z=zsh
