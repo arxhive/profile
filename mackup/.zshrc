@@ -88,6 +88,7 @@ alias mmmackup="v ~/.mackup.cfg"
 alias mmaws="v ~/.aws/config"
 alias mmssh="v ~/.ssh/config"
 alias mmgit="v ~/.config/git/config"
+alias mmtmux="v ~/.tmux.conf"
 
 vdlogs() {
 	docker logs $@ >& container_logs
