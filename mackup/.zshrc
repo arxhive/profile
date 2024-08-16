@@ -16,9 +16,10 @@ export SC="$HOME/sources"
 
 export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
-export GOROOT="$(brew --prefix golang)/libexec"
-export SPICETIFYPATH=$HOME/.spicetify
-export PATH="$PATH:${GOBIN}:${GOROOT}/bin:${SPICETIFYPATH}/bin"
+export GOROOT="$(brew --prefix golang)/libexec/bin"
+export SPICETIFYPATH=$HOME/.spicetify/bin
+export KREW="${KREW_ROOT:-$HOME/.krew}/bin"
+export PATH="$PATH:${GOBIN}:${GOROOT}:${SPICETIFYPATH}:${KREW}"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
