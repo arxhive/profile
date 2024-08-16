@@ -36,6 +36,7 @@ brew install findutils
 brew install tree
 brew install jq
 brew install wget
+brew install mitmproxy
 
 #security
 brew install trivy
