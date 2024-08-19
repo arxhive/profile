@@ -197,3 +197,6 @@ source ~/profile/macos/apps/clear_notifications_install
 )
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 kubectl krew install node-shell
+
+# vmware
+#brew install --cask vmware-fusion
