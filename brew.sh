@@ -159,6 +159,7 @@ ln -sf ~/profile/dotfiles/Library/Application\ Support/k9s/config.yaml ~/Library
 #spotify marketplace
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh
+#spicetify backup apply
 
 #after
 mkdir -p ~/logs
