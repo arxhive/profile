@@ -37,6 +37,8 @@ brew install tree
 brew install jq
 brew install wget
 brew install mitmproxy
+brew install koekeishiya/formulae/skhd
+skhd --start-service
 
 #security
 brew install trivy

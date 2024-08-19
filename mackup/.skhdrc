@@ -1,0 +1,22 @@
+# mapping
+# https://github.com/koekeishiya/skhd/issues/1
+
+# 0x32 = `
+alt - 0x32 : open -a Finder
+alt - 1 : open /Applications/slack.app
+alt - 2 : open '/Applications/Google Chrome.app'
+alt - 3 : open /Applications/Safari.app
+alt - 4 : open /Applications/Notion.app
+
+alt - s : open '/Applications/Sublime Text.app'
+alt - z : open '/Applications/zoom.us.app'
+alt - m : open '/Applications/Spotify.app'
+alt - g : open '/Applications/DataGrip.app'
+alt - p : open '/Applications/1Password.app'
+alt - o : open '/Applications/Postman.app'
+
+# 0x2B = ,
+alt - 0x2B : open -a iCal
+# 0x2F = .
+alt - 0x2F : open -a Mail
+
