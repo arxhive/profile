@@ -67,7 +67,7 @@ alias h=history
 alias iexit=exit
 alias e=exit
 alias q=exit
-alias cf='cd ./$(fd --type d | fzf)'
+alias cf='cd ./"$(fd --type d | fzf)"'
 alias pbpwd='pwd | pbcopy'
 
 alias git-whoami="git config user.email"
