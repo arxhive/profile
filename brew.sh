@@ -149,6 +149,7 @@ $(brew --prefix)/opt/fzf/install
 #brew install --cask intellij-idea-ce
 
 #k8s
+brew install kubectx
 brew install kubecolor
 brew install derailed/k9s/k9s
 OUT="${XDG_CONFIG_HOME:-$HOME/Library/Application Support}/k9s/skins"
