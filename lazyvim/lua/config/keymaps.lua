@@ -226,7 +226,7 @@ vim.keymap.set("n", "<leader>bot", function()
     local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
 
     vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
-end, { desc = "Open in TFS" })
+end, { desc = "TFS" })
 
 vim.keymap.set("n", "<leader>bog", function()
     local root_folder = Tricks.rootdir()
@@ -236,17 +236,41 @@ vim.keymap.set("n", "<leader>bog", function()
     local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
 
     vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
-end, { desc = "Open in Github" })
+end, { desc = "Github" })
 
 -- Plantuml gui in the buffer dir
 vim.keymap.set("n", "<leader>bop", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!plantuml -gui -theme sketchy -filedir " .. current_buffer_path)
-end, { desc = "PlantUML sketchy" })
+end, { desc = "PlantUML Sketchy" })
 
 vim.keymap.set("n", "<leader>bof", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!open " .. current_buffer_path)
 end, { desc = "Finder" })
+
+vim.keymap.set("n", "<leader>bCf", function()
+    local current_buffer = vim.fn.expand('%:t')
+    LazyVim.info(current_buffer)
+    vim.fn.setreg("+", current_buffer, "c")
+end, { desc = "Copy file name" })
+
+vim.keymap.set("n", "<leader>bCF", function()
+    local current_file = vim.fn.expand('%:p')
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+    local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
+    LazyVim.info(relative_path)
+    vim.fn.setreg("+", relative_path, "c")
+end, { desc = "Copy full file name" })
+
+vim.keymap.set("n", "<leader>bCd", function()
+    local current_dir = vim.fn.expand('%:p:h')
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+    local relative_path = string.gsub(current_dir, root_folder, '') -- remove the root folder path from the current file path
+    LazyVim.info(relative_path)
+    vim.fn.setreg("+", relative_path, "c")
+end, { desc = "Copy dir name" })
 
 -- stylua: ignore end
