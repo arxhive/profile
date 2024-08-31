@@ -92,6 +92,7 @@ alias mmgit="v ~/.config/git/config"
 alias mmtmux="v ~/.tmux.conf"
 
 alias pla="plantuml -gui -theme sketchy&"
+alias plantfile='printf "@startuml\n[A] --> [B]: use\n@enduml" >> uml.puml'
 
 alias nomoregopls="ps -ef | grep 'gopls' | grep -v grep | awk '{print $2}' | xargs -r kill -9"
 
