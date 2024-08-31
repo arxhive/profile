@@ -249,6 +249,11 @@ vim.keymap.set("n", "<leader>bof", function()
     vim.api.nvim_command("!open " .. current_buffer_path)
 end, { desc = "Finder" })
 
+vim.keymap.set("n", "<leader>bob", function()
+    local current_buffer_path = vim.fn.expand('%:h')
+    vim.api.nvim_command("!open -a '/Applications/Google Chrome.app' %")
+end, { desc = "Browser" })
+
 vim.keymap.set("n", "<leader>bCf", function()
     local current_buffer = vim.fn.expand('%:t')
     LazyVim.info(current_buffer)
