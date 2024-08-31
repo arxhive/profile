@@ -238,10 +238,15 @@ vim.keymap.set("n", "<leader>bog", function()
     vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
 end, { desc = "Open in Github" })
 
--- plantuml gui in the buffer dir
+-- Plantuml gui in the buffer dir
 vim.keymap.set("n", "<leader>bop", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!plantuml -gui -theme sketchy -filedir " .. current_buffer_path)
 end, { desc = "PlantUML sketchy" })
+
+vim.keymap.set("n", "<leader>bof", function()
+    local current_buffer_path = vim.fn.expand('%:h')
+    vim.api.nvim_command("!open " .. current_buffer_path)
+end, { desc = "Finder" })
 
 -- stylua: ignore end

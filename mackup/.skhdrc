@@ -3,9 +3,10 @@
 
 # 0x32 = `
 alt - 0x32 : open -a Finder
-alt - 1 : open /Applications/slack.app
-alt - 2 : open '/Applications/Google Chrome.app'
-alt - 3 : open /Applications/Safari.app
+alt - 1 : open '/Applications/Microsoft Teams.app'
+alt - 2 : open '/Applications/Microsoft Edge.app'
+alt - 3 : open '/Applications/Google Chrome.app'
+alt - 5 : open /Applications/Safari.app
 alt - 4 : open /Applications/Notion.app
 
 alt - s : open '/Applications/Sublime Text.app'
