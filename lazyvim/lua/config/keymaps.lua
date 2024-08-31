@@ -218,7 +218,7 @@ vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, {
 vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
 
 -- Buffer helpers
-vim.keymap.set("n", "<leader>bot", function() 
+vim.keymap.set("n", "<leader>bot", function()
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
@@ -228,7 +228,7 @@ vim.keymap.set("n", "<leader>bot", function()
     vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
 end, { desc = "Open in TFS" })
 
-vim.keymap.set("n", "<leader>bog", function() 
+vim.keymap.set("n", "<leader>bog", function()
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
@@ -237,5 +237,11 @@ vim.keymap.set("n", "<leader>bog", function()
 
     vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
 end, { desc = "Open in Github" })
+
+-- plantuml gui in the buffer dir
+vim.keymap.set("n", "<leader>bop", function()
+    local current_buffer_path = vim.fn.expand('%:h')
+    vim.api.nvim_command("!plantuml -gui -theme sketchy -filedir " .. current_buffer_path)
+end, { desc = "PlantUML sketchy" })
 
 -- stylua: ignore end

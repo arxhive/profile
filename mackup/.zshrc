@@ -91,6 +91,10 @@ alias mmssh="v ~/.ssh/config"
 alias mmgit="v ~/.config/git/config"
 alias mmtmux="v ~/.tmux.conf"
 
+alias pla="plantuml -gui -theme sketchy&"
+
+alias nomoregopls="ps -ef | grep 'gopls' | grep -v grep | awk '{print $2}' | xargs -r kill -9"
+
 vdlogs() {
 	docker logs $@ >& container_logs
 	v container_logs
