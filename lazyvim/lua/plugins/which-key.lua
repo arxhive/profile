@@ -21,7 +21,7 @@ return {
       ["<leader>fi"] = { name = "+ignore" },
       ["<leader>wS"] = { name = "+setup workspaces" },
       ["<leader>bo"] = { name = "+open in" },
-      ["<leader>bC"] = { name = "+copy" },
+      ["<leader>by"] = { name = "+yank" },
     },
   },
 }
