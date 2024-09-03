@@ -9,12 +9,15 @@ alt - 3 : open '/Applications/Google Chrome.app'
 alt - 5 : open /Applications/Safari.app
 alt - 4 : open /Applications/Notion.app
 
+alt - c : open '/Applications/Google Chrome.app'
+alt - f : open /Applications/Safari.app
 alt - s : open '/Applications/Sublime Text.app'
 alt - z : open '/Applications/zoom.us.app'
 alt - m : open '/Applications/Spotify.app'
 alt - g : open '/Applications/DataGrip.app'
 alt - p : open '/Applications/1Password.app'
 alt - o : open '/Applications/Postman.app'
+alt - q : open '~/bin/clear_notifications'
 
 # 0x2B = ,
 alt - 0x2B : open -a iCal

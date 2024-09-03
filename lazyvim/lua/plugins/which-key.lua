@@ -9,7 +9,7 @@ return {
       mappings = false,
     },
     delay = 400,
-    plugins = { spelling = true },
+    plugins = { spelling = false },
     spec = {
       mode = { "n", "v" },
       { "<leader>a", group = "ai" },
