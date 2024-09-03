@@ -91,6 +91,7 @@ alias mmssh="v ~/.ssh/config"
 alias mmgit="v ~/.config/git/config"
 alias mmtmux="v ~/.tmux.conf"
 alias mmskhd="v ~/.skhdrc"
+alias mmnvim="v ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim"
 
 alias pla="plantuml -gui -theme sketchy&"
 alias plantfile='printf "@startuml\n[A] --> [B]: use\n@enduml" >> uml.puml'

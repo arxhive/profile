@@ -1,6 +1,14 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
+-- Disable spellcheck
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "plaintex", "typst", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
+
 -- Disable auto-commenting in insert mode
 -- c       Auto-wrap comments using textwidth, inserting the current comment leader automatically.
 -- r       Automatically insert the current comment leader after hitting <Enter> in Insert mode.
