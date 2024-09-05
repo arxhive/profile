@@ -49,6 +49,20 @@ return {
 
       { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<C-p>", function() require("telescope").extensions.yank_history.yank_history() end, mode = { "n", "x" }, desc = "Telescope yank history" },
+
+      -- resume search
+      { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
+
+      -- show recent files
+      { "<leader>sf", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent Files cwd" },
+      -- { "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent files root" },
+
+      -- disabled
+      { "<leader>fR", false },
+      { "<leader>sg", false },
+      { "<leader>sG", false },
+      { "<leader>sw", false },
+      { "<leader>sW", false },
     },
   },
   {
