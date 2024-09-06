@@ -8,6 +8,7 @@ alt - 2 : open '/Applications/Microsoft Edge.app'
 alt - 3 : open '/Applications/Google Chrome.app'
 alt - 5 : open /Applications/Safari.app
 alt - 4 : open /Applications/Notion.app
+alt - n : open /Applications/Notion.app
 
 alt - c : open '/Applications/Google Chrome.app'
 alt - f : open /Applications/Safari.app
