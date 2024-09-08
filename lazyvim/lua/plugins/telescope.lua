@@ -23,18 +23,18 @@ return {
       -- { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep current " .. vim.fn.expand("%:h")}) end, desc = "Grep (current)" },
       -- grep cwd
       { "<leader>ff", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), prompt_title = "Grep cwd " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, prompt_title = "Grep cwd " .. vim.fn.getcwd() })
       end, desc = "Grep (cwd)" },
       { "<leader>fit", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), glob_pattern="!{*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
       end, desc = "Ignore tests" },
       { "<leader>fip", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), glob_pattern="!{package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
       end, desc = "Ignore packages" },
 
       -- grep root
       { "<leader>fF", function()
-        require('telescope.builtin').live_grep({ cwd = Tricks.rootdir(),  prompt_title = "Grep root " .. Tricks.rootdir() })
+        require('telescope.builtin').live_grep({ cwd = Tricks.rootdir(), additional_args = {"--fixed-strings"},  prompt_title = "Grep root " .. Tricks.rootdir() })
       end, desc = "Grep (root)" },
 
       { "<leader>fs", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },

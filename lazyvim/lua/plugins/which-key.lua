@@ -30,6 +30,7 @@ return {
       { "<leader>3", hidden = true },
       { "<leader>4", hidden = true },
       { "<leader>5", hidden = true },
+      { "<leader>wT", hidden = true },
     },
   },
 }
