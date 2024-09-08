@@ -5172,17 +5172,6 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
-		<key>0x71-0x40000-0xc</key>
-		<dict>
-			<key>Action</key>
-			<integer>13</integer>
-			<key>Label</key>
-			<string></string>
-			<key>Text</key>
-			<string></string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
 		<key>0x73-0x100000-0x1</key>
 		<dict>
 			<key>Action</key>
