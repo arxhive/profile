@@ -142,6 +142,14 @@ vim.keymap.set("n", "<S-Tab>", function ()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
 end, { silent = true, desc = "Close a right window" })
 
+vim.keymap.set("n", "<leader>wC",
+  function()
+    local path = Tricks.refined("%:h")
+    vim.api.nvim_command("cd " .. path)
+    LazyVim.notify("cwd: " .. vim.uv.cwd())
+  end,
+  { desc = "Change cwd to the current folder" })
+
 -- by default, <C-i> = <tab>. Restore a proper navigation behavour
 vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true })
 
@@ -211,7 +219,6 @@ end, { desc = "Escape regex characters" })
 vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt") end, { desc = "Venv create" })
 vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate") end, { desc = "Venv activate" })
 vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end, { desc = "Venv deactivate" })
-
 
 -- Go helpers
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
