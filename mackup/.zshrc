@@ -94,8 +94,9 @@ alias mmskhd="v ~/.skhdrc"
 alias mmnvim="v ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim"
 
 alias pla="plantuml -gui -theme sketchy&"
-alias plantfile='printf "@startuml\n[A] --> [B]: use\n@enduml" >> uml.puml'
-
+plantfile() {
+  printf '@startuml\n[A] --> [B]: use\n@enduml' >> $@
+}
 alias br=w3m
 b() {
   w3m 'https://www.google.com/search?q='"$*";
