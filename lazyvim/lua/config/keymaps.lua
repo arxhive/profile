@@ -253,12 +253,12 @@ end, { desc = "Github" })
 -- Plantuml gui in the buffer dir
 vim.keymap.set("n", "<leader>bop", function()
     local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!plantuml -gui -theme sketchy -SPackageBackgroundColor=lightgray -SArrowFontColor=black -filedir " .. current_buffer_path .. "&")
+    vim.api.nvim_command("!plantuml -gui -theme sketchy -SPackageBackgroundColor=lightgray -SArrowFontColor=black --SComponentFontSize=14 filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy" })
 
 vim.keymap.set("n", "<leader>boP", function()
     local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!plantuml -gui -theme sketchy-outline -filedir " .. current_buffer_path .. "&")
+    vim.api.nvim_command("!plantuml -gui -theme sketchy-outline -SComponentFontSize=14 -filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy-outline" })
 
 vim.keymap.set("n", "<leader>bof", function()

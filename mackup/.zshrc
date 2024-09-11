@@ -94,7 +94,7 @@ alias mmtmux="v ~/.tmux.conf"
 alias mmskhd="v ~/.skhdrc"
 alias mmnvim="v ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim"
 
-alias pla="plantuml -gui -theme sketchy -SPackageBackgroundColor=lightgray -SArrowFontColor=black&"
+alias pla="plantuml -gui -theme sketchy -SPackageBackgroundColor=lightgray -SArrowFontColor=black -SComponentFontSize=14&"
 plantfile() {
   printf '@startuml\n[A] --> [B]: use\n@enduml' >> $@
 }
