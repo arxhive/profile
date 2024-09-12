@@ -1,0 +1,5 @@
+skinparam BackgroundColor white 
+skinparam PackageBackgroundColor lightgray
+skinparam TitleFontColor black
+skinparam ArrowFontColor black 
+skinparam ComponentFontSize 14 
