@@ -1,5 +1,25 @@
-skinparam BackgroundColor white 
+skinparam BackgroundColor #eff1f5
 skinparam PackageBackgroundColor lightgray
 skinparam TitleFontColor black
 skinparam ArrowFontColor black 
+
 skinparam ComponentFontSize 14 
+skinparam ComponentFontStyle bold
+
+skinparam NoteBackgroundColor #179299
+skinparam NoteBorderColor #179299
+skinparam NoteFontStyle bold
+
+skinparam SequenceBoxFontStyle bold
+skinparam SequenceParticipantFontStyle bold
+skinparam SequenceReferenceFontColor black
+skinparam SequenceDatabaseFontColor black
+skinparam SequenceStereotypeFontColor black
+
+skinparam DatabaseFontColor black
+skinparam EntityFontColor black
+skinparam BoundaryFontColor black
+skinparam ControlFontColor black
+skinparam ActorFontColor black
+skinparam QueueFontStyle bold
+skinparam CollectionsFontStyle bold
