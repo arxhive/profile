@@ -110,7 +110,7 @@ return {
 
                 ["<S-CR>"] = require("telescope._extensions.file_browser.actions").create_from_prompt,
                 ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
-                -- ["<C-o>"] = require("telescope._extensions.file_browser.actions").move,
+                ["<C-v>"] = require("telescope._extensions.file_browser.actions").move,
                 ["<C-y>"] = require("telescope._extensions.file_browser.actions").copy,
                 ["<C-d>"] = require("telescope._extensions.file_browser.actions").remove,
 
