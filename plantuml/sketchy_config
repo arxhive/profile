@@ -6,6 +6,10 @@ skinparam ArrowFontColor black
 skinparam ComponentFontSize 14 
 skinparam ComponentFontStyle bold
 
+skinparam RectangleFontSize 14 
+skinparam RectangleFontColor black
+skinparam RectangleFontStyle bold
+
 skinparam ObjectFontSize 14 
 skinparam ObjectFontStyle bold
 
