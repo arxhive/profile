@@ -36,7 +36,15 @@ return {
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
-    { "<leader>bt", ":ToggleTerm<CR>", desc = "Toggle Term" },
+    { "<leader>bt", ":ToggleTerm<CR>", desc = "ToggleTerm cwd" },
+    {
+      "<leader>wt",
+      function()
+        vim.api.nvim_command("TermSelect")
+        -- TODO create a new one if not found
+      end,
+      desc = "ToggleTerm Focus",
+    },
     {
       "<leader>bc",
       function()

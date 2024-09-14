@@ -150,7 +150,7 @@ return {
         require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
         require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
       end,
-      desc = "Focus on NeoTree (cwd)",
+      desc = "NeoTree Focus cwd",
     },
     {
       "<leader>wc",
@@ -177,11 +177,11 @@ return {
       remap = true,
     },
     {
-      "<leader>ws",
+      "<leader>wg",
       function()
         vim.cmd("DBUIToggle")
       end,
-      desc = "Database Explorer (SQL)",
+      desc = "Database Explorer",
     },
   },
 }

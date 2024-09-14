@@ -173,7 +173,7 @@ return {
         end,
         desc = "Workspace Add",
       },
-      { "<leader>wt", ":Telescope workspaces<CR>", desc = "Workspaces" },
+      { "<leader>ws", ":Telescope workspaces<CR>", desc = "Workspaces" },
       { "<leader>wSa", ":WorkspacesAddDir<CR>", desc = "Workspace Add Dir" },
       { "<leader>wSs", ":WorkspacesSyncDirs<CR>", desc = "Workspaces Sync" },
       { "<leader>wSr", ":WorkspacesRemove<CR>", desc = "Remove workspace" },
