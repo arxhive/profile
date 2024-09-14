@@ -40,8 +40,12 @@ return {
     {
       "<leader>wt",
       function()
-        vim.api.nvim_command("TermSelect")
-        -- TODO create a new one if not found
+        is_open = #require("toggleterm.terminal").get_all(true) > 0
+        if is_open then
+          require("toggleterm").toggle_all("open")
+        else
+          vim.api.nvim_command("ToggleTerm")
+        end
       end,
       desc = "ToggleTerm Focus",
     },
