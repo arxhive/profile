@@ -40,9 +40,10 @@ return {
     {
       "<leader>wt",
       function()
+        buffer_dir = vim.fn.expand("%:p:h")
         is_open = #require("toggleterm.terminal").get_all(true) > 0
         if is_open then
-          require("toggleterm").toggle_all("open")
+          vim.api.nvim_command("TermExec cmd=date go_back=0")
         else
           vim.api.nvim_command("ToggleTerm")
         end
