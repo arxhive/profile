@@ -44,7 +44,7 @@ return {
         is_open = #require("toggleterm.terminal").get_all(true) > 0
         if is_open then
           vim.api.nvim_command("TermExec cmd=date go_back=0")
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "m", false)
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i<BS>", true, false, true), "m", false)
         else
           vim.api.nvim_command("ToggleTerm")
         end
