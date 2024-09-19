@@ -36,6 +36,7 @@ return {
           autostart = false,
         },
         ts_ls = {
+          enabled = false,
           autostart = false,
         },
         omnisharp = {
