@@ -66,7 +66,6 @@ return {
       --     table.remove(sources, i)
       --   end
       -- end
-
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -79,10 +78,15 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
-          elseif vim.snippet.active({ direction = 1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(1)
-            end)
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          -- jump between snippet args without luasnip
+          -- elseif vim.snippet.active({ direction = 1 }) then
+          --   vim.schedule(function()
+          --     vim.snippet.jump(1)
+          --   end)
           elseif has_words_before() then
             cmp.complete()
           else
@@ -92,10 +96,13 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif vim.snippet.active({ direction = -1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(-1)
-            end)
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          -- jump back without luasnip
+          -- elseif vim.snippet.active({ direction = -1 }) then
+          --   vim.schedule(function()
+          --     vim.snippet.jump(-1)
+          --   end)
           else
             fallback()
           end

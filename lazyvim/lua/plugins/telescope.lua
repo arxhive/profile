@@ -146,7 +146,7 @@ return {
     keys = {
       -- stylua: ignore
       -- remap to >sl when find a way how to override default mapping
-      { "<leader>cl", function() require("telescope").extensions.luasnip.luasnip() end, desc = "Luasnip" },
+      { "<leader>sL", function() require("telescope").extensions.luasnip.luasnip() end, desc = "Luasnip" },
     },
     config = function()
       require("telescope").load_extension("luasnip")
