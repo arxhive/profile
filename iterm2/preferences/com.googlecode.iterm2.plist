@@ -5205,19 +5205,6 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xd-0x100000-0x24</key>
-		<dict>
-			<key>Action</key>
-			<integer>38</integer>
-			<key>Apply Mode</key>
-			<integer>0</integer>
-			<key>Escaping</key>
-			<integer>2</integer>
-			<key>Text</key>
-			<string>:wa\rbd\r</string>
-			<key>Version</key>
-			<integer>2</integer>
-		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
 			<key>Action</key>
