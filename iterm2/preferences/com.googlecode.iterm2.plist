@@ -8,8 +8,6 @@
 	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
-	<key>AutoHideTmuxClientSession</key>
-	<true/>
 	<key>ClickToSelectCommand</key>
 	<false/>
 	<key>Custom Color Presets</key>
@@ -5156,14 +5154,27 @@
 		<dict>
 			<key>Action</key>
 			<integer>38</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string>©:copy .\r</string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0x71-0x100000-0xc</key>
+		<dict>
+			<key>Action</key>
+			<integer>13</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>©:copy .\n</string>
+			<string></string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
-		<key>0x71-0x100000-0xc</key>
+		<key>0x71-0x40000-0xc</key>
 		<dict>
 			<key>Action</key>
 			<integer>13</integer>
@@ -5178,12 +5189,14 @@
 		<dict>
 			<key>Action</key>
 			<integer>38</integer>
-			<key>Label</key>
-			<string></string>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
 			<key>Text</key>
-			<string>©:wa\n</string>
+			<string>©:wa\r</string>
 			<key>Version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
@@ -5196,12 +5209,14 @@
 		<dict>
 			<key>Action</key>
 			<integer>38</integer>
-			<key>Label</key>
-			<string></string>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
 			<key>Text</key>
-			<string>:wa\n:bd\n</string>
+			<string>:wa\rbd\r</string>
 			<key>Version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
@@ -6934,7 +6949,7 @@
 	<key>OpenNoWindowsAtStartup</key>
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
-	<integer>2</integer>
+	<integer>0</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -6975,8 +6990,6 @@
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>SeparateWindowTitlePerTab</key>
-	<false/>
-	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>
