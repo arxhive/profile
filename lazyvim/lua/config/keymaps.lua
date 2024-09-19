@@ -21,9 +21,12 @@ vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 vim.keymap.del( { "n" }, "<leader>p")
 
 -- Clear others
-vim.keymap.set("n", "<leader>L", "", { desc = "+lazy"})
 vim.keymap.del("n", "<leader>K")
 vim.keymap.del("n", "<leader>`")
+vim.keymap.del("n", "<leader>sl")
+vim.keymap.del("n", "<leader>sd")
+vim.keymap.del("n", "<leader>sD")
+vim.keymap.del("n", "<leader>fc")
 
 -- Remap LazyVim defaults
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
