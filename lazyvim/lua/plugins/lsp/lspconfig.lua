@@ -35,7 +35,7 @@ return {
         eslint = {
           autostart = false,
         },
-        tsserver = {
+        ts_ls = {
           autostart = false,
         },
         omnisharp = {
