@@ -114,6 +114,21 @@ return {
             fallback()
           end
         end),
+        -- improved navigation for next/prev item in the menu
+        ["<C-j>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
       })
 
       -- cmdline setup
@@ -138,6 +153,24 @@ return {
           end,
         },
         ["<Down>"] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              cmp.complete()
+            end
+          end,
+        },
+        ["<C-k>"] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              cmp.complete()
+            end
+          end,
+        },
+        ["<C-j>"] = {
           c = function()
             if cmp.visible() then
               cmp.select_next_item()
