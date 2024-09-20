@@ -14,6 +14,7 @@ return {
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
       "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     event = { "InsertEnter", "CmdlineEnter" },
 
@@ -23,6 +24,7 @@ return {
       cmp.setup.buffer({
         -- Dont suggest Text from nvm_lsp and buffer sources
         sources = cmp.config.sources({
+          { name = "luasnip" },
           {
             name = "nvim_lsp",
             entry_filter = function(entry, ctx)
