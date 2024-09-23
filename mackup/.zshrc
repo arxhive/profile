@@ -54,6 +54,8 @@ alias ld=lazydocker
 alias e="exit"
 
 alias python=python3
+alias pyvenv=python3 -m venv venv
+alias pyactivate="source venv/bin/activate"
 alias dps="docker ps"
 
 aws-sso() {
@@ -169,6 +171,7 @@ plugins=(
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
 	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
+	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 # ZVM_VI_ESCAPE_BINDKEY=jk
 
