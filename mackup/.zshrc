@@ -159,8 +159,11 @@ safari() {
   code=$(echo $SWAKS_GMAIL_CODE | openssl aes-256-cbc -pbkdf2 -d -a -salt -pass pass:$pass)
 
   # zip $@.zip $@.epub
+  title=$(pwd | sed -E 's|.*/Books/(.*) \([0-9]+\)|\1|')
+  title=$title.epub
+  cp $@.epub $title
 
-  swaks --body $@ --header "Subject: "$@ --to $to -attach @$@.epub -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
+  swaks --body $@ --header "Subject: "$@ --to $to -attach @$title -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
 }
 
 ## ZSH plugings and configs
