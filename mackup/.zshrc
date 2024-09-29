@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -142,6 +144,25 @@ grepy() {
   grep -HIFrni --color=always $@ .
 }
 
+safari() {
+  cd $HOME/bin/safaribooks/
+  pyactivate
+  python3 safaribooks.py --kindle $@
+  cd Books/*$@*
+  ls
+
+  echo "Pass to send it to Kindle or cancel:"
+  read pass # TODO: find a way how to hide input
+
+  to=$(echo $KINDLE_EMAIL | openssl aes-256-cbc -pbkdf2 -d -a -salt -pass pass:$pass)
+  from=$(echo $GMAIL_EMAIL | openssl aes-256-cbc -pbkdf2 -d -a -salt -pass pass:$pass)
+  code=$(echo $SWAKS_GMAIL_CODE | openssl aes-256-cbc -pbkdf2 -d -a -salt -pass pass:$pass)
+
+  # zip $@.zip $@.epub
+
+  swaks --body $@ --header "Subject: "$@ --to $to -attach @$@.epub -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
+}
+
 ## ZSH plugings and configs
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
@@ -165,12 +186,13 @@ plugins=(
 	aws # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
 	aliases # als
 	docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+  # kubectl
+  # Kube-ps1
 	macos # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
   zsh-nvm # lazy load and autocomplete
 	npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
-	vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 # ZVM_VI_ESCAPE_BINDKEY=jk

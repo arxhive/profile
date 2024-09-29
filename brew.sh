@@ -199,5 +199,13 @@ source ~/profile/macos/apps/clear_notifications_install # $HOME/bin/
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 kubectl krew install node-shell
 
+#safaribooks
+#console.log(JSON.stringify(document.cookie.split(';').map(c => c.split('=')).map(i => [i[0].trim(), i[1].trim()]).reduce((r, i) => {r[i[0]] = i[1]; return r;}, {})))
+git clone https://github.com/lorenzodifuccia/safaribooks.git $HOME/bin
+touch $HOME/bin/safaribooks/cookies.json
+cd $HOME/bin/safaribooks/
+source venv/bin/activate
+pip3 install -r requirements.txt
+
 # vmware
 #brew install --cask vmware-fusion
