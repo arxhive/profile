@@ -116,6 +116,7 @@ brew install --cask caffeine
 brew install --cask docker
 # brew install --cask visual-studio-code
 brew install --cask spotify
+brew install --cask calibre
 brew install shortcat
 brew install speedtest-cli
 brew install alt-tab
