@@ -54,6 +54,7 @@ alias ktx=kubectx
 alias lg=lazygit
 alias ld=lazydocker
 alias e="exit"
+alias tf=terraform
 
 alias python=python3
 alias pyvenv=python3 -m venv venv
