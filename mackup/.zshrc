@@ -55,8 +55,8 @@ alias lg=lazygit
 alias ld=lazydocker
 alias e="exit"
 alias tf=terraform
-alias tf="terraform init"
-alias tf="terraform plan"
+alias tfi="terraform init"
+alias tfp="terraform plan"
 alias tfa="terraform apply"
 
 alias python=python3
