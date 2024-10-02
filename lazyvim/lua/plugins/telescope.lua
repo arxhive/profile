@@ -43,7 +43,7 @@ return {
         require('telescope.builtin').live_grep({ cwd = Tricks.rootdir(), additional_args = {"--fixed-strings"},  prompt_title = "Grep root " .. Tricks.rootdir() })
       end, desc = "Grep (root)" },
 
-      { "<leader>fs", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep current or selection (cwd)" },
+      { "<leader>fw", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep word or selection (cwd)" },
 
       -- files
       { "<leader><space>", function()
