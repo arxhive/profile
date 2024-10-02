@@ -1,0 +1,6 @@
+{
+  "keymap": {
+    "prefix": "keymap",
+    "body": "vim.keymap.set(\"n\", \"${1:<leader>}\", ${2:function() end}, { desc = \"${3}\" })"
+  }
+}

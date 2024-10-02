@@ -1,12 +1,5 @@
 return {
   {
-    -- disable default <tab> and <s-tab> behavior in LuaSnip
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
