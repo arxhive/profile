@@ -57,7 +57,7 @@ alias e="exit"
 alias tf=terraform
 alias tfi="terraform init"
 alias tfp="terraform plan"
-alias tfa="terraform apply"
+alias tfa="terraform apply -auto-approve"
 
 alias python=python3
 alias pyvenv=python3 -m venv venv
@@ -68,7 +68,7 @@ aws-sso() {
   aws sso login --profile=$@
   export AWS_PROFILE=$@
 }
-alias aws-whoami="aws sts get-caller-identity"
+alias aws-whoami="aws sts get-caller-identity | cat"
 alias aws-postgres="aws rds generate-db-auth-token --hostname $RDSHOST --port 5432 --region $REGION --username developer"
 alias aws-logout="aws sso logout && unset AWS_PROFILE"
 
