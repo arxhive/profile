@@ -298,4 +298,11 @@ vim.keymap.set("n", "<leader>byd", function()
     vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy dir name" })
 
+-- Terraform
+vim.keymap.set("n", "<leader>cti", function() Tricks.sidecart("terraform init") end, { desc = "Terraform init" })
+vim.keymap.set("n", "<leader>ctp", function() Tricks.sidecart("terraform plan") end, { desc = "Terraform plan" })
+vim.keymap.set("n", "<leader>cta", function() Tricks.sidecart("terraform apply") end, { desc = "Terraform apply -auto-approve" })
+vim.keymap.set("n", "<leader>ctwl", function() Tricks.sidecart("terraform workspace list") end, { desc = "Terraform workspace list" })
+vim.keymap.set("n", "<leader>ctwd", function() Tricks.sidecart("terraform workspace select dev") end, { desc = "Terraform workspace select dev" })
+
 -- stylua: ignore end

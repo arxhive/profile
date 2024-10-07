@@ -57,7 +57,11 @@ alias e="exit"
 alias tf=terraform
 alias tfi="terraform init"
 alias tfp="terraform plan"
+alias tfp-dev="terraform plan -var-file='env/dev.tfvars'"
 alias tfa="terraform apply -auto-approve"
+alias tfa-dev="terraform apply -auto-approve -var-file='env/dev.tfvars'"
+alias tfl="terraform workspace list"
+alias tfwd="terraform workspace select dev"
 
 alias python=python3
 alias pyvenv=python3 -m venv venv

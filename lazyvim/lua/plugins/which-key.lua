@@ -27,6 +27,8 @@ return {
       { "<leader>bo", group = "open in" },
       { "<leader>by", group = "yank" },
       { "<leader>si", group = "infra" },
+      { "<leader>ct", group = "terraform" },
+      { "<leader>ctw", group = "workspace" },
       { "<leader>2", hidden = true },
       { "<leader>3", hidden = true },
       { "<leader>4", hidden = true },
