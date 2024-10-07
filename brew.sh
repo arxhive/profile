@@ -20,6 +20,7 @@ git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
 #devenv
 brew install tmux
 brew install tfenv
+brew install cf2tf
 brew install graphviz
 brew install node
 chmod go-w /opt/homebrew/Cellar
