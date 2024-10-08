@@ -1,10 +1,11 @@
 return {
   {
     "mfussenegger/nvim-lint",
+    optional = true,
     opts = {
       linters = {
-        markdownlint = {
-          args = { "--disable", "MD013", "MD013/line-length", "MD024", "MD033", "--" },
+        ["markdownlint-cli2"] = {
+          args = { "--config", vim.fn.expand("~/profile/lazyvim/lua/linters/.markdownlint-cli2.yaml"), "--" },
         },
       },
     },
