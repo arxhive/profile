@@ -55,13 +55,16 @@ alias lg=lazygit
 alias ld=lazydocker
 alias e="exit"
 alias tf=terraform
+alias tfwl="terraform workspace list"
+alias tfwd="terraform workspace select dev"
+alias tfwu="terraform workspace select uat"
 alias tfi="terraform init"
 alias tfp="terraform plan"
-alias tfp-dev="terraform plan -var-file='env/dev.tfvars'"
+alias tfp-dev="tfwd && terraform plan -var-file='env/dev.tfvars'"
+alias tfp-uat="tfwu && terraform plan -var-file='env/uat.tfvars'"
 alias tfa="terraform apply -auto-approve"
-alias tfa-dev="terraform apply -auto-approve -var-file='env/dev.tfvars'"
-alias tfl="terraform workspace list"
-alias tfwd="terraform workspace select dev"
+alias tfa-dev="tfwd && terraform apply -auto-approve -var-file='env/dev.tfvars'"
+alias tfa-uat="tfwu && terraform apply -auto-approve -var-file='env/uat.tfvars'"
 
 alias python=python3
 alias pyvenv=python3 -m venv venv
