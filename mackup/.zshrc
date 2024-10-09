@@ -246,4 +246,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# FAQ:
+# A; B    # Run A and then B, regardless of success of A
+# A && B  # Run B if and only if A succeeded
+# A || B  # Run B if and only if A failed
+# A &     # Run A in background.
+
 # zprof
