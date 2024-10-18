@@ -56,8 +56,8 @@ alias ld=lazydocker
 alias e="exit"
 alias tf=terraform
 alias tfwl="terraform workspace list"
-alias tfwd="terraform workspace select dev"
-alias tfwu="terraform workspace select uat"
+alias tfwd="terraform workspace select -or-create dev"
+alias tfwu="terraform workspace select -or-create uat"
 alias tfi="terraform init"
 alias tfp="terraform plan"
 alias tfp-dev="tfwd && terraform plan -var-file='env/dev.tfvars'"
