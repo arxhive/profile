@@ -61,10 +61,21 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gr", function() Tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
+
+vim.keymap.set("n", "<leader>gR", function()
+    local current_file = vim.fn.expand('%:p')
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+    local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
+    relative_path = string.gsub(relative_path, "^/", "") -- remove the leading slash
+    vim.api.nvim_command("!git reset-one '" .. relative_path .. "'")
+    LazyVim.info(relative_path, { title = "Reverted to master:" })
+end, { desc = "Revert file to master" })
+
 vim.keymap.set("n", "<leader>gn",
   function()
     local new_branch_name = vim.fn.input("Branch name: ")
-    if new_branch_name ~= "" then 
+    if new_branch_name ~= "" then
       Tricks.sidecart("git fresh-b " .. new_branch_name)
     end
   end, { desc = "New Branch" })
