@@ -191,7 +191,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 ENABLE_CORRECTION="false"
 
 plugins=(
-	# zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
+	zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 	git # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
@@ -200,8 +200,6 @@ plugins=(
 	aws # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
 	aliases # als
 	docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
-  # kubectl
-  # Kube-ps1
 	macos # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
   zsh-nvm # lazy load and autocomplete
 	npm # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
@@ -242,6 +240,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # kubectl
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+# make completion work with kubecolor
+compdef kubecolor=kubectl
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -19,4 +19,5 @@
 	"enki_theme_tabs_autowidth": true, // Automatically adjust width of tabs
 	"enki_theme_tabs_separator": true, // Add separator in between tabs
 	"enki_theme_tree_headings": true, // Show sidebar tree headings
+	"font_size": 14,
 }
