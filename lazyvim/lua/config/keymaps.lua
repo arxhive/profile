@@ -316,4 +316,5 @@ vim.keymap.set("n", "<leader>cta", function() Tricks.sidecart("terraform apply")
 vim.keymap.set("n", "<leader>ctwl", function() Tricks.sidecart("terraform workspace list") end, { desc = "Terraform workspace list" })
 vim.keymap.set("n", "<leader>ctwd", function() Tricks.sidecart("terraform workspace select dev") end, { desc = "Terraform workspace select dev" })
 
+vim.keymap.set({ "n", "i", "x" }, "<M-d>", function() vim.api.nvim_command("copy .\r") end, { desc = "Duplicate line" }) -- iterm2 remap from command+d
 -- stylua: ignore end

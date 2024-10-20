@@ -5159,7 +5159,7 @@
 			<key>Escaping</key>
 			<integer>2</integer>
 			<key>Text</key>
-			<string>©:copy .\r</string>
+			<string>\&lt;M-d&gt;</string>
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
