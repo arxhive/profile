@@ -137,3 +137,13 @@ if vim.g.started_by_firenvim == true then
     false
   )
 end
+
+-- Trim trailing whitespaces on save
+local function trim_trailing_whitespaces()
+  local view = vim.fn.winsaveview()
+  vim.cmd([[keepp %s/\s\+$//e]])
+  vim.cmd("silent! update")
+  vim.fn.winrestview(view)
+end
+
+vim.api.nvim_create_autocmd("BufWritePre", { callback = trim_trailing_whitespaces })
