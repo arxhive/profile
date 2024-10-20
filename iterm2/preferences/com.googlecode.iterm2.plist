@@ -5188,13 +5188,13 @@
 		<key>0x73-0x100000-0x1</key>
 		<dict>
 			<key>Action</key>
-			<integer>38</integer>
+			<integer>11</integer>
 			<key>Apply Mode</key>
 			<integer>0</integer>
 			<key>Escaping</key>
 			<integer>2</integer>
 			<key>Text</key>
-			<string>©:wa\r</string>
+			<string>0x13</string>
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
