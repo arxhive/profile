@@ -28,6 +28,8 @@ for script in ~/profile/zsh-local/*.zsh; do
   source "$script"
 done
 ## Aliases and fuctions
+alias l1='gls -1 -a --color --group-directories-first'
+
 alias vim='nvim'
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
@@ -235,7 +237,7 @@ docker() {
 export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Envman: https://github.com/bitrise-io/envman 
+# Envman: https://github.com/bitrise-io/envman
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # kubectl
