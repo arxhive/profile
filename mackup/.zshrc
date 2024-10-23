@@ -27,10 +27,9 @@ export PATH="$PATH:${GOBIN}:${GOROOT}/bin:${SPICETIFYPATH}/bin:${KREW}"
 for script in ~/profile/zsh-local/*.zsh; do
   source "$script"
 done
-## Aliases and fuctions
-alias l1='gls -1 -a --color --group-directories-first'
 
-alias vim='nvim'
+## Aliases and fuctions
+alias vim="nvim"
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
 alias vr="vim . -c 'Telescope oldfiles'"
@@ -217,8 +216,15 @@ export NVM_COMPLETION=true
 export NVM_DIR="$HOME/.nvm"
 
 source "$ZSH/oh-my-zsh.sh"
+
+# Aliases to ovewrite zsh alias plugin
+alias l="gls -1 -a --color --group-directories-first"
+alias ll="gls -a --color --group-directories-first"
+alias ls="gls -1 -al --color --group-directories-first"
+
 source "$HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 # Docker backward compatibility for Mac M1
 docker() {
