@@ -183,7 +183,9 @@ safari() {
 alias fps="ps -ef |
   fzf --bind 'ctrl-r:reload(ps -ef)' \
       --header 'Press CTRL-R to reload' --header-lines=1 \
-      --height=50% --layout=reverse"
+      --height=100% --layout=reverse"
+
+alias fpkill="ps -e | fzf | awk '{print $1}' | xargs kill"
 
 fzf-git-branch() {
     git rev-parse HEAD > /dev/null 2>&1 || return
