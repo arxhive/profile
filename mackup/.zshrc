@@ -210,12 +210,26 @@ plugins=(
 	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
 
+function zvm_config() {
+  ZVM_KEYTIMEOUT=0.03
+  ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_BLOCK
+  ZVM_VI_HIGHLIGHT_BACKGROUND=black
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+}
+
 # zsh-vi-mode plugin will overwrite the previous key bindings, this causes the key bindings of other plugins to fail (fzf, zsh-autocomplete, zsh-iteractive-cd).
 # the plugin will auto execute this zvm_after_init function to solve this issue
 function zvm_after_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  source "$HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
+  source "$ZSH/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
 }
+
+# zsh-system-clipboard setup
+source "$ZSH/custom/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
+# ZSH_SYSTEM_CLIPBOARD_METHOD='pb'
+bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
+bindkey -M vicmd y zsh-system-clipboard-vicmd-vi-yank # does not work as expected?
+
 
 export PYTHON_AUTO_VRUN=false
 export NVM_LAZY_LOAD=true
