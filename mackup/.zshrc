@@ -179,6 +179,12 @@ safari() {
   swaks --body $@ --header "Subject: "$@ --to $to -attach @$title -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
 }
 
+# fzf reloading
+alias fps="ps -ef |
+  fzf --bind 'ctrl-r:reload(ps -ef)' \
+      --header 'Press CTRL-R to reload' --header-lines=1 \
+      --height=50% --layout=reverse"
+
 fzf-git-branch() {
     git rev-parse HEAD > /dev/null 2>&1 || return
 
