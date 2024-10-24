@@ -12,6 +12,7 @@ fi
 alias loadtime="/usr/bin/time zsh -i -c exit"
 
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$ZSH/custom"
 export EDITOR='nvim'
 export NVIM_APPNAME=lazyvim
 export SC="$HOME/sources"
@@ -257,11 +258,14 @@ function zvm_after_init() {
 }
 
 # zsh-system-clipboard setup
-source "$ZSH/custom/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
+source "$ZSH_CUSTOM/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
 # ZSH_SYSTEM_CLIPBOARD_METHOD='pb'
 bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
 bindkey -M vicmd y zsh-system-clipboard-vicmd-vi-yank # does not work as expected?
 
+# fzf tab completion
+source "$ZSH_CUSTOM/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
+bindkey '^I' fzf_completion # Tab key
 
 export PYTHON_AUTO_VRUN=false
 export NVM_LAZY_LOAD=true

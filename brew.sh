@@ -10,12 +10,15 @@ cp ~/profile/nerd-fonts/* ~/Library/Fonts/
 #terminal
 brew install --cask iterm2
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+$ZSH_CUSTOM="~/.oh-my-zsh/custom"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+git clone https://github.com/joshskidmore/zsh-fzf-history-search $SH_CUSTOM/plugins/zsh-fzf-history-search
 git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
-# git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+git clone https://github.com/kutsan/zsh-system-clipboard $ZSH_CUSTOM/plugins/zsh-system-clipboard
+git clone https://github.com/lincheney/fzf-tab-completion $ZSH_CUSTOM/plugins/fzf-tab-completion
 
 #devenv
 brew install tmux
@@ -30,6 +33,8 @@ brew install prettierd
 # brew install grpcui
 
 #gnu
+brew install coreutils
+brew install gawk
 brew install base64
 brew install findutils
 
