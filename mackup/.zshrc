@@ -17,11 +17,11 @@ export NVIM_APPNAME=lazyvim
 export SC="$HOME/sources"
 
 export GOPATH=$HOME/go
-export GOBIN=${GOPATH}/bin
+export GOBIN=$GOPATH/bin
 export GOROOT="$(brew --prefix golang)/libexec"
 export SPICETIFYPATH=$HOME/.spicetify
 export KREW="${KREW_ROOT:-$HOME/.krew}/bin"
-export PATH="$PATH:${GOBIN}:${GOROOT}/bin:${SPICETIFYPATH}/bin:${KREW}"
+export PATH="$PATH:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
@@ -194,9 +194,10 @@ ENABLE_CORRECTION="false"
 plugins=(
 	zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 	git # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+  # fzf-zsh-plugin # https://github.com/unixorn/fzf-zsh-plugin
 	zsh-syntax-highlighting
 	zsh-autosuggestions
-  zsh-fzf-history-search
+  zsh-fzf-history-search # ^R
 	sublime # stt
 	aws # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
 	aliases # als
@@ -208,7 +209,13 @@ plugins=(
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
 	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 	)
-# ZVM_VI_ESCAPE_BINDKEY=jk
+
+# zsh-vi-mode plugin will overwrite the previous key bindings, this causes the key bindings of other plugins to fail (fzf, zsh-autocomplete, zsh-iteractive-cd).
+# the plugin will auto execute this zvm_after_init function to solve this issue
+function zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  source "$HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
+}
 
 export PYTHON_AUTO_VRUN=false
 export NVM_LAZY_LOAD=true
@@ -221,9 +228,6 @@ source "$ZSH/oh-my-zsh.sh"
 alias l="gls -1 -a --color --group-directories-first"
 alias ll="gls -a --color --group-directories-first"
 alias ls="gls -1 -al --color --group-directories-first"
-
-source "$HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # Docker backward compatibility for Mac M1
