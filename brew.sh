@@ -18,7 +18,7 @@ git clone https://github.com/joshskidmore/zsh-fzf-history-search $SH_CUSTOM/plug
 git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
 git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 git clone https://github.com/kutsan/zsh-system-clipboard $ZSH_CUSTOM/plugins/zsh-system-clipboard
-git clone https://github.com/lincheney/fzf-tab-completion $ZSH_CUSTOM/plugins/fzf-tab-completion
+git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
 
 #devenv
 brew install tmux

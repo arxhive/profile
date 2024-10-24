@@ -226,6 +226,7 @@ ENABLE_CORRECTION="false"
 
 plugins=(
 	zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
+  zsh-system-clipboard
 	git # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
   # fzf-zsh-plugin # https://github.com/unixorn/fzf-zsh-plugin
 	zsh-syntax-highlighting
@@ -241,6 +242,7 @@ plugins=(
 	python # py, mkv, vrun
 	pip # pipi, https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
 	# vscode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
+  fzf-tab
 	)
 
 function zvm_config() {
@@ -257,15 +259,10 @@ function zvm_after_init() {
   source "$ZSH/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
 }
 
-# zsh-system-clipboard setup
-source "$ZSH_CUSTOM/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
+# zsh-system-clipboard config
 # ZSH_SYSTEM_CLIPBOARD_METHOD='pb'
 bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
 bindkey -M vicmd y zsh-system-clipboard-vicmd-vi-yank # does not work as expected?
-
-# fzf tab completion
-source "$ZSH_CUSTOM/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-bindkey '^I' fzf_completion # Tab key
 
 export PYTHON_AUTO_VRUN=false
 export NVM_LAZY_LOAD=true
