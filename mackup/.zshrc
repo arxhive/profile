@@ -179,8 +179,12 @@ safari() {
 }
 
 # fzf reloading
+# fzf config
+export FZF_DEFAULT_COMMAND="fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm"
+export FZF_CTRL_T_COMMAND="fd --type f"
+
 alias ff="fzf --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'"
-alias f="ff < <(fd -H --max-depth 1 --type f --exclude .git --exclude node_module --exclude .cache --exclude .npm)"
+alias f="ff < <($FZF_DEFAULT_COMMAND --type f --max-depth=1)"
 alias cff='cd ./"$(fd -H --type d | fzf)"'
 alias cf='cd ./"$(fd -H --type d --max-depth 1 | fzf)"'
 alias fps="ps -ef |
@@ -274,10 +278,6 @@ function zvm_after_init() {
 # ZSH_SYSTEM_CLIPBOARD_METHOD='pb'
 bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
 bindkey -M vicmd y zsh-system-clipboard-vicmd-vi-yank # does not work as expected?
-
-# fzf config
-export FZF_DEFAULT_COMMAND='fd --exclude .git --exclude node_module --exclude .cache --exclude .npm'
-export FZF_CTRL_T_COMMAND='fd --type f'
 
 export PYTHON_AUTO_VRUN=false
 export NVM_LAZY_LOAD=true
