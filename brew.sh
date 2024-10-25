@@ -31,6 +31,7 @@ brew install jesseduffield/lazydocker/lazydocker
 brew install prettier
 brew install prettierd
 brew install bat
+brew install htop
 # brew install grpcui
 
 #gnu

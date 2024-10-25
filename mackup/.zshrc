@@ -178,15 +178,25 @@ safari() {
   swaks --body $@ --header "Subject: "$@ --to $to -attach @$title -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
 }
 
-# fzf reloading
-# fzf config
+# fzf config and alises
 export FZF_DEFAULT_COMMAND="fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm"
 export FZF_CTRL_T_COMMAND="fd --type f"
 
 alias ff="fzf --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'"
 alias f="ff < <($FZF_DEFAULT_COMMAND --type f --max-depth=1)"
 alias cff='cd ./"$(fd -H --type d | fzf)"'
-alias cf='cd ./"$(fd -H --type d --max-depth 1 | fzf)"'
+cf() {
+  selected="$(fd -H --type d --max-depth 1 | fzf)"
+
+  # Check the exit code of fzf
+  if [[ $? -eq 0 ]]; then
+    cd $selected
+    cf
+  else
+    return
+  fi
+}
+
 alias fps="ps -ef |
   fzf --bind 'ctrl-r:reload(ps -ef)' \
       --header 'Press CTRL-R to reload' --header-lines=1 \
