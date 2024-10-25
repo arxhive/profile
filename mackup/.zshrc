@@ -181,8 +181,8 @@ safari() {
 # fzf reloading
 alias ff="fzf --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'"
 alias f="ff < <(fd -H --max-depth 1 --type f --exclude .git --exclude node_module --exclude .cache --exclude .npm)"
-alias cff='cd ./"$(fd --type d | fzf)"'
-alias cf='cd ./"$(fd --type d --max-depth 1 | fzf)"'
+alias cff='cd ./"$(fd -H --type d | fzf)"'
+alias cf='cd ./"$(fd -H --type d --max-depth 1 | fzf)"'
 alias fps="ps -ef |
   fzf --bind 'ctrl-r:reload(ps -ef)' \
       --header 'Press CTRL-R to reload' --header-lines=1 \
