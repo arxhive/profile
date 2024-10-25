@@ -60,7 +60,7 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   end, { desc = "Terminal (current folder)" })
 
 -- Git aliases
-vim.keymap.set("n", "<leader>gr", function() Tricks.sidecart("git fresh") end, { desc = "Refresh from master" })
+vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })
 
 vim.keymap.set("n", "<leader>gR", function()
     local current_file = vim.fn.expand('%:p')
@@ -238,8 +238,8 @@ vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end,
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
 
 -- Git helpers
-vim.keymap.set("n", "<leader>gmc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
-vim.keymap.set("n", "<leader>gma", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
+vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
+vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
 vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
 vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
 

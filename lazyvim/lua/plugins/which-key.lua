@@ -20,7 +20,7 @@ return {
       { "<leader>tg", group = "ray-x go" },
       { "<leader>cg", group = "go" },
       { "<leader>cp", group = "python" },
-      { "<leader>gm", group = "merge" },
+      { "<leader>gM", group = "merge" },
       { "<leader>gh", group = "hunks" },
       { "<leader>fi", group = "ignore" },
       { "<leader>wS", group = "setup workspaces" },
