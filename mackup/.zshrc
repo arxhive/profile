@@ -85,7 +85,6 @@ alias h=history
 alias iexit=exit
 alias e=exit
 alias q=exit
-alias cf='cd ./"$(fd --type d | fzf)"'
 alias pbpwd='pwd | pbcopy'
 
 alias git-whoami="git config user.email"
@@ -180,6 +179,9 @@ safari() {
 }
 
 # fzf reloading
+alias f="fzf --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-c:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})'"
+alias ff="f < <(fd -H --max-depth 1 --type f)"
+alias cf='cd ./"$(fd --type d | fzf)"'
 alias fps="ps -ef |
   fzf --bind 'ctrl-r:reload(ps -ef)' \
       --header 'Press CTRL-R to reload' --header-lines=1 \
