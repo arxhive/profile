@@ -94,7 +94,7 @@ alias gtt="git full-tree"
 alias gsp="git stash-pull"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
-alias sc="cd $SC && ls"
+alias sc="cd $SC && cf"
 
 alias weight="du -hsx 2>/dev/null * | sort -hr | less"
 alias curweight="du -hs"
@@ -179,9 +179,10 @@ safari() {
 }
 
 # fzf reloading
-alias f="fzf -e --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'"
-alias ff="f < <(fd -H --max-depth 1 --type f)"
-alias cf='cd ./"$(fd --type d | fzf)"'
+alias ff="fzf --preview 'bat --color=always {}' --preview-window border-none,follow --bind 'enter:become(nvim {})' --bind 'ctrl-l:become(less +G {})' --bind 'ctrl-b:become(bat {})' --bind 'ctrl-j:become(cat {} | jq)' --bind 'ctrl-o:become(open {})' --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'"
+alias f="ff < <(fd -H --max-depth 1 --type f --exclude .git --exclude node_module --exclude .cache --exclude .npm)"
+alias cff='cd ./"$(fd --type d | fzf)"'
+alias cf='cd ./"$(fd --type d --max-depth 1 | fzf)"'
 alias fps="ps -ef |
   fzf --bind 'ctrl-r:reload(ps -ef)' \
       --header 'Press CTRL-R to reload' --header-lines=1 \
@@ -275,7 +276,7 @@ bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
 bindkey -M vicmd y zsh-system-clipboard-vicmd-vi-yank # does not work as expected?
 
 # fzf config
-# export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd --exclude .git --exclude node_module --exclude .cache --exclude .npm'
 export FZF_CTRL_T_COMMAND='fd --type f'
 
 export PYTHON_AUTO_VRUN=false
