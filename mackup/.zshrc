@@ -186,7 +186,7 @@ alias ff="fzf --preview 'bat --color=always {}' --preview-window border-none,fol
 alias f="ff < <($FZF_DEFAULT_COMMAND --type f --max-depth=1)"
 alias cff='cd ./"$(fd -H --type d | fzf)"'
 cf() {
-  selected="$(fd -H --type d --max-depth 1 | fzf)"
+  selected="$(fd -H --type d --max-depth 1 | fzf --bind 'backspace:become(echo ..)' --preview 'pwd' --preview-window 1,top,border-none)"
 
   # Check the exit code of fzf
   if [[ $? -eq 0 ]]; then
