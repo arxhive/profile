@@ -48,6 +48,8 @@ alias xnuke="tmux kill-server"
 alias xk="tmux kill-session"
 alias xkt="tmux kill-session -t"
 
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+
 alias t=touch
 alias z=zsh
 alias k=kubecolor
@@ -271,6 +273,44 @@ fzf-git-checkout() {
     fi
 }
 
+
+# Script to open the GitHub page of the current repository in a browser
+gh() {
+  fetch_url=$(git config --get remote.origin.url)
+  # outputs:
+  # git@github.com:some-name/some-repo-name.git
+  # https://github.com/some-name/some-repo-name.git
+  # ssh://arxhive/arxhive/profile.git
+
+
+  if [[ $fetch_url == *"https"* ]]; then
+      # Remove the .git from the end of the URL
+      github_url="${fetch_url%.git}"
+  elif [[ "$fetch_url" == *"ssh://"* ]]; then
+      # Remove the 'ssh://' prefix
+      url_without_prefix="${fetch_url#ssh://}"
+
+      # Extract the part after the first '/'
+      extracted_part="${url_without_prefix#*/}"
+
+      # Remove the .git from the end of the URL
+      url_portion="${extracted_part%.git}"
+
+      # Construct the final GitHub URL
+      github_url="https://github.com/"$url_portion
+  else
+      # Split the URL on ':' and get the 2nd portion
+      url_portion="$(echo "$fetch_url" | awk -F':' '{print $2}')"
+
+      # Remove the .git from the end of the URL
+      url_portion="${url_portion%.git}"
+
+      # Construct the final GitHub URL
+      github_url="https://github.com/"$url_portion
+  fi
+
+  chrome "$github_url"
+}
 
 ## ZSH plugings and configs
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
