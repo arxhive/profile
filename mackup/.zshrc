@@ -182,10 +182,10 @@ safari() {
 export FZF_DEFAULT_OPTS="
   --bind 'ctrl-v:become(nvim {})' \
   --bind 'ctrl-l:become(less +G {})' \
-  --bind 'ctrl-b:become(bat {})' \
+  --bind 'ctrl-p:become(bat {})' \
   --bind 'ctrl-j:become(cat {} | jq)' \
   --bind 'ctrl-o:become(open {})' \
-  --bind 'ctrl-g:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' \
+  --bind 'ctrl-b:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' \
   --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'
 "
 export FZF_DEFAULT_COMMAND="
