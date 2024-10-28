@@ -55,6 +55,9 @@ alias z=zsh
 alias k=kubecolor
 alias ks=k9s
 alias ktx=kubectx
+kfg() {
+  export KUBECONFIG=$@
+}
 alias lg=lazygit
 alias ld=lazydocker
 alias e="exit"
@@ -181,6 +184,8 @@ safari() {
 }
 
 # fzf config and alises
+zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
+
 export FZF_DEFAULT_OPTS="
   --bind 'ctrl-v:become(nvim {})' \
   --bind 'ctrl-l:become(less +G {})' \
