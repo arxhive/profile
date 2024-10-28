@@ -205,15 +205,16 @@ alias ff="fzf \
   --preview-window border-none,follow \
   --bind 'enter:become(nvim {})' \
   --bind 'ctrl-f:become(echo __dirs__)'"
-f() {
-  selected="$(ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
-
-  if [[ $? -eq 0 ]]; then
-    if [ "$selected" = "__dirs__" ]; then
-      cf
-    fi
-  fi
-}
+alias f="ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1)"
+# f() {
+#   selected="$(ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
+#
+#   if [[ $? -eq 0 ]]; then
+#     if [ "$selected" = "__dirs__" ]; then
+#       cf
+#     fi
+#   fi
+# }
 
 alias cff='cd ./"$(fd -H --type d | fzf)"'
 cf() {
