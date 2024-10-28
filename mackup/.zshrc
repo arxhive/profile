@@ -192,6 +192,7 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_DEFAULT_COMMAND="
   fd -H -I \
+  --type f \
   --exclude .git \
   --exclude node_module \
   --exclude .cache \
