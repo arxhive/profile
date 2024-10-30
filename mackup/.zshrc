@@ -116,6 +116,8 @@ alias mmskhd="v ~/.skhdrc"
 alias mmnvim="v ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim"
 alias mmplant="v ~/profile/plantuml/sketchy_config"
 
+alias watch='watch '
+
 alias pla="plantuml -gui -theme sketchy -config $HOME/profile/plantuml/sketchy_config&"
 plantfile() {
   printf '@startuml\n[A] --> [B]: use\n@enduml' >> $@
