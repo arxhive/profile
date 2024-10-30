@@ -44,6 +44,7 @@ brew install findutils
 brew install tree
 brew install jq
 brew install wget
+brew install watch
 brew install mitmproxy
 brew install koekeishiya/formulae/skhd
 skhd --start-service
