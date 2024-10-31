@@ -147,23 +147,22 @@ return {
     {
       "<leader>we",
       function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
+        vim.api.nvim_command("Neotree dir=%:p:h:h reveal_file=%:p")
       end,
-      desc = "NeoTree Focus cwd",
+      desc = "NeoTree reveal file",
     },
     {
-      "<leader>wc",
+      "<leader>wf",
       function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", reveal = true, reveal_force_cwd = true })
+        require("neo-tree.command").execute({ source = "filesystem", reveal = true, reveal_force_cwd = true })
       end,
-      desc = "NeoTree reveal current file",
+      desc = "NeoTree reveal force",
       remap = true,
     },
     {
       "<leader>wb",
       function()
-        require("neo-tree.command").execute({ toggle = true, source = "buffers", position = "float" })
+        require("neo-tree.command").execute({ source = "buffers", position = "float" })
       end,
       desc = "NeoTree buffers",
       remap = true,
@@ -171,7 +170,7 @@ return {
     {
       "<leader>wr",
       function()
-        require("neo-tree.command").execute({ toggle = true, source = "remote", position = "left" })
+        require("neo-tree.command").execute({ source = "remote", position = "left" })
       end,
       desc = "NeoTree remote",
       remap = true,
