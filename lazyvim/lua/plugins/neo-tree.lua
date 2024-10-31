@@ -147,7 +147,8 @@ return {
     {
       "<leader>we",
       function()
-        vim.api.nvim_command("Neotree dir=%:p:h:h reveal_file=%:p")
+        local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"
+        vim.api.nvim_command(command)
       end,
       desc = "NeoTree reveal file",
     },
