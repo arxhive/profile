@@ -184,6 +184,9 @@ safari() {
 
   swaks --body $@ --header "Subject: "$@ --to $to -attach @$title -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
 }
+# binding, ASCII charset:
+# https://web.archive.org/web/20091028133103/http://geocities.com/dtmcbride//tech/charsets/ascii.html
+bindkey "\x27" autosuggest-accept # ctrl + '
 
 # fzf config and alises
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
