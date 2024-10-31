@@ -76,6 +76,7 @@ alias tfa-uat="tfwu && terraform apply -auto-approve -var-file='env/uat.tfvars'"
 alias python=python3
 alias pyvenv=python3 -m venv venv
 alias pyactivate="source venv/bin/activate"
+alias d=docker
 alias dps="docker ps"
 
 aws-sso() {
