@@ -79,6 +79,8 @@ alias pyactivate="source venv/bin/activate"
 alias d=docker
 alias dps="docker ps"
 
+alias pass=multipass
+
 aws-sso() {
   aws sso login --profile=$@
   export AWS_PROFILE=$@

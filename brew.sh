@@ -57,7 +57,7 @@ brew install nmap
 # brew install --cask displaylink
 
 #fuse
-brew install --cask macfuse
+# brew install --cask macfuse
 # brew install sshfs
 # use macfuse on install sshfs on MacOs
 # https://github.com/osxfuse/sshfs/releases
@@ -219,3 +219,4 @@ pip3 install -r requirements.txt
 
 # vmware
 #brew install --cask vmware-fusion
+#brew install --cask multipass
