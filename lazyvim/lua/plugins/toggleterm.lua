@@ -36,17 +36,16 @@ return {
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
-    { "<leader>bt", ":ToggleTerm<CR>", desc = "ToggleTerm cwd" },
+    { "<leader>bt", ":ToggleTerm dir=%:p:h<CR>", desc = "ToggleTerm cwd" },
     {
       "<leader>wt",
       function()
-        buffer_dir = vim.fn.expand("%:p:h")
         is_open = #require("toggleterm.terminal").get_all(true) > 0
         if is_open then
           vim.api.nvim_command("TermExec cmd=date go_back=0")
           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i<BS>", true, false, true), "m", false)
         else
-          vim.api.nvim_command("ToggleTerm")
+          vim.api.nvim_command("ToggleTerm dir=%:p:h")
         end
       end,
       desc = "ToggleTerm Focus",
