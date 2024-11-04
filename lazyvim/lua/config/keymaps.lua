@@ -27,6 +27,7 @@ vim.keymap.del("n", "<leader>sl")
 vim.keymap.del("n", "<leader>sd")
 vim.keymap.del("n", "<leader>sD")
 vim.keymap.del("n", "<leader>fc")
+vim.keymap.del("n", "<leader>be")
 
 -- Remap LazyVim defaults
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })

@@ -148,7 +148,18 @@ return {
       "<leader>we",
       function()
         local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"
-        vim.api.nvim_command(command)
+
+        local path = vim.fn.expand("%:p")
+        -- check is "neo-tree " exists in the path
+        if string.find(path, "tree ") then
+          -- switch focus to the last open buffer
+          vim.api.nvim_command("bnext")
+          vim.schedule(function()
+            vim.api.nvim_command(command)
+          end)
+        else
+          vim.api.nvim_command(command)
+        end
       end,
       desc = "NeoTree reveal file",
     },
