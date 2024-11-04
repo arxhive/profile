@@ -50,11 +50,15 @@ end, { desc = "Run code" })
 
 vim.keymap.set("n", "<leader>bl", function()
   local trim_spaces = true
+  -- activate toggle term for cwd
+  Tricks.sidecart("")
   require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 0 })
 end, { desc = "Toggleterm line" })
 
 vim.keymap.set("x", "<leader>bl", function()
   local trim_spaces = true
+  -- activate toggle term for cwd
+  Tricks.sidecart("")
   require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 0 })
 end, { desc = "Toggleterm selected" })
 
