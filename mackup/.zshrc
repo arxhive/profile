@@ -11,18 +11,19 @@ fi
 # Track zsh load time:
 alias loadtime="/usr/bin/time zsh -i -c exit"
 
+export SRC="$HOME/src"
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
 export EDITOR='nvim'
 export NVIM_APPNAME=lazyvim
-export SC="$HOME/sources"
 
+export MYBIN="$HOME/bin"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export GOROOT="$(brew --prefix golang)/libexec"
 export SPICETIFYPATH=$HOME/.spicetify
 export KREW="${KREW_ROOT:-$HOME/.krew}/bin"
-export PATH="$PATH:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW"
+export PATH="$PATH:$MYBIN:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
@@ -60,7 +61,7 @@ kfg() {
 }
 alias lg=lazygit
 alias ld=lazydocker
-alias e="exit"
+
 alias tf=terraform
 alias tfwl="terraform workspace list"
 alias tfwd="terraform workspace select -or-create dev"
@@ -80,6 +81,9 @@ alias d=docker
 alias dps="docker ps"
 
 alias pass=multipass
+pass-root() {
+  multipass exec $@ -- sudo bash
+}
 
 aws-sso() {
   aws sso login --profile=$@
@@ -101,8 +105,14 @@ alias gt="git tree"
 alias gtt="git full-tree"
 alias gsp="git stash-pull"
 alias sc-lazy="cd ~/profile/lazyvim/"
-alias sc-nvim-lazy="v $HOME/.local/share/lazyvim/lazy"
-alias sc="cd $SC && cf"
+alias sc-lazyvim="v $HOME/.local/share/lazyvim/lazy"
+
+alias sc="cd $SRC && cf"
+alias uml="cd $HOME/uml/"
+alias box="cd $HOME/box/"
+alias ext="cd $HOME/ext/"
+alias lib="cd $HOME/lib/"
+alias logs="cd $HOME/logs/"
 
 alias weight="du -hsx 2>/dev/null * | sort -hr | less"
 alias curweight="du -hs"
@@ -125,9 +135,13 @@ alias pla="plantuml -gui -theme sketchy -config $HOME/profile/plantuml/sketchy_c
 plantfile() {
   printf '@startuml\n[A] --> [B]: use\n@enduml' >> $@
 }
+
 alias br=w3m
 b() {
   w3m 'https://www.google.com/search?q='"$*";
+}
+bs() {
+  w3m 'https://www.google.com/search?q='"$*"' site:https://stackoverflow.com/';
 }
 
 alias nomoregopls="ps -ef | grep 'gopls' | grep -v grep | awk '{print $2}' | xargs -r kill -9"
@@ -167,7 +181,7 @@ grepy() {
 }
 
 safari() {
-  cd $HOME/bin/safaribooks/
+  cd $HOME/ext/safaribooks/
   pyactivate
   python3 safaribooks.py --kindle $@
   cd Books/*$@*

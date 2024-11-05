@@ -173,16 +173,22 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resource
 #spicetify backup apply
 
 #after
+mkdir -p ~/src
+mkdir -p ~/bin
+mkdir -p ~/lib
+mkdir -p ~/ext
+mkdir -p ~/tmp
+mkdir -p ~/box
+mkdir -p ~/uml
 mkdir -p ~/logs
-mkdir -p ~/sources
-mkdir -p ~/sources/diagrams
+mkdir -p ~/spells
 
 #https://github.com/mingrammer/diagrams
-cd ~/sources/diagrams
-python -m venv venv
-source venv/bin/activate
-pip install diagrams
-deactivate
+# cd ~/uml
+# python -m venv venv
+# source venv/bin/activate
+# pip install diagrams
+# deactivate
 
 cd ~/profile
 git config user.name "Artem Kolomeetc"
@@ -211,9 +217,9 @@ kubectl krew install node-shell
 
 #safaribooks
 #console.log(JSON.stringify(document.cookie.split(';').map(c => c.split('=')).map(i => [i[0].trim(), i[1].trim()]).reduce((r, i) => {r[i[0]] = i[1]; return r;}, {})))
-git clone https://github.com/lorenzodifuccia/safaribooks.git $HOME/bin
-touch $HOME/bin/safaribooks/cookies.json
-cd $HOME/bin/safaribooks/
+git clone https://github.com/lorenzodifuccia/safaribooks.git $HOME/ext
+touch $HOME/ext/safaribooks/cookies.json
+cd $HOME/ext/safaribooks/
 source venv/bin/activate
 pip3 install -r requirements.txt
 
