@@ -40,6 +40,15 @@ function M.silentterm(cmd)
   term.exec(cmd, 0, 100, curDir, "float", " Toggle Term ", true, false)
 end
 
+function M.activatetermcwd()
+  local is_not_open = #require("toggleterm.terminal").get_all(true) == 0
+  if is_not_open then
+    Tricks.sidecart("")
+  else
+    vim.api.nvim_command("TermExec cmd='cd %:p:h && clear' go_back=1 dir=%:p:h")
+  end
+end
+
 -- simplified logic for root directory to avoid mess with root pattern after LSP start
 function M.rootdir()
   return LazyVim.root.git()
