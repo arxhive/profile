@@ -85,6 +85,8 @@ vim.keymap.set("n", "<leader>tc", function()
   local current_file = vim.fn.expand("%:p")
   local ext = current_file:match("^.+(%..+)$")
 
+  tricks.activatetermcwd()
+
   if ext == ".py" then
     LazyVim.info("Cannot test py TBD")
   elseif ext == ".cs" then
@@ -101,6 +103,8 @@ end, { desc = "Run Tests CLI" })
 vim.keymap.set("n", "<leader>tC", function()
   local current_file = vim.fn.expand("%:p")
   local ext = current_file:match("^.+(%..+)$")
+
+  tricks.activatetermcwd()
 
   if ext == ".py" then
     LazyVim.info("Cannot test py TBD")
