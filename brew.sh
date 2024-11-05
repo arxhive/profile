@@ -130,6 +130,8 @@ brew install shortcat
 brew install speedtest-cli
 brew install alt-tab
 brew install w3m
+ln ~/profile/dotfiles/.w3m/config ~/.w3m/config
+ln ~/profile/dotfiles/.w3m/keymap ~/.w3m/keymap
 
 brew install mackup
 echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
