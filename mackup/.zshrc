@@ -208,6 +208,8 @@ bindkey "\x27" autosuggest-accept # ctrl + '
 # fzf config and alises
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
 
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
 export FZF_DEFAULT_OPTS="
   --bind 'ctrl-v:become(nvim {})' \
   --bind 'ctrl-l:become(less +G {})' \
@@ -387,6 +389,9 @@ function zvm_config() {
 function zvm_after_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source "$ZSH/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh"
+
+  # provides smother user experinace, less flickering
+  unset ZSH_AUTOSUGGEST_USE_ASYNC
 }
 
 # zsh-system-clipboard config
