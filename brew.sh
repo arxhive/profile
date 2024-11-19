@@ -129,6 +129,7 @@ brew install --cask calibre
 brew install shortcat
 brew install speedtest-cli
 brew install alt-tab
+brew install ical-buddy
 brew install w3m
 ln ~/profile/dotfiles/.w3m/config ~/.w3m/config
 ln ~/profile/dotfiles/.w3m/keymap ~/.w3m/keymap

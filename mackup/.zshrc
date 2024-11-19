@@ -147,7 +147,7 @@ bs() {
 }
 
 alias nomoregopls="ps -ef | grep 'gopls' | grep -v grep | awk '{print $2}' | xargs -r kill -9"
-
+alias ical='icalBuddy eventsToday | grep -e • -e "location: http" -e "Click here" -e "AM " -e "PM " | grep -v "+1 " | grep -v "OOF" | grep -v "Leave"'
 vdlogs() {
 	docker logs $@ >& container_logs
 	v container_logs
