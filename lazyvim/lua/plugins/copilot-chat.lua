@@ -3,6 +3,7 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
       question_header = "Artem ",
+      answer_header = "Copilot ",
       auto_insert_mode = true,
       insert_at_end = true,
       clear_chat_on_new_prompt = true,
