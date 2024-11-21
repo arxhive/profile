@@ -31,6 +31,7 @@ brew install jesseduffield/lazydocker/lazydocker
 brew install prettier
 brew install prettierd
 brew install bat
+brew install btop
 brew install htop
 # brew install grpcui
 
@@ -137,6 +138,8 @@ ln ~/profile/dotfiles/.w3m/keymap ~/.w3m/keymap
 brew install mackup
 echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
 mackup restore
+
+bat cache --build
 
 #unix
 brew install plantuml
