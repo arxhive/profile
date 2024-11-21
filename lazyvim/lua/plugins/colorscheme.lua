@@ -36,6 +36,7 @@ return {
 
             TroubleNormal = { bg = popup_bg },
             NoiceCmdlinePopup = { bg = popup_bg },
+            NoiceCmdlinePopupBorder = { bg = popup_bg, fg = popup_bg },
             NoiceCmdlinePopupTitleCmdline = { fg = prompt_bg, bg = accent },
             NoiceCmdlinePopupTitleSearch = { fg = prompt_bg, bg = accent },
             NoiceCmdlinePopupTitleLua = { fg = prompt_bg, bg = accent },

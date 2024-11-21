@@ -3,6 +3,13 @@ return {
   event = "VeryLazy",
   -- Tabline
   opts = function(_, opts)
+    local catppuccin = require("lualine.themes.catppuccin")
+    insert_mode_color = "#F5C2E7"
+    catppuccin.insert.a.bg = insert_mode_color
+    catppuccin.insert.b.fg = insert_mode_color
+    catppuccin.command.a.bg = insert_mode_color
+    catppuccin.command.b.fg = insert_mode_color
+
     -- firenvim settings
     if vim.g.started_by_firenvim == true then
       opts.tabline = { lualine_a = { "mode" } }
@@ -11,6 +18,10 @@ return {
         section_separators = { left = "", right = "" },
       }
     else
+      opts.options = {
+        theme = catppuccin,
+      }
+
       -- normal settings
       opts.tabline = {
         lualine_a = { "mode" },

@@ -74,6 +74,15 @@ return {
         desc = "Prompt Actions",
         mode = { "n", "v" },
       },
+      -- Select a model
+      {
+        "<leader>am",
+        function()
+          return require("CopilotChat").select_model()
+        end,
+        desc = "Select Model",
+        mode = { "n", "v" },
+      },
     }
   end,
 }

@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.t
 vim.keymap.set("n", "<leader>rr", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { desc = "Rename", expr = true })
-vim.keymap.set("n", "<leader>rR", LazyVim.lsp.rename_file, { desc = "Rename File", })
+vim.keymap.set("n", "<leader>rR", Snacks.rename.rename_file, { desc = "Rename File", })
 
 vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true") end,  { desc = "Diagnostics"})
 vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true filter.buf=0") end,  { desc = "Buffer diagnostics"})
