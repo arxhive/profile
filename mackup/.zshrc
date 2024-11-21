@@ -147,7 +147,7 @@ bs() {
 }
 
 alias nomoregopls="ps -ef | grep 'gopls' | grep -v grep | awk '{print $2}' | xargs -r kill -9"
-alias ical='icalBuddy eventsToday | grep -e • -e "location: http" -e "Click here" -e "AM " -e "PM " | grep -v "+1 " | grep -v "OOF" | grep -v "Leave"'
+alias ical='icalBuddy eventsToday | grep -E "•|location: http|Click here|AM |PM |\d{2}:\d{2}\s*-\s*\d{2}:\d{2}" | grep -v "+1 " | grep -v "OOF" | grep -v "Leave" | grep -v "Sent:" | grep -v "When:"'
 vdlogs() {
 	docker logs $@ >& container_logs
 	v container_logs
@@ -184,7 +184,7 @@ grepy() {
 
 safari() {
   cd $HOME/ext/safaribooks/
-  pyactivate
+  pya
   python3 safaribooks.py --kindle $@
   cd Books/*$@*
   ls
