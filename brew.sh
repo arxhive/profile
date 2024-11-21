@@ -138,6 +138,8 @@ brew install mackup
 echo "[storage]\nengine = file_system\npath = profile\ndirectory = mackup" >~/.mackup.cfg
 mackup restore
 
+bat cache --build
+
 #unix
 brew install plantuml
 brew install --cask temurin
