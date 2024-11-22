@@ -180,9 +180,12 @@ vim.keymap.set("n", "<leader>wC",
 -- by default, <C-i> = <tab>. Restore a proper navigation behavour
 vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true })
 
-vim.keymap.set({ "n", "v" }, "<leader>rs", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Simple replace by regex" })
-vim.keymap.set({ "n", "v" }, "<leader>rS", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace selected by regex" })
-vim.keymap.set("x", "<leader>rx", [[:s/\(.*\)/___\1___]], { desc = "Suround by regex - before and after" })
+-- :%s - substitute in the whole file
+vim.keymap.set({ "n" }, "<leader>rx", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace" })
+-- :s - substitute in the specified lines
+vim.keymap.set({ "v" }, "<leader>rx", [[:s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace" })
+-- vim.keymap.set({ "n", "v" }, "<leader>rS", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace selected by regex" })
+vim.keymap.set("x", "<leader>rX", [[:s/\(.*\)/___\1___]], { desc = "Regex Suround" })
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
 -- vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
