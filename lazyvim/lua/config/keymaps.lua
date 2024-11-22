@@ -52,13 +52,18 @@ vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
 
 -- Terminal
-local lazyterm = function() LazyVim.terminal(nil, { cwd = Tricks.rootdir() }) end
-vim.keymap.set({ "n", "i", "x" }, "<C-?>", lazyterm, { desc = "Terminal (root)" })
+vim.keymap.set({ "n", "i", "x" }, "<C-S-/>",
+  function()
+    local path = Tricks.rootdir()
+    require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
+  end, { desc = "Terminal (root)" })
+
 vim.keymap.set({ "n", "i", "x" }, "<C-/>",
   function()
     local path = Tricks.refined("%:h:p")
-    LazyVim.terminal(nil, { cwd = path })
-  end, { desc = "Terminal (current folder)" })
+    require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
+  end, { desc = "Terminal (current folder)" }
+)
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })

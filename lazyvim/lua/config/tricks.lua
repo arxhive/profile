@@ -27,17 +27,17 @@ end
 
 function M.sidecart(cmd)
   local curDir = vim.fn.expand("%:h") -- % for cwd
-  term.exec(cmd, 0, 100, curDir, "vertical", "sidecart", true, true)
+  term.exec(cmd, 3, 100, curDir, "vertical", "sidecart", true, true)
 end
 
 function M.floatterm(cmd)
   local curDir = vim.fn.expand("%:h") -- % for cwd
-  term.exec(cmd, 0, 100, curDir, "float", " Toggle Term ", false, true)
+  term.exec(cmd, 4, 100, curDir, "float", " Toggle Term ", false, true)
 end
 
 function M.silentterm(cmd)
   local curDir = vim.fn.expand("%:h") -- % for cwd
-  term.exec(cmd, 0, 100, curDir, "float", " Toggle Term ", true, false)
+  term.exec(cmd, 10, 100, curDir, "float", " Toggle Term ", true, false)
 end
 
 function M.activatetermcwd()
