@@ -50,6 +50,7 @@ alias xk="tmux kill-session"
 alias xkt="tmux kill-session -t"
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias edge='/Applications/Microsoft\ Edge.app/Contents/MacOS/Microsoft\ Edge > /dev/null 2>&1'
 
 alias t=touch
 alias z=zsh
@@ -315,10 +316,12 @@ gh() {
   # https://github.com/some-name/some-repo-name.git
   # ssh://arxhive/arxhive/profile.git
 
-
+  # Detect the base URL
   if [[ $fetch_url == *"https"* ]]; then
       # Remove the .git from the end of the URL
-      github_url="${fetch_url%.git}"
+      url_portion="${fetch_url%.git}"
+      # Remove a git access role from the URL (everything between :// and @)
+      url_portion=$(echo "$url_portion" | sed 's#://[^@]*@#://#')
   elif [[ "$fetch_url" == *"ssh://"* ]]; then
       # Remove the 'ssh://' prefix
       url_without_prefix="${fetch_url#ssh://}"
@@ -328,21 +331,21 @@ gh() {
 
       # Remove the .git from the end of the URL
       url_portion="${extracted_part%.git}"
-
-      # Construct the final GitHub URL
-      github_url="https://github.com/"$url_portion
   else
       # Split the URL on ':' and get the 2nd portion
       url_portion="$(echo "$fetch_url" | awk -F':' '{print $2}')"
 
       # Remove the .git from the end of the URL
       url_portion="${url_portion%.git}"
-
-      # Construct the final GitHub URL
-      github_url="https://github.com/"$url_portion
   fi
 
-  chrome "$github_url"
+  # route azure to edge
+  if [[ "$url_portion" == *"azure.com"* ]]; then
+    edge "$url_portion?path=$@"
+  else
+    github_url="https://github.com/$url_portion/blob/main/$@"
+    chrome "$github_url"
+  fi
 }
 
 ## ZSH plugings and configs

@@ -90,7 +90,15 @@ vim.keymap.set("n", "<leader>gn",
   vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
   vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
   vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
-  vim.keymap.set("n", "<leader>gB", function() Tricks.silentterm("gh") end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
+  vim.keymap.set("n", "<leader>gB", function()
+    local root_folder = Tricks.rootdir()
+    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+
+    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
+    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+
+    Tricks.silentterm("gh " .. relative_path)
+  end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
   vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
 
 -- Buffers
