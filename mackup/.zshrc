@@ -430,6 +430,11 @@ docker() {
      /usr/local/bin/docker "$@"
   fi
 }
+# Go helpers
+gocover () {
+    t="/tmp/go-cover.$$.tmp"
+    go test -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
+}
 
 # azure-cli autocomplete
 # test if the file exists and executes

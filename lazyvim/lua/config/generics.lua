@@ -94,7 +94,7 @@ vim.keymap.set("n", "<leader>tc", function()
   elseif ext == ".js" or ext == ".ts" or ext == ".tsx" or ext == ".mjs" or ext == ".cjs" then
     tricks.sidecart("npm run test " .. current_file)
   elseif ext == ".go" then
-    tricks.sidecart("richgo test . -v")
+    tricks.sidecart("richgo test -v -cover .")
   else
     LazyVim.info("Cannot run tests")
   end
@@ -113,7 +113,7 @@ vim.keymap.set("n", "<leader>tC", function()
   elseif ext == ".js" or ext == ".ts" or ext == ".tsx" or ext == ".mjs" or ext == ".cjs" then
     tricks.sidecart("npm run test")
   elseif ext == ".go" then
-    tricks.sidecart("richgo test ./... -v")
+    tricks.sidecart("richgo test -v -cover ./...")
   else
     LazyVim.info("Cannot run tests")
   end
