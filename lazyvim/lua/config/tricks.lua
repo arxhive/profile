@@ -45,7 +45,7 @@ function M.activatetermcwd()
   if is_not_open then
     Tricks.sidecart("")
   else
-    vim.api.nvim_command("TermExec cmd='cd %:p:h && clear' go_back=1 dir=%:p:h")
+    vim.api.nvim_command("TermExec cmd=' cd %:p:h && clear' go_back=1 dir=%:p:h") -- space to avoid history
   end
 end
 

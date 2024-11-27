@@ -7,6 +7,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+setopt HIST_IGNORE_SPACE
+HISTORY_IGNORE="z|h|q|clear"
+
 # zmodload zsh/zprof
 # Track zsh load time:
 alias loadtime="/usr/bin/time zsh -i -c exit"
@@ -100,6 +103,7 @@ alias h=history
 alias iexit=exit
 alias e=exit
 alias q=exit
+alias c=clear
 alias pbpwd='pwd | pbcopy'
 
 alias git-whoami="git config user.email"
@@ -274,7 +278,7 @@ alias fps="ps -ef |
       --header 'Press CTRL-R to reload' --header-lines=1 \
       --height=100% --layout=reverse"
 
-alias fpkill="ps -e | fzf | awk '{print $1}' | xargs kill"
+alias fkill="ps -e | fzf | awk '{print $1}' | xargs kill"
 
 fzf-git-branch() {
     git rev-parse HEAD > /dev/null 2>&1 || return
