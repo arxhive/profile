@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader>bi", function()
   local current_file = vim.fn.expand("%:p")
   local ext = current_file:match("^.+(%..+)$")
 
-  if ext == ".py" then
+  if ext == ".py" or ext == ".txt" then
     tricks.sidecart("pip install -r requirements.txt")
   elseif ext == ".cs" then
     tricks.sidecart("dotnet build")

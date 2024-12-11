@@ -81,6 +81,7 @@ alias tfa-uat="tfwu && terraform apply -auto-approve -var-file='env/uat.tfvars'"
 alias python=python3
 alias pyv="python3 -m venv venv"
 alias pya="source venv/bin/activate"
+alias pyd="deactivate"
 alias pyi="pip install -r requirements.txt"
 
 alias d=docker
