@@ -354,6 +354,12 @@ gh() {
 }
 
 ## ZSH plugings and configs
+
+# map python to pyenv shims: /.pyenv/shims/python3
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# automatically activate virtualenvs
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
