@@ -123,7 +123,8 @@ brew install --cask sublime-text
 brew install --cask zoom
 brew install --cask postman
 brew install --cask caffeine
-brew install --cask docker
+brew install --cask orbstack
+# brew install --cask docker
 # brew install --cask visual-studio-code
 brew install --cask spotify
 brew install --cask calibre
