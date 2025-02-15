@@ -33,6 +33,7 @@ brew install prettierd
 brew install bat
 brew install btop
 brew install htop
+brew install csvkit
 # brew install grpcui
 
 #gnu

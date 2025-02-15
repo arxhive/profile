@@ -208,6 +208,15 @@ safari() {
 
   swaks --body $@ --header "Subject: "$@ --to $to -attach @$title -s smtp.gmail.com:587 -tls --auth-user $from --auth-password $code --auth-hide-password
 }
+
+catcsv() {
+    cat "$@" | column -t -s, | less -F -S -X -K
+}
+
+lesscsv() {
+  csvlook "$@" | less -S -K -X -F
+}
+
 # binding, ASCII charset:
 # https://web.archive.org/web/20091028133103/http://geocities.com/dtmcbride//tech/charsets/ascii.html
 bindkey "\x27" autosuggest-accept # ctrl + '
