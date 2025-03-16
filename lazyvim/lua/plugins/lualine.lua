@@ -76,24 +76,24 @@ return {
           -- { LazyVim.lualine.pretty_path() },
         },
         lualine_x = {
-        -- stylua: ignore
-        {
-          function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-          color = LazyVim.ui.fg("Statement"),
-        },
-        -- stylua: ignore
-        {
-          function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = LazyVim.ui.fg("Constant"),
-        },
-        -- stylua: ignore
-        {
-          function() return "  " .. require("dap").status() end,
-          cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-          color = LazyVim.ui.fg("Debug"),
-        },
+          -- stylua: ignore
+          {
+            function() return require("noice").api.status.command.get() end,
+            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+            color = Snacks.util.color("Statement", "guifg")
+          },
+          -- stylua: ignore
+          {
+            function() return require("noice").api.status.mode.get() end,
+            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+            color = Snacks.util.color("Constant", "guifg")
+          },
+          -- stylua: ignore
+          {
+            function() return "  " .. require("dap").status() end,
+            cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+            color = Snacks.util.color("Debug", "guifg")
+          },
         },
         lualine_y = {
           { "location", padding = { left = 0, right = 1 } },

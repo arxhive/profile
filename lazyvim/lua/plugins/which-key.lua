@@ -5,6 +5,7 @@ return {
   -- end,
   keys = { "<Leader>" },
   opts = {
+    preset = "classic",
     icons = {
       mappings = false,
     },
@@ -34,6 +35,16 @@ return {
       { "<leader>4", hidden = true },
       { "<leader>5", hidden = true },
       { "<leader>wT", hidden = true },
+      { "<leader>ua", hidden = true },
+      { "<leader>ug", hidden = true },
+      { "<leader>ui", hidden = true },
+      { "<leader>uI", hidden = true },
+      { "<leader>uI", hidden = true },
+      { "<leader>uG", hidden = true },
+      { "<leader>uA", hidden = true },
+      { "<leader>uS", hidden = true },
+      { "<leader>dp", hidden = true },
+      { "<leader>wm", hidden = true },
     },
   },
 }

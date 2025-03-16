@@ -9,4 +9,6 @@ return {
   { "rcarriga/nvim-notify", enabled = false }, -- prefer mini notify
   { "hrsh7th/cmp-buffer", enabled = false },
   { "nvimdev/dashboard-nvim", enabled = false },
+  { "ibhagwan/fzf-lua", enabled = false },
+  { "saghen/blink.cmp", enabled = false },
 }

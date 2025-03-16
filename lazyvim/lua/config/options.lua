@@ -32,6 +32,9 @@ vim.g.deprecation_warnings = false
 -- don't hide my json strings
 vim.opt.conceallevel = 0
 
+-- disable lazyvim animation
+vim.g.snacks_animate = false
+
 require("lazyvim.util").lsp.on_attach(function()
   vim.opt.signcolumn = "yes"
 end)
