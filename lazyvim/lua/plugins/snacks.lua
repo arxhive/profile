@@ -10,5 +10,7 @@ return {
     notifier = { enabled = false },
     statuscolumn = { enabled = false },
     words = { enabled = false }, -- use vim-illuminate instead
+    profiler = { enabled = false },
+    scroll = { enabled = false },
   },
 }
