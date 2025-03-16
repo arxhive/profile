@@ -103,6 +103,11 @@ go install golang.org/x/tools/cmd/guru@latest
 # https://learn.microsoft.com/en-us/dotnet/core/install/macos
 brew install --cask dotnet-sdk
 
+#scala and spark
+# brew install scala@2.13
+# brew install apache-spark
+# brew install sbt
+
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install node
