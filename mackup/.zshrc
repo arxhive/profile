@@ -26,7 +26,10 @@ export GOBIN=$GOPATH/bin
 export GOROOT="$(brew --prefix golang)/libexec"
 export SPICETIFYPATH=$HOME/.spicetify
 export KREW="${KREW_ROOT:-$HOME/.krew}/bin"
-export PATH="$PATH:$MYBIN:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW"
+export SCALABIN="$(brew --prefix scala)@2.13/bin"
+
+
+export PATH="$PATH:$MYBIN:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW:$SCALABIN"
 
 ## Machine-specific aliases
 for script in ~/profile/zsh-local/*.zsh; do
