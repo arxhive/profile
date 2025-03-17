@@ -107,6 +107,8 @@ brew install --cask dotnet-sdk
 # brew install scala@2.13
 # brew install apache-spark
 # brew install sbt
+# brew install coursier/formulas/coursier
+# cs setup
 
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
