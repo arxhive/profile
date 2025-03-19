@@ -2,7 +2,10 @@ return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   build = ":Copilot auth",
-  -- event = "InsertEnter", -- Used Kindle mode instead
+  event = function()
+    -- clean up a default BufReadPost/InsertEnter events to use Kindle mode instead
+    return {}
+  end,
   opts = {
     suggestion = {
       enabled = true,
