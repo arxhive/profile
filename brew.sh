@@ -104,7 +104,7 @@ go install golang.org/x/tools/cmd/guru@latest
 brew install --cask dotnet-sdk
 
 #scala and spark
-# brew install scala@2.13
+# brew install scala@2.12
 # brew install apache-spark
 # brew install sbt
 # brew install coursier/formulas/coursier
