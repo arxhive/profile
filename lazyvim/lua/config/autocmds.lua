@@ -63,6 +63,31 @@ local function want(name)
   end -- error
 end
 
+local function maybeMetals()
+  local metals_config = require("metals").bare_config()
+
+  metals_config.settings = {
+    showImplicitArguments = true,
+    showImplicitConversionsAndClasses = true,
+    showInferredType = true,
+    superMethodLensesEnabled = true,
+  }
+  metals_config.init_options.statusBarProvider = "on"
+  metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+  local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "scala", "sbt", "java" },
+    callback = function()
+      require("metals").initialize_or_attach(metals_config)
+    end,
+    group = nvim_metals_group,
+  })
+
+  -- use current file extension to trigger filetype cmd
+  vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
+end
+
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
     require("lspconfig")
@@ -96,6 +121,9 @@ vim.api.nvim_create_user_command("Kindle", function()
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
     --   LazyVim.toggle.diagnostics()
     -- end
+
+    maybeMetals()
+
     KINDLED = true
   else
     vim.cmd.LspStart()

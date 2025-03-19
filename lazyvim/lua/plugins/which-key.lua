@@ -30,6 +30,7 @@ return {
       { "<leader>si", group = "infra" },
       { "<leader>ct", group = "terraform" },
       { "<leader>ctw", group = "workspace" },
+      { "<leader>cM", group = "metals" },
       { "<leader>2", hidden = true },
       { "<leader>3", hidden = true },
       { "<leader>4", hidden = true },
