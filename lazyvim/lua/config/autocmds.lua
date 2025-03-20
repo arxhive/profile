@@ -149,12 +149,16 @@ end, {})
 --   end
 -- end
 -- vim.api.nvim_set_keymap("n", "<leader>xt", ":call v:lua.toggle_diagnostics()<CR>", { desc = "Toggle diagnostic", noremap = true, silent = true })
-vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-  group = "lualine_augroup",
-  pattern = "LspProgressStatusUpdated",
-  callback = require("lualine").refresh,
-})
+
+-- listen lsp-progress event and refresh lualine
+-- this was copied from the official plugin page, but I don't need it because I disabled a detailed lsp-progress loading tracking.
+-- https://github.com/linrongbin16/lsp-progress.nvim
+-- vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+-- vim.api.nvim_create_autocmd("User", {
+--   group = "lualine_augroup",
+--   pattern = "LspProgressStatusUpdated",
+--   callback = require("lualine").refresh,
+-- })
 
 -- autosave for firevim
 if vim.g.started_by_firenvim == true then

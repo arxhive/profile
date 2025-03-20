@@ -70,6 +70,7 @@ brew install gnu-sed
 brew install ripgrep
 brew install lazygit
 brew install ydiff
+brew install lynx # used by nvim CopilotChat
 mkdir -p ~/.config
 ln -s ~/profile/lazyvim ~/.config/lazyvim
 ln -s ~/profile/dotfiles/.config/git ~/.config/git
