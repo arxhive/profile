@@ -12,5 +12,17 @@ return {
     words = { enabled = false }, -- use vim-illuminate instead
     profiler = { enabled = false },
     scroll = { enabled = false },
+    picker = {
+      enabled = true,
+      ui_select = true,
+      win = {
+        -- input window
+        input = {
+          keys = {
+            ["<Esc>"] = { "close", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
   },
 }

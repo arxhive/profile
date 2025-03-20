@@ -3,19 +3,24 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     config = function()
       require("CopilotChat").setup({
+        chat_autocomplete = true,
         highlight_headers = false,
         separator = "",
         auto_insert_mode = true,
         insert_at_end = true,
         clear_chat_on_new_prompt = false,
         highlight_selection = false,
+        mappings = {
+          complete = {
+            insert = "<C-CR>",
+          },
+        },
       })
     end,
     keys = function()
       local copilot_chat = require("CopilotChat")
       local telescope = require("CopilotChat.integrations.telescope")
       local actions = require("CopilotChat.actions")
-
       return {
         {
           "<leader>ac",
@@ -54,6 +59,7 @@ return {
         {
           "|",
           function()
+            -- require("CopilotChat").select_prompt({})
             telescope.pick(actions.prompt_actions())
           end,
           desc = "Prompt Actions",
