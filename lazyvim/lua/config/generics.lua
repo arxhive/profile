@@ -71,7 +71,7 @@ vim.keymap.set("n", "<leader>bi", function()
     tricks.sidecart("pip install -r requirements.txt")
   elseif ext == ".cs" then
     tricks.sidecart("dotnet build")
-  elseif ext == ".js" or ext == ".ts" or ext == ".tsx" or ext == ".mjs" or ext == ".cjs" then
+  elseif ext == ".js" or ext == ".ts" or ext == ".tsx" or ext == ".mjs" or ext == ".cjs" or ext == ".json" then
     tricks.sidecart("npm install && npm run build")
   elseif ext == ".go" then
     tricks.sidecart("go build")
