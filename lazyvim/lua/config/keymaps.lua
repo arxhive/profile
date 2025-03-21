@@ -30,8 +30,11 @@ vim.keymap.del("n", "<leader>fc")
 vim.keymap.del("n", "<leader>be")
 
 -- Remap LazyVim defaults
-vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, { desc = "Goto type defintion" })
-vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Goto defintion" })
+vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type defintion" })
+vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto defintion" })
+vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto declaration" })
+-- vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Goto references" }) -- disable a default gr after lsp initialization to use this one
+vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementation" })
 vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
 vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add missing imports" })
 -- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })

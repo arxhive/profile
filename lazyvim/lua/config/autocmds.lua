@@ -109,6 +109,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     keys[#keys + 1] = { "<leader>cr", false }
     keys[#keys + 1] = { "<leader>cR", false }
     keys[#keys + 1] = { "gd", false }
+    -- keys[#keys + 1] = { "gr", false } -- disable a default one in favor of snacks.picker
     keys[#keys + 1] = { "]]", false }
     keys[#keys + 1] = { "[[", false }
 
