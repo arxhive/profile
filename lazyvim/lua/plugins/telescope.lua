@@ -11,6 +11,7 @@ return {
           "venv",
           "public/docs",
           "go/pkg",
+          "target/",
         },
         layout_config = {
           horizontal = { width = 0.95 },
@@ -57,13 +58,13 @@ return {
       { "PP", function()
         vim.api.nvim_command("stopinsert")
         vim.schedule(function()
-            require("telescope").extensions.yank_history.yank_history() 
+            require("telescope").extensions.yank_history.yank_history()
           end)
       end, mode = { "n", "x", "i" }, desc = "Telescope yank history" },
-      { "<C-S-v>", function() 
+      { "<C-S-v>", function()
         vim.api.nvim_command("stopinsert")
         vim.schedule(function()
-            require("telescope").extensions.yank_history.yank_history() 
+            require("telescope").extensions.yank_history.yank_history()
           end)
       end, mode = { "n", "x", "i" }, desc = "Telescope yank history" },
 
