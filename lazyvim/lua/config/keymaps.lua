@@ -28,6 +28,8 @@ vim.keymap.del("n", "<leader>sd")
 vim.keymap.del("n", "<leader>sD")
 vim.keymap.del("n", "<leader>fc")
 vim.keymap.del("n", "<leader>be")
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del("n", "<leader>fT")
 
 -- Remap LazyVim defaults
 vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type defintion" })
@@ -265,7 +267,7 @@ vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end,
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
 
 -- Buffer helpers
-vim.keymap.set("n", "<leader>bot", function()
+vim.keymap.set("n", "<leader>fot", function()
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
@@ -275,7 +277,7 @@ vim.keymap.set("n", "<leader>bot", function()
     vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
 end, { desc = "TFS" })
 
-vim.keymap.set("n", "<leader>bog", function()
+vim.keymap.set("n", "<leader>fog", function()
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
@@ -286,33 +288,33 @@ vim.keymap.set("n", "<leader>bog", function()
 end, { desc = "Github" })
 
 -- Plantuml gui in the buffer dir
-vim.keymap.set("n", "<leader>bop", function()
+vim.keymap.set("n", "<leader>fop", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!plantuml -gui -theme sketchy -config $HOME/profile/plantuml/sketchy_config filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy" })
 
-vim.keymap.set("n", "<leader>boP", function()
+vim.keymap.set("n", "<leader>foP", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!plantuml -gui -theme sketchy-outline -SComponentFontSize=14 -filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy-outline" })
 
-vim.keymap.set("n", "<leader>bof", function()
+vim.keymap.set("n", "<leader>fof", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!open " .. current_buffer_path)
 end, { desc = "Finder" })
 
-vim.keymap.set("n", "<leader>bob", function()
+vim.keymap.set("n", "<leader>fob", function()
     local current_buffer_path = vim.fn.expand('%:h')
     vim.api.nvim_command("!open -a '/Applications/Google Chrome.app' %")
 end, { desc = "Browser" })
 
-vim.keymap.set("n", "<leader>byf", function()
+vim.keymap.set("n", "<leader>fyf", function()
     local current_buffer = vim.fn.expand('%:t')
     LazyVim.info(current_buffer)
     vim.fn.setreg("+", current_buffer, "c")
 end, { desc = "Copy file name" })
 
-vim.keymap.set("n", "<leader>byF", function()
+vim.keymap.set("n", "<leader>fyF", function()
     local current_file = vim.fn.expand('%:p')
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
@@ -321,7 +323,7 @@ vim.keymap.set("n", "<leader>byF", function()
     vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy full file name" })
 
-vim.keymap.set("n", "<leader>byd", function()
+vim.keymap.set("n", "<leader>fyd", function()
     local current_dir = vim.fn.expand('%:p:h')
     local root_folder = Tricks.rootdir()
     root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")

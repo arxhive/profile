@@ -55,6 +55,7 @@ return {
       end, desc = "Find Files (Root Dir)" },
 
       { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
+      { "<leader>wb", function() vim.cmd("Telescope buffers") end, mode = {"n" }, desc = "Buffers" },
       { "PP", function()
         vim.api.nvim_command("stopinsert")
         vim.schedule(function()
@@ -81,6 +82,7 @@ return {
       { "<leader>sG", false },
       { "<leader>sw", false },
       { "<leader>sW", false },
+      { "<leader>fb", false },
     },
   },
   {

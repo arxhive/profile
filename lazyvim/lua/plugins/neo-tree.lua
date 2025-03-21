@@ -171,14 +171,15 @@ return {
       desc = "NeoTree reveal force",
       remap = true,
     },
-    {
-      "<leader>wb",
-      function()
-        require("neo-tree.command").execute({ source = "buffers", position = "float" })
-      end,
-      desc = "NeoTree buffers",
-      remap = true,
-    },
+    -- use telescope instead
+    -- {
+    --   "<leader>wb",
+    --   function()
+    --     require("neo-tree.command").execute({ source = "buffers", position = "float" })
+    --   end,
+    --   desc = "NeoTree buffers",
+    --   remap = true,
+    -- },
     {
       "<leader>wr",
       function()

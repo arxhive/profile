@@ -36,7 +36,8 @@ return {
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
-    { "<leader>bt", ":ToggleTerm dir=%:p:h<CR>", desc = "ToggleTerm cwd" },
+    { "<leader>bt", ":ToggleTerm dir=%:p:h<CR>", desc = "Term Toggle cwd" },
+    { "<leader>bT", ":ToggleTerm<CR>", desc = "Term Toggle root" },
     {
       "<leader>wt",
       function()
