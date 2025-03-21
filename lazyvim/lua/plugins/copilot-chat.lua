@@ -37,6 +37,7 @@ return {
         mappings = {
           complete = {
             insert = "<C-CR>",
+            normal = "<C-CR>",
           },
         },
       })
