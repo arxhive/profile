@@ -50,5 +50,12 @@ return {
       desc = "Project History (diffview)",
       -- remap = true,
     },
+    {
+      "q",
+      function()
+        require("diffview").close()
+      end,
+      desc = "Close",
+    },
   },
 }

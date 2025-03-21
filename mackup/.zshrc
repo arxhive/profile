@@ -84,6 +84,7 @@ alias tfa-uat="tfwu && terraform apply -auto-approve -var-file='env/uat.tfvars'"
 alias python=python3
 alias pyv="python3 -m venv venv"
 alias pya="source venv/bin/activate"
+alias pyd="deactivate"
 alias pyi="pip install -r requirements.txt"
 
 alias d=docker
@@ -365,6 +366,12 @@ gh() {
 }
 
 ## ZSH plugings and configs
+
+# map python to pyenv shims: /.pyenv/shims/python3
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# automatically activate virtualenvs
 # eval "$(pyenv virtualenv-init -)" # 20ms to load
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
