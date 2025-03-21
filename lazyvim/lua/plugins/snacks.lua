@@ -12,6 +12,9 @@ return {
     words = { enabled = false }, -- use vim-illuminate instead
     profiler = { enabled = false },
     scroll = { enabled = false },
+    input = {
+      enabled = true,
+    },
     picker = {
       enabled = true,
       ui_select = true,
