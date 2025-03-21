@@ -21,6 +21,10 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     config = function()
       require("CopilotChat").setup({
+        -- model = "claude-3.7-sonnet",
+        model = "gpt-4o",
+        question_header = "#### in",
+        answer_header = "## out",
         chat_autocomplete = true,
         highlight_headers = false,
         separator = "",
@@ -29,6 +33,7 @@ return {
         clear_chat_on_new_prompt = false,
         highlight_selection = false,
         prompts = prompts,
+        context = { "buffer", "git:staged", "git:unstaged" },
         mappings = {
           complete = {
             insert = "<C-CR>",
