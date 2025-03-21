@@ -30,25 +30,26 @@ vim.keymap.del("n", "<leader>fc")
 vim.keymap.del("n", "<leader>be")
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
+vim.keymap.del("n", "<leader>xt")
+vim.keymap.del("n", "<leader>xT")
 
 -- Remap LazyVim defaults
-vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type defintion" })
-vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto defintion" })
-vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto declaration" })
+vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Defintion" })
+vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Defintion" })
+vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
 -- vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Goto references" }) -- disable a default gr after lsp initialization to use this one
-vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementation" })
+vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 vim.keymap.set("n", "<leader>Ls", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
-vim.keymap.set("n", "<leader>cm", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add missing imports" })
+vim.keymap.set("n", "<leader>ci", LazyVim.lsp.action["source.addMissingImports.ts"], { desc = "Add Missing Imports" })
 -- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<leader>rr", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { desc = "Rename", expr = true })
 vim.keymap.set("n", "<leader>rR", Snacks.rename.rename_file, { desc = "Rename File", })
 
-vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true") end,  { desc = "Diagnostics"})
-vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Trouble diagnostics toggle focus=true filter.buf=0") end,  { desc = "Buffer diagnostics"})
-vim.keymap.set("n","<leader>xq", function() vim.api.nvim_command("Trouble qflist focus=true") end,  { desc = "Quickfix List"})
-vim.keymap.set("n","<leader>xe", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Diagnostics (telescope)"})
+vim.keymap.set("n","<leader>xq", function() Snacks.picker.qflist()  end,  { desc = "Quickfix List"})
+vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Buffer Diagnostics"})
+vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Telescope diagnostics bufnr=0") end,  { desc = "Full Diagnostics"})
 
 -- Lifehacks
 vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used for iterm command mapping

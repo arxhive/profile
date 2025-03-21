@@ -58,21 +58,21 @@ return {
           autostart = false, -- changes nothing
           keys = {
             {
-              "<leader>cMe",
+              "<leader>cme",
               function()
                 require("telescope").extensions.metals.commands()
               end,
               desc = "Metals commands",
             },
             {
-              "<leader>cMc",
+              "<leader>cmc",
               function()
                 require("metals").compile_cascade()
               end,
               desc = "Metals compile cascade",
             },
             {
-              "<leader>cMh",
+              "<leader>cmh",
               function()
                 require("metals").hover_worksheet()
               end,
