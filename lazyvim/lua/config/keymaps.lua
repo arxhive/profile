@@ -150,7 +150,10 @@ vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
 -- vim.keymap.set("n", "2", "<C-W>j", {desc = "Bottom window"})
 -- vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})
 -- vim.keymap.set("n", "4", "<C-W>l", {desc = "Right window"})
-
+-- vim.keymap.set({ "n", "v" }, "<Right>", "/\\u<CR>:nohlsearch<CR>", {desc = "Right window"})
+vim.keymap.set({ "n", "v" }, "<Right>", "l/\\u<CR>h", {desc = "Next Upper"})
+vim.keymap.set({ "n", "v" }, "<Left>", "/\\u<CR>NN", {desc = "Prev Upper"})
+-- TestCamelCaseString
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
