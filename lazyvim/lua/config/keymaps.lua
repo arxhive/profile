@@ -36,6 +36,7 @@ vim.keymap.del("n", "<leader>xt")
 vim.keymap.del("n", "<leader>xT")
 vim.keymap.del("n", "<leader>xl")
 vim.keymap.del("n", "<leader>xL")
+vim.keymap.del("n", "<leader>xq")
 
 -- Remap LazyVim defaults
 vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Defintion" })
