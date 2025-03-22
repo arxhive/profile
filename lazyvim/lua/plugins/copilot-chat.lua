@@ -120,6 +120,12 @@ return {
           desc = "Select Model",
           mode = { "n", "v" },
         },
+        {
+          "<leader>as",
+          copilot_chat.stop,
+          desc = "CopilotChat Stop",
+          mode = { "n", "v" },
+        },
       }
     end,
   },
