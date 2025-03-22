@@ -14,7 +14,7 @@ return {
           "target/",
         },
         layout_config = {
-          horizontal = { width = 0.95 },
+          horizontal = { width = 0.95, height = 0.95 },
         },
         mappings = {
           i = {
