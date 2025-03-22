@@ -28,9 +28,9 @@ vim.keymap.del("n", "<leader>sd")
 vim.keymap.del("n", "<leader>sD")
 vim.keymap.del("n", "<leader>fc")
 vim.keymap.del("n", "<leader>be")
--- Terminal default mapping
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
+
 -- Default Trouble lists
 vim.keymap.del("n", "<leader>xt")
 vim.keymap.del("n", "<leader>xT")

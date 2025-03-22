@@ -12,6 +12,7 @@ return {
     delay = 400,
     plugins = { spelling = false },
     spec = {
+      { "<leader>b", group = "buffers" }, -- remmaped default spec to disable dynamic buffers
       { "<leader>a", group = "ai", mode = { "n", "v", "x" } },
       { "<leader>r", group = "refactor" },
       { "<leader>k", group = "kubernetes" },
