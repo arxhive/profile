@@ -51,7 +51,6 @@ vim.keymap.set("n", "<leader>rr", function()
 end, { desc = "Rename", expr = true })
 vim.keymap.set("n", "<leader>rR", Snacks.rename.rename_file, { desc = "Rename File", })
 
-vim.keymap.set("n","<leader>xq", function() Snacks.picker.qflist()  end,  { desc = "Quickfix List"})
 vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Buffer Diagnostics"})
 vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Telescope diagnostics bufnr=0") end,  { desc = "Full Diagnostics"})
 
