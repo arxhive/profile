@@ -145,6 +145,13 @@ return {
       desc = "NeoTree (cwd)",
     },
     {
+      "<leader>qe",
+      function()
+        vim.api.nvim_command("Neotree close")
+      end,
+      desc = "Quit NeoTree",
+    },
+    {
       "<leader>we",
       function()
         local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"

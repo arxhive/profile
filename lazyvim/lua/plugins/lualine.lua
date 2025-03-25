@@ -56,7 +56,7 @@ return {
         lualine_z = {
           function()
             local buf = vim.api.nvim_buf_get_name(0)
-            print(buf)
+
             if buf:match("toggleterm") then
               return "term"
             elseif buf:match("copilot") then
