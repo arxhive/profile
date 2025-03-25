@@ -54,6 +54,9 @@ return {
         lua_ls = {
           autostart = false,
         },
+        jsonls = {
+          autostart = false,
+        },
         metals = {
           autostart = false, -- changes nothing
           keys = {
