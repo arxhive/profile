@@ -53,7 +53,21 @@ return {
             return require("lsp-progress").progress()
           end,
         },
-        lualine_z = {},
+        lualine_z = {
+          function()
+            local buf = vim.api.nvim_buf_get_name(0)
+            print(buf)
+            if buf:match("toggleterm") then
+              return "term"
+            elseif buf:match("copilot") then
+              return "copilot"
+            elseif buf:match("filesystem") then
+              return "explorer"
+            else
+              return ""
+            end
+          end,
+        },
       }
 
       -- Status line
