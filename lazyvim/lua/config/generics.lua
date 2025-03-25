@@ -62,8 +62,8 @@ vim.keymap.set("x", "<leader>bl", function()
   require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 0 })
 end, { desc = "Toggleterm selected" })
 
--- Builder
-vim.keymap.set("n", "<leader>bi", function()
+-- Builder (Install / Package / Build / etc)
+vim.keymap.set("n", "<leader>bp", function()
   local current_file = vim.fn.expand("%:p")
   local ext = current_file:match("^.+(%..+)$")
 
@@ -75,6 +75,8 @@ vim.keymap.set("n", "<leader>bi", function()
     tricks.sidecart("npm install && npm run build")
   elseif ext == ".go" then
     tricks.sidecart("go build")
+  elseif ext == ".scala" then
+    tricks.sidecart("sbt package", true)
   else
     LazyVim.info("Cannot build")
   end

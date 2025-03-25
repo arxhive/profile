@@ -25,8 +25,8 @@ end
 -- @param go_back boolean? whether or not to return to original window
 -- @param open boolean? whether or not to open terminal window
 
-function M.sidecart(cmd)
-  local curDir = vim.fn.expand("%:h") -- % for cwd
+function M.sidecart(cmd, fromRoot)
+  local curDir = fromRoot and M.rootdir() or vim.fn.expand("%:h")
   term.exec(cmd, 3, 100, curDir, "vertical", "sidecart", true, true)
 end
 
