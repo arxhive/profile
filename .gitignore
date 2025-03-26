@@ -3,3 +3,4 @@
 /mackup/.config/karabiner/automatic_backups/**
 /lazyvim/lua/local/**
 /lazyvim/lazy-lock.json
+.metadata/**
