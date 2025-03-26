@@ -111,6 +111,9 @@ brew install --cask dotnet-sdk
 # brew install coursier/formulas/coursier
 # cs setup
 
+# java
+brew install maven
+
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install node

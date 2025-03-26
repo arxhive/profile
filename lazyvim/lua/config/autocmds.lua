@@ -77,15 +77,12 @@ local function maybeMetals()
 
   local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "scala", "sbt", "java" },
+    pattern = { "scala", "sbt" },
     callback = function()
       require("metals").initialize_or_attach(metals_config)
     end,
     group = nvim_metals_group,
   })
-
-  -- use current file extension to trigger filetype cmd
-  vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
 end
 
 vim.api.nvim_create_user_command("Kindle", function()
@@ -115,15 +112,18 @@ vim.api.nvim_create_user_command("Kindle", function()
 
     vim.cmd.LspStart()
     -- stylua: ignore start
-    vim.keymap.set("n", "<leader>cl", function() vim.api.nvim_command("LspStart") end, { desc = "LSP Start" })
-    vim.keymap.set("n", "<leader>cL", function() vim.api.nvim_command("LspRestart") end, { desc = "LSP Restart" })
-    vim.keymap.set("n", "<leader>cS", function() vim.api.nvim_command("LspStop") end, { desc = "LSP Stop" })
+    vim.keymap.set("n", "<leader>cLs", function() vim.api.nvim_command("LspStart") end, { desc = "LSP Start" })
+    vim.keymap.set("n", "<leader>cLr", function() vim.api.nvim_command("LspRestart") end, { desc = "LSP Restart" })
+    vim.keymap.set("n", "<leader>cLS", function() vim.api.nvim_command("LspStop") end, { desc = "LSP Stop" })
     -- stylua: ignore end
     -- if vim.diagnostic.is_disabled and vim.diagnostic.is_disabled() then
     --   LazyVim.toggle.diagnostics()
     -- end
 
     maybeMetals()
+
+    -- use current file extension to trigger filetype cmd
+    vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
 
     KINDLED = true
   else
