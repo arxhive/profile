@@ -8,6 +8,7 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
+      -- this config makes sure mason installs the servers
       servers = {
         bashls = {
           autostart = false,
@@ -57,6 +58,10 @@ return {
         jsonls = {
           autostart = false,
         },
+        -- nvim-jdtls is a wrapper around Eclipse JDT for nvim, similarly to lspconfig itself
+        jdtls = {
+          autostart = false, -- doesn't work
+        },
         metals = {
           autostart = false, -- changes nothing
           keys = {
@@ -94,6 +99,7 @@ return {
         enabled = false,
       },
     },
+
     -- doesn't work for some reasons, remap these keys from autocomand so far
     -- config = function(_, opts)
     --   local keys = require("lazyvim.plugins.lsp.keymaps").get()
