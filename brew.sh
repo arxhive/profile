@@ -112,6 +112,7 @@ brew install --cask dotnet-sdk
 # cs setup
 
 # java
+brew install openjdk
 brew install maven
 
 #nvm
