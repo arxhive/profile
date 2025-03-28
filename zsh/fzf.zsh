@@ -22,21 +22,27 @@ export FZF_DEFAULT_COMMAND="
 "
 export FZF_CTRL_T_COMMAND="fd --type f"
 
+# TODO:
+# 1. find a way to reuse cf() logic for cff() and f() for ff() accordingly
+# 2. find a catch what is wrong with f()
+# 3. delete bindings from default_opts
+# 4. impossible to bind backspace to .. ?
+
 alias ff="fzf \
   --preview 'bat --color=always {}' \
   --preview-window border-none,follow \
   --bind 'enter:become(nvim {})' \
   --bind 'ctrl-f:become(echo __dirs__)'"
-alias f="ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1)"
-# f() {
-#   selected="$(ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
-#
-#   if [[ $? -eq 0 ]]; then
-#     if [ "$selected" = "__dirs__" ]; then
-#       cf
-#     fi
-#   fi
-# }
+# alias f="ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1)"
+f() {
+  selected="$(ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
+
+  if [[ $? -eq 0 ]]; then
+    if [ "$selected" = "__dirs__" ]; then
+      cf
+    fi
+  fi
+}
 
 alias cff='cd ./"$(fd -H --type d | fzf)"'
 cf() {
@@ -45,13 +51,19 @@ cf() {
       --bind 'ctrl-r:become(echo ..)' \
       --preview 'pwd' \
       --preview-window 1,top,border-none \
-      --bind 'ctrl-f:become(echo __files__)'
+      --bind 'ctrl-f:become(echo __files__)' \
+      --bind 'ctrl-v:become(echo __nvim__)' \
+      --bind 'ctrl-o:become(echo __open__)'
   )"
 
   # Check the exit code of fzf
   if [[ $? -eq 0 ]]; then
     if [ "$selected" = "__files__" ]; then
       f
+    elif [ "$selected" = "__nvim__" ]; then
+      nvim .
+    elif [ "$selected" = "__open__" ]; then
+      open .
     else
       cd $selected
       cf
