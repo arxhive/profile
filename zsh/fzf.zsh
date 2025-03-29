@@ -9,6 +9,7 @@ export FZF_DEFAULT_OPTS="
   --bind 'ctrl-p:become(bat {})' \
   --bind 'ctrl-j:become(cat {} | jq)' \
   --bind 'ctrl-o:become(open {})' \
+  --bind 'ctrl-t:become(realpath {})' \
   --bind 'ctrl-b:become(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome {})' \
   --bind 'ctrl-s:become(/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {})'
 "
@@ -22,24 +23,68 @@ export FZF_DEFAULT_COMMAND="
 "
 export FZF_CTRL_T_COMMAND="fd --type f"
 
-# TODO:
-# 1. find a way to reuse cf() logic for cff() and f() for ff() accordingly
-# 2. find a catch what is wrong with f()
-# 3. delete bindings from default_opts
-# 4. impossible to bind backspace to .. ?
+alias files-fzf="fzf \
+    --preview 'bat --color=always {}' \
+    --preview-window border-none,follow \
+    --bind 'enter:become(echo __nvim__:{})' \
+    --bind 'ctrl-v:become(echo __nvim__:{})' \
+    --bind 'ctrl-l:become(echo __less__:{})' \
+    --bind 'ctrl-p:become(echo __bat__:{})' \
+    --bind 'ctrl-j:become(echo __cat__:{})' \
+    --bind 'ctrl-o:become(echo __finder__:{})' \
+    --bind 'ctrl-b:become(echo __chrome__:{})' \
+    --bind 'ctrl-s:become(echo __sublime__:{})' \
+    --bind 'ctrl-t:become(echo __path__:{})' \
+    --bind 'ctrl-f:become(echo __dirs__)'"
 
-alias ff="fzf \
-  --preview 'bat --color=always {}' \
-  --preview-window border-none,follow \
-  --bind 'enter:become(nvim {})' \
-  --bind 'ctrl-f:become(echo __dirs__)'"
-# alias f="ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1)"
-f() {
-  selected="$(ff < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
+ff() {
+  selected="$(files-fzf)"
 
   if [[ $? -eq 0 ]]; then
     if [ "$selected" = "__dirs__" ]; then
       cf
+    elif [[ "$selected" == __nvim__:* ]]; then
+      nvim "${selected#__nvim__:}"
+    elif [[ "$selected" == __less__:* ]]; then
+      less "${selected#__less__:}"
+    elif [[ "$selected" == __bat__:* ]]; then
+      bat "${selected#__bat__:}"
+    elif [[ "$selected" == __cat__:* ]]; then
+      cat "${selected#__cat__:}" | jq
+    elif [[ "$selected" == __finder__:* ]]; then
+      open "${selected#__finder__:}"
+    elif [[ "$selected" == __chrome__:* ]]; then
+      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "${selected#__chrome__:}"
+    elif [[ "$selected" == __sublime__:* ]]; then
+      /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl "${selected#__sublime__:}"
+    elif [[ "$selected" == __path__:* ]]; then
+      realpath "${selected#__path__:}"
+    fi
+  fi
+}
+
+f() {
+  selected="$(files-fzf < <(fd -H -I --exclude .git --exclude node_module --exclude .cache --exclude .npm --type f --max-depth=1))"
+
+  if [[ $? -eq 0 ]]; then
+    if [ "$selected" = "__dirs__" ]; then
+      cf
+    elif [[ "$selected" == __nvim__:* ]]; then
+      nvim "${selected#__nvim__:}"
+    elif [[ "$selected" == __less__:* ]]; then
+      less "${selected#__less__:}"
+    elif [[ "$selected" == __bat__:* ]]; then
+      bat "${selected#__bat__:}"
+    elif [[ "$selected" == __cat__:* ]]; then
+      cat "${selected#__cat__:}" | jq
+    elif [[ "$selected" == __finder__:* ]]; then
+      open "${selected#__finder__:}"
+    elif [[ "$selected" == __chrome__:* ]]; then
+      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "${selected#__chrome__:}"
+    elif [[ "$selected" == __sublime__:* ]]; then
+      /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl "${selected#__sublime__:}"
+    elif [[ "$selected" == __path__:* ]]; then
+      realpath "${selected#__path__:}"
     fi
   fi
 }
@@ -47,7 +92,10 @@ f() {
 alias cff='cd ./"$(fd -H --type d | fzf)"'
 cf() {
   selected="$(
-  (echo '..'; fd -H --type d --max-depth 1) | fzf \
+    (
+      echo '..'
+      fd -H --type d --max-depth 1
+    ) | fzf \
       --bind 'ctrl-r:become(echo ..)' \
       --preview 'pwd' \
       --preview-window 1,top,border-none \
@@ -79,33 +127,32 @@ alias fps="ps -ef |
 alias fkill="ps -e | fzf | awk '{print $1}' | xargs kill"
 
 fzf-git-branch() {
-    git rev-parse HEAD > /dev/null 2>&1 || return
+  git rev-parse HEAD >/dev/null 2>&1 || return
 
-    git branch --color=always --all --sort=-committerdate |
-        grep -v HEAD |
-        fzf --height 50% --ansi --no-multi --preview-window right:65% \
-            # --preview 'git log -n 50 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
-        sed "s/.* //"
+  git branch --color=always --all --sort=-committerdate |
+    grep -v HEAD |
+    fzf --height 50% --ansi --no-multi --preview-window right:65%
+  # --preview 'git log -n 50 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
+  sed "s/.* //"
 }
 
 fzf-git-checkout() {
-    git rev-parse HEAD > /dev/null 2>&1 || return
+  git rev-parse HEAD >/dev/null 2>&1 || return
 
-    local branch
+  local branch
 
-    branch=$(fzf-git-branch)
-    if [[ "$branch" = "" ]]; then
-        echo "No branch selected."
-        return
-    fi
+  branch=$(fzf-git-branch)
+  if [[ "$branch" = "" ]]; then
+    echo "No branch selected."
+    return
+  fi
 
-    # If branch name starts with 'remotes/' then it is a remote branch. By
-    # using --track and a remote branch name, it is the same as:
-    # git checkout -b branchName --track origin/branchName
-    if [[ "$branch" = 'remotes/'* ]]; then
-        git checkout --track $branch
-    else
-        git checkout $branch;
-    fi
+  # If branch name starts with 'remotes/' then it is a remote branch. By
+  # using --track and a remote branch name, it is the same as:
+  # git checkout -b branchName --track origin/branchName
+  if [[ "$branch" = 'remotes/'* ]]; then
+    git checkout --track $branch
+  else
+    git checkout $branch
+  fi
 }
-
