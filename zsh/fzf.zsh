@@ -131,10 +131,10 @@ cf() {
       echo '..'
       fd -H --type d --max-depth 1
     ) | fzf \
-      --header $'CTRL-F Files, CRTL-K Keys' \
+      --header 'CTRL-F Files, CRTL-K Keys' \
       --bind 'ctrl-r:become(echo ..)' \
-      --preview 'pwd' \
-      --preview-window 1,top,border-none \
+      --preview 'tree -C {}' \
+      --preview-window border-none,follow \
       --bind 'ctrl-f:become(echo __files__)' \
       --bind 'ctrl-v:become(echo __nvim__)' \
       --bind 'ctrl-k:become(echo __help__:{})' \
