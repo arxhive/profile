@@ -198,3 +198,8 @@ fzf-git-checkout() {
     git checkout $branch
   fi
 }
+
+rf() {
+  local search_term=${1}
+  rg "$search_term" | fzf
+}
