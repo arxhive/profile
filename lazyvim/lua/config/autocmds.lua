@@ -64,6 +64,12 @@ local function want(name)
 end
 
 local function maybeMetals()
+  -- get current file extension and return from the function if not scala or sbt
+  local ext = vim.fn.expand("%:e")
+  if ext ~= "scala" and ext ~= "sbt" then
+    return
+  end
+
   local metals_config = require("metals").bare_config()
 
   metals_config.settings = {
@@ -83,6 +89,9 @@ local function maybeMetals()
     end,
     group = nvim_metals_group,
   })
+
+  -- use current file extension to trigger just created FileType cmd
+  vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
 end
 
 vim.api.nvim_create_user_command("Kindle", function()
@@ -121,9 +130,6 @@ vim.api.nvim_create_user_command("Kindle", function()
     -- end
 
     maybeMetals()
-
-    -- use current file extension to trigger filetype cmd
-    vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
 
     KINDLED = true
   else
