@@ -133,7 +133,7 @@ cf() {
     ) | fzf \
       --header 'CTRL-F Files, CRTL-K Keys' \
       --bind 'ctrl-r:become(echo ..)' \
-      --preview 'tree -C {}' \
+      --preview 'tree -a -C -L 3 --dirsfirst {}' \
       --preview-window border-none,follow \
       --bind 'ctrl-f:become(echo __files__)' \
       --bind 'ctrl-v:become(echo __nvim__)' \
