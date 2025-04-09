@@ -1,4 +1,16 @@
 
+# Regular Colors
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+Clear='\033[0m'           # No Color
+
 ## Aliases and small fuctions
 alias vim="nvim"
 alias v=vim
@@ -53,9 +65,20 @@ alias pyi="pip install -r requirements.txt"
 alias d=docker
 alias dps="docker ps"
 
-alias curl="curl -include"
+alias curl="curl -include -w '\n\ntotal: %{time_total}s'"
 alias curlv="curl -verbose -raw"
 alias curlr="curl -raw"
+curlt() {
+    curl -so /dev/null -w "\n\
+   namelookup:  %{time_namelookup}s\n\
+      connect:  %{time_connect}s\n\
+   appconnect:  %{time_appconnect}s\n\
+  pretransfer:  %{time_pretransfer}s\n\
+     redirect:  %{time_redirect}s\n\
+starttransfer:  %{time_starttransfer}s\n\
+-------------------------\n\
+        total:  %{time_total}s\n" "$@"
+}
 
 alias pass=multipass
 pass-root() {
