@@ -53,6 +53,10 @@ alias pyi="pip install -r requirements.txt"
 alias d=docker
 alias dps="docker ps"
 
+alias curl="curl -include"
+alias curlv="curl -verbose -raw"
+alias curlr="curl -raw"
+
 alias pass=multipass
 pass-root() {
   multipass exec $@ -- sudo bash
