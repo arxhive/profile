@@ -3,6 +3,7 @@ gui:
   showFileTree: false
   showCommandLog: false
   showRandomTip: false
+  nerdFontsVersion: "3"
   border: hidden
   theme:
     activeBorderColor:
@@ -28,6 +29,9 @@ gui:
   authorColors:
     "Artem Kolomeetc": "yellow"
     "*": "#b4befe"
+keybinding:
+  files:
+    toggleTreeView: t
 git:
   paging:
     colorArg: never
