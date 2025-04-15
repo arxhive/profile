@@ -39,6 +39,12 @@ git:
     colorArg: never
     pager: ydiff -p cat -s --wrap --width={{columnWidth}}
 customCommands:
+  - key: "P"
+    command: "git push {{.SelectedRemote.Name}} {{.SelectedLocalCommit.Sha}}:{{.SelectedLocalBranch.Name}}"
+    context: "commits"
+    loadingText: "Pushing commit..."
+    description: "Push a specific commit (and any preceding)"
+    stream: yes
   - key: "E"
     description: "Add empty commit"
     context: "commits"
