@@ -67,6 +67,7 @@ alias dps="docker ps"
 
 alias curl="curl -include -w '\n\ntotal: %{time_total}s'"
 alias curlv="curl -verbose -raw"
+alias curlglob="curl --globoff"
 alias curlr="curl -raw"
 curlt() {
     curl -so /dev/null -w "\n\
@@ -121,6 +122,8 @@ alias curweight="du -hs"
 alias mmlazy="cd ~/profile/lazyvim/lua/ && v ."
 alias mmbrew="v ~/profile/brew.sh"
 alias mmzsh="v ~/.zshrc"
+alias mmalias="v ~/profile/zsh/aliases.zsh"
+alias mmspell="v ~/profile/zsh/spells.zsh"
 alias mmmackup="v ~/.mackup.cfg"
 alias mmaws="v ~/.aws/config"
 alias mmssh="v ~/.ssh/config"
