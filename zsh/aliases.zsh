@@ -12,6 +12,8 @@ White='\033[0;37m'        # White
 Clear='\033[0m'           # No Color
 
 ## Aliases and small fuctions
+alias pro='cd ~/profile'
+
 alias vim="nvim"
 alias v=vim
 alias vs="vim -c \"lua require('persistence').load({ last = true })\""
