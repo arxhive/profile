@@ -67,7 +67,7 @@ alias dps="docker ps"
 
 alias curl="curl -include -w '\n\ntotal: %{time_total}s'"
 alias curlv="curl -verbose -raw"
-alias curlglob="curl --globoff"
+alias curlgloboff="curl --globoff"
 alias curlr="curl -raw"
 curlt() {
     curl -so /dev/null -w "\n\
