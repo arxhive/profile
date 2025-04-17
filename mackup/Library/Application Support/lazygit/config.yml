@@ -26,14 +26,13 @@ gui:
       - "#cdd6f4"
     searchingActiveBorderColor:
       - "#f9e2af"
-
   authorColors:
     "Artem Kolomeetc": "yellow"
     "*": "#b4befe"
 keybinding:
   files:
     toggleTreeView: t
-    commitChangesWithEditor: null
+    commitChangesWithEditor: <disabled>
 git:
   paging:
     colorArg: never
@@ -126,3 +125,32 @@ customCommands:
         body: "Are you sure you want to commit?"
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
+  - key: "N"
+    context: "global"
+    description: "Create new conventional branch"
+    prompts:
+      - type: "menu"
+        key: "Type"
+        title: "Type of change"
+        options:
+          - name: "feature"
+            description: "Feature"
+            value: "feature/"
+          - name: "fix"
+            description: "A bug fix"
+            value: "fix/"
+          - name: "hotfix"
+            description: "A hot fix"
+            value: "hotfix/"
+          - name: "chore"
+            description: "Other changes that don't modify src or test files"
+            value: "chore"
+          - name: "release"
+            description: "A new release branch"
+            value: "release/"
+      - type: "input"
+        title: "branch name"
+        key: "BranchName"
+        initialValue: "{{.Form.Type}}"
+    command: "git checkout -b '{{.Form.BranchName}}'"
+    loadingText: "Creating new conventional branch..."
