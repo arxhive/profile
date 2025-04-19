@@ -67,12 +67,13 @@ alias pyi="pip install -r requirements.txt"
 alias d=docker
 alias dps="docker ps"
 
-alias curl="curl -include -w '\n\ntotal: %{time_total}s'"
-alias curlv="curl -verbose -raw"
-alias curlgloboff="curl --globoff"
-alias curlr="curl -raw"
-curlt() {
-    curl -so /dev/null -w "\n\
+alias cur="curl -include -w '\n\ntotal: %{time_total}s'"
+alias curv="cur -verbose -raw"
+alias curgloboff="cur --globoff"
+alias curr="cur -raw"
+
+curt() {
+    crl -so /dev/null -w "\n\
    namelookup:  %{time_namelookup}s\n\
       connect:  %{time_connect}s\n\
    appconnect:  %{time_appconnect}s\n\
@@ -81,6 +82,10 @@ curlt() {
 starttransfer:  %{time_starttransfer}s\n\
 -------------------------\n\
         total:  %{time_total}s\n" "$@"
+}
+
+curj() {
+  curl "$@" | jq
 }
 
 alias pass=multipass
