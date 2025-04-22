@@ -38,6 +38,8 @@ git:
     colorArg: never
     pager: ydiff -p cat -s --wrap --width={{columnWidth}}
 customCommands:
+  # command contexts
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#contexts
   - key: "P"
     command: "git push {{.SelectedRemote.Name}} {{.SelectedLocalCommit.Sha}}:{{.SelectedLocalBranch.Name}}"
     context: "commits"
@@ -63,7 +65,7 @@ customCommands:
     loadingText: "fetching branch"
   # retrieved from: https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#conventional-commit
   - key: "C"
-    context: "global"
+    context: "files"
     description: "Create new conventional commit"
     prompts:
       - type: "menu"
@@ -107,14 +109,6 @@ customCommands:
         title: "Scope"
         key: "Scope"
         initialValue: ""
-      # - type: "menu"
-      #   key: "Breaking"
-      #   title: "Breaking change"
-      #   options:
-      #     - name: "no"
-      #       value: ""
-      #     - name: "yes"
-      #       value: "!"
       - type: "input"
         title: "Message"
         key: "Message"
@@ -130,7 +124,7 @@ customCommands:
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}: {{.Form.Message}} {{ if .Form.WorkItem }}[{{ .Form.WorkItem }}]{{ end }}'"
     loadingText: "Creating conventional commit..."
   - key: "N"
-    context: "global"
+    context: "localBranches"
     description: "Create new conventional branch"
     prompts:
       - type: "menu"
@@ -158,3 +152,17 @@ customCommands:
         initialValue: "{{.Form.Type}}"
     command: "git checkout -b '{{.Form.BranchName}}'"
     loadingText: "Creating new conventional branch..."
+  - key: "n"
+    context: "files"
+    description: "Commit with no hooks"
+    prompts:
+      - type: "input"
+        title: "Message (no-verify)"
+        key: "Message"
+        initialValue: "WIP:"
+    command: "git commit --no-verify --message '{{.Form.Message}}'"
+    loadingText: "git commit --no-verify..."
+  - key: "f" # maybe M
+    context: "commitFiles"
+    description: "Compare (difftool) with local copy"
+    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
