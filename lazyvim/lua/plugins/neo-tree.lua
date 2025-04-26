@@ -20,23 +20,29 @@ return {
       end
 
       local events = require("neo-tree.events")
+
       opts.event_handlers = opts.event_handlers or {}
       vim.list_extend(opts.event_handlers, {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
       })
-      require("neo-tree").setup(opts)
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "*lazygit",
-        callback = function()
-          if package.loaded["neo-tree.sources.git_status"] then
-            require("neo-tree.sources.git_status").refresh()
-          end
-        end,
-      })
+      opts.enable_git_status = false
+
+      require("neo-tree").setup(opts)()
+      -- vim.api.nvim_create_autocmd("TermClose", {
+      --   pattern = "*lazygit",
+      --   callback = function()
+      --     if package.loaded["neo-tree.sources.git_status"] then
+      --       require("neo-tree.sources.git_status").refresh()
+      --     end
+      --   end,
+      -- })
     end,
-    sources = { "filesystem", "buffers", "git_status", "document_symbols", "netman.ui.neo-tree" },
+
+    sources = { "filesystem", "buffers", "document_symbols", "netman.ui.neo-tree" },
+
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+
     filesystem = {
       bind_to_cwd = false,
       use_libuv_file_watcher = true,
@@ -157,9 +163,9 @@ return {
         local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"
 
         local path = vim.fn.expand("%:p")
+        print(path)
         -- check is "neo-tree " exists in the path
         if string.find(path, "tree ") then
-          -- switch focus to the last open buffer
           vim.api.nvim_command("bnext")
           vim.schedule(function()
             vim.api.nvim_command(command)
