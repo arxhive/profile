@@ -1,8 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  branch = "v3.x",
   lazy = true,
   dependencies = {
     "miversen33/netman.nvim",
+    "nvim-tree/nvim-web-devicons",
   },
   init = function()
     -- uncomment to enable auto open on dir
@@ -27,8 +29,9 @@ return {
         { event = events.FILE_RENAMED, handler = on_move },
       })
       opts.enable_git_status = false
+      opts.enable_diagnostics = false
 
-      require("neo-tree").setup(opts)()
+      require("neo-tree").setup(opts)
       -- vim.api.nvim_create_autocmd("TermClose", {
       --   pattern = "*lazygit",
       --   callback = function()
@@ -39,7 +42,7 @@ return {
       -- })
     end,
 
-    sources = { "filesystem", "buffers", "document_symbols", "netman.ui.neo-tree" },
+    sources = { "filesystem", "buffers", "document_symbols", "git_status", "netman.ui.neo-tree" },
 
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
 
@@ -163,14 +166,19 @@ return {
         local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"
 
         local path = vim.fn.expand("%:p")
-        print(path)
         -- check is "neo-tree " exists in the path
         if string.find(path, "tree ") then
+          -- switch neotree focus to the last opened file
           vim.api.nvim_command("bnext")
           vim.schedule(function()
             vim.api.nvim_command(command)
           end)
+          -- if no buffer opened (for instance, we're in oil)
+        elseif string.find(path, "/$") then
+          -- just open a default explorer
+          vim.api.nvim_command("Neotree filesystem focus")
         else
+          -- open neotree and reveal the file
           vim.api.nvim_command(command)
         end
       end,
