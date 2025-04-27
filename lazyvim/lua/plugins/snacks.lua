@@ -70,6 +70,9 @@ return {
         lsp_symbols = {
           layout = my_telescope_layout,
         },
+        files = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },

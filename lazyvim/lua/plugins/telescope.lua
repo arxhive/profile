@@ -49,12 +49,17 @@ return {
       { "<leader>fw", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep word or selection (cwd)" },
 
       -- files
-      { "<leader><space>", function()
-        require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
-      end, desc = "Find Files (cwd)" },
-      { "<S-space>", function()
-        require('telescope.builtin').fd({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
-      end, desc = "Find Files (Root Dir)" },
+      -- { "<leader><space>", function()
+      --   require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
+      -- end, desc = "Find Files (cwd)" },
+      -- Snacks picker version
+      { "<leader><space>", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader><CR>", function() Snacks.picker.files({ cwd = vim.fn.getcwd() }) end, desc = "Find Files cwd" },
+
+      -- Not relevant anymore, this hotkey doesn't work anymore
+      -- { "<S-space>", function()
+      --   require('telescope.builtin').fd({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
+      -- end, desc = "Find Files (Root Dir)" },
 
       { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<leader>wb", function() vim.cmd("Telescope buffers") end, mode = {"n" }, desc = "Buffers" },
