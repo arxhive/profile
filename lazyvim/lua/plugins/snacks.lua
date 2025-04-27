@@ -1,3 +1,13 @@
+local my_telescope_layout = {
+  preset = "telescope",
+  layout = {
+    box = "horizontal",
+    backdrop = false,
+    width = 0.95,
+    height = 0.95,
+  },
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -18,15 +28,6 @@ return {
     picker = {
       enabled = true,
       ui_select = true,
-      layout = {
-        preset = "telescope",
-        layout = {
-          box = "horizontal",
-          backdrop = false,
-          width = 0.95,
-          height = 0.95,
-        },
-      },
       formatters = {
         file = {
           filename_first = false, -- display filename before the file path
@@ -42,6 +43,32 @@ return {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
           },
+        },
+      },
+      sources = {
+        explorer = {
+          enabled = true,
+          layout = { preset = "sidebar", preview = false },
+          diagnostics = false,
+          git_status = true,
+        },
+        lsp_definitions = {
+          layout = my_telescope_layout,
+        },
+        lsp_type_definitions = {
+          layout = my_telescope_layout,
+        },
+        lsp_declarations = {
+          layout = my_telescope_layout,
+        },
+        lsp_implementations = {
+          layout = my_telescope_layout,
+        },
+        lsp_references = {
+          layout = my_telescope_layout,
+        },
+        lsp_symbols = {
+          layout = my_telescope_layout,
         },
       },
     },

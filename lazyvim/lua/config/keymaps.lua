@@ -27,7 +27,7 @@ vim.keymap.del("n", "<leader>sl")
 vim.keymap.del("n", "<leader>sd")
 vim.keymap.del("n", "<leader>sD")
 vim.keymap.del("n", "<leader>fc")
-vim.keymap.del("n", "<leader>be")
+-- vim.keymap.del("n", "<leader>be") -- a default neo-tree binding, do not need it with picker explorer
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 

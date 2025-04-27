@@ -139,20 +139,20 @@ return {
     { "<leader>fc", false },
     { "<leader>fe", false },
     { "<leader>fE", false },
-    {
-      "<leader>E",
-      function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = Tricks.rootdir() })
-      end,
-      desc = "NeoTree (root)",
-    },
-    {
-      "<leader>e",
-      function()
-        require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
-      end,
-      desc = "NeoTree (cwd)",
-    },
+    -- {
+    --   "<leader>E",
+    --   function()
+    --     require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = Tricks.rootdir() })
+    --   end,
+    --   desc = "NeoTree (root)",
+    -- },
+    -- {
+    --   "<leader>e",
+    --   function()
+    --     require("neo-tree.command").execute({ toggle = true, source = "filesystem", dir = vim.uv.cwd() })
+    --   end,
+    --   desc = "NeoTree (cwd)",
+    -- },
     {
       "<leader>qe",
       function()
