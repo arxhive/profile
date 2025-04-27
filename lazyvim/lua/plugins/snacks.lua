@@ -47,6 +47,7 @@ return {
       },
       sources = {
         explorer = {
+          title = "",
           enabled = true,
           layout = { preset = "sidebar", preview = false },
           diagnostics = false,

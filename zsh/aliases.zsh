@@ -108,6 +108,8 @@ alias q=exit
 alias c=clear
 alias pbpwd='pwd | pbcopy'
 
+alias rgf='rg --files | rg'
+
 alias git-whoami="git config user.email"
 alias groot="git ma" # master/main branch
 alias gt="git tree"
