@@ -157,6 +157,8 @@ return {
       "<leader>qe",
       function()
         vim.api.nvim_command("Neotree close")
+        -- TODO: Check if it's trully opened
+        Snacks.explorer.open()
       end,
       desc = "Quit NeoTree",
     },

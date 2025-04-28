@@ -53,13 +53,13 @@ return {
       --   require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
       -- end, desc = "Find Files (cwd)" },
 
-     -- { "<leader><CR>", function()
-      --   require('telescope.builtin').find_files({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
-      -- end, desc = "Find Files (Root Dir)" },
-
       -- Snacks picker version
       { "<leader><space>", function() Snacks.picker.files({title = "Files cwd " .. vim.fn.getcwd()}) end, desc = "Files cwd" },
       { "<leader><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root " .. Tricks.rootdir() }) end, desc = "Files root" },
+
+     -- { "<leader><CR>", function()
+      --   require('telescope.builtin').find_files({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
+      -- end, desc = "Find Files (Root Dir)" },
 
       { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<leader>wb", function() vim.cmd("Telescope buffers") end, mode = {"n" }, desc = "Buffers" },
