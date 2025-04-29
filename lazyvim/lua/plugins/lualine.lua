@@ -56,6 +56,7 @@ return {
         lualine_z = {
           function()
             local buf = vim.api.nvim_buf_get_name(0)
+            local explorer = Snacks.picker.get({ source = "explorer" })[1]
 
             if buf:match("toggleterm") then
               return "term"
@@ -63,6 +64,8 @@ return {
               return "copilot"
             elseif buf:match("filesystem") then
               return "explorer"
+            elseif explorer and explorer:is_focused() then
+              return "files"
             else
               return ""
             end

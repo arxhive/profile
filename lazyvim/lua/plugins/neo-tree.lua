@@ -167,6 +167,8 @@ return {
       function()
         local command = "Neotree dir=" .. vim.uv.cwd() .. " reveal_file=%:p"
 
+        local explorer = Snacks.picker.get({ source = "explorer" })[1]
+
         local path = vim.fn.expand("%:p")
         -- check is "neo-tree " exists in the path
         if string.find(path, "tree ") then
@@ -175,13 +177,32 @@ return {
           vim.schedule(function()
             vim.api.nvim_command(command)
           end)
-          -- if no buffer opened (for instance, we're in oil)
+        -- if explorer is focused but I'm lost in the tree
+        elseif explorer and explorer:is_focused() then
+          -- switch snacks explorer to the last opened buffer
+          -- a lifehack to reveal the current buffer in the explorer because focus doesn't work as expected yet
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l>", true, false, true), "m", false)
+          vim.schedule(function()
+            Snacks.explorer.open()
+            Snacks.explorer.reveal()
+            -- Snacks.picker.get({ source = "explorer" })[1].list.win:focus()
+          end)
+        -- if Snack explorer is open but not active just focus on it
+        elseif explorer then
+          explorer.list.win:focus()
+        -- if no buffer opened (for instance, we're in oil)
         elseif string.find(path, "/$") then
           -- just open a default explorer
-          vim.api.nvim_command("Neotree filesystem focus")
+          -- vim.api.nvim_command("Neotree filesystem focus")
+          Snacks.explorer.open()
+        -- a default option when explorer is closed
         else
           -- open neotree and reveal the file
+
+          -- neotree
           vim.api.nvim_command(command)
+          -- snacks
+          -- Snacks.explorer.reveal()
         end
       end,
       desc = "NeoTree reveal file",
