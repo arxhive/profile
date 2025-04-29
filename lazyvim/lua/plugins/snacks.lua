@@ -30,9 +30,9 @@ return {
       ui_select = true,
       formatters = {
         file = {
-          filename_first = false, -- display filename before the file path
+          filename_first = true, -- display filename before the file path
           truncate = 40, -- truncate the file path to (roughly) this length
-          filename_only = true, -- only show the filename
+          filename_only = false, -- only show the filename
           icon_width = 2, -- width of the icon (in characters)
           git_status_hl = false, -- use the git status highlight group for the filename
         },
@@ -45,6 +45,7 @@ return {
           },
         },
       },
+      -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#-sources
       sources = {
         explorer = {
           title = "",
@@ -52,6 +53,7 @@ return {
           layout = { preset = "sidebar", preview = false },
           diagnostics = false,
           git_status = true,
+          hidden = true,
         },
         lsp_definitions = {
           layout = my_telescope_layout,
@@ -73,6 +75,10 @@ return {
         },
         files = {
           layout = my_telescope_layout,
+        },
+        grep = {
+          layout = my_telescope_layout,
+          -- title = "Grep " .. vim.uv.cwd(),
         },
       },
     },
