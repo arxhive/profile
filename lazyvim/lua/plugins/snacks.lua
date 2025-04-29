@@ -22,6 +22,7 @@ return {
     words = { enabled = false }, -- use vim-illuminate instead
     profiler = { enabled = false },
     scroll = { enabled = false },
+    indent = { enabled = false },
     input = {
       enabled = true,
     },
