@@ -173,7 +173,7 @@ fzf-git-branch() {
 
   git branch --color=always --all --sort=-committerdate |
     grep -v HEAD |
-    fzf --height 50% --ansi --no-multi --preview-window right:65%
+    fzf --height 50% --ansi --no-multi --preview-window right:65% |
   # --preview 'git log -n 50 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
   sed "s/.* //"
 }
@@ -181,9 +181,7 @@ fzf-git-branch() {
 fzf-git-checkout() {
   git rev-parse HEAD >/dev/null 2>&1 || return
 
-  local branch
-
-  branch=$(fzf-git-branch)
+  local branch=$(fzf-git-branch)
   if [[ "$branch" = "" ]]; then
     echo "No branch selected."
     return

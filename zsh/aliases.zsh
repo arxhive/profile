@@ -66,6 +66,20 @@ alias pyi="pip install -r requirements.txt"
 
 alias d=docker
 alias dps="docker ps"
+function dbash() {
+	CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf`
+  if [ ! -z $CONTAINER ]
+  then
+    docker exec -it $CONTAINER bash
+  fi
+}
+function dlogs() {
+  CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf`
+  if [ ! -z $CONTAINER ]
+  then
+    docker logs -f $CONTAINER
+  fi
+}
 
 alias cur="curl -include -w '\n\ntotal: %{time_total}s'"
 alias curv="cur -verbose -raw"
