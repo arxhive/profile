@@ -66,19 +66,53 @@ alias pyi="pip install -r requirements.txt"
 
 alias d=docker
 alias dps="docker ps"
+alias dls="docker images"
 function dbash() {
-	CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf`
+	CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
   if [ ! -z $CONTAINER ]
   then
     docker exec -it $CONTAINER bash
   fi
 }
 function dlogs() {
-  CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf`
+  CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
   if [ ! -z $CONTAINER ]
   then
     docker logs -f $CONTAINER
   fi
+}
+function dkick() {
+  CONTAINER=`docker ps --all | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
+  if [ ! -z $CONTAINER ]
+  then
+    docker rm -f $CONTAINER
+  fi
+}
+# aliased to drm
+function drm-fzf() {
+  CONTAINER=`docker ps --all | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
+  if [ ! -z $CONTAINER ]
+  then
+    local image=`docker ps --all | grep $CONTAINER | awk '-F ' ' {print $2}'`
+
+    echo "rm container: $CONTAINER"
+    docker rm -f $CONTAINER
+
+    echo "rm image:     $image"
+    docker image rm $image
+    echo "clean now"
+  fi
+}
+function ddel() {
+  IMAGE=`docker images | rg -v REPOSITORY | awk '-F ' ' {print $1}' | fzf --header IMAGES`
+  if [ ! -z $IMAGE ]
+  then
+    docker image rm $IMAGE
+  fi
+}
+function dprune() {
+    docker container prune -f
+    docker system prune -f
 }
 
 alias cur="curl -include -w '\n\ntotal: %{time_total}s'"
