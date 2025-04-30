@@ -215,6 +215,9 @@ git config user.name "Artem Kolomeetc"
 git config user.email "artesdi@gmail.com"
 
 rm ~/Library/Preferences/com.lwouis.alt-tab-macos.plist
+
+# why? I have to use symlinks instead
+# debug this concern next time because there is a mix of ln and cp at this time
 cp -rf ~/profile/dotfiles/ ~/
 
 #custom macos apps

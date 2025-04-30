@@ -31,6 +31,10 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 export PATH="$PATH:$MYBIN:$GOBIN:$GOROOT/bin:$SPICETIFYPATH/bin:$KREW:$SCALABIN:$JAVA_HOME/bin"
 
+# The base directory for user-specific configuration files.
+# Must be set explicitly for MacOS.
+export XDG_CONFIG_HOME="$HOME/.config"
+
 ## my spells
 for script in ~/profile/zsh/*.zsh; do
   source "$script"

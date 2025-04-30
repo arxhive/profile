@@ -169,9 +169,9 @@ customCommands:
     subprocess: true
   - key: "t"
     command: "git checkout --theirs {{ .SelectedFile.Name }}"
-    context: "files,global"
+    context: "global"
     loadingText: "take theirs"
   - key: "o"
     command: "git checkout --ours {{ .SelectedFile.Name }}"
-    context: "files,global"
+    context: "global"
     loadingText: "take ours"
