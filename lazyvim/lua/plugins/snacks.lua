@@ -88,7 +88,10 @@ return {
     },
   },
   keys = {
+    -- stylua: ignore start
+    { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>fe", false },
     { "<leader>fE", false },
+    -- stylua: ignore end
   },
 }
