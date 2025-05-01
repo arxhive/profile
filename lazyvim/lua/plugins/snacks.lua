@@ -56,6 +56,16 @@ return {
           git_status = true,
           hidden = true,
         },
+        files = {
+          layout = my_telescope_layout,
+          hidden = true,
+        },
+        grep = {
+          layout = my_telescope_layout,
+          hidden = true,
+          args = { "--fixed-strings" },
+          -- title = "Grep " .. vim.uv.cwd(),
+        },
         lsp_definitions = {
           layout = my_telescope_layout,
         },
@@ -74,14 +84,11 @@ return {
         lsp_symbols = {
           layout = my_telescope_layout,
         },
-        files = {
-          layout = my_telescope_layout,
-        },
-        grep = {
-          layout = my_telescope_layout,
-          -- title = "Grep " .. vim.uv.cwd(),
-        },
       },
     },
+  },
+  keys = {
+    { "<leader>fe", false },
+    { "<leader>fE", false },
   },
 }

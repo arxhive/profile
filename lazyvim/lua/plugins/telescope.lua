@@ -3,6 +3,16 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden",
+          "--no-ignore-vcs",
+        },
         path_display = {
           "truncate", -- truncate | smart | shorten
         },
