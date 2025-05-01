@@ -55,6 +55,14 @@ return {
           diagnostics = false,
           git_status = true,
           hidden = true,
+          -- disable indent lines
+          icons = {
+            tree = {
+              vertical = "  ",
+              middle = "  ",
+              last = "  ",
+            },
+          },
         },
         files = {
           layout = my_telescope_layout,
