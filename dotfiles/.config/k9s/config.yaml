@@ -1,6 +1,6 @@
 k9s:
   liveViewAutoRefresh: false
-  screenDumpDir: /Users/d1/Library/Application Support/k9s/screen-dumps
+  screenDumpDir: /Users/d1/./config/k9s/screen-dumps
   refreshRate: 2
   maxConnRetry: 5
   readOnly: false
