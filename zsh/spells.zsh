@@ -69,10 +69,11 @@ lesscsv() {
   csvlook "$@" | less -S -K -X -F
 }
 
-# Script to open the GitHub page of the current repository in a browser
+# Script to open the repo page in a browser.
+# Supports github and azure devops at this moment.
 gh() {
   fetch_url=$(git config --get remote.origin.url)
-  # outputs:
+  # possible outputs:
   # git@github.com:some-name/some-repo-name.git
   # https://github.com/some-name/some-repo-name.git
   # ssh://arxhive/arxhive/profile.git
@@ -100,11 +101,16 @@ gh() {
       url_portion="${url_portion%.git}"
   fi
 
-  # route azure to edge
+  # route azure url to edge
   if [[ "$url_portion" == *"azure.com"* ]]; then
     edge "$url_portion?path=$@"
+  # handle github url
+  elif [[ "$url_portion" == *"github.com"* ]]; then
+    github_url="$url_portion/blob/main$@"
+    chrome "$github_url"
+  # handle ssh url
   else
-    github_url="https://github.com/$url_portion/blob/main/$@"
+    github_url="https://github.com/$url_portion/blob/main$@"
     chrome "$github_url"
   fi
 }
