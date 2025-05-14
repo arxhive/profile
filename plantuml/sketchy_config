@@ -1,16 +1,18 @@
 skinparam BackgroundColor #eff1f5
 skinparam PackageBackgroundColor #dce0e8
 skinparam TitleFontColor black
-skinparam ArrowFontColor black 
+skinparam ArrowFontColor black
 
-skinparam ComponentFontSize 14 
+skinparam ComponentFontSize 14
 skinparam ComponentFontStyle bold
+skinparam ComponentFontColor white
+skinparam ComponentStereotypeFontColor red
 
-skinparam RectangleFontSize 14 
+skinparam RectangleFontSize 14
 skinparam RectangleFontColor black
 skinparam RectangleFontStyle bold
 
-skinparam ObjectFontSize 14 
+skinparam ObjectFontSize 14
 skinparam ObjectFontStyle bold
 
 skinparam NoteBackgroundColor #179299
