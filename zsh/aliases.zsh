@@ -95,10 +95,10 @@ function drm-fzf() {
   then
     local image=`docker ps --all | grep $CONTAINER | awk '-F ' ' {print $2}'`
 
-    echo "rm container: $CONTAINER"
-    docker rm -f $CONTAINER
+    echo "rm container and volume"
+    docker rm --force --volumes $CONTAINER
 
-    echo "rm image:     $image"
+    echo "rm image: $image"
     docker image rm $image
     echo "clean now"
   fi
@@ -185,6 +185,7 @@ alias mmmackup="v ~/.mackup.cfg"
 alias mmaws="v ~/.aws/config"
 alias mmssh="v ~/.ssh/config"
 alias mmgit="v ~/.config/git/config"
+alias mmlg="v ~/.config/lazygit/config.yml"
 alias mmtmux="v ~/.tmux.conf"
 alias mmskhd="v ~/.skhdrc"
 alias mmnvim="v ~/.local/share/lazyvim/lazy/LazyVim/lua/lazyvim"
