@@ -35,6 +35,7 @@ return {
     },
     filetypes = {
       markdown = true,
+      yaml = true,
       help = true,
     },
   },
