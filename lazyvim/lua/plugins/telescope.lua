@@ -41,14 +41,17 @@ return {
       -- grep the current folder
       -- { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep current " .. vim.fn.expand("%:h")}) end, desc = "Grep (current)" },
       -- grep cwd
-      { "<leader>ff", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, prompt_title = "Grep cwd " .. vim.fn.getcwd() })
-      end, desc = "Grep (cwd)" },
+      -- Snacks version (it's faster)
+      { "<leader>ff", function() Snacks.picker.grep({title = "Grep cwd " .. vim.fn.getcwd()}) end, desc = "Grep cwd" },
+      -- Telescope version
+      -- { "<leader>ff", function()
+      --   require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*}", prompt_title = "Grep cwd " .. vim.fn.getcwd() })
+      -- end, desc = "Grep (cwd)" },
       { "<leader>fit", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
       end, desc = "Ignore tests" },
       { "<leader>fip", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
+        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
       end, desc = "Ignore packages" },
 
       -- grep root
