@@ -8,6 +8,26 @@ local my_telescope_layout = {
   },
 }
 
+local git_actions = {
+  inspect_commit = function(picker, item)
+    vim.notify(vim.inspect(item))
+    picker:close()
+  end,
+  copy_sha = function(picker, item)
+    vim.notify("Copied " .. item.commit .. " to clipboard")
+    vim.fn.setreg("+", item.commit)
+    picker:close()
+  end,
+}
+
+local git_input = {
+  input = {
+    keys = {
+      ["<C-y>"] = { "copy_sha", mode = { "i", "n" } },
+    },
+  },
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -94,12 +114,18 @@ return {
         },
         git_log = {
           layout = my_telescope_layout,
+          actions = git_actions,
+          win = git_input,
         },
         git_log_file = {
           layout = my_telescope_layout,
+          actions = git_actions,
+          win = git_input,
         },
         git_log_line = {
           layout = my_telescope_layout,
+          actions = git_actions,
+          win = git_input,
         },
         git_status = {
           layout = my_telescope_layout,
