@@ -35,7 +35,7 @@ return {
           require("diffview").close()
         end
       end,
-      desc = "Diffview Toggle",
+      desc = "Diffview",
       remap = true,
     },
     {

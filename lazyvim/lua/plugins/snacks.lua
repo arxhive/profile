@@ -92,12 +92,27 @@ return {
         lsp_symbols = {
           layout = my_telescope_layout,
         },
+        git_log = {
+          layout = my_telescope_layout,
+        },
+        git_log_file = {
+          layout = my_telescope_layout,
+        },
+        git_log_line = {
+          layout = my_telescope_layout,
+        },
+        git_status = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
   keys = {
     -- stylua: ignore start
     { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+    { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+    { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
     { "<leader>fe", false },
     { "<leader>fE", false },
     -- stylua: ignore end

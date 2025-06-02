@@ -74,7 +74,7 @@ return {
       --   require('telescope.builtin').find_files({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
       -- end, desc = "Find Files (Root Dir)" },
 
-      { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
+      -- { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
       { "<leader>wb", function() vim.cmd("Telescope buffers") end, mode = {"n" }, desc = "Buffers" },
       { "PP", function()
         vim.api.nvim_command("stopinsert")
@@ -103,6 +103,7 @@ return {
       { "<leader>sw", false },
       { "<leader>sW", false },
       { "<leader>fb", false },
+      { "<leader>gs", false }, -- git status
     },
   },
   {
