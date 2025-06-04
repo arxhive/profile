@@ -92,7 +92,11 @@ return {
           layout = my_telescope_layout,
           hidden = true,
           args = { "--fixed-strings" },
-          -- title = "Grep " .. vim.uv.cwd(),
+        },
+        grep_word = {
+          layout = my_telescope_layout,
+          hidden = true,
+          args = { "--fixed-strings" },
         },
         lsp_definitions = {
           layout = my_telescope_layout,
@@ -130,17 +134,42 @@ return {
         git_status = {
           layout = my_telescope_layout,
         },
+        buffers = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
   keys = {
     -- stylua: ignore start
+
+    -- explorer
     { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+
+    -- git tools
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
     { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+
+    -- grep cwd
+    { "<leader>ff", function() Snacks.picker.grep({title = "Grep cwd " .. vim.fn.getcwd()}) end, desc = "Grep cwd" },
+    { "<leader>fw", function() Snacks.picker.grep_word() end, mode = {"n", "x" }, desc = "Grep word or selection (cwd)" },
+
+    -- grep root
+    { "<leader>fF", function() Snacks.picker.grep({cwd = Tricks.rootdir(), title = "Grep root " .. Tricks.rootdir()}) end, desc = "Grep root" },
+    { "<leader>fW", function() Snacks.picker.grep_word({cwd = Tricks.rootdir()}) end, mode = {"n", "x" }, desc = "Grep word or selection (root)" },
+
+    -- files
+    { "<leader><space>", function() Snacks.picker.files({title = "Files cwd " .. vim.fn.getcwd()}) end, desc = "Files cwd" },
+    { "<leader><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root " .. Tricks.rootdir() }) end, desc = "Files root" },
+
+    -- buffers
+    { "<leader>wb", function() Snacks.picker.buffers() end, mode = {"n" }, desc = "Buffers" },
+
+    -- disabled
     { "<leader>fe", false },
     { "<leader>fE", false },
+
     -- stylua: ignore end
   },
 }

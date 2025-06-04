@@ -38,44 +38,15 @@ return {
     },
     -- stylua: ignore
     keys = {
-      -- grep the current folder
-      -- { "<C-f>", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand("%:h"), prompt_title="Grep current " .. vim.fn.expand("%:h")}) end, desc = "Grep (current)" },
-      -- grep cwd
-      -- Snacks version (it's faster)
-      { "<leader>ff", function() Snacks.picker.grep({title = "Grep cwd " .. vim.fn.getcwd()}) end, desc = "Grep cwd" },
-      -- Telescope version
-      -- { "<leader>ff", function()
-      --   require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*}", prompt_title = "Grep cwd " .. vim.fn.getcwd() })
-      -- end, desc = "Grep (cwd)" },
       { "<leader>fit", function()
         require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
       end, desc = "Ignore tests" },
+
       { "<leader>fip", function()
         require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
       end, desc = "Ignore packages" },
 
-      -- grep root
-      { "<leader>fF", function()
-        require('telescope.builtin').live_grep({ cwd = Tricks.rootdir(), additional_args = {"--fixed-strings"},  prompt_title = "Grep root " .. Tricks.rootdir() })
-      end, desc = "Grep (root)" },
-
-      { "<leader>fw", function() vim.cmd("Telescope grep_string") end, mode = {"n", "x" }, desc = "Grep word or selection (cwd)" },
-
-      -- files
-      -- { "<leader><space>", function()
-      --   require('telescope.builtin').fd({ cwd = vim.fn.getcwd(), prompt_title = "Files cwd " .. vim.fn.getcwd() })
-      -- end, desc = "Find Files (cwd)" },
-
-      -- Snacks picker version
-      { "<leader><space>", function() Snacks.picker.files({title = "Files cwd " .. vim.fn.getcwd()}) end, desc = "Files cwd" },
-      { "<leader><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root " .. Tricks.rootdir() }) end, desc = "Files root" },
-
-     -- { "<leader><CR>", function()
-      --   require('telescope.builtin').find_files({ cwd = Tricks.rootdir(), prompt_title = "Files root " .. Tricks.rootdir() })
-      -- end, desc = "Find Files (Root Dir)" },
-
-      -- { "<leader>gf", function() vim.cmd("Telescope git_bcommits") end, mode = {"n" }, desc = "File History (telescope)" },
-      { "<leader>wb", function() vim.cmd("Telescope buffers") end, mode = {"n" }, desc = "Buffers" },
+      -- yank history
       { "PP", function()
         vim.api.nvim_command("stopinsert")
         vim.schedule(function()
