@@ -87,7 +87,9 @@ return {
               local cwd = vim.fn.getcwd()
               local relative_path_to_cwd = Tricks.cutPathStartingFromRoot(cwd)
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
-              return relative_path_to_cwd
+
+              -- use a highlight group to color text
+              return "%#lualine_a_inactive#" .. relative_path_to_cwd
             end,
           },
           {
