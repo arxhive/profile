@@ -58,6 +58,7 @@ return {
       -- { "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent files root" },
 
       -- disabled
+      { "<leader><space>", false },
       { "<leader>ff", false },
       { "<leader>fF", false },
       { "<leader>fR", false },
