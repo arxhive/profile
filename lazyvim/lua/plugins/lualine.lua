@@ -82,11 +82,12 @@ return {
         lualine_c = {
           LazyVim.lualine.root_dir(),
           {
+            -- <C-C> to change cwd via snacks explorer
             function()
               local cwd = vim.fn.getcwd()
               local relative_path_to_cwd = Tricks.cutPathStartingFromRoot(cwd)
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
-              return relative_path_to_cwd .. " - cwd"
+              return relative_path_to_cwd
             end,
           },
           {
