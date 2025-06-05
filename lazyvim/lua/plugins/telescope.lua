@@ -38,14 +38,6 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>fit", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,*test*,*fixture*,*.spec.*,e2e}", prompt_title = "Grep cwd no test " .. vim.fn.getcwd() })
-      end, desc = "Ignore tests" },
-
-      { "<leader>fip", function()
-        require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd(), additional_args = {"--fixed-strings"}, glob_pattern="!{coverage/*,dist/*,package.json,package-lock.json,go.mod,go.sum}", prompt_title = "Grep cwd no packages " .. vim.fn.getcwd() })
-      end, desc = "Ignore packages" },
-
       -- yank history
       { "PP", function()
         vim.api.nvim_command("stopinsert")
@@ -60,20 +52,22 @@ return {
           end)
       end, mode = { "n", "x", "i" }, desc = "Telescope yank history" },
 
-      -- resume search
-      { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-
       -- show recent files
-      { "<leader>sf", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent Files cwd" },
+      -- ues telescope because Snacks.picker doesn't respect cwd for recent files
+      { "<leader>fr", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent files" },
       -- { "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent files root" },
 
       -- disabled
+      { "<leader>ff", false },
+      { "<leader>fF", false },
       { "<leader>fR", false },
       { "<leader>sg", false },
       { "<leader>sG", false },
       { "<leader>sw", false },
       { "<leader>sW", false },
       { "<leader>fb", false },
+      { "<leader>sr", false },
+      { "<leader>sR", false },
       { "<leader>gs", false }, -- git status
     },
   },

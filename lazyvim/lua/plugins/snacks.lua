@@ -137,6 +137,12 @@ return {
         buffers = {
           layout = my_telescope_layout,
         },
+        resume = {
+          layout = my_telescope_layout,
+        },
+        recent = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
@@ -144,7 +150,8 @@ return {
     -- stylua: ignore start
 
     -- explorer
-    { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+    { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer cwd" },
+    { "<leader>E", function() Snacks.explorer({ cwd = Tricks.rootdir() }) end, desc = "File Explorer root" },
 
     -- git tools
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
@@ -152,19 +159,52 @@ return {
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
 
     -- grep cwd
-    { "<leader>ff", function() Snacks.picker.grep({title = "Grep cwd " .. vim.fn.getcwd()}) end, desc = "Grep cwd" },
-    { "<leader>fw", function() Snacks.picker.grep_word() end, mode = {"n", "x" }, desc = "Grep word or selection (cwd)" },
+    { "<leader>ff", function() Snacks.picker.grep({ title = "Grep cwd " .. vim.fn.getcwd() }) end, desc = "Grep cwd" },
+    { "<leader>fw", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Grep word or selection (cwd)" },
 
     -- grep root
-    { "<leader>fF", function() Snacks.picker.grep({cwd = Tricks.rootdir(), title = "Grep root " .. Tricks.rootdir()}) end, desc = "Grep root" },
-    { "<leader>fW", function() Snacks.picker.grep_word({cwd = Tricks.rootdir()}) end, mode = {"n", "x" }, desc = "Grep word or selection (root)" },
+    { "<leader>fF", function() Snacks.picker.grep({ cwd = Tricks.rootdir(), title = "Grep root " .. Tricks.rootdir() }) end, desc = "Grep root" },
+    { "<leader>fW", function() Snacks.picker.grep_word({ cwd = Tricks.rootdir()}) end, mode = {"n", "x" }, desc = "Grep word or selection (root)" },
 
     -- files
-    { "<leader><space>", function() Snacks.picker.files({title = "Files cwd " .. vim.fn.getcwd()}) end, desc = "Files cwd" },
+    { "<leader><space>", function() Snacks.picker.files({ title = "Files cwd " .. vim.fn.getcwd() }) end, desc = "Files cwd" },
     { "<leader><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root " .. Tricks.rootdir() }) end, desc = "Files root" },
 
     -- buffers
     { "<leader>wb", function() Snacks.picker.buffers() end, mode = {"n" }, desc = "Buffers" },
+
+    -- resume search
+    { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume search" },
+    -- { "<leader>fr", function() Snacks.picker.recent({ cwd = vim.uv.cwd() }) end, desc = "Recent files" },
+
+    -- advanced filters
+    { "<leader>fit",
+      function()
+        Snacks.picker.grep({ cwd = vim.fn.getcwd(), exclude={ "coverage", "dist", "*test*", "*fixture*", "*.spec.*", "e2e", "it" }, title = "Grep cwd no tests " .. vim.fn.getcwd() })
+      end,
+      desc = "Ignore tests cwd"
+    },
+
+    { "<leader>fiT",
+      function()
+        Snacks.picker.grep({ cwd = Tricks.rootdir(), exclude={ "coverage", "dist", "*test*", "*fixture*", "*.spec.*", "e2e", "it" }, title = "Grep root no tests " .. Tricks.rootdir() })
+      end,
+      desc = "Ignore tests root"
+    },
+
+    { "<leader>fip",
+      function()
+        Snacks.picker.grep({ cwd = vim.fn.getcwd(), exclude={ "coverage", "dist", "package.json", "package-lock.json", "packages.lock.json", "packages.config", "go.mod", "go.sum", "*.gradle", "*.pom", "requirements.txt" }, title = "Grep cwd no packages " .. vim.fn.getcwd() })
+      end,
+      desc = "Ignore packages cwd"
+    },
+
+    { "<leader>fiP",
+      function()
+        Snacks.picker.grep({ cwd = Tricks.rootdir(), exclude={ "coverage", "dist", "package.json", "package-lock.json", "packages.lock.json", "packages.config", "go.mod", "go.sum", "*.gradle", "*.pom", "requirements.txt" }, title = "Grep root no packages " .. Tricks.rootdir() })
+      end,
+      desc = "Ignore packages root"
+    },
 
     -- disabled
     { "<leader>fe", false },
