@@ -17,7 +17,7 @@ vim.keymap.del( { "n" }, "<leader><Tab>[")
 vim.keymap.del( { "n" }, "<leader><Tab>]")
 vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 
--- Clear git redanduncy
+-- Clear git redundancy
 vim.keymap.del( { "n" }, "<leader>gc")
 vim.keymap.del( { "n" }, "<leader>gG")
 

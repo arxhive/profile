@@ -115,14 +115,14 @@ return {
         function()
           require("telescope").extensions.file_browser.file_browser({ path = Tricks.rootdir(), select_buffer = true, prompt_title = "Browse root " .. Tricks.rootdir() })
         end,
-        desc = "File Browser (root)",
+        desc = "File Browser root",
       },
       {
         "<leader>ww",
         function()
           require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true, prompt_title = "Browse buf " .. vim.fn.expand("%:p:h") })
         end,
-        desc = "File Browser (buf)",
+        desc = "File Browser buf",
       },
     },
   },
