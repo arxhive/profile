@@ -89,7 +89,7 @@ return {
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
 
               -- use a highlight group to color text
-              return "%#lualine_a_inactive#" .. relative_path_to_cwd
+              return "%#lualine_a_inactive#" .. "󰢷 " .. relative_path_to_cwd
             end,
           },
           {
