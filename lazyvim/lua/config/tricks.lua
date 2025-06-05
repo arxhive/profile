@@ -112,4 +112,16 @@ function M.get_last_yank()
   -- return vim.fn.getreg("+") -- this is a system clipboard
 end
 
+function M.inspect(item)
+  vim.notify(vim.inspect(item))
+end
+
+-- remove local path to the root folder from the current file path
+function M.cutPathStartingFromRoot(path)
+  local root_folder = Tricks.rootdir()
+  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+  local path_part_after_root = string.gsub(path, root_folder, "")
+  return path_part_after_root
+end
+
 return M

@@ -177,6 +177,10 @@ return {
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume search" },
     -- { "<leader>fr", function() Snacks.picker.recent({ cwd = vim.uv.cwd() }) end, desc = "Recent files" },
 
+    -- Snacks picker sources
+    { "<leader>wp", function() Snacks.picker.projects() end,  desc = "Projects" },
+    { "<leader>wu", function() Snacks.picker.undo() end, desc = "Undo log" },
+
     -- advanced filters
     { "<leader>fit",
       function()

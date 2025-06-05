@@ -4,7 +4,8 @@ return {
   -- Tabline
   opts = function(_, opts)
     local catppuccin = require("lualine.themes.catppuccin")
-    insert_mode_color = "#F5C2E7"
+    local insert_mode_color = "#F5C2E7"
+
     catppuccin.insert.a.bg = insert_mode_color
     catppuccin.insert.b.fg = insert_mode_color
     catppuccin.command.a.bg = insert_mode_color
@@ -26,7 +27,7 @@ return {
       opts.tabline = {
         lualine_a = { "mode" },
         lualine_b = {},
-        lualine_c = { { "filetype", icon_only = true }, { "filename", file_status = true, path = 1 } },
+        lualine_c = { { "filetype", icon_only = true }, { "filename", file_status = true, path = 3 } },
         lualine_x = {
           -- display yaml/Kubernetes (~15ms)
           function()
@@ -80,6 +81,14 @@ return {
         lualine_b = { "branch" },
         lualine_c = {
           LazyVim.lualine.root_dir(),
+          {
+            function()
+              local cwd = vim.fn.getcwd()
+              local relative_path_to_cwd = Tricks.cutPathStartingFromRoot(cwd)
+              relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
+              return relative_path_to_cwd .. " - cwd"
+            end,
+          },
           {
             "diagnostics",
             symbols = {

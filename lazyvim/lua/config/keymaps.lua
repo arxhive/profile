@@ -282,21 +282,15 @@ vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run"
 
 -- Buffer helpers
 vim.keymap.set("n", "<leader>fot", function()
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-
     local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+    local relative_path = Tricks.cutPathStartingFromRoot(current_file_path)
 
     vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
 end, { desc = "TFS" })
 
 vim.keymap.set("n", "<leader>fog", function()
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-
     local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+    local relative_path = Tricks.cutPathStartingFromRoot(current_file_path)
 
     vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
 end, { desc = "Github" })
@@ -330,21 +324,17 @@ end, { desc = "Copy file name" })
 
 vim.keymap.set("n", "<leader>fyF", function()
     local current_file = vim.fn.expand('%:p')
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-    local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
+    local relative_path = Tricks.cutPathStartingFromRoot(current_file)
     LazyVim.info(relative_path)
     vim.fn.setreg("+", relative_path, "c")
-end, { desc = "Copy full file name" })
+end, { desc = "Copy relative file name" })
 
 vim.keymap.set("n", "<leader>fyd", function()
     local current_dir = vim.fn.expand('%:p:h')
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-    local relative_path = string.gsub(current_dir, root_folder, '') -- remove the root folder path from the current file path
+    local relative_path = Tricks.cutPathStartingFromRoot(current_dir)
     LazyVim.info(relative_path)
     vim.fn.setreg("+", relative_path, "c")
-end, { desc = "Copy dir name" })
+end, { desc = "Copy relative dir name" })
 
 -- Terraform
 vim.keymap.set("n", "<leader>cti", function() Tricks.sidecart("terraform init") end, { desc = "Terraform init" })
@@ -354,9 +344,5 @@ vim.keymap.set("n", "<leader>ctwl", function() Tricks.sidecart("terraform worksp
 vim.keymap.set("n", "<leader>ctwd", function() Tricks.sidecart("terraform workspace select dev") end, { desc = "Terraform workspace select dev" })
 
 vim.keymap.set({ "n", "i", "x" }, "<M-d>", function() vim.api.nvim_command("copy .\r") end, { desc = "Duplicate line" }) -- iterm2 remap from command+d
-
--- Snacks picker sources
-vim.keymap.set("n", "<leader>wp", function() Snacks.picker.projects() end, { desc = "Projects" })
-vim.keymap.set("n", "<leader>wu", function() Snacks.picker.undo() end, { desc = "Undo log" })
 
 -- stylua: ignore end
