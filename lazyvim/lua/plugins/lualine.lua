@@ -21,6 +21,7 @@ return {
     else
       opts.options = {
         theme = catppuccin,
+        component_separators = { left = "", right = "" },
       }
 
       -- normal settings
@@ -80,7 +81,7 @@ return {
         lualine_a = {},
         lualine_b = { "branch" },
         lualine_c = {
-          LazyVim.lualine.root_dir(),
+          LazyVim.lualine.root_dir({ cwd = true, icon = "" }),
           {
             -- <C-C> to change cwd via snacks explorer
             function()
@@ -88,8 +89,11 @@ return {
               local relative_path_to_cwd = Tricks.gitPathNoRoot(cwd)
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
 
+              -- handle the case when root is cwd
+              local display_path = relative_path_to_cwd ~= "" and relative_path_to_cwd or "root"
+
               -- use a highlight group to color text
-              return "%#lualine_a_inactive#" .. "󰢷 " .. relative_path_to_cwd
+              return "%#lualine_a_inactive#" .. "󰢷 " .. display_path
             end,
           },
           {
