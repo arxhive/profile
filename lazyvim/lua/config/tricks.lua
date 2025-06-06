@@ -141,7 +141,7 @@ function M.gitPath(path)
   return repo_folder_name .. path_part_after_root
 end
 
-function M.toQuickfix()
+function M.to_quickfix()
   -- Get information about the current line
   local line_number = vim.fn.line(".") -- Get the current line number
   local filename = vim.fn.expand("%:p") -- Get the full path of the current file
@@ -164,6 +164,25 @@ function M.toQuickfix()
   vim.fn.setqflist(qf_list, "r")
 
   return vim.inspect(qf_entry)
+end
+
+function M.remove_from_quickfix()
+  -- Get the current line number
+  local line_number = vim.fn.line(".")
+
+  -- Get the current quickfix list
+  local qf_list = vim.fn.getqflist()
+
+  -- Filter out the entry matching the current line number
+  local updated_qf_list = {}
+  for _, entry in ipairs(qf_list) do
+    if entry.lnum ~= line_number then
+      table.insert(updated_qf_list, entry)
+    end
+  end
+
+  -- Set the updated quickfix list
+  vim.fn.setqflist(updated_qf_list, "r")
 end
 
 return M

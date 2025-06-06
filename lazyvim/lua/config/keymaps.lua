@@ -62,11 +62,17 @@ vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Telescope diag
 vim.keymap.set("n","<leader>xq", ":cope<CR>",  { desc = "Quickfix list"})
 vim.keymap.set("n","<leader>xa",
   function()
-    local new_entry = Tricks.toQuickfix()
+    local new_entry = Tricks.to_quickfix()
     LazyVim.notify("New qflist entry: " .. new_entry)
     vim.api.nvim_command("cope")
   end,
   { desc = "Add To Quickfix"})
+
+  vim.keymap.set("n","<leader>xr",
+    function()
+      Tricks.remove_from_quickfix()
+    end,
+    { desc = "Remove from Quickfix"})
 -- qflist fyi:
 -- :cdo Executes a command on every item in the quickfix list.
 -- :vimgrep Searches a pattern in multiple files and adds the results to the quickfix list.
