@@ -54,6 +54,15 @@ function M.rootdir()
   return LazyVim.root.git()
 end
 
+function M.rootdir_name()
+  return string.match(LazyVim.root.git(), "([^/]+)$")
+end
+
+function M.cwd()
+  local full_cwd = vim.fn.getcwd()
+  return M.gitPath(full_cwd)
+end
+
 function M.get_visual_selection_range()
   local _, csrow, cscol, cerow, cecol
   local mode = vim.fn.mode()
@@ -117,11 +126,19 @@ function M.inspect(item)
 end
 
 -- remove local path to the root folder from the current file path
-function M.cutPathStartingFromRoot(path)
+function M.gitPathNoRoot(path)
   local root_folder = Tricks.rootdir()
   root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
   local path_part_after_root = string.gsub(path, root_folder, "")
   return path_part_after_root
+end
+
+function M.gitPath(path)
+  local root_folder = Tricks.rootdir()
+  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+  local repo_folder_name = string.match(root_folder, "([^/]+)$")
+  local path_part_after_root = string.gsub(path, root_folder, "")
+  return repo_folder_name .. path_part_after_root
 end
 
 return M

@@ -105,11 +105,9 @@ vim.keymap.set("n", "<leader>gn",
   vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
   vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
   vim.keymap.set("n", "<leader>gB", function()
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-
     local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local relative_path = string.gsub(current_file_path, root_folder, '') -- remove the root folder path from the current file path
+    local git_path = Tricks.gitPathNoRoot(current_file_path)
+    local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
 
     Tricks.silentterm("gh " .. relative_path)
   end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
@@ -280,21 +278,6 @@ vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end,
 -- Go helpers
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
 
--- Buffer helpers
-vim.keymap.set("n", "<leader>fot", function()
-    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local relative_path = Tricks.cutPathStartingFromRoot(current_file_path)
-
-    vim.api.nvim_command("!open -a 'Microsoft Edge' 'https://dev.azure.com/msazure/CloudNativeCompute/_git/aks-rp?path=" .. relative_path .. "'")
-end, { desc = "TFS" })
-
-vim.keymap.set("n", "<leader>fog", function()
-    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local relative_path = Tricks.cutPathStartingFromRoot(current_file_path)
-
-    vim.api.nvim_command("!open -a 'Google Chrome' 'https://github.com/arxhive/profile/tree/main/" .. relative_path .. "'")
-end, { desc = "Github" })
-
 -- Plantuml gui in the buffer dir
 vim.keymap.set("n", "<leader>fop", function()
     local current_buffer_path = vim.fn.expand('%:h')
@@ -324,17 +307,17 @@ end, { desc = "Copy file name" })
 
 vim.keymap.set("n", "<leader>fyF", function()
     local current_file = vim.fn.expand('%:p')
-    local relative_path = Tricks.cutPathStartingFromRoot(current_file)
+    local relative_path = Tricks.gitPath(current_file)
     LazyVim.info(relative_path)
     vim.fn.setreg("+", relative_path, "c")
-end, { desc = "Copy relative file name" })
+end, { desc = "Copy git file name" })
 
 vim.keymap.set("n", "<leader>fyd", function()
     local current_dir = vim.fn.expand('%:p:h')
-    local relative_path = Tricks.cutPathStartingFromRoot(current_dir)
+    local relative_path = Tricks.gitPath(current_dir)
     LazyVim.info(relative_path)
     vim.fn.setreg("+", relative_path, "c")
-end, { desc = "Copy relative dir name" })
+end, { desc = "Copy git dir name to file" })
 
 -- Terraform
 vim.keymap.set("n", "<leader>cti", function() Tricks.sidecart("terraform init") end, { desc = "Terraform init" })

@@ -85,7 +85,7 @@ return {
             -- <C-C> to change cwd via snacks explorer
             function()
               local cwd = vim.fn.getcwd()
-              local relative_path_to_cwd = Tricks.cutPathStartingFromRoot(cwd)
+              local relative_path_to_cwd = Tricks.gitPathNoRoot(cwd)
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
 
               -- use a highlight group to color text
