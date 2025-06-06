@@ -78,18 +78,29 @@ vim.keymap.set({ "n", "i", "x" }, "<C-/>",
     require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
   end, { desc = "Terminal (current folder)" }
 )
+vim.keymap.set({ "n" }, "==",
+  function()
+    local path = Tricks.refined("%:h:p")
+    require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
+  end, { desc = "Terminal (current folder)" }
+)
+vim.keymap.set({ "n" }, "<C-=>",
+  function()
+    local path = Tricks.rootdir()
+    require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
+  end, { desc = "Terminal (root)" })
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })
 
 vim.keymap.set("n", "<leader>gR", function()
-    local current_file = vim.fn.expand('%:p')
-    local root_folder = Tricks.rootdir()
-    root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-    local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
-    relative_path = string.gsub(relative_path, "^/", "") -- remove the leading slash
-    vim.api.nvim_command("!git reset-one '" .. relative_path .. "'")
-    LazyVim.info(relative_path, { title = "Reverted to master:" })
+  local current_file = vim.fn.expand('%:p')
+  local root_folder = Tricks.rootdir()
+  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+  local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
+  relative_path = string.gsub(relative_path, "^/", "") -- remove the leading slash
+  vim.api.nvim_command("!git reset-one '" .. relative_path .. "'")
+  LazyVim.info(relative_path, { title = "Reverted to master:" })
 end, { desc = "Revert file to master" })
 
 vim.keymap.set("n", "<leader>gn",
@@ -100,18 +111,18 @@ vim.keymap.set("n", "<leader>gn",
     end
   end, { desc = "New Branch" })
 
-  vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
-  vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
-  vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
-  vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
-  vim.keymap.set("n", "<leader>gB", function()
-    local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-    local git_path = Tricks.gitPathNoRoot(current_file_path)
-    local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
+vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
+vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
+vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
+vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
+vim.keymap.set("n", "<leader>gB", function()
+  local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
+  local git_path = Tricks.gitPathNoRoot(current_file_path)
+  local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
 
-    Tricks.silentterm("gh " .. relative_path)
-  end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
-  vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
+  Tricks.silentterm("gh " .. relative_path)
+end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
+vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
 
 -- Buffers
 vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
@@ -241,24 +252,24 @@ vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") e
 
 -- Escape regex characters
 local function escape_regex(str)
-    local matches = {
-        ['%'] = '\\%',
-        ['('] = '\\(',
-        [')'] = '\\)',
-        ['.'] = '\\.',
-        ['%+'] = '\\+',
-        ['%-'] = '\\-',
-        ['*'] = '\\*',
-        ['?'] = '\\?',
-        ['['] = '\\[',
-        [']'] = '\\]',
-        ['^'] = '\\^',
-        ['$'] = '\\$',
-        ['{'] = '\\{',
-        ['}'] = '\\}',
-        ['|'] = '\\|',
-    }
-    return (str:gsub('.', matches))
+  local matches = {
+    ['%'] = '\\%',
+    ['('] = '\\(',
+    [')'] = '\\)',
+    ['.'] = '\\.',
+    ['%+'] = '\\+',
+    ['%-'] = '\\-',
+    ['*'] = '\\*',
+    ['?'] = '\\?',
+    ['['] = '\\[',
+    [']'] = '\\]',
+    ['^'] = '\\^',
+    ['$'] = '\\$',
+    ['{'] = '\\{',
+    ['}'] = '\\}',
+    ['|'] = '\\|',
+  }
+  return (str:gsub('.', matches))
 end
 
 vim.keymap.set("v", "<leader>ce", function()
@@ -280,43 +291,43 @@ vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run"
 
 -- Plantuml gui in the buffer dir
 vim.keymap.set("n", "<leader>fop", function()
-    local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!plantuml -gui -theme sketchy -config $HOME/profile/plantuml/sketchy_config filedir " .. current_buffer_path .. "&")
+  local current_buffer_path = vim.fn.expand('%:h')
+  vim.api.nvim_command("!plantuml -gui -theme sketchy -config $HOME/profile/plantuml/sketchy_config filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy" })
 
 vim.keymap.set("n", "<leader>foP", function()
-    local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!plantuml -gui -theme sketchy-outline -SComponentFontSize=14 -filedir " .. current_buffer_path .. "&")
+  local current_buffer_path = vim.fn.expand('%:h')
+  vim.api.nvim_command("!plantuml -gui -theme sketchy-outline -SComponentFontSize=14 -filedir " .. current_buffer_path .. "&")
 end, { desc = "PlantUML Sketchy-outline" })
 
 vim.keymap.set("n", "<leader>fof", function()
-    local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!open " .. current_buffer_path)
+  local current_buffer_path = vim.fn.expand('%:h')
+  vim.api.nvim_command("!open " .. current_buffer_path)
 end, { desc = "Finder" })
 
 vim.keymap.set("n", "<leader>fob", function()
-    local current_buffer_path = vim.fn.expand('%:h')
-    vim.api.nvim_command("!open -a '/Applications/Google Chrome.app' %")
+  local current_buffer_path = vim.fn.expand('%:h')
+  vim.api.nvim_command("!open -a '/Applications/Google Chrome.app' %")
 end, { desc = "Browser" })
 
 vim.keymap.set("n", "<leader>fyf", function()
-    local current_buffer = vim.fn.expand('%:t')
-    LazyVim.info(current_buffer)
-    vim.fn.setreg("+", current_buffer, "c")
+  local current_buffer = vim.fn.expand('%:t')
+  LazyVim.info(current_buffer)
+  vim.fn.setreg("+", current_buffer, "c")
 end, { desc = "Copy file name" })
 
 vim.keymap.set("n", "<leader>fyF", function()
-    local current_file = vim.fn.expand('%:p')
-    local relative_path = Tricks.gitPath(current_file)
-    LazyVim.info(relative_path)
-    vim.fn.setreg("+", relative_path, "c")
+  local current_file = vim.fn.expand('%:p')
+  local relative_path = Tricks.gitPath(current_file)
+  LazyVim.info(relative_path)
+  vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy git file name" })
 
 vim.keymap.set("n", "<leader>fyd", function()
-    local current_dir = vim.fn.expand('%:p:h')
-    local relative_path = Tricks.gitPath(current_dir)
-    LazyVim.info(relative_path)
-    vim.fn.setreg("+", relative_path, "c")
+  local current_dir = vim.fn.expand('%:p:h')
+  local relative_path = Tricks.gitPath(current_dir)
+  LazyVim.info(relative_path)
+  vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy git dir name to file" })
 
 -- Terraform

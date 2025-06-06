@@ -168,7 +168,7 @@ return {
 
     -- files
     { "<leader><space>", function() Snacks.picker.files({ title = "Files cwd: " .. Tricks.cwd() }) end, desc = "Files cwd" },
-    { "<leader><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root: " .. Tricks.rootdir_name() }) end, desc = "Files root" },
+    { "<CR><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root: " .. Tricks.rootdir_name() }) end, desc = "Files root" },
 
     -- buffers
     { "<leader>wb", function() Snacks.picker.buffers() end, mode = {"n" }, desc = "Buffers" },
