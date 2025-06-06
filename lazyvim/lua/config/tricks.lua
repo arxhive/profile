@@ -185,4 +185,8 @@ function M.remove_from_quickfix()
   vim.fn.setqflist(updated_qf_list, "r")
 end
 
+function M.clear_quickfix()
+  vim.fn.setqflist({}, "r")
+end
+
 return M

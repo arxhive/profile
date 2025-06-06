@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>rr", function()
 end, { desc = "Rename", expr = true })
 vim.keymap.set("n", "<leader>rR", Snacks.rename.rename_file, { desc = "Rename File", })
 
--- quickfix and diagnoxtics
+-- Quickfix and diagnostics
 vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Buffer Diagnostics"})
 vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Telescope diagnostics bufnr=0") end,  { desc = "Full Diagnostics"})
 vim.keymap.set("n","<leader>xq", ":cope<CR>",  { desc = "Quickfix list"})
@@ -68,15 +68,11 @@ vim.keymap.set("n","<leader>xa",
   end,
   { desc = "Add To Quickfix"})
 
-  vim.keymap.set("n","<leader>xr",
-    function()
-      Tricks.remove_from_quickfix()
-    end,
-    { desc = "Remove from Quickfix"})
+  vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Remove from Quickfix"})
+  vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Clear Quickfix"})
 -- qflist fyi:
 -- :cdo Executes a command on every item in the quickfix list.
 -- :vimgrep Searches a pattern in multiple files and adds the results to the quickfix list.
-
 
 
 -- Lifehacks
