@@ -168,7 +168,7 @@ return {
 
     -- files
     { "<leader><space>", function() Snacks.picker.files({ title = "Files cwd: " .. Tricks.cwd() }) end, desc = "Files cwd" },
-    { "<CR><CR>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root: " .. Tricks.rootdir_name() }) end, desc = "Files root" },
+    { "<M-space>", function() Snacks.picker.files({ cwd = Tricks.rootdir(), title = "Files root: " .. Tricks.rootdir_name() }) end, desc = "Files root" }, -- Handles 0x1b 0x20 hex codes on S-Space from iterm2
 
     -- buffers
     { "<leader>wb", function() Snacks.picker.buffers() end, mode = {"n" }, desc = "Buffers" },
