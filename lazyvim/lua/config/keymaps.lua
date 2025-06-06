@@ -68,8 +68,8 @@ vim.keymap.set("n","<leader>xa",
   end,
   { desc = "Add To Quickfix"})
 
-  vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Remove from Quickfix"})
-  vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Clear Quickfix"})
+  vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Delete from Quickfix"})
+  vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Nuke Quickfix"})
 -- qflist fyi:
 -- :cdo Executes a command on every item in the quickfix list.
 -- :vimgrep Searches a pattern in multiple files and adds the results to the quickfix list.
