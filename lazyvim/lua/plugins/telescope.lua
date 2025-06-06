@@ -87,13 +87,11 @@ return {
             mappings = {
               ["i"] = {
                 ["<C-n>"] = require("telescope._extensions.file_browser.actions").create,
-
                 ["<S-CR>"] = require("telescope._extensions.file_browser.actions").create_from_prompt,
                 ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
-                ["<C-v>"] = require("telescope._extensions.file_browser.actions").move,
-                ["<C-y>"] = require("telescope._extensions.file_browser.actions").copy,
+                ["<C-x>"] = require("telescope._extensions.file_browser.actions").move, -- because <C-m> == <CR>
+                ["<C-p>"] = require("telescope._extensions.file_browser.actions").copy, -- actually copy and paste selected entry
                 ["<C-d>"] = require("telescope._extensions.file_browser.actions").remove,
-
                 ["<C-o>"] = require("telescope._extensions.file_browser.actions").open,
                 ["<C-g>"] = require("telescope._extensions.file_browser.actions").goto_parent_dir,
                 ["<C-e>"] = require("telescope._extensions.file_browser.actions").goto_home_dir,
