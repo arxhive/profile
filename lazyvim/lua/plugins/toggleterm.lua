@@ -72,5 +72,15 @@ return {
       end,
       desc = "Quit CopilotChat",
     },
+    {
+      "<leader>qx",
+      function()
+        -- 3 <C-l> just in case if I have more than 1 vsplit open
+        -- i is either insert mode or alias iexit=exit
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
+      end,
+      desc = "Quit quickfix",
+    },
   },
 }
