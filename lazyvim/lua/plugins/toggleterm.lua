@@ -75,8 +75,8 @@ return {
     {
       "<leader>qx",
       function()
-        -- 3 <C-l> just in case if I have more than 1 vsplit open
-        -- i is either insert mode or alias iexit=exit
+        -- pretty generic implementation to close any bottom window
+        -- ccl - is another option to close a qf list
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
       end,
