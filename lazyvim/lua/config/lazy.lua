@@ -38,4 +38,12 @@ require("lazy").setup({
   },
 })
 
+-- "t" is a Terminal Mode
+-- this callback is used to close any toggleterm buffer on <Tab>
+require("toggleterm").setup({
+  on_open = function(term)
+    vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<Tab>", "<C-\\><C-n>:q<CR>", { noremap = true, silent = true })
+  end,
+})
+
 _G.Tricks = require("config.tricks")

@@ -82,29 +82,18 @@ vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
 
 -- Terminal
-vim.keymap.set({ "n", "i", "x" }, "<C-S-/>",
+vim.keymap.set({ "n", "i", "x" }, "<S-Tab>",
   function()
     local path = Tricks.rootdir()
     require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
-  end, { desc = "Terminal (root)" })
+  end, { desc = "Terminal root" })
 
-vim.keymap.set({ "n", "i", "x" }, "<C-/>",
+vim.keymap.set({ "n", "i", "x" }, "<Tab>",
   function()
     local path = Tricks.refined("%:h:p")
     require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
-  end, { desc = "Terminal (current folder)" }
+  end, { desc = "Terminal current folder" }
 )
-vim.keymap.set({ "n" }, "==",
-  function()
-    local path = Tricks.refined("%:h:p")
-    require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
-  end, { desc = "Terminal (current folder)" }
-)
-vim.keymap.set({ "n" }, "<C-=>",
-  function()
-    local path = Tricks.rootdir()
-    require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
-  end, { desc = "Terminal (root)" })
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })
@@ -206,7 +195,7 @@ vim.keymap.set("n", "<PageUp>", function() require('illuminate').goto_prev_refer
 vim.keymap.set("n", "<PageDown>", function() require('illuminate').goto_next_reference() end, { desc = "Next reference" })
 
 -- Open defintion in vertical split
-vim.keymap.set("n", "<Tab>", function ()
+vim.keymap.set("n", "=", function ()
   local original_window = vim.api.nvim_get_current_win()
   vim.api.nvim_command("vsplit | vertical resize 100")
   vim.lsp.buf.definition()
@@ -218,7 +207,7 @@ vim.keymap.set("n", "<Tab>", function ()
   vim.api.nvim_set_current_win(original_window)
 end, { silent = true, desc = "Vert split definition" })
 
-vim.keymap.set("n", "<S-Tab>", function ()
+vim.keymap.set("n", "-", function ()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
 end, { silent = true, desc = "Close a right window" })
 
