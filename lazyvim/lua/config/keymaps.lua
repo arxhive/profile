@@ -88,7 +88,7 @@ vim.keymap.set({ "n", "i", "x" }, "<S-Tab>",
     require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
   end, { desc = "Terminal root" })
 
-vim.keymap.set({ "n", "i", "x" }, "<Tab>",
+vim.keymap.set({ "n", "x" }, "<Tab>",
   function()
     local path = Tricks.refined("%:h:p")
     require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")

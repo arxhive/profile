@@ -143,6 +143,9 @@ return {
         recent = {
           layout = my_telescope_layout,
         },
+        lsp_workspace_symbols = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
@@ -174,8 +177,11 @@ return {
     { "<leader>wb", function() Snacks.picker.buffers() end, mode = {"n" }, desc = "Buffers" },
 
     -- resume search
-    { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume search" },
+    { "<leader>se", function() Snacks.picker.resume() end, desc = "Resume search" },
     -- { "<leader>fr", function() Snacks.picker.recent({ cwd = vim.uv.cwd() }) end, desc = "Recent files" },
+
+    -- symbols
+    { "<leader>sw", function() Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "Workspace Symbols Snacks"},
 
     -- Snacks picker sources
     { "<leader>wp", function() Snacks.picker.projects() end,  desc = "Projects" },

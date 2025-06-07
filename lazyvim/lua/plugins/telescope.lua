@@ -57,6 +57,22 @@ return {
       { "<leader>fr", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent files" },
       -- { "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent files root" },
 
+      -- symbols
+      {
+        "<leader>sa",
+        "<cmd>Telescope aerial<cr>",
+        desc = "Aerial Symbols",
+      },
+      {
+        "<leader>ss",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols({
+            symbols = LazyVim.config.get_kind_filter(),
+          })
+        end,
+        desc = "Workspace Symbols",
+      },
+
       -- disabled
       { "<leader><space>", false },
       { "<leader>ff", false },
@@ -69,6 +85,7 @@ return {
       { "<leader>fb", false },
       { "<leader>sr", false },
       { "<leader>sR", false },
+      { "<leader>sS", false },
       { "<leader>gs", false }, -- git status
     },
   },
