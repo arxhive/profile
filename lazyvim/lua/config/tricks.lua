@@ -135,7 +135,7 @@ end
 function M.git_path_no_root(path)
   local root_dir = Tricks.rootdir()
 
-  -- Escape special characters in root_folder for pattern matching. This is required for gsub to work correctly.
+  -- Escape special characters in root_folder for pattern matching. Since gsub is based on reges this is required for gsub to work correctly.
   local root_dir_escaped = string.gsub(root_dir, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
   -- Remove root_folder from path
@@ -151,7 +151,7 @@ function M.git_path(path)
   -- last part of the root_dir
   local repo_dir_name = string.match(root_dir, "([^/]+)$")
 
-  -- Escape special characters in root_folder for pattern matching. This is required for gsub to work correctly.
+  -- Escape special characters in root_folder for pattern matching. Since gsub is based on reges this is required for gsub to work correctly.
   local root_dir_escaped = string.gsub(root_dir, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
 
   -- Remove root_folder from path
