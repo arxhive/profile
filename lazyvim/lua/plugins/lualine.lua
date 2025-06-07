@@ -86,7 +86,7 @@ return {
             -- <C-C> to change cwd via snacks explorer
             function()
               local cwd = vim.fn.getcwd()
-              local relative_path_to_cwd = Tricks.gitPathNoRoot(cwd)
+              local relative_path_to_cwd = Tricks.git_path_no_root(cwd)
               relative_path_to_cwd = relative_path_to_cwd:gsub("^/", "")
 
               -- handle the case when root is cwd

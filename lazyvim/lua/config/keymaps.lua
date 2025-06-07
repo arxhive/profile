@@ -133,7 +133,7 @@ vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, {
 vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
 vim.keymap.set("n", "<leader>gB", function()
   local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
-  local git_path = Tricks.gitPathNoRoot(current_file_path)
+  local git_path = Tricks.git_path_no_root(current_file_path)
   local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
 
   Tricks.silentterm("gh " .. relative_path)
@@ -335,14 +335,14 @@ end, { desc = "Copy file name" })
 
 vim.keymap.set("n", "<leader>fyF", function()
   local current_file = vim.fn.expand('%:p')
-  local relative_path = Tricks.gitPath(current_file)
+  local relative_path = Tricks.git_path(current_file)
   LazyVim.info(relative_path)
   vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy git file name" })
 
 vim.keymap.set("n", "<leader>fyd", function()
   local current_dir = vim.fn.expand('%:p:h')
-  local relative_path = Tricks.gitPath(current_dir)
+  local relative_path = Tricks.git_path(current_dir)
   LazyVim.info(relative_path)
   vim.fn.setreg("+", relative_path, "c")
 end, { desc = "Copy git dir name to file" })

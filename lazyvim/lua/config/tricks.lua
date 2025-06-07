@@ -51,7 +51,12 @@ end
 
 -- simplified logic for root directory to avoid mess with root pattern after LSP start
 function M.rootdir()
+  -- simple git root detection
   return LazyVim.root.git()
+
+  -- overcomplicated implementation, don't see use cases for that for now
+  -- but FYI, this implementation is used by lualine
+  -- return LazyVim.root.get({ normalize = true })
 end
 
 function M.rootdir_name()
@@ -60,7 +65,7 @@ end
 
 function M.cwd()
   local full_cwd = vim.fn.getcwd()
-  return M.gitPath(full_cwd)
+  return M.git_path(full_cwd)
 end
 
 function M.get_visual_selection_range()
@@ -126,19 +131,35 @@ function M.inspect(item)
 end
 
 -- remove local path to the root folder from the current file path
-function M.gitPathNoRoot(path)
-  local root_folder = Tricks.rootdir()
-  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-  local path_part_after_root = string.gsub(path, root_folder, "")
+-- used for lualine cwd presentation for instance
+function M.git_path_no_root(path)
+  local root_dir = Tricks.rootdir()
+
+  -- Escape special characters in root_folder for pattern matching. This is required for gsub to work correctly.
+  local root_dir_escaped = string.gsub(root_dir, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+
+  -- Remove root_folder from path
+  -- The `^` is a Lua pattern anchor that matches only the beginning of the string.
+  -- When used in combination with `string.gsub`, it ensures that the substitution only occurs if `root_dir_escaped` is found at the very start of the `path` string, not in the middle.
+  local path_part_after_root = string.gsub(path, "^" .. root_dir_escaped, "")
+
   return path_part_after_root
 end
 
-function M.gitPath(path)
-  local root_folder = Tricks.rootdir()
-  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-  local repo_folder_name = string.match(root_folder, "([^/]+)$")
-  local path_part_after_root = string.gsub(path, root_folder, "")
-  return repo_folder_name .. path_part_after_root
+function M.git_path(path)
+  local root_dir = Tricks.rootdir()
+  -- last part of the root_dir
+  local repo_dir_name = string.match(root_dir, "([^/]+)$")
+
+  -- Escape special characters in root_folder for pattern matching. This is required for gsub to work correctly.
+  local root_dir_escaped = string.gsub(root_dir, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
+
+  -- Remove root_folder from path
+  -- The `^` is a Lua pattern anchor that matches only the beginning of the string.
+  -- When used in combination with `string.gsub`, it ensures that the substitution only occurs if `root_dir_escaped` is found at the very start of the `path` string, not in the middle.
+  local path_part_after_root = string.gsub(path, "^" .. root_dir_escaped, "")
+
+  return repo_dir_name .. path_part_after_root
 end
 
 function M.to_quickfix()
