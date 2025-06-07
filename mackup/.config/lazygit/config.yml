@@ -30,6 +30,8 @@ gui:
     "Artem Kolomeetc": "yellow"
     "*": "#b4befe"
 keybinding:
+  universal:
+    openFile: ""
   files:
     toggleTreeView: t
     commitChangesWithEditor: <disabled>
