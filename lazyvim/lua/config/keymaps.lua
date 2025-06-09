@@ -80,6 +80,8 @@ vim.keymap.set("i", "©", "<ESC><ESC>", { desc = "Escape edit mode" }) -- used f
 
 vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
+vim.keymap.set({ "i" }, "<M-space>", " ", { silent = true }) -- a workaround for conflict with <M-Space> forwarded from iterm2 in insert mode
+
 
 -- Terminal
 vim.keymap.set({ "n", "i", "x" }, "<S-Tab>",
