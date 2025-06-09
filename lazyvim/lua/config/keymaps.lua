@@ -149,11 +149,18 @@ vim.keymap.set("v", "<C-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 -- Append lines
 vim.keymap.set("n", "<S-q>", function()
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line - 1, false, {""})
+  -- ignore errors if not modifiable
+  pcall(function()
+    vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line - 1, false, {""})
+  end)
 end, { desc = "Append line above" })
+
 vim.keymap.set("n", "q", function()
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_buf_set_lines(0, cursor_line, cursor_line, false, {""})
+  -- ignore errors if not modifiable
+  pcall(function()
+    vim.api.nvim_buf_set_lines(0, cursor_line, cursor_line, false, {""})
+  end)
 end, { desc = "Append line below" })
 
 vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })

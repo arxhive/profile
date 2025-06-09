@@ -29,16 +29,39 @@ gui:
   authorColors:
     "Artem Kolomeetc": "yellow"
     "*": "#b4befe"
+  spinner:
+    frames:
+      - ▉
+      - ▊
+      - ▋
+      - ▌
+      - ▍
+      - ▎
+      - ▏
+      - ▎
+      - ▍
+      - ▌
+      - ▋
+      - ▊
+      - ▉
+    # The "speed" of the spinner in milliseconds.
+    rate: 50
 keybinding:
   universal:
-    openFile: ""
+    openFile: <disabled>
   files:
-    toggleTreeView: t
+    toggleTreeView: "t" # overrides global "t" to take theirs
+    refreshFiles: "o" #  overrides global "o" to take ours by mistake
     commitChangesWithEditor: <disabled>
 git:
+  # list of branches that are considered 'main' branches, used when displaying commits
+  mainBranches:
+    - master
+    - main
   paging:
     colorArg: never
     pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+notARepository: quit
 customCommands:
   # command contexts
   # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#contexts
@@ -118,7 +141,7 @@ customCommands:
       - type: "input"
         title: "Work Item"
         key: "WorkItem"
-        initialValue: ""
+        initialValue: "AMNISPHR25-"
       # - type: "confirm"
       #   key: "Confirm"
       #   title: "Commit"
@@ -135,19 +158,19 @@ customCommands:
         options:
           - name: "feature"
             description: "A new feature under development"
-            value: "feature/"
+            value: "feature/AMNISPHR25-"
           - name: "bugfix"
             description: "A dedicated assigned bug fix"
-            value: "bugfix/"
+            value: "bugfix/AMNISPHR25-"
           - name: "hotfix"
             description: "A hotfix of broken functionality"
-            value: "hotfix/"
+            value: "hotfix/AMNISPHR25-"
           - name: "chore"
             description: "Other changes that don't modify src or test files"
             value: "chore"
           - name: "release"
             description: "A new release branch"
-            value: "release/"
+            value: "release/AMNISPHR25-"
       - type: "input"
         title: "Branch name"
         key: "BranchName"
