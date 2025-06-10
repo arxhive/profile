@@ -115,3 +115,11 @@ gh() {
   fi
 }
 
+# git pull profile and reload current zsh sessions
+pp() {
+  current=$pwd
+  cd "$HOME/profile"
+  git pull
+  cd $current
+  zsh
+}
