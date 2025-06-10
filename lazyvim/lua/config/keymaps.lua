@@ -114,7 +114,8 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- Git aliases
-vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })
+vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git stash-merge") end, { desc = "Stash-merge From mranch" })
+vim.keymap.set("n", "<leader>gP", function() Tricks.sidecart("git stash-pull") end, { desc = "Stash-pull" })
 
 vim.keymap.set("n", "<leader>gR", function()
   local current_file = vim.fn.expand('%:p')
@@ -130,9 +131,9 @@ vim.keymap.set("n", "<leader>gn",
   function()
     local new_branch_name = vim.fn.input("Branch name: ")
     if new_branch_name ~= "" then
-      Tricks.sidecart("git fresh-b " .. new_branch_name)
+      Tricks.sidecart("git fresh-branch " .. new_branch_name)
     end
-  end, { desc = "New Branch" })
+  end, { desc = "Fresh New Branch" })
 
 vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --continue") end, { desc = "Merge continue" })
 vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
