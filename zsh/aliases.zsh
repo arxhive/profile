@@ -165,6 +165,13 @@ alias gtt="git full-tree"
 alias gsp="git stash-pull"
 alias sc-lazy="cd ~/profile/lazyvim/"
 alias sc-lazyvim="v $HOME/.local/share/lazyvim/lazy"
+gclone() {
+  repo_name=$(echo "$@" | awk -F/ '{print $NF}' | sed 's/\.git$//')
+  repo_dir="$HOME/src/$repo_name"
+
+  git clone $@ $repo_dir
+  cd $(echo $repo_dir)
+}
 
 alias sc="cd $SRC && cf"
 alias uml="cd $HOME/uml/"
