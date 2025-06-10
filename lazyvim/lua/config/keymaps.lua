@@ -111,7 +111,9 @@ function _G.set_terminal_keymaps()
   -- back to code workspace from term
   vim.keymap.set({"t", "n"}, '<C-w>', [[<C-\><C-n><C-w><C-w>]], opts)
 end
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+-- apply these termnial keymaps only to toggleterm windows and exclude lazygit for instance
+vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git stash-merge") end, { desc = "Stash-merge From mranch" })
