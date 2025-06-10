@@ -36,7 +36,7 @@ return {
     on_open = function(term)
       -- custom insert mode on open that work more stable than start_in_insert option
       vim.schedule(function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>i", true, false, true), "n", false)
       end)
       -- "t" is a Terminal Mode
       -- this callback is used to close any toggleterm buffer on <Tab>
@@ -55,9 +55,11 @@ return {
       function()
         local is_open = #require("toggleterm.terminal").get_all(true) > 0
         if is_open then
+          -- lifehack to focus on  toggleterm in focus from any state
           vim.api.nvim_command("TermExec cmd='' go_back=0")
           vim.schedule(function()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
+            -- always go to normal mode before insert mode for safety
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>i", true, false, true), "n", false)
           end)
         else
           vim.api.nvim_command("ToggleTerm dir=%:p:h")
@@ -69,7 +71,7 @@ return {
       "<leader>qt",
       function()
         -- 3 <C-l> just in case if I have more than 1 vsplit open
-        -- i is either insert mode or alias iexit=exit
+        -- i is either insert mode or alias the first letter of alias "iexit" that is exit
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><C-l><C-l>i", true, false, true), "m", false)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, false, true), "m", false)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("exit<CR>", true, false, true), "m", false)
