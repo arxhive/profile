@@ -6,6 +6,7 @@ return {
     direction = "vertical",
     size = 100,
     shade_terminals = false,
+    start_in_insert = false, -- use false to avoid conflicts with a custom nvim_feedkeys function on_open
     highlights = {
       -- highlights which map to a highlight group name and a table of it's values
       -- https://github.com/akinsho/toggleterm.nvim/blob/cd55bf6aab3f88c259fa29ea86bbdcb1a325687d/lua/toggleterm/colors.lua#L95
@@ -32,7 +33,18 @@ return {
         return math.ceil(vim.o.lines * 1)
       end,
     },
-    -- close_on_exit = true,
+    on_open = function(term)
+      -- custom insert mode on open that work more stable than start_in_insert option
+      vim.schedule(function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
+      end)
+      -- "t" is a Terminal Mode
+      -- this callback is used to close any toggleterm buffer on <Tab>
+      vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<Tab>", "<C-\\><C-n>:q<CR>", { noremap = true, silent = true })
+      -- or use "q" in normal mode to close
+      vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    end,
+    close_on_exit = true,
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
@@ -44,7 +56,9 @@ return {
         local is_open = #require("toggleterm.terminal").get_all(true) > 0
         if is_open then
           vim.api.nvim_command("TermExec cmd='' go_back=0")
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i<BS>", true, false, true), "m", false)
+          vim.schedule(function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
+          end)
         else
           vim.api.nvim_command("ToggleTerm dir=%:p:h")
         end

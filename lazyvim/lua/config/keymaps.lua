@@ -82,6 +82,7 @@ vim.keymap.set({ "n", "x" }, "<Bslash>", ":")
 vim.keymap.set({ "n", "i" }, "<F12>", function() vim.api.nvim_command("Kindle") end, { desc = "Turn on code mode"})
 vim.keymap.set({ "i" }, "<M-space>", " ", { silent = true }) -- a workaround for conflict with <M-Space> forwarded from iterm2 in insert mode
 
+vim.keymap.set({ "n" }, "<BS>", "i", { silent = true }) -- key del on mac to insert mode
 
 -- Terminal
 vim.keymap.set({ "n", "i", "x" }, "<S-Tab>",
@@ -96,6 +97,21 @@ vim.keymap.set({ "n", "x" }, "<Tab>",
     require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
   end, { desc = "Terminal current folder" }
 )
+
+-- a tricky way to set terminal bindings
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  -- normal swtich to normal mode on esc
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  -- navigation between the windows from term
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  -- back to code workspace from term
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w><C-w>]], opts)
+end
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- Git aliases
 vim.keymap.set("n", "<leader>gm", function() Tricks.sidecart("git fresh") end, { desc = "Merge from master" })
