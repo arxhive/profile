@@ -1,6 +1,6 @@
 -- stylus: ignore
 return {
-  { "zbirenbaum/copilot.lua", enabled = false }, -- Copilot auth
-  { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
+  { "zbirenbaum/copilot.lua", enabled = true }, -- Copilot auth
+  { "CopilotC-Nvim/CopilotChat.nvim", enabled = true },
   { "williamboman/mason.nvim", enabled = true },
 }
