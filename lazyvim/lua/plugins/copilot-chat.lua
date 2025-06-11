@@ -52,9 +52,14 @@ return {
       return {
         {
           "<leader>ac",
-          copilot_chat.toggle,
+          copilot_chat.open,
           desc = "CopilotChat",
           mode = { "n", "v" },
+        },
+        {
+          "<leader>qc",
+          copilot_chat.close,
+          desc = "Quit CopilotChat",
         },
         {
           "<leader>ax",

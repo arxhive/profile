@@ -70,6 +70,14 @@ vim.keymap.set("n","<leader>xa",
 
   vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Delete from Quickfix"})
   vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Nuke Quickfix"})
+  vim.keymap.set("n", "<leader>qx",
+  function()
+      -- pretty generic implementation to close any bottom window
+      -- ccl - is another option to close a qf list
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
+  end,
+  { desc = "Quit quickfix" })
 -- qflist fyi:
 -- :cdo Executes a command on every item in the quickfix list.
 -- :vimgrep Searches a pattern in multiple files and adds the results to the quickfix list.

@@ -81,25 +81,5 @@ return {
       end,
       desc = "Quit Toggle Term",
     },
-    {
-      "<leader>qc",
-      function()
-        -- 3 <C-l> just in case if I have more than 1 vsplit open
-        -- i is either insert mode or alias iexit=exit
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><C-l><C-l>i", true, false, true), "m", false)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, false, true), "m", false)
-      end,
-      desc = "Quit CopilotChat",
-    },
-    {
-      "<leader>qx",
-      function()
-        -- pretty generic implementation to close any bottom window
-        -- ccl - is another option to close a qf list
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
-      end,
-      desc = "Quit quickfix",
-    },
   },
 }
