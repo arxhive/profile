@@ -61,7 +61,12 @@ return {
             local explorer = Snacks.picker.get({ source = "explorer" })[1]
 
             if buf:match("toggleterm") then
-              return "term"
+              -- double-check based on the opened buf filetype
+              if vim.bo.filetype == "toggleterm" then
+                return "term"
+              else
+                return ""
+              end
             elseif buf:match("copilot") then
               return "copilot"
             elseif buf:match("filesystem") then

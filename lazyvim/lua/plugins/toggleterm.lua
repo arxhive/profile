@@ -36,7 +36,10 @@ return {
     on_open = function(term)
       -- custom insert mode on open that work more stable than start_in_insert option
       vim.schedule(function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>i", true, false, true), "n", false)
+        -- use to prevent jumping into insert mode before term initialiation for some use cases where I execute automatically execute a term command (Tricks.sidecart for example)
+        if vim.bo.filetype == "toggleterm" then
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>i", true, false, true), "n", false)
+        end
       end)
       -- "t" is a Terminal Mode
       -- this callback is used to close any toggleterm buffer on <Tab>

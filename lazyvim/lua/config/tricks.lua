@@ -33,6 +33,7 @@ end
 function M.floatterm(cmd)
   local curDir = vim.fn.expand("%:h") -- % for cwd
   term.exec(cmd, 4, 100, curDir, "float", " Toggle Term ", false, true)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
 end
 
 function M.silentterm(cmd)
