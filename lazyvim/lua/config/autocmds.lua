@@ -202,17 +202,26 @@ end
 vim.api.nvim_create_autocmd("BufWritePre", { callback = trim_trailing_whitespaces })
 
 -- Map custom template files to json format
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
-  pattern = "*.tpl,*.gotpl",
-  -- used for regular actions
-  command = "set filetype=json",
-})
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+--   pattern = "*.tpl,*.gotpl",
+--   -- used for regular actions
+--   command = "set filetype=json",
+-- })
 
 -- Workaround to handle new terraform files in runtime
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
-  pattern = "*.tf",
-  -- used for regular actions
-  command = "set filetype=terraform",
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+--   pattern = "*.tf",
+--   -- used for regular actions
+--   command = "set filetype=terraform",
+-- })
+
+-- handle custom filetypes
+vim.filetype.add({
+  extension = {
+    tpl = "json",
+    gotpl = "json",
+    tf = "terraform",
+  },
 })
 
 -- Handle an empty terraform file
