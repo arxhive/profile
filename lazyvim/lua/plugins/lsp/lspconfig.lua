@@ -67,6 +67,10 @@ return {
         terraformls = {
           autostart = false,
         },
+        bicep = {
+          autostart = false,
+          enabled = true,
+        },
         metals = {
           autostart = false, -- changes nothing
           keys = {

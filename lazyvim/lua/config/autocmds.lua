@@ -94,6 +94,24 @@ local function maybeMetals()
   vim.api.nvim_exec_autocmds("FileType", { pattern = vim.fn.expand("%:e") })
 end
 
+-- require bicep installed manually from
+-- require dotnet 8 SDK
+-- plugin source: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/bicep.lua
+-- bicep: https://github.com/Azure/bicep/releases
+-- To download the latest release and place in /usr/local/bin/bicep-langserver:
+-- ```bash
+-- (cd $(mktemp -d) \
+--     && curl -fLO https://github.com/Azure/bicep/releases/latest/download/bicep-langserver.zip \
+--     && rm -rf /usr/local/bin/bicep-langserver \
+--     && unzip -d /usr/local/bin/bicep-langserver bicep-langserver.zip)
+-- ```
+local function maybeBicep()
+  local bicep_lsp_bin = "/usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
+  require("lspconfig").bicep.setup({
+    cmd = { "dotnet", bicep_lsp_bin },
+  })
+end
+
 vim.api.nvim_create_user_command("Kindle", function()
   if KINDLED == nil then
     require("lspconfig")
@@ -142,6 +160,7 @@ vim.api.nvim_create_user_command("Kindle", function()
     -- end
 
     maybeMetals()
+    maybeBicep()
 
     KINDLED = true
   else
@@ -221,6 +240,7 @@ vim.filetype.add({
     tpl = "json",
     gotpl = "json",
     tf = "terraform",
+    bicep = "bicep",
   },
 })
 
