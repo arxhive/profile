@@ -68,11 +68,11 @@ return {
           autostart = false,
         },
         bicep = {
-          autostart = false,
+          autostart = false, -- managed by Kindle
           enabled = true,
         },
         metals = {
-          autostart = false, -- changes nothing
+          autostart = false, -- managed by Kindle
           keys = {
             {
               "<leader>cme",
