@@ -57,6 +57,8 @@ return {
         },
         jsonls = {
           autostart = false,
+          -- Doesn't work for some reasons. Use manual  mapping from autocmds.lua instead
+          -- filetypes = { "json", "jsonc", "json.tpl", "tpl", "gotpl" },
         },
         -- nvim-jdtls is a wrapper around Eclipse JDT for nvim, similarly to lspconfig itself
         jdtls = {

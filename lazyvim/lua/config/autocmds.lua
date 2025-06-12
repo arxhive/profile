@@ -200,3 +200,24 @@ local function trim_trailing_whitespaces()
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", { callback = trim_trailing_whitespaces })
+
+-- vim.filetype.add({ extension = { gotpl = "json" } })
+-- Map custom template files to json format
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+  pattern = "*.tpl,*.gotpl",
+  -- used for regular actions
+  command = "set filetype=json",
+  -- used for delayed initiazaton such after using Persistence plugin to load the latest session
+  callback = vim.api.nvim_command("set filetype=json"),
+})
+
+-- Workaround to handle new terraform files in runtime
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+  pattern = "*.tf,*.tfvars,*.tfstate,*.tfstate.backup",
+  -- used for regular actions
+  command = "set filetype=terraform",
+  -- used for delayed initiazaton such after using Persistence plugin to load the latest session
+  callback = vim.api.nvim_command("set filetype=terraform"),
+})
+
+-- Handle an empty terraform file
