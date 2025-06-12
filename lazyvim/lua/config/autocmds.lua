@@ -210,7 +210,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
 
 -- Workaround to handle new terraform files in runtime
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
-  pattern = "*.tf,*.tfvars,*.tfstate,*.tfstate.backup",
+  pattern = "*.tf",
   -- used for regular actions
   command = "set filetype=terraform",
 })
