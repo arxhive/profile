@@ -64,6 +64,9 @@ return {
         jdtls = {
           autostart = false, -- doesn't work
         },
+        terraformls = {
+          autostart = false,
+        },
         metals = {
           autostart = false, -- changes nothing
           keys = {
