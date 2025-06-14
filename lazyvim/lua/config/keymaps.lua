@@ -289,8 +289,10 @@ vim.keymap.set("n", "<leader>Lr", function()
   vim.api.nvim_command("LazyRoot")
   vim.api.nvim_command("NoiceLast")
 end, { desc = "Roots Info" })
-vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_command("delmarks!") end, { desc = "Del Marks" })
 
+-- Mark management
+vim.keymap.set("n", "md", function() Tricks.delete_marks_current_line()  end, { desc = "Del Mark Line" })
+vim.keymap.set("n", "mD", function() vim.api.nvim_command("delmarks!") end, { desc = "Del All Marks" })
 
 -- Escape regex characters
 local function escape_regex(str)
@@ -380,5 +382,14 @@ vim.keymap.set("n", "<leader>ctwl", function() Tricks.sidecart("terraform worksp
 vim.keymap.set("n", "<leader>ctwd", function() Tricks.sidecart("terraform workspace select dev") end, { desc = "Terraform workspace select dev" })
 
 vim.keymap.set({ "n", "i", "x" }, "<M-d>", function() vim.api.nvim_command("copy .\r") end, { desc = "Duplicate line" }) -- iterm2 remap from command+d
+
+-- treesitter-context
+vim.keymap.set("n", "<F1>", function()
+  vim.api.nvim_command("TSContext toggle")
+end, { desc = "Toggle context", silent = true })
+
+vim.keymap.set("n", "[x", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })
 
 -- stylua: ignore end

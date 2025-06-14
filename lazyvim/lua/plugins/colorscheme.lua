@@ -17,14 +17,15 @@ return {
       },
       highlight_overrides = {
         all = function(colors)
+          -- https://catppuccin.com/palette/
           -- https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
-          -- https://github.com/catppuccin/catppuccin/blob/main/docs/translation-table.md
 
           local ucolors = require("catppuccin.utils.colors")
           local popup_bg = ucolors.darken(colors.mantle, 1.05, "#000000") -- ligher
           local prompt_bg = ucolors.darken(popup_bg, 0.95, "#000000") -- darker
           local telescope_text = colors.text
           local accent = colors.pink
+          local base_macchiato = "#24273a"
           -- local accent = colors.mauve
           -- local accent = colors.lavender
           -- local prompt_title_bg = colors.lavender
@@ -71,6 +72,12 @@ return {
             -- TelescopeSelectionCaret = { fg = telescope_text },
             TelescopeResultsNormal = { bg = popup_bg },
             TelescopeResultsBorder = { bg = popup_bg, fg = popup_bg },
+
+            TreesitterContext = { bg = base_macchiato },
+            TreesitterContextSeparator = { bg = base_macchiato },
+            TreesitterContextBottom = { bg = base_macchiato, fg = accent },
+            TreesitterContextLineNumber = { bg = base_macchiato, fg = base_macchiato },
+            TreesitterContextLineNumberBottom = { bg = base_macchiato, fg = base_macchiato },
           }
         end,
       },

@@ -211,4 +211,31 @@ function M.clear_quickfix()
   vim.fn.setqflist({}, "r")
 end
 
+function M.delete_marks_current_line()
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  local deleted_marks = {}
+
+  -- Add file marks (lowercase marks)
+  for c = string.byte("a"), string.byte("z") do
+    local mark_pos = vim.api.nvim_buf_get_mark(0, string.char(c))
+    if mark_pos[1] == current_line then
+      table.insert(deleted_marks, string.char(c))
+      vim.cmd("delmarks " .. string.char(c))
+    end
+  end
+
+  -- Add global marks (uppercase marks)
+  for c = string.byte("A"), string.byte("Z") do
+    local mark_pos = vim.api.nvim_buf_get_mark(0, string.char(c))
+    if mark_pos[1] == current_line then
+      table.insert(deleted_marks, string.char(c))
+      vim.cmd("delmarks " .. string.char(c))
+    end
+  end
+
+  if #deleted_marks > 0 then
+    LazyVim.notify("Mark is deleted: " .. table.concat(deleted_marks, ", "), { title = "Marks" })
+  end
+end
+
 return M
