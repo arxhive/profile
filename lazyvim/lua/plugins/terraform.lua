@@ -20,7 +20,9 @@ return {
       },
       {
         "<leader>sit",
-        ":Telescope terraform state_list<CR>",
+        function()
+          vim.api.nvim_command("Telescope terraform state_list")
+        end,
         desc = "Terraform state list",
       },
     },

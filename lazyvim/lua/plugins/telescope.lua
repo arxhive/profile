@@ -87,7 +87,7 @@ return {
       { "<leader>sR", false },
       { "<leader>sS", false },
       { "<leader>gs", false }, -- git status
-      { "<leader>sm", false }, -- marks
+      { "<leader>sm", false }, -- git status
     },
   },
   {
@@ -194,11 +194,41 @@ return {
         end,
         desc = "Workspace Add",
       },
-      { "<leader>ws", ":Telescope workspaces<CR>", desc = "Workspaces" },
-      { "<leader>wSa", ":WorkspacesAddDir<CR>", desc = "Workspace Add Dir" },
-      { "<leader>wSs", ":WorkspacesSyncDirs<CR>", desc = "Workspaces Sync" },
-      { "<leader>wSr", ":WorkspacesRemove<CR>", desc = "Remove workspace" },
-      { "<leader>wSR", ":WorkspacesRemoveDir<CR>", desc = "Remove Dir" },
+      {
+        "<leader>ws",
+        function()
+          vim.api.nvim_command("Telescope workspaces")
+        end,
+        desc = "Workspaces",
+      },
+      {
+        "<leader>wSa",
+        function()
+          vim.api.nvim_command("WorkspacesAddDir")
+        end,
+        desc = "Workspace Add Dir",
+      },
+      {
+        "<leader>wSs",
+        function()
+          vim.api.nvim_command("WorkspacesSyncDirs")
+        end,
+        desc = "Workspaces Sync",
+      },
+      {
+        "<leader>wSr",
+        function()
+          vim.api.nvim_command("WorkspacesRemove")
+        end,
+        desc = "Remove workspace",
+      },
+      {
+        "<leader>wSR",
+        function()
+          vim.api.nvim_command("WorkspacesRemoveDir")
+        end,
+        desc = "Remove Dir",
+      },
     },
   },
 }

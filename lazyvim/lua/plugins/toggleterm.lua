@@ -51,8 +51,20 @@ return {
   },
   cmd = { "ToggleTerm", "TermExec" },
   keys = {
-    { "<leader>bt", ":ToggleTerm dir=%:p:h<CR>", desc = "Term Toggle cwd" },
-    { "<leader>bT", ":ToggleTerm<CR>", desc = "Term Toggle root" },
+    {
+      "<leader>bt",
+      function()
+        vim.api.nvim_command("ToggleTerm dir=%:p:h")
+      end,
+      desc = "Term Toggle cwd",
+    },
+    {
+      "<leader>bT",
+      function()
+        vim.api.nvim_command("ToggleTerm")
+      end,
+      desc = "Term Toggle root",
+    },
     {
       "<leader>wt",
       function()

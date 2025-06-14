@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>rR", Snacks.rename.rename_file, { desc = "Rename Fi
 -- Quickfix and diagnostics
 vim.keymap.set("n","<leader>xx", function() vim.api.nvim_command("Telescope diagnostics") end,  { desc = "Buffer Diagnostics"})
 vim.keymap.set("n","<leader>xX", function() vim.api.nvim_command("Telescope diagnostics bufnr=0") end,  { desc = "Full Diagnostics"})
-vim.keymap.set("n","<leader>xq", ":cope<CR>",  { desc = "Quickfix list"})
+vim.keymap.set("n","<leader>xq", function() vim.api.nvim_command("cope") end,  { desc = "Quickfix list"})
 vim.keymap.set("n","<leader>xa",
   function()
     local new_entry = Tricks.to_quickfix()
@@ -159,7 +159,7 @@ end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim sna
 vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
 
 -- Buffers
-vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
+-- vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })
 
 -- Resize windows
 vim.keymap.set("n", "<C-S-Right>", ":vertical resize +10<CR>", { desc = "Increase window width" })
