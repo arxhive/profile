@@ -87,6 +87,7 @@ return {
       { "<leader>sR", false },
       { "<leader>sS", false },
       { "<leader>gs", false }, -- git status
+      { "<leader>sm", false }, -- marks
     },
   },
   {

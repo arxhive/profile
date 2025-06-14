@@ -146,6 +146,9 @@ return {
         lsp_workspace_symbols = {
           layout = my_telescope_layout,
         },
+        marks = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
@@ -186,6 +189,8 @@ return {
     -- Snacks picker sources
     { "<leader>wp", function() Snacks.picker.projects() end,  desc = "Projects" },
     { "<leader>wu", function() Snacks.picker.undo() end, desc = "Undo log" },
+    { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+
 
     -- advanced filters
     { "<leader>fit",
