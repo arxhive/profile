@@ -9,7 +9,7 @@ return {
     icons = {
       mappings = false,
     },
-    delay = 400,
+    delay = 0,
     plugins = { spelling = false },
     spec = {
       { "<leader>b", group = "buffers", mode = { "n", "v", "x" } }, -- remmaped default spec to disable dynamic buffers

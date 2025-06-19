@@ -400,8 +400,9 @@ end, { silent = true })
 
 -- visually select all content inside a markdown code block (between fence)
 vim.keymap.set({ "v" }, "im", function()
-  -- First exit visual mode to ensure we're in normal mode
-  vim.cmd('normal! <Esc>')
+  -- Exit visual mode to ensure we're in normal mode to count line positions properly
+  -- The `'nx'` mode parameter means "no mapping" (like `normal!`)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'nx', false)
 
   local start_pattern = "^```%S*$"  -- Match opening fence with any language
   local end_pattern = "^```$"       -- Match closing fence
@@ -431,6 +432,6 @@ vim.keymap.set({ "v" }, "im", function()
   else
     LazyVim.notify("No code block found", {title = "Markdown", level = "warn"})
   end
-end, { desc = "Select code in markdown block", silent = true, noremap = true })
+end, { desc = "select code in markdown block", silent = true, noremap = true })
 
 -- stylua: ignore end
