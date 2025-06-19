@@ -398,4 +398,39 @@ vim.keymap.set("n", "[x", function()
   require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true })
 
+-- visually select all content inside a markdown code block (between fence)
+vim.keymap.set({ "v" }, "im", function()
+  -- First exit visual mode to ensure we're in normal mode
+  vim.cmd('normal! <Esc>')
+
+  local start_pattern = "^```%S*$"  -- Match opening fence with any language
+  local end_pattern = "^```$"       -- Match closing fence
+  local cursor_line = vim.fn.line('.')
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+  -- Find the start of the code block (the line with ```)
+  local start_line = cursor_line
+  while start_line > 1 and not content[start_line]:match(start_pattern) do
+    start_line = start_line - 1
+  end
+
+  -- Find the end of the code block
+  local end_line = cursor_line
+  while end_line < #content and not content[end_line]:match(end_pattern) do
+    end_line = end_line + 1
+  end
+
+  -- Visually select the code content (excluding the opening fence, including the content up to the closing fence)
+  if start_line < end_line - 1 then
+    -- Move to first content line (line after the opening fence)
+    vim.api.nvim_win_set_cursor(0, {start_line + 1, 0})
+    -- Start visual line mode
+    vim.cmd('normal! V')
+    -- Extend selection to the line before the closing fence
+    vim.api.nvim_win_set_cursor(0, {end_line - 1, 0})
+  else
+    LazyVim.notify("No code block found", {title = "Markdown", level = "warn"})
+  end
+end, { desc = "Select code in markdown block", silent = true, noremap = true })
+
 -- stylua: ignore end
