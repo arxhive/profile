@@ -259,11 +259,17 @@ vim.keymap.set("n", "<leader>wC",
 vim.keymap.set({ "n", "i" }, "<C-i>", "<C-S-i>", { silent = true, noremap = true })
 
 -- :%s - substitute in the whole file
-vim.keymap.set({ "n" }, "<leader>rx", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace" })
 -- :s - substitute in the specified lines
-vim.keymap.set({ "v" }, "<leader>rx", [[:s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace" })
--- vim.keymap.set({ "n", "v" }, "<leader>rS", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace selected by regex" })
-vim.keymap.set("x", "<leader>rX", [[:s/\(.*\)/___\1___]], { desc = "Regex Suround" })
+-- <C-r><C-w> - get the work under cursor
+-- <C-w> - delete a word before in command line
+-- <C-u> - clear the command line after entering it from visual mode (delete all before cursor)
+-- y: - yank visual selection into register
+-- <C-r>* - past last yank from the registry into command line
+vim.keymap.set({ "n" }, "<leader>rx", [[:%s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace in Buffer" })
+vim.keymap.set({ "v" }, "<leader>rx", [[:s///gI<Left><Left><Left><Left>]], { desc = "Regex Replace in Selected Block" })
+vim.keymap.set({ "n" }, "<leader>rX", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace Word by Regex in Buffer" })
+vim.keymap.set({ "v" }, "<leader>rX", [[y:<C-u>%s/\<<C-r>*\>/<C-r>*/gI<Left><Left><Left>]], { desc = "Replace Selected by Regex in Buffer" })
+vim.keymap.set("x", "<leader>rS", [[:s/\(.*\)/___\1___]], { desc = "Regex Surround Selected Block" })
 
 -- vim.keymap.set("x", "<leader>p", "\"_dp", { desc = "Paste in keep in register" })
 -- vim.keymap.set("x", "P", "\"_d<Plug>(YankyPutAfter)", { desc = "Paste and keep in register" })
