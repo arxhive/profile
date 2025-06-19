@@ -42,6 +42,7 @@ vim.opt.timeoutlen = 100
 -- This setting controls how long Neovim waits for a key sequence to complete after pressing <esc> when it's part of a terminal key code.
 vim.opt.ttimeoutlen = 100
 
+-- some plugins populate the signcolumn with something useful. People tend to use the gitsigns plugin, for showing deletions, changes, additions, from git.
 require("lazyvim.util").lsp.on_attach(function()
-  vim.opt.signcolum = "yes"
+  vim.opt.signcolumn = "yes"
 end)
