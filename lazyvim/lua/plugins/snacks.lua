@@ -217,6 +217,7 @@ return {
     { "<leader>fiP",
       function()
         Snacks.picker.grep({ cwd = Tricks.rootdir(), exclude={ "coverage", "dist", "package.json", "package-lock.json", "packages.lock.json", "packages.config", "go.mod", "go.sum", "*.gradle", "*.pom", "requirements.txt" }, title = "Grep root no packages: " .. Tricks.rootdi_namer() })
+        Snacks.picker.grep({ cwd = Tricks.rootdir(), exclude={ "coverage", "dist", "package.json", "package-lock.json", "packages.lock.json", "packages.config", "go.mod", "go.sum", "*.gradle", "*.pom", "requirements.txt" }, title = "Grep root no packages: " .. Tricks.rootdir_name() })
       end,
       desc = "Ignore packages root"
     },
