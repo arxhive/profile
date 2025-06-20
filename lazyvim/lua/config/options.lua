@@ -37,7 +37,7 @@ vim.opt.conceallevel = 0
 
 -- This setting controls how long Neovim waits for a key sequence to complete after pressing the <esc> key.
 -- good example is mapping to "md", if timeoutlen is 0, md will not work, I have 100ms to finish it.
-vim.opt.timeoutlen = 100
+vim.opt.timeoutlen = 150
 
 -- This setting controls how long Neovim waits for a key sequence to complete after pressing <esc> when it's part of a terminal key code.
 vim.opt.ttimeoutlen = 100
