@@ -209,7 +209,7 @@ vim.keymap.set({ "n", "v" }, "]=", "f=w", { desc = "After =", silent = true, nor
 vim.keymap.set({ "n", "v" }, "[=", "F=F b", { desc = "Before =", silent = true, noremap = true })
 -- TestCamelCaseString := abc
 
-vim.keymap.set({ "n", "v" }, "]n", "0:call search('[a-zA-Z0-9](', '', line('.'))<CR>", { desc = "Func Name", silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "]n", "0:call search('[a-zA-Z0-9](', '', line('.'))<CR>b", { desc = "Func Name", silent = true, noremap = true })
 -- vim.keymap.set({ "n", "v" }, "]n", "_t(;b", { desc = "Func Name", silent = true, noremap = true })
 -- 'b' option for search means backward
 vim.keymap.set({ "n" }, "dc", "i<Esc>$:call search(',', 'b', line('.'))<CR>xgi<Esc>", { desc = "Delete trail comma", silent = true, noremap = true })
