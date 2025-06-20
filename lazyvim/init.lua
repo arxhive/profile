@@ -33,3 +33,14 @@ vim.g.firenvim_config = {
     },
   },
 }
+
+-- TODO: Play around it
+vim.cmd([[
+  highlight CursorLine cterm=NONE ctermbg=NONE guibg=#2a2b3c
+
+  augroup CursorLineToggle
+    autocmd!
+    autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#181825
+    autocmd InsertLeave * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#2a2b3c
+  augroup END
+]])
