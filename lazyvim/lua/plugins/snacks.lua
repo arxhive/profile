@@ -149,6 +149,9 @@ return {
         marks = {
           layout = my_telescope_layout,
         },
+        todo_comments = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
@@ -191,6 +194,9 @@ return {
     { "<leader>wu", function() Snacks.picker.undo() end, desc = "Undo log" },
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
 
+    -- Todo lists
+    { "<leader>st", function() Snacks.picker.todo_comments({ keywords = { "TODO" } }) end, desc = "Todo Buffer" },
+    { "<leader>sT", function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo Global" },
 
     -- advanced filters
     { "<leader>fit",

@@ -36,8 +36,6 @@ vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 
 -- Default Trouble lists
-vim.keymap.del("n", "<leader>xt")
-vim.keymap.del("n", "<leader>xT")
 vim.keymap.del("n", "<leader>xl")
 vim.keymap.del("n", "<leader>xL")
 vim.keymap.del("n", "<leader>xq")
