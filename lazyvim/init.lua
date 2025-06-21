@@ -48,3 +48,11 @@ vim.cmd([[
     autocmd InsertLeave * highlight CursorLineNr guifg=#b4befe " default
   augroup END
 ]])
+
+-- Do not store marks 0 to 9 are automatically created by vim and stored in the viminfo and clear existing
+vim.opt.shada:append("f0")
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("delmarks 0-9")
+  end,
+})
