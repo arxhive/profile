@@ -115,6 +115,53 @@ gh() {
   fi
 }
 
+ghcopy() {
+  fetch_url=$(git config --get remote.origin.url)
+  # possible outputs:
+  # git@github.com:some-name/some-repo-name.git
+  # https://github.com/some-name/some-repo-name.git
+  # ssh://arxhive/arxhive/profile.git
+
+  # Detect the base URL
+  if [[ $fetch_url == *"https"* ]]; then
+      # Remove the .git from the end of the URL
+      url_portion="${fetch_url%.git}"
+      # Remove a git access role from the URL (everything between :// and @)
+      url_portion=$(echo "$url_portion" | sed 's#://[^@]*@#://#')
+  elif [[ "$fetch_url" == *"ssh://"* ]]; then
+      # Remove the 'ssh://' prefix
+      url_without_prefix="${fetch_url#ssh://}"
+
+      # Extract the part after the first '/'
+      extracted_part="${url_without_prefix#*/}"
+
+      # Remove the .git from the end of the URL
+      url_portion="${extracted_part%.git}"
+  else
+      # Split the URL on ':' and get the 2nd portion
+      url_portion="$(echo "$fetch_url" | awk -F':' '{print $2}')"
+
+      # Remove the .git from the end of the URL
+      url_portion="${url_portion%.git}"
+  fi
+
+  # route azure url to edge
+  if [[ "$url_portion" == *"azure.com"* ]]; then
+    echo "$url_portion?path=$@"
+    echo "$url_portion?path=$@" | pbcopy
+  # handle github url
+  elif [[ "$url_portion" == *"github.com"* ]]; then
+    github_url="$url_portion/blob/main$@"
+    echo "$github_url"
+    echo "$github_url" | pbcopy
+  # handle ssh url
+  else
+    github_url="https://github.com/$url_portion/blob/main$@"
+    echo "$github_url"
+    echo "$github_url" | pbcopy
+  fi
+}
+
 # git pull profile and reload current zsh sessions
 pp() {
   current=$pwd

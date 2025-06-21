@@ -21,6 +21,7 @@ vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 vim.keymap.del( { "n" }, "<leader>gc")
 vim.keymap.del( { "n" }, "<leader>gG")
 vim.keymap.del( { "n" }, "<leader>gY")
+vim.keymap.del( { "n" }, "<leader>gB")
 
 -- Clear yanky history mapping
 vim.keymap.del( { "n" }, "<leader>p")
@@ -148,8 +149,9 @@ vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --conti
 vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
 vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
 vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
--- my custom implementation to open in browser instead of lazyvim snacks
-vim.keymap.set("n", "<leader>gB", function()
+
+-- my custom implementation to open file in Web browser instead of lazyvim snacks
+vim.keymap.set("n", "<leader>gw", function()
   local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
   local git_path = Tricks.git_path_no_root(current_file_path)
   local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
