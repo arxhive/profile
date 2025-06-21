@@ -404,7 +404,7 @@ vim.keymap.set("n", "[x", function()
   require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true })
 
--- visually select all content inside a markdown code block (between fence)
+-- visually select all content inside a markdown code block (between fences)
 vim.keymap.set({ "v" }, "im", function()
   -- Exit visual mode to ensure we're in normal mode to count line positions properly
   -- The `'nx'` mode parameter means "no mapping" (like `normal!`)
@@ -457,5 +457,108 @@ vim.keymap.set({ "v" }, "im", function()
     LazyVim.notify("No code block found", {title = "Markdown", level = "warn"})
   end
 end, { desc = "select code in markdown block", silent = true, noremap = true })
+
+-- Jump to next/prev markdown code block
+vim.keymap.set({ "n" }, "]s", function()
+  local start_pattern = "^```%S*$"  -- Match opening fence with any language
+  local end_pattern = "^```$"       -- Match closing fence
+  local cursor_line = vim.fn.line('.')
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local found_line = nil
+  local in_block = false
+
+  -- Check if we're currently inside a block
+  for i = cursor_line, 1, -1 do
+    if content[i]:match(start_pattern) then
+      in_block = true
+      break
+    elseif content[i]:match(end_pattern) then
+      break
+    end
+  end
+
+  -- Search strategy depends on whether we're in a block
+  if in_block then
+    -- Find the end of current block first
+    for i = cursor_line, #content do
+      if content[i]:match(end_pattern) then
+        -- Then find the start of the next block
+        for j = i + 1, #content do
+          if content[j]:match(start_pattern) then
+            found_line = j + 1  -- Jump to first line inside block
+            break
+          end
+        end
+        break
+      end
+    end
+  else
+    -- Not in a block, find the next block start
+    for i = cursor_line + 1, #content do
+      if content[i]:match(start_pattern) then
+        found_line = i + 1  -- Jump to first line inside block
+        break
+      end
+    end
+  end
+
+  if found_line and found_line <= #content then
+    vim.api.nvim_win_set_cursor(0, {found_line, 0})
+  else
+    LazyVim.notify("No next code block found", {title = "Markdown", level = "warn"})
+  end
+end, { desc = "Jump to next markdown code block", silent = true })
+
+vim.keymap.set({ "n" }, "[s", function()
+  local start_pattern = "^```$"  -- Match opening fence with any language
+  local end_pattern = "^```$"       -- Match closing fence
+  local cursor_line = vim.fn.line('.')
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local found_line = nil
+
+  -- Determine if we're inside a code block
+  local in_block = false
+  local current_block_start = nil
+
+  -- Check if we're inside a block by looking upward for start/end patterns
+  for i = cursor_line, 1, -1 do
+    if content[i]:match(start_pattern) then
+      in_block = true
+      current_block_start = i
+      break
+    elseif content[i]:match(end_pattern) then
+      -- Found end pattern before start pattern, so we're not in a block
+      break
+    end
+  end
+
+  local search_start_line = in_block and (current_block_start - 1) or cursor_line
+
+  -- Step 1: Find the closest end_pattern above our search start position
+  local closest_end = nil
+  for i = search_start_line, 1, -1 do
+    if content[i]:match(end_pattern) then
+      closest_end = i
+      break
+    end
+  end
+
+  -- Step 2: If we found an end_pattern, look for the corresponding start_pattern
+  if closest_end then
+    for i = closest_end - 1, 1, -1 do
+      if content[i]:match(start_pattern) then
+        found_line = i + 1  -- Jump to first line inside block
+        break
+      end
+    end
+  end
+
+  LazyVim.notify(found_line)
+  if found_line and found_line > 0 and found_line <= #content then
+    vim.api.nvim_win_set_cursor(0, {found_line, 0})
+  else
+    LazyVim.notify("No previous code block found", {title = "Markdown", level = "warn"})
+  end
+end, { desc = "Jump to previous markdown code block", silent = true })
 
 -- stylua: ignore end
