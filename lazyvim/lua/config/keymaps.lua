@@ -568,7 +568,6 @@ vim.keymap.set({ "n" }, "[s", function()
     end
   end
 
-  LazyVim.notify(found_line)
   if found_line and found_line > 0 and found_line <= #content then
     vim.api.nvim_win_set_cursor(0, {found_line, 0})
   else
