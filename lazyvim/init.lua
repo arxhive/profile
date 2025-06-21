@@ -34,13 +34,17 @@ vim.g.firenvim_config = {
   },
 }
 
--- TODO: Play around it
+-- Change cursor line accents for insert mode
 vim.cmd([[
-  highlight CursorLine cterm=NONE ctermbg=NONE guibg=#2a2b3c
-
   augroup CursorLineToggle
     autocmd!
-    autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#181825
-    autocmd InsertLeave * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#2a2b3c
+  " Insert Enter
+    autocmd InsertEnter * highlight CursorLine guibg=#181825 " mantle
+    autocmd InsertEnter * highlight CursorLineNr guifg=#f5c2e7 " pink
+    " autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#24273a " base macchiato
+    " autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=NONE guibg=#11111b " crust
+  " Insert Leave
+    autocmd InsertLeave * highlight CursorLine guibg=#2a2b3c
+    autocmd InsertLeave * highlight CursorLineNr guifg=#b4befe " default
   augroup END
 ]])
