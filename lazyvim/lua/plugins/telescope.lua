@@ -72,6 +72,7 @@ return {
         end,
         desc = "Workspace Symbols",
       },
+      { "<leader>st", function() require("telescope.builtin").current_buffer_fuzzy_find { default_text = "TODO:" } end, desc = "Todo Buffer" },
 
       -- disabled
       { "<leader><space>", false },

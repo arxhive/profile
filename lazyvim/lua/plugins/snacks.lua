@@ -152,6 +152,9 @@ return {
         todo_comments = {
           layout = my_telescope_layout,
         },
+        lines = {
+          layout = my_telescope_layout,
+        },
       },
     },
   },
@@ -195,7 +198,9 @@ return {
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
 
     -- Todo lists
-    { "<leader>st", function() Snacks.picker.todo_comments({ keywords = { "TODO" } }) end, desc = "Todo Buffer" },
+    -- use current_buffer_fuzzy_find to find TODO in the current buffer for now
+    -- Snacks.picker.lines({ pattern = "TODO" }) is another alternative
+    -- { "<leader>st", function() Snacks.picker.todo_comments({ keywords = { "TODO" } }) end, desc = "Todo Buffer" },
     { "<leader>sT", function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo Global" },
 
     -- advanced filters
