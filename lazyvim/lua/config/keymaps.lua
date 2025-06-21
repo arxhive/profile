@@ -575,4 +575,31 @@ vim.keymap.set({ "n" }, "[s", function()
   end
 end, { desc = "Jump to previous markdown code block", silent = true })
 
+-- Create a new file from a file path
+vim.keymap.set("n", "<leader>at", function()
+  -- Get text from the current line
+  local line = vim.fn.getline(".")
+  -- Extract file path using pattern matching
+  local filepath = line:match("%[file:([^%]]+)%]")
+  if filepath then
+    -- Check if file already exists
+    if vim.fn.filereadable(filepath) == 1 then
+      LazyVim.notify("File already exists: " .. filepath, { level = "warn" })
+      return
+    end
+
+    -- Create directory structure if needed
+    local dir = vim.fn.fnamemodify(filepath, ":h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+
+    -- Create the empty file
+    vim.fn.writefile({}, filepath)
+    LazyVim.notify("Created file: " .. filepath, { level = "info" })
+  else
+    LazyVim.notify("No file path found in current line", { level = "error" })
+  end
+end, { desc = "Touch a new file from filepath" })
+
 -- stylua: ignore end
