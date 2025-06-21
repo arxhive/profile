@@ -20,6 +20,7 @@ vim.keymap.del( { "n" }, "<leader><Tab><Tab>")
 -- Clear git redundancy
 vim.keymap.del( { "n" }, "<leader>gc")
 vim.keymap.del( { "n" }, "<leader>gG")
+vim.keymap.del( { "n" }, "<leader>gY")
 
 -- Clear yanky history mapping
 vim.keymap.del( { "n" }, "<leader>p")
@@ -147,13 +148,25 @@ vim.keymap.set("n", "<leader>gMc", function() Tricks.sidecart("git merge --conti
 vim.keymap.set("n", "<leader>gMa", function() Tricks.sidecart("git merge --abort") end, { desc = "Merge abort" })
 vim.keymap.set("n", "<leader>gt", function() Tricks.floatterm("git tree") end, { desc = "Git Tree" })
 vim.keymap.set("n", "<leader>gT", function() Tricks.floatterm("git full-tree") end, { desc = "Git Tree Detailed" })
+-- my custom implementation to open in browser instead of lazyvim snacks
 vim.keymap.set("n", "<leader>gB", function()
   local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
   local git_path = Tricks.git_path_no_root(current_file_path)
   local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
 
   Tricks.silentterm("gh " .. relative_path)
-end, { desc = "Git Browse" }) -- my custom implementation instead of lazyvim snacks
+end, { desc = "Git Browse" })
+
+-- copy origin file url
+vim.keymap.set("n", "<leader>gy", function()
+  local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
+  local git_path = Tricks.git_path_no_root(current_file_path)
+  local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
+
+  Tricks.silentterm("ghcopy " .. relative_path)
+  LazyVim.notify("Yanked origin for: " .. relative_path)
+end, { desc = "Git Yank Origin" })
+
 vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
 
 -- Buffers
