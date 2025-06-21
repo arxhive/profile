@@ -20,8 +20,9 @@ return {
           { name = "luasnip" },
           {
             name = "nvim_lsp",
+            -- don't show entries with kind "Text" from the "nvim_lsp" source
             entry_filter = function(entry, ctx)
-              return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+              return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
             end,
           },
           {
