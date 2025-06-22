@@ -602,4 +602,123 @@ vim.keymap.set("n", "<leader>at", function()
   end
 end, { desc = "Touch a new file from filepath" })
 
+
+
+-- Create files from markdown file tree structure
+vim.keymap.set("n", "<leader>aT", function()
+  -- Get all lines in the current paragraph (blank line separated)
+  local line_nr = vim.fn.line(".")
+  local start_line = line_nr
+  local end_line = line_nr
+
+  LazyVim.info("Starting process at line: " .. line_nr)
+
+  -- Check if we're in a code block
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local in_code_block = false
+  local code_block_start = nil
+
+  -- Check if current line is in a code block by looking for markers
+  for i = line_nr, 1, -1 do
+    if content[i]:match("^```%S*$") then
+      in_code_block = true
+      code_block_start = i
+      break
+    elseif content[i]:match("^```$") then
+      -- Found end pattern before start pattern, so we're not in a block
+      break
+    end
+  end
+
+  if in_code_block then
+    -- We're in a code block, find its end
+    for i = line_nr, #content do
+      if content[i]:match("^```$") then
+        start_line = code_block_start + 1
+        end_line = i - 1
+        break
+      end
+    end
+  else
+    -- Regular paragraph boundaries detection
+    -- Find start of the block by going up until empty line or start of file
+    while start_line > 1 and vim.fn.trim(vim.fn.getline(start_line - 1)) ~= "" do
+      start_line = start_line - 1
+    end
+
+    -- Find end of the block by going down until empty line or end of file
+    while end_line < vim.fn.line("$") and vim.fn.trim(vim.fn.getline(end_line + 1)) ~= "" do
+      end_line = end_line + 1
+    end
+  end
+
+  LazyVim.info("Block range: " .. start_line .. "-" .. end_line)
+
+  -- Extract the lines in the block
+  local lines = vim.fn.getline(start_line, end_line)
+  local cwd = vim.fn.getcwd() .. "/"
+  local relative_dir = ""
+  local files_created = 0
+
+  LazyVim.info("Current working directory: " .. cwd)
+
+  -- Process each line
+  for i, line in ipairs(lines) do
+    -- Extract directory name from the first line (assuming root directory is first)
+    if i == 1 and not line:match("^[├└│]") then
+      -- Extract the path but remove comments (everything after #)
+      relative_dir = line:gsub("#.*$", ""):gsub("%s*$", "") -- Remove comments and trailing whitespace
+      -- If it doesn't end with slash, add one
+      if not relative_dir:match("/$") then
+        relative_dir = relative_dir .. "/"
+      end
+      LazyVim.info("Root directory: " .. relative_dir)
+    else
+      -- Match file paths with more flexible pattern
+      -- Look for ├── or └── followed by a filename
+      local file = line:match("[├└]")
+      if file then
+        local file_line_parts = vim.split(line, "%s+")
+        -- Expected format including a comment: ├── interface.go      # Defines the common strategy interface
+        -- 2 is the index of a real filename
+        local filename = file_line_parts[2]
+
+        -- Skip directories (paths ending with /)
+        -- They are already handler by the relative_dir
+        if not filename:match("/$") then
+          local filepath = cwd .. relative_dir .. filename
+          LazyVim.info("Processing file: " .. filepath)
+          -- Check if file already exists
+          if vim.fn.filereadable(filepath) == 1 then
+            LazyVim.notify("File already exists: " .. filepath, { level = "warn" })
+          else
+            -- Create directory structure if needed
+            local dir = vim.fn.fnamemodify(filepath, ":h")
+            if vim.fn.isdirectory(dir) == 0 then
+              LazyVim.info("Creating directory: " .. dir)
+              vim.fn.mkdir(dir, "p")
+            end
+            -- Create the empty file
+            vim.fn.writefile({}, filepath)
+            LazyVim.notify("Created file: " .. filepath, { level = "info" })
+            files_created = files_created + 1
+          end
+        else
+          LazyVim.info("Skipping directory: " .. file)
+        end
+      else
+        LazyVim.info("No file pattern in line: " .. line)
+      end
+    end
+  end
+
+  LazyVim.info("Process complete. Files created: " .. files_created)
+
+  if files_created == 0 then
+    LazyVim.notify("No files created from tree structure", { level = "warn" })
+  else
+    LazyVim.notify("Created " .. files_created .. " files", { level = "info" })
+  end
+end, { desc = "Touch files from tree" })
+
 -- stylua: ignore end
