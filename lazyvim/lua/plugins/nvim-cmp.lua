@@ -14,34 +14,22 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      cmp.setup.buffer({
-        -- Dont suggest Text from nvm_lsp and buffer sources
-        sources = cmp.config.sources({
-          { name = "luasnip" },
-          {
-            name = "nvim_lsp",
-            -- don't show entries with kind "Text" from the "nvim_lsp" source
-            entry_filter = function(entry, ctx)
-              return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-            end,
-          },
-          {
-            name = "buffer",
-            entry_filter = function(entry, ctx)
-              return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
-            end,
-            option = {
-              get_bufnrs = function()
-                return {}
-              end,
-            },
-          },
-          -- Warning: load time of path if pretty slow ~200ms
-          {
-            name = "path",
-          },
-        }),
+      opts.sources = cmp.config.sources({
+        { name = "luasnip" },
+        {
+          name = "nvim_lsp",
+          -- don't show entries with kind "Text" from the "nvim_lsp" source
+          entry_filter = function(entry, ctx)
+            return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+          end,
+        },
+        -- Warning: load time of path if pretty slow ~200ms
+        {
+          name = "path",
+        },
       })
+
+      -- Available sources:
       -- opts.sources = cmp.config.sources({
       --   { name = "lazydev" },
       --   { name = "snippets" },
@@ -50,18 +38,10 @@ return {
       --   { name = "copilot" },
       -- })
 
-      -- require("cmp").setup.buffer({ sources = cmp.config.sources })
+      -- Inspect enabled sources
+      -- Tricks.inspect(opts.sources)
 
-      -- print configures sources
-      -- local sources = opts.sources
-      -- LazyVim.info("sources: ", sources)
-      -- for i = #sources, 1, -1 do
-      --   LazyVim.info(sources[i].name)
-      --   if sources[i].name == "buffer" then
-      --     LazyVim.info("found buffer source!!!")
-      --     table.remove(sources, i)
-      --   end
-      -- end
+      -- Autocomplete configuration:
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
