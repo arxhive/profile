@@ -39,3 +39,4 @@ require("lazy").setup({
 })
 
 _G.Tricks = require("config.tricks")
+_G.Beasts = require("config.beasts")
