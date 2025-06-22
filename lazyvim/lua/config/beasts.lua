@@ -32,7 +32,7 @@ function M.next_fenced()
 
   -- Check if cursor is inside a block
   for _, block in ipairs(blocks) do
-    if cursor_line >= block.start and cursor_line <= block.ending then
+    if cursor_line > block.start and cursor_line <= block.ending then
       -- We're in this block, find the next one
       for i, next_block in ipairs(blocks) do
         if next_block.start > block.ending then
@@ -41,7 +41,7 @@ function M.next_fenced()
         end
       end
       break
-    elseif block.start > cursor_line then
+    elseif block.start >= cursor_line then
       -- This is the first block after cursor
       target_block = block
       break
@@ -66,7 +66,7 @@ function M.previous_fenced()
   -- Check if cursor is inside a block
   local current_block = nil
   for _, block in ipairs(blocks) do
-    if cursor_line >= block.start and cursor_line <= block.ending then
+    if cursor_line >= block.start and cursor_line < block.ending then
       current_block = block
       break
     end
@@ -83,7 +83,7 @@ function M.previous_fenced()
   else
     -- Not in a block, find the closest previous block
     for i = #blocks, 1, -1 do
-      if blocks[i].ending < cursor_line then
+      if blocks[i].ending <= cursor_line then
         target_block = blocks[i]
         break
       end
