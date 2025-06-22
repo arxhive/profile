@@ -1,105 +1,104 @@
 local M = {}
 
--- Next fenced snippet in markdown
-function M.next_fenced()
+-- Helper function to collect all fenced code blocks in a buffer
+local function collect_fenced_blocks()
   local start_pattern = "^```%S*$" -- Match opening fence with any language
   local end_pattern = "^```$" -- Match closing fence
-  local cursor_line = vim.fn.line(".")
   local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local found_line = nil
-  local in_block = false
 
-  -- Check if we're currently inside a block
-  for i = cursor_line, 1, -1 do
-    if content[i]:match(start_pattern) then
-      in_block = true
-      break
-    elseif content[i]:match(end_pattern) then
-      break
+  -- Collect all code blocks
+  local blocks = {}
+  local current_start = nil
+
+  for i = 1, #content do
+    if content[i]:match(start_pattern) and current_start == nil then
+      current_start = i
+    elseif content[i]:match(end_pattern) and current_start ~= nil then
+      table.insert(blocks, { start = current_start, ending = i })
+      current_start = nil
     end
   end
 
-  -- Search strategy depends on whether we're in a block
-  if in_block then
-    -- Find the end of current block first
-    for i = cursor_line, #content do
-      if content[i]:match(end_pattern) then
-        -- Then find the start of the next block
-        for j = i + 1, #content do
-          if content[j]:match(start_pattern) then
-            found_line = j + 1 -- Jump to first line inside block
-            break
-          end
+  -- Handle unclosed blocks at end of file
+  if current_start ~= nil then
+    table.insert(blocks, { start = current_start, ending = #content })
+  end
+
+  return blocks
+end
+
+-- Next fenced snippet in markdown
+function M.next_fenced()
+  local cursor_line = vim.fn.line(".")
+  local blocks = collect_fenced_blocks()
+
+  -- Find the appropriate next block based on cursor position
+  local target_block = nil
+
+  -- Check if cursor is inside a block
+  for _, block in ipairs(blocks) do
+    if cursor_line >= block.start and cursor_line <= block.ending then
+      -- We're in this block, find the next one
+      for i, next_block in ipairs(blocks) do
+        if next_block.start > block.ending then
+          target_block = next_block
+          break
         end
-        break
       end
-    end
-  else
-    -- Not in a block, find the next block start
-    for i = cursor_line + 1, #content do
-      if content[i]:match(start_pattern) then
-        found_line = i + 1 -- Jump to first line inside block
-        break
-      end
+      break
+    elseif block.start > cursor_line then
+      -- This is the first block after cursor
+      target_block = block
+      break
     end
   end
 
-  if found_line and found_line <= #content then
-    vim.api.nvim_win_set_cursor(0, { found_line, 0 })
+  if target_block then
+    vim.api.nvim_win_set_cursor(0, { target_block.start + 1, 0 }) -- Jump to first line inside block
   else
-    LazyVim.notify("No next code block found", { title = "Markdown", level = "warn" })
+    vim.notify("No next code block found", vim.log.levels.WARN, { title = "Markdown" })
   end
 end
 
 -- Previous fenced snippet in markdown
 function M.previous_fenced()
-  local start_pattern = "^```$" -- Match opening fence with any language
-  local end_pattern = "^```$" -- Match closing fence
   local cursor_line = vim.fn.line(".")
-  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local found_line = nil
+  local blocks = collect_fenced_blocks()
 
-  -- Determine if we're inside a code block
-  local in_block = false
-  local current_block_start = nil
+  -- Find the appropriate previous block based on cursor position
+  local target_block = nil
 
-  -- Check if we're inside a block by looking upward for start/end patterns
-  for i = cursor_line, 1, -1 do
-    if content[i]:match(start_pattern) then
-      in_block = true
-      current_block_start = i
-      break
-    elseif content[i]:match(end_pattern) then
-      -- Found end pattern before start pattern, so we're not in a block
+  -- Check if cursor is inside a block
+  local current_block = nil
+  for _, block in ipairs(blocks) do
+    if cursor_line >= block.start and cursor_line <= block.ending then
+      current_block = block
       break
     end
   end
 
-  local search_start_line = in_block and (current_block_start - 1) or cursor_line
-
-  -- Step 1: Find the closest end_pattern above our search start position
-  local closest_end = nil
-  for i = search_start_line, 1, -1 do
-    if content[i]:match(end_pattern) then
-      closest_end = i
-      break
+  if current_block then
+    -- Find the previous block
+    for i = #blocks, 1, -1 do
+      if blocks[i].ending < current_block.start then
+        target_block = blocks[i]
+        break
+      end
     end
-  end
-
-  -- Step 2: If we found an end_pattern, look for the corresponding start_pattern
-  if closest_end then
-    for i = closest_end - 1, 1, -1 do
-      if content[i]:match(start_pattern) then
-        found_line = i + 1 -- Jump to first line inside block
+  else
+    -- Not in a block, find the closest previous block
+    for i = #blocks, 1, -1 do
+      if blocks[i].ending < cursor_line then
+        target_block = blocks[i]
         break
       end
     end
   end
 
-  if found_line and found_line > 0 and found_line <= #content then
-    vim.api.nvim_win_set_cursor(0, { found_line, 0 })
+  if target_block then
+    vim.api.nvim_win_set_cursor(0, { target_block.start + 1, 0 }) -- Jump to first line inside block
   else
-    LazyVim.notify("No previous code block found", { title = "Markdown", level = "warn" })
+    vim.notify("No previous code block found", vim.log.levels.WARN, { title = "Markdown" })
   end
 end
 
