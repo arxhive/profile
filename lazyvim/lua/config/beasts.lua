@@ -1,5 +1,47 @@
 local M = {}
 
+function M.select_fenced()
+  -- Exit visual mode to ensure we're in normal mode to count line positions properly
+  -- The `'nx'` mode parameter means "no mapping" (like `normal!`)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
+
+  local is_fenced, head, tail = Tricks.get_fenced()
+
+  -- Visually select the code content (excluding the opening fence, including the content up to the closing fence)
+  if is_fenced then
+    -- Move to first content line (line after the opening fence)
+    vim.api.nvim_win_set_cursor(0, { head, 0 })
+    -- Start visual line mode
+    vim.cmd("normal! V")
+    -- Extend selection to the line before the closing fence
+    vim.api.nvim_win_set_cursor(0, { tail, 0 })
+  end
+end
+
+function M.yank_fenced()
+  local is_fenced, head, tail = Tricks.get_fenced()
+
+  -- Yank the content if inside a fenced block
+  if is_fenced then
+    -- Store the current cursor position to restore later
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+    local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
+    -- Join the lines with newline characters for the system clipboard
+    local content_str = table.concat(content, "\n")
+
+    -- Set the content to the system clipboard (+ register)
+    vim.schedule(function()
+      vim.fn.setreg("+", content_str, "c") -- Use the + register for system clipboard
+    end)
+
+    -- Restore cursor position
+    vim.api.nvim_win_set_cursor(0, cursor_pos)
+
+    LazyVim.notify("Yanked fenced: " .. tail - head + 1)
+  end
+end
+
 -- Helper function to collect all fenced code blocks in a buffer
 local function collect_fenced_blocks()
   local start_pattern = "^```%S*$" -- Match opening fence with any language

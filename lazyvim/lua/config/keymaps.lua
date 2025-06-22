@@ -419,23 +419,11 @@ vim.keymap.set("n", "[x", function()
 end, { silent = true })
 
 -- visually select all content inside a markdown code block (between fences)
-vim.keymap.set({ "v" }, "im", function()
-  -- Exit visual mode to ensure we're in normal mode to count line positions properly
-  -- The `'nx'` mode parameter means "no mapping" (like `normal!`)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'nx', false)
+vim.keymap.set({ "v" }, "im", Beasts.select_fenced, { desc = "select code in markdown block", silent = true, noremap = true })
 
-  local is_fenced, head, tail = Tricks.get_fenced()
-
-  -- Visually select the code content (excluding the opening fence, including the content up to the closing fence)
-  if is_fenced then
-    -- Move to first content line (line after the opening fence)
-    vim.api.nvim_win_set_cursor(0, {head, 0})
-    -- Start visual line mode
-    vim.cmd('normal! V')
-    -- Extend selection to the line before the closing fence
-    vim.api.nvim_win_set_cursor(0, {tail, 0})
-  end
-end, { desc = "select code in markdown block", silent = true, noremap = true })
+-- yank all content inside a markdown code block (between fences)
+-- o - is operating mode, it goes to this mode after 'y/d/c' keys
+vim.keymap.set({ "o" }, "im", Beasts.yank_fenced, { desc = "yank fenced", silent = true, noremap = true })
 
 -- Jump to next/prev markdown code block
 vim.keymap.set({ "n" }, "]s", Beasts.next_fenced, { desc = "Jump to next markdown code block", silent = true })
