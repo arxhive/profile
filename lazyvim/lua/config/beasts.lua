@@ -347,35 +347,21 @@ end
 
 -- Copy snippet to a new defined file
 function M.insert_to_new_file()
-  local blocks = collect_fenced_blocks()
   local cursor_line = vim.fn.line(".")
-  local target_block = nil
   local filename = nil
+  local is_fenced, head, tail = Tricks.get_fenced()
 
-  -- Find the block that the cursor is in or the next block
-  for _, block in ipairs(blocks) do
-    if cursor_line >= block.start and cursor_line <= block.ending then
-      target_block = block
-      break
-    elseif block.start > cursor_line then
-      target_block = block
-      break
-    end
-  end
-
-  -- If no block found, notify and return
-  if not target_block then
-    vim.notify("No code block found", vim.log.levels.WARN, { title = "Markdown" })
+  if not is_fenced then
     return
   end
 
   -- Get the line above the block to find filename
   -- expected file format:
   -- [file:msi-connector/cmd/token_strategies/helpers.go](msi-connector/cmd/token_strategies/helpers.go) line:1-15
-  local potential_filename_line = vim.fn.getline(target_block.start - 2)
+  local potential_filename_line = vim.fn.getline(head - 3)
   -- If the line above is blank, try the line before that
   if potential_filename_line == "" then
-    potential_filename_line = vim.fn.getline(target_block.start - 1)
+    potential_filename_line = vim.fn.getline(head - 2)
   end
 
   -- Try to extract filename from markdown link format: [file:name](path)
@@ -392,7 +378,7 @@ function M.insert_to_new_file()
   end
 
   -- Get the code block content (exclude the fence markers)
-  local content = vim.api.nvim_buf_get_lines(0, target_block.start, target_block.ending - 1, false)
+  local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
 
   -- Remove the language identifier from the first line if present
   if #content > 0 and content[1]:match("^%w+$") then
