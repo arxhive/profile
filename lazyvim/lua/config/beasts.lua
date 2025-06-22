@@ -104,7 +104,7 @@ function M.previous_fenced()
 end
 
 -- Get text from the current line
-function M.touch_from_the_file_line()
+function M.touch_from_filename()
   local line = vim.fn.getline(".")
   -- Extract file path using pattern matching
   local filepath = line:match("%[file:([^%]]+)%]")
