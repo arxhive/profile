@@ -284,4 +284,65 @@ function M.touch_from_tree()
   end
 end
 
+function M.touch_from_filename_list()
+  -- Get all lines in the current selection or current block
+  local line_nr = vim.fn.line(".")
+  local start_line, end_line = line_nr, line_nr
+
+  -- Find start and end of the block with file paths
+  local blocks = collect_fenced_blocks()
+  local in_code_block = false
+
+  -- Check if we're in a code block
+  for _, block in ipairs(blocks) do
+    if line_nr >= block.start and line_nr <= block.ending then
+      start_line = block.start + 1 -- Skip the opening ```
+      end_line = block.ending - 1 -- Skip the closing ```
+      in_code_block = true
+      break
+    end
+  end
+
+  if not in_code_block then
+    -- For regular text, find paragraph bounds
+    while start_line > 1 and vim.fn.trim(vim.fn.getline(start_line - 1)) ~= "" do
+      start_line = start_line - 1
+    end
+
+    while end_line < vim.fn.line("$") and vim.fn.trim(vim.fn.getline(end_line + 1)) ~= "" do
+      end_line = end_line + 1
+    end
+  end
+
+  -- Get the file paths
+  local filepaths = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  local cwd = vim.fn.getcwd() .. "/"
+  local files_created = 0
+  local dirs_created = 0
+
+  -- Process each file path
+  for _, filepath in ipairs(filepaths) do
+    filepath = vim.fn.trim(filepath)
+    if filepath ~= "" then
+      -- Check if file already exists
+      if vim.fn.filereadable(filepath) == 1 then
+        LazyVim.notify("File already exists: " .. filepath, { level = "warn" })
+      else
+        -- Create directory structure if needed
+        local dir = vim.fn.fnamemodify(filepath, ":h")
+        if vim.fn.isdirectory(dir) == 0 then
+          vim.fn.mkdir(dir, "p")
+          dirs_created = dirs_created + 1
+        end
+
+        -- Create the empty file
+        vim.fn.writefile({}, filepath)
+        files_created = files_created + 1
+      end
+    end
+  end
+
+  LazyVim.notify("Created " .. files_created .. " files and " .. dirs_created .. " directories", { level = "info" })
+end
+
 return M

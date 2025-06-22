@@ -479,6 +479,6 @@ vim.keymap.set({ "n" }, "[s", Beasts.previous_fenced, { desc = "Jump to previous
 
 -- Copilot helpers
 vim.keymap.set("n", "<leader>at", Beasts.touch_from_filename, { desc = "Touch a new file from filepath" })
-vim.keymap.set("n", "<leader>aT", Beasts.touch_from_tree, { desc = "Touch files from tree" })
+vim.keymap.set("n", "<leader>aT", Beasts.touch_from_filename_list, { desc = "Touch files from list" })
 
 -- stylua: ignore end
