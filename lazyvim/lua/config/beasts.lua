@@ -19,11 +19,6 @@ local function collect_fenced_blocks()
     end
   end
 
-  -- Handle unclosed blocks at end of file
-  if current_start ~= nil then
-    table.insert(blocks, { start = current_start, ending = #content })
-  end
-
   return blocks
 end
 
