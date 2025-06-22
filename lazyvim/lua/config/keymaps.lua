@@ -434,5 +434,6 @@ vim.keymap.set("n", "<leader>at", Beasts.touch_from_filename, { desc = "Touch a 
 vim.keymap.set("n", "<leader>aT", Beasts.touch_from_filename_list, { desc = "Touch files from list" })
 vim.keymap.set("n", "<leader>ai", Beasts.insert_to_new_file, { desc = "Insert to file" })
 vim.keymap.set("n", "<leader>aI", Beasts.insert_many_fenced_to_files, { desc = "Insert all to files" })
+vim.keymap.set("n", "<leader>aA", Beasts.copilot_chat_accept_all, { desc = "Accept all suggestions" })
 
 -- stylua: ignore end

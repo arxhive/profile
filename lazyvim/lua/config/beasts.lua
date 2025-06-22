@@ -509,4 +509,66 @@ function M.insert_many_fenced_to_files()
   end
 end
 
+function M.copilot_chat_accept_all()
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local start_marker = nil
+  local end_marker = nil
+
+  -- Find the last "#### in" marker
+  for i = #content, 1, -1 do
+    if content[i]:match("^#### in") then
+      start_marker = i
+      break
+    end
+  end
+
+  -- Find the last "## out" marker before the start marker
+  if start_marker then
+    for i = start_marker, 1, -1 do
+      if content[i]:match("^## out") then
+        end_marker = i
+        break
+      end
+    end
+  end
+
+  -- If we found both markers, process the blocks between them
+  if start_marker and end_marker then
+    -- Store the current cursor position
+    local original_cursor = vim.api.nvim_win_get_cursor(0)
+
+    -- Move to the start line
+    vim.api.nvim_win_set_cursor(0, { start_marker - 1, 0 })
+
+    -- Process each fenced block in the section
+    local blocks = collect_fenced_blocks()
+    local blocks_processed = 0
+
+    -- Filter blocks to only include those between start_line and end_line
+    local session_blocks = {}
+    for _, block in ipairs(blocks) do
+      if block.start > end_marker and block.ending < start_marker then
+        table.insert(session_blocks, block)
+      end
+    end
+
+    -- Process each block
+    for _, block in ipairs(session_blocks) do
+      -- Move to the block
+      vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
+      -- Accept suggestion
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, false, true), "n", false)
+
+      blocks_processed = blocks_processed + 1
+    end
+
+    -- Restore original cursor position
+    vim.api.nvim_win_set_cursor(0, original_cursor)
+
+    LazyVim.info("Accepted " .. blocks_processed .. " proposed changes")
+  else
+    LazyVim.error("Could not find '#### in' and '## out' markers")
+  end
+end
+
 return M
