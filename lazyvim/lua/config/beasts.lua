@@ -345,4 +345,80 @@ function M.touch_from_filename_list()
   LazyVim.notify("Created " .. files_created .. " files and " .. dirs_created .. " directories", { level = "info" })
 end
 
+-- Copy snippet to a new defined file
+function M.insert_to_new_file()
+  local blocks = collect_fenced_blocks()
+  local cursor_line = vim.fn.line(".")
+  local target_block = nil
+  local filename = nil
+
+  -- Find the block that the cursor is in or the next block
+  for _, block in ipairs(blocks) do
+    if cursor_line >= block.start and cursor_line <= block.ending then
+      target_block = block
+      break
+    elseif block.start > cursor_line then
+      target_block = block
+      break
+    end
+  end
+
+  -- If no block found, notify and return
+  if not target_block then
+    vim.notify("No code block found", vim.log.levels.WARN, { title = "Markdown" })
+    return
+  end
+
+  -- Get the line above the block to find filename
+  -- expected file format:
+  -- [file:msi-connector/cmd/token_strategies/helpers.go](msi-connector/cmd/token_strategies/helpers.go) line:1-15
+  local potential_filename_line = vim.fn.getline(target_block.start - 2)
+  -- If the line above is blank, try the line before that
+  if potential_filename_line == "" then
+    potential_filename_line = vim.fn.getline(target_block.start - 1)
+  end
+
+  -- Try to extract filename from markdown link format: [file:name](path)
+  filename = potential_filename_line:match("%[file:[^%]]+%]%(([^%)]+)%)")
+
+  -- If not found, try to extract the last word in the line as a fallback
+  if not filename then
+    filename = potential_filename_line:match("(%S+)%s*$")
+  end
+
+  if not filename then
+    vim.notify("No filename found in line above code block", vim.log.levels.WARN, { title = "Markdown" })
+    return
+  end
+
+  -- Get the code block content (exclude the fence markers)
+  local content = vim.api.nvim_buf_get_lines(0, target_block.start, target_block.ending - 1, false)
+
+  -- Remove the language identifier from the first line if present
+  if #content > 0 and content[1]:match("^%w+$") then
+    table.remove(content, 1)
+  end
+
+  -- Create directory structure if needed
+  local dir = vim.fn.fnamemodify(filename, ":h")
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, "p")
+  end
+
+  -- Check if file exists and append content if it does
+  if vim.fn.filereadable(filename) == 1 then
+    local file = io.open(filename, "a")
+    if file then
+      file:write("\n")
+      file:write(table.concat(content, "\n"))
+      file:close()
+      LazyVim.notify("Appended to: " .. filename, { level = "info" })
+    end
+  else
+    -- Create new file with content
+    vim.fn.writefile(content, filename)
+    LazyVim.notify("Created new file: " .. filename, { level = "info" })
+  end
+end
+
 return M
