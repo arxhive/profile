@@ -147,7 +147,7 @@ function M.touch_from_filename()
   if filepath then
     -- Check if file already exists
     if vim.fn.filereadable(filepath) == 1 then
-      LazyVim.notify("File already exists: " .. filepath, { level = "warn" })
+      LazyVim.info("File already exists: " .. filepath)
       return
     end
 
@@ -159,9 +159,9 @@ function M.touch_from_filename()
 
     -- Create the empty file
     vim.fn.writefile({}, filepath)
-    LazyVim.notify("Created file: " .. filepath, { level = "info" })
+    LazyVim.info("Created file: " .. filepath)
   else
-    LazyVim.notify("No file path found in current line", { level = "error" })
+    LazyVim.info("No file path found in current line")
   end
 end
 
@@ -368,7 +368,7 @@ function M.touch_from_filename_list()
     if filepath ~= "" then
       -- Check if file already exists
       if vim.fn.filereadable(filepath) == 1 then
-        LazyVim.notify("File already exists: " .. filepath, { level = "warn" })
+        LazyVim.info("File already exists: " .. filepath)
       else
         -- Create directory structure if needed
         local dir = vim.fn.fnamemodify(filepath, ":h")
@@ -384,7 +384,7 @@ function M.touch_from_filename_list()
     end
   end
 
-  LazyVim.notify("Created " .. files_created .. " files and " .. dirs_created .. " directories", { level = "info" })
+  LazyVim.info("Created " .. files_created .. " files and " .. dirs_created .. " directories")
 end
 
 -- Copy snippet to a new defined file
@@ -394,29 +394,24 @@ function M.insert_to_new_file()
   local is_fenced, head, tail = Tricks.get_fenced()
 
   if not is_fenced then
-    return
+    return false
   end
 
   -- Get the line above the block to find filename
   -- expected file format:
   -- [file:msi-connector/cmd/token_strategies/helpers.go](msi-connector/cmd/token_strategies/helpers.go) line:1-15
-  local potential_filename_line = vim.fn.getline(head - 3)
+  local potential_filename_line = vim.fn.getline(head - 2)
   -- If the line above is blank, try the line before that
   if potential_filename_line == "" then
-    potential_filename_line = vim.fn.getline(head - 2)
+    potential_filename_line = vim.fn.getline(head - 3)
   end
 
   -- Try to extract filename from markdown link format: [file:name](path)
   filename = potential_filename_line:match("%[file:[^%]]+%]%(([^%)]+)%)")
 
-  -- If not found, try to extract the last word in the line as a fallback
   if not filename then
-    filename = potential_filename_line:match("(%S+)%s*$")
-  end
-
-  if not filename then
-    vim.notify("No filename found in line above code block", vim.log.levels.WARN, { title = "Markdown" })
-    return
+    LazyVim.info("No filename found in line above code block, skip")
+    return false
   end
 
   -- Get the code block content (exclude the fence markers)
@@ -440,12 +435,77 @@ function M.insert_to_new_file()
       file:write("\n")
       file:write(table.concat(content, "\n"))
       file:close()
-      LazyVim.notify("Appended to: " .. filename, { level = "info" })
+      LazyVim.info("Appended to: " .. filename)
+      return true
     end
   else
     -- Create new file with content
     vim.fn.writefile(content, filename)
-    LazyVim.notify("Created new file: " .. filename, { level = "info" })
+    LazyVim.info("Created new file: " .. filename)
+    return true
+  end
+end
+
+function M.insert_many_fenced_to_files()
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local start_marker = nil
+  local end_marker = nil
+
+  -- Find the last "#### in" marker
+  for i = #content, 1, -1 do
+    if content[i]:match("^#### in") then
+      start_marker = i
+      break
+    end
+  end
+
+  -- Find the last "## out" marker before the start marker
+  if start_marker then
+    for i = start_marker, 1, -1 do
+      if content[i]:match("^## out") then
+        end_marker = i
+        break
+      end
+    end
+  end
+
+  -- If we found both markers, process the blocks between them
+  if start_marker and end_marker then
+    -- Store the current cursor position
+    local original_cursor = vim.api.nvim_win_get_cursor(0)
+
+    -- Move to the start line
+    vim.api.nvim_win_set_cursor(0, { start_marker - 1, 0 })
+
+    -- Process each fenced block in the section
+    local blocks = collect_fenced_blocks()
+    local blocks_processed = 0
+
+    -- Filter blocks to only include those between start_line and end_line
+    local session_blocks = {}
+    for _, block in ipairs(blocks) do
+      if block.start > end_marker and block.ending < start_marker then
+        table.insert(session_blocks, block)
+      end
+    end
+
+    -- Process each block
+    for _, block in ipairs(session_blocks) do
+      -- Move to the block
+      vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
+      -- Insert the block to a new file
+      local success = M.insert_to_new_file()
+      if success then
+        blocks_processed = blocks_processed + 1
+      end
+    end
+
+    -- Restore original cursor position
+    vim.api.nvim_win_set_cursor(0, original_cursor)
+
+    LazyVim.info("Accepted " .. blocks_processed .. " proposed changes")
+  else
+    LazyVim.error("Could not find '#### in' and '## out' markers")
   end
 end
 
