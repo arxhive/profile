@@ -238,4 +238,49 @@ function M.delete_marks_current_line()
   end
 end
 
+function M.get_fenced()
+  local start_pattern = "^```%S*$" -- Match opening fence with any language
+  local end_pattern = "^```$" -- Match closing fence
+  local cursor_line = vim.fn.line(".")
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+  -- Find the start of the code block (the line with ```)
+  local start_line = cursor_line
+  local start_fence_found = false
+  while start_line > 1 and not start_fence_found do
+    if content[start_line]:match(start_pattern) then
+      start_fence_found = true
+    else
+      start_line = start_line - 1
+    end
+  end
+  -- Check if we found the pattern at line 1
+  if start_line == 1 then
+    start_fence_found = content[start_line]:match(start_pattern) ~= nil
+  end
+
+  -- Find the end of the code block
+  local end_line = cursor_line
+  local end_fence_found = false
+  while end_line < #content and not end_fence_found do
+    if content[end_line]:match(end_pattern) then
+      end_fence_found = true
+    else
+      end_line = end_line + 1
+    end
+  end
+  -- Check if we found the pattern at the last line
+  if end_line == #content then
+    end_fence_found = content[end_line]:match(end_pattern) ~= nil
+  end
+
+  -- Visually select the code content (excluding the opening fence, including the content up to the closing fence)
+  if start_fence_found and end_fence_found and start_line < end_line - 1 then
+    return true, start_line + 1, end_line - 1
+  else
+    LazyVim.notify("No fenced found", { title = "Markdown", level = "warn" })
+    return false, nil, nil
+  end
+end
+
 return M
