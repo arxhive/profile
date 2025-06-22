@@ -68,14 +68,14 @@ vim.keymap.set("n","<leader>xa",
   end,
   { desc = "Add To Quickfix"})
 
-  vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Delete from Quickfix"})
-  vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Nuke Quickfix"})
-  vim.keymap.set("n", "<leader>qx",
+vim.keymap.set("n","<leader>xd", function() Tricks.remove_from_quickfix() end, { desc = "Delete from Quickfix"})
+vim.keymap.set("n","<leader>xD", function() Tricks.clear_quickfix() end, { desc = "Nuke Quickfix"})
+vim.keymap.set("n", "<leader>qx",
   function()
-      -- pretty generic implementation to close any bottom window
-      -- ccl - is another option to close a qf list
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
+    -- pretty generic implementation to close any bottom window
+    -- ccl - is another option to close a qf list
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
   end,
   { desc = "Quit quickfix" })
 -- qflist fyi:
@@ -129,12 +129,11 @@ vim.keymap.set("n", "<leader>gP", function() Tricks.sidecart("git stash-pull") e
 
 vim.keymap.set("n", "<leader>gR", function()
   local current_file = vim.fn.expand('%:p')
-  local root_folder = Tricks.rootdir()
-  root_folder = string.gsub(root_folder, "([%-%.%+%[%]%(%)%$%^%%%?%*])", "%%%1")
-  local relative_path = string.gsub(current_file, root_folder, '') -- remove the root folder path from the current file path
-  relative_path = string.gsub(relative_path, "^/", "") -- remove the leading slash
-  vim.api.nvim_command("!git reset-one '" .. relative_path .. "'")
-  LazyVim.info(relative_path, { title = "Reverted to master:" })
+  local git_path = Tricks.git_path_no_root(current_file)
+
+  git_path = string.gsub(git_path, "^/", "") -- remove the leading slash
+  vim.api.nvim_command("!git reset-one '" .. git_path .. "'")
+  LazyVim.info(git_path, { title = "Reverted to master:" })
 end, { desc = "Revert file to master" })
 
 vim.keymap.set("n", "<leader>gn",
