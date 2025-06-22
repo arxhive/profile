@@ -1,6 +1,12 @@
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
+  ExplainProject = [[I am a software engineer and I opened this project at the first time.
+  Please onboard me into this project.
+  Provide web request flow understanding, including entrypoints and all posible scenarios.
+  Provide expected errors and error messages.
+  Highlight asynchronious calls if any.
+  And visualize a component digramm using UML format]],
   Review = "Please review the following code and provide suggestions for improvement.",
   ReviewPR = "You're a senior engineer in the big enterprise company. Please review my change request based on the current git diff. Make sure to check the code quality, current programming language stanrdards, and best practices. Provide suggestions for improvements and bettern naming for types, variables, and functions. If you find any bugs or potential issues, please point them out.",
   PRDescription = "Please generate a commit message for code changes based on git diff and git log of the current working branch. Be consise and clear, use buller points to summarize my changes. Add a task number id if my branch contains one.",
@@ -14,6 +20,7 @@ local prompts = {
   SwaggerApiDocs = "Please provide documentation for the following API using Swagger.",
   UML = "I want to present my changes to the team before code review. Please analyze my git diff changes and present a simply UML digramm for review purposes.",
   ConsiseCommit = "> #git:staged\nWrite commit message for the change with commitizen convention. Be consise. Keep the message in a single line under 72 characters. Avoid decomposition into title and message.",
+  Debug = "This function doesn't work as expected. Please debug the following code and provide a solution.",
   -- Text related prompts
   Summarize = "Please summarize the following text.",
   Spelling = "Please correct any grammar and spelling errors in the following text.",
