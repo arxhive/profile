@@ -56,3 +56,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("delmarks 0-9")
   end,
 })
+
+-- Disable auto-commenting in insert mode
+-- Must be created from init.lua
+-- c       Auto-wrap comments using textwidth, inserting the current comment leader automatically.
+-- r       Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+-- o       Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+})

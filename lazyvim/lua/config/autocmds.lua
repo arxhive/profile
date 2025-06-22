@@ -9,16 +9,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Disable auto-commenting in insert mode
--- c       Auto-wrap comments using textwidth, inserting the current comment leader automatically.
--- r       Automatically insert the current comment leader after hitting <Enter> in Insert mode.
--- o       Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
-  end,
-})
-
 -- Leave telescope promt on ESC from insert mode
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
   callback = function(event)
