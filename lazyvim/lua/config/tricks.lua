@@ -283,15 +283,13 @@ function M.get_fenced()
   end
 end
 
-function M.noice_last_copy()
-  require("noice").cmd("last")
+function M.noice_last_error_copy()
+  require("noice").cmd("errors")
   -- Get all lines from the buffer
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local content = table.concat(lines, "\n")
 
-  -- Close the popup by sending 'q'
-  vim.api.nvim_feedkeys("q", "n", false)
-
+  vim.api.nvim_command("close")
   return content
 end
 

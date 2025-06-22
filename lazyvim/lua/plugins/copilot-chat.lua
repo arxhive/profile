@@ -7,6 +7,7 @@ local prompts = {
   Provide expected errors and error messages.
   Highlight asynchronious calls if any.
   And visualize a component digramm using UML format]],
+  Implement = "Implement the following function, think about it, test and review it, rewrite if there are potential errors :\n1.",
   Review = "Please review the following code and provide suggestions for improvement.",
   ReviewPR = "You're a senior engineer in the big enterprise company. Please review my change request based on the current git diff. Make sure to check the code quality, current programming language stanrdards, and best practices. Provide suggestions for improvements and bettern naming for types, variables, and functions. If you find any bugs or potential issues, please point them out.",
   PRDescription = "Please generate a commit message for code changes based on git diff and git log of the current working branch. Be consise and clear, use buller points to summarize my changes. Add a task number id if my branch contains one.",
@@ -121,7 +122,7 @@ return {
         {
           "<leader>ad",
           function()
-            local help = actions.help_actions()
+            local help = actions
             if not help then
               LazyVim.warn("No diagnostics found on the current line")
               return
@@ -129,6 +130,16 @@ return {
             telescope.pick(help)
           end,
           desc = "Diagnostic Help",
+          mode = { "n", "v" },
+        },
+        {
+          "<leader>ae",
+          function()
+            local prompt = "This code didn't work as expected. When I run the program I recieved a runtime error.\nReview this runtime error message and propose a solution:\n"
+            local last_error_message = Tricks.noice_last_error_copy()
+            copilot_chat.ask(prompt .. "```\n" .. last_error_message .. "\n```")
+          end,
+          desc = "Fix Runtime Error",
           mode = { "n", "v" },
         },
         {

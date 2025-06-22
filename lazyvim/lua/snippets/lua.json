@@ -1,6 +1,1 @@
-{
-  "keymap": {
-    "prefix": "keymap",
-    "body": "vim.keymap.set(\"n\", \"${1:<leader>}\", ${2:function() end}, { desc = \"${3}\" })"
-  }
-}
+{"command":{"body":"vim.api.nvim_command(\"${1}\")","prefix":"command"},"schedule":{"body":["vim.schedule(function()","  ${1}","end)"],"prefix":"schedule"},"keymap":{"prefix":"keymap","body":"vim.keymap.set(\"n\", \"${1:<leader>}\", ${2:function() end}, { desc = \"${3}\" })"},"inspect":{"prefix":"inspect","body":"Tricks.inspect(${1})"}}
