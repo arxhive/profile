@@ -1,9 +1,9 @@
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
-  ExplainProject = [[I am a software engineer and I opened this project at the first time.
+  Onboard = [[I am a software engineer and I opened this project at the first time.
   Please onboard me into this project.
-  Provide web request flow understanding, including entrypoints and all posible scenarios.
+  Provide web request flow understanding, including entrypoints, downstream dependencies and all posible scenarios.
   Provide expected errors and error messages.
   Highlight asynchronious calls if any.
   And visualize a component digramm using UML format]],
@@ -66,6 +66,14 @@ return {
           "<leader>ac",
           copilot_chat.open,
           desc = "CopilotChat",
+          mode = { "n", "v" },
+        },
+        {
+          "<leader>aC",
+          function()
+            copilot_chat.open({ context = "files:" .. vim.fn.getcwd() .. "/*" })
+          end,
+          desc = "CopilotChat cwd",
           mode = { "n", "v" },
         },
         {
