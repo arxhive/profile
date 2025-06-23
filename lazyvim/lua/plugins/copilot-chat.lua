@@ -120,9 +120,10 @@ return {
           "<leader>ad",
           function()
             local prompt = [[List diagnostic messages in the current file and provide a solution for each of them.
-            Look around in the current working directory to get hints. Try to reuse existing code if possible.
-            Pay attention in missing imports and dependencies.]]
-            copilot_chat.ask(prompt, { context = "files:" .. vim.fn.getcwd() .. "/*" })
+Look around in the current working directory to get hints. Try to reuse existing code if possible.
+Pay attention in missing imports and dependencies. If you find any undefined variables, functions or types, suggest how to define them.
+Validate you changes before proposing the final solution.]]
+            copilot_chat.ask(prompt, { context = "buffer:current\n> #filenames:*\n> #files:" .. vim.fn.getcwd() .. "/*" })
           end,
           desc = "Diagnostic Fixes",
           mode = { "n", "v" },
