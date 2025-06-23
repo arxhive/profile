@@ -19,27 +19,35 @@ function M.select_fenced()
 end
 
 function M.yank_fenced()
-  local is_fenced, head, tail = Tricks.get_fenced()
+  M.select_fenced()
+  vim.api.nvim_feedkeys("y", "m", true)
+  vim.schedule(function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "m", true)
+  end)
+  -- vim.api.nvim_command("nohl") -- Clear search highlights after yanking
 
-  -- Yank the content if inside a fenced block
-  if is_fenced then
-    -- Store the current cursor position to restore later
-    local cursor_pos = vim.api.nvim_win_get_cursor(0)
-
-    local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
-    -- Join the lines with newline characters for the system clipboard
-    local content_str = table.concat(content, "\n")
-
-    -- Set the content to the system clipboard (+ register)
-    vim.schedule(function()
-      vim.fn.setreg("+", content_str, "c") -- Use the + register for system clipboard
-    end)
-
-    -- Restore cursor position
-    vim.api.nvim_win_set_cursor(0, cursor_pos)
-
-    LazyVim.notify("Yanked fenced: " .. tail - head + 1)
-  end
+  -- Alternative implementation, no visual highlights
+  -- local is_fenced, head, tail = Tricks.get_fenced()
+  --
+  -- -- Yank the content if inside a fenced block
+  -- if is_fenced then
+  --   -- Store the current cursor position to restore later
+  --   local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  --
+  --   local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
+  --   -- Join the lines with newline characters for the system clipboard
+  --   local content_str = table.concat(content, "\n")
+  --
+  --   -- Set the content to the system clipboard (+ register)
+  --   vim.schedule(function()
+  --     vim.fn.setreg("+", content_str, "c") -- Use the + register for system clipboard
+  --   end)
+  --
+  --   -- Restore cursor position
+  --   vim.api.nvim_win_set_cursor(0, cursor_pos)
+  --
+  --   LazyVim.notify("Yanked fenced: " .. tail - head + 1)
+  -- end
 end
 
 -- Helper function to collect all fenced code blocks in a buffer
