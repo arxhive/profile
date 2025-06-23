@@ -42,8 +42,7 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     config = function()
       require("CopilotChat").setup({
-        -- model = "claude-3.7-sonnet",
-        model = "gpt-4o",
+        model = "claude-3.7-sonnet",
         question_header = "#### in",
         answer_header = "## out",
         chat_autocomplete = true,
