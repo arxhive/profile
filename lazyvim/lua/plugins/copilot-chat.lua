@@ -102,13 +102,10 @@ return {
         {
           "<C-\\>",
           function()
-            local input = vim.fn.input("Quick Chat: ")
-            if input ~= "" then
-              copilot_chat.ask(input)
-            end
+            copilot_chat.toggle()
           end,
-          desc = "Quick Chat (CopilotChat)",
-          mode = { "n", "v" },
+          desc = "CopilotChat toggle",
+          mode = { "n", "v", "i" },
         },
         {
           "|",
@@ -122,14 +119,12 @@ return {
         {
           "<leader>ad",
           function()
-            local help = actions
-            if not help then
-              LazyVim.warn("No diagnostics found on the current line")
-              return
-            end
-            telescope.pick(help)
+            local prompt = [[List diagnostic messages in the current file and provide a solution for each of them.
+            Look around in the current working directory to get hints. Try to reuse existing code if possible.
+            Pay attention in missing imports and dependencies.]]
+            copilot_chat.ask(prompt, { context = "files:" .. vim.fn.getcwd() .. "/*" })
           end,
-          desc = "Diagnostic Help",
+          desc = "Diagnostic Fixes",
           mode = { "n", "v" },
         },
         {
