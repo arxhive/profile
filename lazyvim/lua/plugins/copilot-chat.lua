@@ -29,6 +29,7 @@ Write commit message for the change with commitizen convention.
 Be consise. Keep the message in a single line under 72 characters.
 Take a task id from branch name if possible (it should be something like PROJECTNAME-1234. Attach task id at the end of commit message in squared brackets.
 Avoid decomposition into title and message.]],
+  ThinkingMode = "Lets work through this step by step, showing your reasoning in detail. Consider different approaches and explain the tradeoffs. Think about edge cases and potential issues.",
   Debug = "This function doesn't work as expected. Please debug the following code and provide a solution.",
   -- Text related prompts
   Summarize = "Please summarize the following text.",
