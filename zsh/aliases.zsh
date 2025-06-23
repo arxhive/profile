@@ -22,6 +22,7 @@ alias vv="vim . -c 'Kindle'"
 alias vm="vim . -c 'DiffviewOpen'"
 alias vf='vim $(fzf)'
 alias vvs="vim . -c 'KindleLastSession'"
+alias vc="vim . -c 'CopilotChat'"
 
 alias x=tmux
 alias xn="tmux new -s"
