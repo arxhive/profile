@@ -387,14 +387,13 @@ function M.touch_from_filename_list()
   LazyVim.info("Created " .. files_created .. " files and " .. dirs_created .. " directories")
 end
 
--- Copy snippet to a new defined file
-function M.insert_to_new_file()
-  local cursor_line = vim.fn.line(".")
+-- try to get the filename for the fenced block
+function M.filename_for_fenced()
   local filename = nil
   local is_fenced, head, tail = Tricks.get_fenced()
 
   if not is_fenced then
-    return false
+    return filename
   end
 
   -- Get the line above the block to find filename
@@ -409,6 +408,14 @@ function M.insert_to_new_file()
   -- Try to extract filename from markdown link format: [file:name](path)
   filename = potential_filename_line:match("%[file:[^%]]+%]%(([^%)]+)%)")
 
+  return filename
+end
+
+-- insert to a new file or append to an existing one
+function M.insert_to_new_file_or_append()
+  local is_fenced, head, tail = Tricks.get_fenced()
+  local filename = M.filename_for_fenced()
+
   if not filename then
     LazyVim.info("No filename found in line above code block, skip")
     return false
@@ -417,12 +424,7 @@ function M.insert_to_new_file()
   -- Get the code block content (exclude the fence markers)
   local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
 
-  -- Remove the language identifier from the first line if present
-  if #content > 0 and content[1]:match("^%w+$") then
-    table.remove(content, 1)
-  end
-
-  -- Create directory structure if needed
+  -- Create directory structure for the file if needed
   local dir = vim.fn.fnamemodify(filename, ":h")
   if vim.fn.isdirectory(dir) == 0 then
     vim.fn.mkdir(dir, "p")
@@ -444,6 +446,35 @@ function M.insert_to_new_file()
     LazyVim.info("Created new file: " .. filename)
     return true
   end
+end
+
+-- skip if file already exists
+function M.try_to_insert_to_new_file()
+  local is_fenced, head, tail = Tricks.get_fenced()
+  local filename = M.filename_for_fenced()
+
+  if not filename then
+    return false
+  end
+
+  -- Get the code block content (exclude the fence markers)
+  local content = vim.api.nvim_buf_get_lines(0, head, tail, false)
+
+  -- Create directory structure for the file if needed
+  local dir = vim.fn.fnamemodify(filename, ":h")
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, "p")
+  end
+
+  -- Check if file exists and append content if it does
+  if vim.fn.filereadable(filename) ~= 1 then
+    -- Create new file with content
+    vim.fn.writefile(content, filename)
+    LazyVim.info("Created new file: " .. filename)
+    return true
+  end
+
+  return false
 end
 
 function M.insert_many_fenced_to_files()
@@ -494,7 +525,7 @@ function M.insert_many_fenced_to_files()
       -- Move to the block
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
       -- Insert the block to a new file
-      local success = M.insert_to_new_file()
+      local success = M.insert_to_new_file_or_append()
       if success then
         blocks_processed = blocks_processed + 1
       end
@@ -543,6 +574,8 @@ function M.copilot_chat_accept_all()
     -- Process each fenced block in the section
     local blocks = collect_fenced_blocks()
     local blocks_processed = 0
+    local created = 0
+    local updated = 0
 
     -- Filter blocks to only include those between start_line and end_line
     local session_blocks = {}
@@ -556,16 +589,30 @@ function M.copilot_chat_accept_all()
     for _, block in ipairs(session_blocks) do
       -- Move to the block
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
-      -- Accept suggestion
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, false, true), "n", false)
 
+      -- Handle new files
+      local success = M.try_to_insert_to_new_file()
+      -- Or update existings
+      if success then
+        created = created + 1
+      else
+        vim.schedule(function()
+          -- 1. `"m"`: Mapping mode - keys are processed as if typed, with mappings applied, but without triggering autocommands
+          -- 2. Using `true` for the wait parameter ensures that the keystroke is fully processed before the function continues executing
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, false, true), "m", true)
+        end)
+        updated = updated + 1
+      end
+
+      LazyVim.info("Accept on line: " .. block.start + 1)
       blocks_processed = blocks_processed + 1
     end
 
     -- Restore original cursor position
     vim.api.nvim_win_set_cursor(0, original_cursor)
 
-    LazyVim.info("Accepted " .. blocks_processed .. " proposed changes")
+    LazyVim.info("Copilot diff work:\nFiles created: " .. created .. "\nHunks updated: " .. updated .. "\nAccepted total: " .. blocks_processed)
+    require("noice").cmd("messaged")
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")
   end
