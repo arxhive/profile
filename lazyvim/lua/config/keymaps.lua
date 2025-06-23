@@ -159,6 +159,7 @@ vim.keymap.set("n", "<leader>gw", function()
   local git_path = Tricks.git_path_no_root(current_file_path)
   local relative_path = string.gsub(git_path, "^[^/]+/", "") -- repo repo name from git_path
 
+  LazyVim.notify("Open in browser: " .. relative_path)
   Tricks.silentterm("gh " .. relative_path)
 end, { desc = "Git Browse" })
 
