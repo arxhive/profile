@@ -289,7 +289,10 @@ function M.noice_last_error_copy()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local content = table.concat(lines, "\n")
 
-  vim.api.nvim_command("close")
+  local noice_popup_detected_and_closed, err = pcall(vim.api.nvim_command, "close")
+  if not noice_popup_detected_and_closed then
+    return ""
+  end
   return content
 end
 

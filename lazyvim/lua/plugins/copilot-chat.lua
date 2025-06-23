@@ -132,6 +132,11 @@ return {
           function()
             local prompt = "This code didn't work as expected. When I run the program I recieved a runtime error.\nReview this runtime error message and propose a solution:\n"
             local last_error_message = Tricks.noice_last_error_copy()
+            if last_error_message == "" then
+              LazyVim.warn("No runtime error message found in noice", { title = "CopilotChat", level = "warn" })
+              return
+            end
+
             copilot_chat.ask(prompt .. "```\n" .. last_error_message .. "\n```")
           end,
           desc = "Fix Runtime Error",
