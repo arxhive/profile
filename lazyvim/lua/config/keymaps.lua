@@ -37,6 +37,10 @@ vim.keymap.del("n", "<leader>fc")
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 
+-- Zoom mode
+vim.keymap.del("n", "<leader>uZ")
+vim.keymap.del("n", "<leader>wm")
+
 -- Default Trouble lists
 vim.keymap.del("n", "<leader>xl")
 vim.keymap.del("n", "<leader>xL")

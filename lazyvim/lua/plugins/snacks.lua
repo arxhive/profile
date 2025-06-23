@@ -244,6 +244,14 @@ return {
       desc = "Ignore packages root"
     },
 
+    -- zoom mode
+    { "<leader>wz",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Zoom Mode"
+    },
+
     -- disabled
     { "<leader>fe", false },
     { "<leader>fE", false },
