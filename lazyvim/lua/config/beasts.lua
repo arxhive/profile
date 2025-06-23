@@ -612,7 +612,7 @@ function M.copilot_chat_accept_all()
     vim.api.nvim_win_set_cursor(0, original_cursor)
 
     LazyVim.info("Copilot diff work:\nFiles created: " .. created .. "\nHunks updated: " .. updated .. "\nAccepted total: " .. blocks_processed)
-    require("noice").cmd("messaged")
+    require("noice").cmd("messages")
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")
   end
