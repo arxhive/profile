@@ -1,11 +1,12 @@
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
-  Onboard = [[I am a software engineer and I opened this project at the first time.
+  Onboarding = [[I am a software engineer and I opened this project at the first time.
   Please onboard me into this project.
-  Provide web request flow understanding, including entrypoints, downstream dependencies and all posible scenarios.
+  Explain the project structure, main components, and how they interact with each other.
+  Describe clients request flow, including entrypoints, downstream dependencies and all posible scenarios.
   Provide expected errors and error messages.
-  Highlight asynchronious calls if any.
+  Highlight asynchronious calls to other service if any.
   And visualize a component digramm using UML format]],
   Implement = "Implement the following function, think about it, test and review it, rewrite if there are potential errors :\n1.",
   Review = "Please review the following code and provide suggestions for improvement.",
