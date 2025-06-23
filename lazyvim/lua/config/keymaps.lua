@@ -236,6 +236,8 @@ vim.keymap.set({ "n" }, "dc", "i<Esc>$:call search(',', 'b', line('.'))<CR>xgi<E
 -- execute normal do not fail sequence if comma not found
 -- vim.keymap.set({ "n" }, "dc", "i<Esc>:execute 'normal! _f,;;;'<CR>xgi<Esc>", { desc = "Delete trail comma", silent = true, noremap = true })
 
+vim.keymap.set({ "n" }, "<S-m>", "I- <Esc>", { desc = "Bullet point", silent = true, noremap = true })
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzz")
