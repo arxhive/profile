@@ -31,7 +31,7 @@ Take a task id from branch name if possible (it should be something like PROJECT
 Avoid decomposition into title and message.]],
   ThinkingMode = "$claude-3.7-sonnet-thought\nLets work through this step by step, showing your reasoning in detail. Consider different approaches and explain the tradeoffs. Think about edge cases and potential issues.",
   Debug = "This function doesn't work as expected. Please debug the following code and provide a solution.",
-  Context = "Show me all files in your current context."
+  Context = "Show me all files in your current context.",
   -- Text related prompts
   Summarize = "Please summarize the following text.",
   Spelling = "Please correct any grammar and spelling errors in the following text.",
