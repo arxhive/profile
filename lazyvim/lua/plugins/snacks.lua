@@ -62,7 +62,7 @@ return {
         copilot_chat_context = function(picker)
           local context = ""
           for _, item in ipairs(picker:selected()) do
-            context = context .. "file:" .. item.file .. "\n> #"
+            context = context .. "file:" .. item.cwd .. "/" .. item.file .. "\n> #"
           end
           context = context:sub(1, -5) -- Remove trailing "\n> #"
           require("CopilotChat").open({ context = context })
