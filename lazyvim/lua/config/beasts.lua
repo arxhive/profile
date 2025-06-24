@@ -617,11 +617,7 @@ function M.copilot_chat_accept_all()
           -- Jump back to the chat buffer
           vim.cmd("wincmd p")
 
-          -- vim.wait(100, function() end)
-
           copilot.config.mappings.accept_diff.callback(copilot.get_source())
-
-          -- vim.wait(100, function() end) -- Wait longer to ensure the change is applied
 
           vim.api.nvim_command("wincmd h") -- move to back to buffer to save changes
           vim.cmd("w")
