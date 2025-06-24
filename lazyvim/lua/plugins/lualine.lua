@@ -52,7 +52,12 @@ return {
         },
         lualine_y = {
           function()
-            return require("lsp-progress").progress()
+            local buf = vim.api.nvim_buf_get_name(0)
+            if buf:match("copilot") then
+              return require("CopilotChat").config.model
+            else
+              return require("lsp-progress").progress()
+            end
           end,
         },
         lualine_z = {
