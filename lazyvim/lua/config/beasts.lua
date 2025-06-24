@@ -584,6 +584,7 @@ function M.copilot_chat_accept_all()
     local blocks_processed = 0
     local created = 0
     local updated = 0
+    local blinders = 0 -- diff without a filename header
 
     -- Filter blocks to only include those between start_line and end_line
     local session_blocks = {}
@@ -594,22 +595,45 @@ function M.copilot_chat_accept_all()
     end
 
     -- Process each block
+    local copilot = require("CopilotChat")
     for _, block in ipairs(session_blocks) do
       -- Move to the block
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
 
       -- Handle new files
       local success = M.try_to_insert_to_new_file()
-      -- Or update existings
       if success then
         created = created + 1
+      -- Or update existing file using copilot-chat native tools
       else
-        vim.schedule(function()
-          -- 1. `"m"`: Mapping mode - keys are processed as if typed, with mappings applied, but without triggering autocommands
-          -- 2. Using `true` for the wait parameter ensures that the keystroke is fully processed before the function continues executing
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, false, true), "m", true)
-        end)
-        updated = updated + 1
+        local filename = M.filename_for_fenced()
+        if filename then
+          vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
+          -- Combine with current working directory to get the full path
+          local cwd = vim.fn.getcwd()
+          local full_path = cwd .. "/" .. filename
+          -- Open the file in a buffer first
+          vim.cmd("edit " .. vim.fn.fnameescape(full_path))
+          -- Jump back to the chat buffer
+          vim.cmd("wincmd p")
+
+          -- vim.wait(100, function() end)
+
+          copilot.config.mappings.accept_diff.callback(copilot.get_source())
+
+          -- vim.wait(100, function() end) -- Wait longer to ensure the change is applied
+
+          vim.api.nvim_command("wincmd h") -- move to back to buffer to save changes
+          vim.cmd("w")
+          vim.cmd("wincmd p")
+
+          updated = updated + 1
+
+        -- blindly accept any change without filename header
+        else
+          copilot.config.mappings.accept_diff.callback(copilot.get_source())
+          blinders = blinders + 1
+        end
       end
 
       LazyVim.info("Accept on line: " .. block.start + 1)
@@ -619,7 +643,7 @@ function M.copilot_chat_accept_all()
     -- Restore original cursor position
     vim.api.nvim_win_set_cursor(0, original_cursor)
 
-    LazyVim.info("Copilot diff work:\nFiles created: " .. created .. "\nHunks updated: " .. updated .. "\nAccepted total: " .. blocks_processed)
+    LazyVim.info("Copilot diff work:\nFiles created: " .. created .. "\nHunks updated: " .. updated .. "\nBlinders: " .. blinders .. "\nAccepted total: " .. blocks_processed)
     require("noice").cmd("messages")
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")

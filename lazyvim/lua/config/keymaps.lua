@@ -3,7 +3,7 @@
 
 -- special keys:  h keycodes
 --             :  h key-notation
--- describe existing shortcuts:  verbose map <leader>..
+-- describe existing mapping in any window or plugin:  verbose map <leader>..
 
 -- vim.keymap.set("n", "<C-S-i>", require("lspimport").import, { noremap = true })
 
