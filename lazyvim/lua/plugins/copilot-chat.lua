@@ -191,6 +191,16 @@ Validate you changes before proposing the final solution.]]
           desc = "CopilotChat Stop",
           mode = { "n", "v" },
         },
+        {
+          "<leader>ay",
+          function()
+            local response = require("CopilotChat").response()
+            vim.fn.setreg("+", response, "c") -- Use the + register for system clipboard
+            LazyVim.notify("Yanked Copilot Response", { title = "CopilotChat", level = "info" })
+          end,
+          desc = "Yank Copilot Response",
+          mode = { "n", "v" },
+        },
       }
     end,
   },
