@@ -37,6 +37,25 @@ Avoid decomposition into title and message.]],
   Spelling = "Please correct any grammar and spelling errors in the following text.",
   Wording = "Please improve the grammar and wording of the following text.",
   Concise = "Please rewrite the following text to make it more concise.",
+  TechDoc = [[You're a fractional CTO of the current service. Your goal is to write a clear, consise, technical savy strategy documentation for engineers.
+I provide a draft of the document with high level bullet points I need to elaborate on.
+
+I will use the following tags notation after the bullet points to guide you:
+#consise - just a brief summary of this topic in one on two sentences.
+#deepdive - make a research and provide a professional expertise on this topic. Avoid buzzwords and high level rambling. None likes water in the text. Image you write for engineers. Visualize some digramms if needed.
+#tradeoffs - most likely there are a few options available for design options, frameworks or libraries. Do not keep it high level. Make a solid research. Provide links, pros and cons for every option. If the library is deprecated - point it out.
+#bestpractices - the topic is unknown to me. Please do more exploration and provide the best industry practices for this problem.
+
+In summary, try to build a roadmap for incoming work, I can parallelize a work across different teams or engineers.
+The document should be look as it was written by a real software engineer. Code and configration snippets as examples are welcome.
+
+Format guidelines:
+1. avoid table representation, use simple lists instead.
+2. Use simple lists to demonstrate pros and cons for different options.
+3. if you visualize a digramm, always list every step in a plint text (list view) under the digramm.
+4. Avoid "you" pronoun, you're a part of the team, use "we" instead.
+5. Every UML digram should be represented in plantuml format.
+6. Avoid exaggeration selling speech in text. Sounds natural. Avoid words like: "dramatically", "huge", "delivering value", "significantly", "agile".]],
 }
 
 return {
