@@ -99,13 +99,44 @@ Toggle:
 
 ```
 Features:
-- Maintains 200K token context window, output up to 64K tokens
+- Context: 200K token context window, output up to 64K tokens
 - Multimodal: supports both text and images
 - Includes extended thinking support like Sonnet 3.7 and improved safety/priority tier
 - Higher base reasoning quality
 - Better handling of multimodal inputs
 - Built-in safety and advanced features from Claude 4 Opus lineage
 
+```
+
+7. Claude 4 Opus
+
+```
+Context Window & Capabilities
+- Massive 200K token context window
+- Up to 64K tokens of output
+- Fully multimodal, supporting both text and images
+- Advanced reasoning capabilities with extended thinking mode
+
+Modes
+- Standard mode: Fast and direct responses for everyday tasks
+- Extended thinking mode: Shows chain-of-thought reasoning for complex problems
+
+Pros
+- Exceptional reasoning capabilities, particularly for complex tasks
+- Excellent for coding, math, data analysis, and constraint-rich problems
+- Strong multimodal understanding (text + images)
+
+Cons
+- More resource-intensive than smaller models
+- Higher cost compared to smaller Claude models
+
+Use Cases
+- Enterprise-grade AI applications requiring deep analysis
+- Research and development
+- Complex document analysis and summarization
+- Advanced coding assistance
+- Data analysis and interpretation
+- Tasks requiring nuanced understanding of text and images together
 ```
 
 x. GPT-
