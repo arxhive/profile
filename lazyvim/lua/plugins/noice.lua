@@ -92,12 +92,12 @@ return {
   -- stylua: ignore
   keys = function()
     return {
-      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>l", function() require("noice").cmd("last") end, desc = "Last Message" },
-      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>m", function() require("noice").cmd("all") end, desc = "Messages" },
-      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+      { "<leader>nl", function() require("noice").cmd("last") end, mode = { "n", "v" }, desc = "Noice Last Message" },
+      { "<leader>l", function() require("noice").cmd("last") end, mode = { "n", "v" }, desc = "Last Message" },
+      { "<leader>nh", function() require("noice").cmd("history") end, mode = { "n", "v" }, desc = "Noice History" },
+      { "<leader>m", function() require("noice").cmd("all") end, mode = { "n", "v" }, desc = "Messages" },
+      { "<leader>na", function() require("noice").cmd("all") end, mode = { "n", "v" }, desc = "Noice All" },
+      { "<leader>nd", function() require("noice").cmd("dismiss") end,  mode = { "n", "v" }, desc = "Dismiss All" },
       { "<leader>nt", function() vim.cmd("Noice telescope") end, desc = "Noice telescope" },
       { "<leader>fp",
         function()
