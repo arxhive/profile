@@ -217,6 +217,7 @@ vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
 -- vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 
 -- Navigation experiments
+vim.keymap.set("n", "<C-w>", "<C-W>w", {desc = "Prev window"})
 -- vim.keymap.set("n", "1", "<C-W>h", {desc = "Left window"})
 -- vim.keymap.set("n", "2", "<C-W>j", {desc = "Bottom window"})
 -- vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})
