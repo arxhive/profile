@@ -272,7 +272,8 @@ vim.keymap.set("n", "=", function ()
 end, { silent = true, desc = "Vert split definition" })
 
 vim.keymap.set("n", "-", function ()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><leader>wd", true, false, true), "m", false)
+  vim.api.nvim_command("wincmd l")
+  vim.api.nvim_command("close")
 end, { silent = true, desc = "Close a right window" })
 
 vim.keymap.set("n", "<leader>wC",

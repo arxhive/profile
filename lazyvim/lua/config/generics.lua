@@ -24,7 +24,11 @@ vim.keymap.set("n", "<leader>br", function()
   end
 
   -- close termnial if open for safe re-run
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l><C-l><C-l>i<C-c>", true, false, true), "m", false)
+  vim.api.nvim_command("wincmd l")
+  vim.api.nvim_command("wincmd l")
+  vim.api.nvim_command("wincmd l")
+  vim.api.nvim_command("close")
+
   vim.schedule(function()
     run()
   end)
