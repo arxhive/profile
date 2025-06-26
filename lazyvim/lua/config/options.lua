@@ -3,6 +3,8 @@
 -- Add any additional options here
 vim.opt.guicursor = ""
 
+vim.opt.relativenumber = false
+
 vim.opt.swapfile = false
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
