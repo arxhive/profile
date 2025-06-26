@@ -441,7 +441,7 @@ vim.keymap.set({ "n" }, "[s", Beasts.previous_fenced, { desc = "Jump to previous
 -- Copilot helpers
 vim.keymap.set("n", "<leader>at", Beasts.touch_from_filename, { desc = "Touch a new file from filepath" })
 vim.keymap.set("n", "<leader>aT", Beasts.touch_from_filename_list, { desc = "Touch files from list" })
-vim.keymap.set("n", "<leader>ai", Beasts.insert_to_new_file_or_append, { desc = "Insert to file" })
+vim.keymap.set("n", "<leader>ai", Beasts.new_file_or_append, { desc = "Insert to file" })
 vim.keymap.set("n", "<leader>aI", Beasts.insert_many_fenced_to_files, { desc = "Insert all to files" })
 vim.keymap.set("n", "<leader>aa", Beasts.copilot_chat_accept_all, { desc = "Accept all suggestions" })
 vim.keymap.set("n", "<leader>aj", Beasts.jump_to_lines, { desc = "Jump to lines" })

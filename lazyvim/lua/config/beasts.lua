@@ -395,13 +395,13 @@ function M.touch_from_filename_list()
   LazyVim.info("Created " .. files_created .. " files and " .. dirs_created .. " directories")
 end
 
--- try to get the filename for the fenced block
-function M.filename_for_fenced()
+-- try to get the filename for a fenced block
+function M.filename_header_for_fenced()
   local filename = nil
   local is_fenced, head, tail = Tricks.get_fenced()
 
   if not is_fenced then
-    return filename
+    return nil
   end
 
   -- Get the line above the block to find filename
@@ -415,8 +415,43 @@ function M.filename_for_fenced()
 
   -- Try to extract filename from markdown link format: [file:name](path)
   filename = potential_filename_line:match("%[file:[^%]]+%]%(([^%)]+)%)")
+  if filename == nil or filename == "" then
+    LazyVim.info("No filename header found, line: " .. head)
+    return nil
+  end
 
   return filename
+end
+
+-- combine header with cwd or root directory to get a full path
+function M.live_file_for_fenced()
+  local filename = M.filename_header_for_fenced()
+  if not filename then
+    return nil
+  end
+
+  -- Try multiple path combinations
+  local root = Tricks.rootdir()
+  local cwd = vim.fn.getcwd()
+  local paths_to_try = {
+    filename, -- Try as-is (could be absolute or relative from cwd)
+    root .. "/" .. filename, -- Try from root
+    cwd .. "/" .. filename, -- Try from cwd
+  }
+
+  local file_opened = false
+  for _, path in ipairs(paths_to_try) do
+    if vim.fn.filereadable(vim.fn.expand(path)) == 1 then
+      file_opened = true
+      return path
+    end
+  end
+
+  if not file_opened then
+    LazyVim.info("File not found: " .. filename)
+  end
+
+  return nil
 end
 
 -- try to get the lines for a filename in the fenced block
@@ -448,9 +483,9 @@ function M.lines_for_fenced()
 end
 
 -- insert to a new file or append to an existing one
-function M.insert_to_new_file_or_append()
+function M.new_file_or_append()
   local is_fenced, head, tail = Tricks.get_fenced()
-  local filename = M.filename_for_fenced()
+  local filename = M.live_file_for_fenced()
 
   if not filename then
     LazyVim.info("No filename found in line above code block, skip")
@@ -485,9 +520,9 @@ function M.insert_to_new_file_or_append()
 end
 
 -- skip if file already exists
-function M.try_to_insert_to_new_file()
+function M.try_a_new_file()
   local is_fenced, head, tail = Tricks.get_fenced()
-  local filename = M.filename_for_fenced()
+  local filename = M.filename_header_for_fenced()
 
   if not filename then
     return false
@@ -561,7 +596,7 @@ function M.insert_many_fenced_to_files()
       -- Move to the block
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
       -- Insert the block to a new file
-      local success = M.insert_to_new_file_or_append()
+      local success = M.new_file_or_append()
       if success then
         blocks_processed = blocks_processed + 1
       end
@@ -629,19 +664,16 @@ function M.copilot_chat_accept_all()
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
 
       -- Handle new files
-      local success = M.try_to_insert_to_new_file()
+      local success = M.try_a_new_file()
       if success then
         created = created + 1
       -- Or update existing file using copilot-chat native tools
       else
-        local filename = M.filename_for_fenced()
+        local filename = M.live_file_for_fenced()
         if filename then
           vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
-          -- Combine with current working directory to get the full path
-          local cwd = vim.fn.getcwd()
-          local full_path = cwd .. "/" .. filename
           -- Open the file in a buffer first
-          vim.cmd("edit " .. vim.fn.fnameescape(full_path))
+          vim.cmd("edit " .. vim.fn.fnameescape(filename))
           -- Jump back to the chat buffer
           vim.cmd("wincmd p")
 
@@ -675,33 +707,11 @@ function M.copilot_chat_accept_all()
 end
 
 function M.jump_to_lines()
-  local filename = M.filename_for_fenced()
+  local filename = M.live_file_for_fenced()
   if filename then
     local start_line, end_line = M.lines_for_fenced()
     vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
-
-    -- Try multiple path combinations
-    local root = Tricks.rootdir()
-    local cwd = vim.fn.getcwd()
-    local paths_to_try = {
-      filename, -- Try as-is (could be absolute or relative from cwd)
-      root .. "/" .. filename, -- Try from root
-      cwd .. "/" .. filename, -- Try from cwd
-    }
-
-    local file_opened = false
-    for _, path in ipairs(paths_to_try) do
-      if vim.fn.filereadable(vim.fn.expand(path)) == 1 then
-        vim.cmd("edit " .. vim.fn.fnameescape(path))
-        file_opened = true
-        break
-      end
-    end
-
-    if not file_opened then
-      LazyVim.error("File not found: " .. filename)
-      return
-    end
+    vim.api.nvim_command("edit " .. filename)
 
     if start_line then
       -- Jump to the specified lines
