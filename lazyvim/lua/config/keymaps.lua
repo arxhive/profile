@@ -78,8 +78,8 @@ vim.keymap.set("n", "<leader>qx",
   function()
     -- pretty generic implementation to close any bottom window
     -- ccl - is another option to close a qf list
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "m", false)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, false, true), "m", false)
+    vim.api.nvim_command("wincmd j")
+    vim.api.nvim_command("close")
   end,
   { desc = "Quit quickfix" })
 -- qflist fyi:
