@@ -430,27 +430,33 @@ function M.live_file_for_fenced()
     return nil
   end
 
-  -- Try multiple path combinations
+  -- If filename starts with "/" it's an absolute path
+  if filename:sub(1, 1) == "/" then
+    if vim.fn.filereadable(vim.fn.expand(filename)) == 1 then
+      Tricks.inspect(filename)
+      return filename
+    else
+      LazyVim.info("Absolute path not found: " .. filename)
+      return nil
+    end
+  end
+
+  -- Try multiple path combinations for relative paths
   local root = Tricks.rootdir()
   local cwd = vim.fn.getcwd()
   local paths_to_try = {
-    filename, -- Try as-is (could be absolute or relative from cwd)
     root .. "/" .. filename, -- Try from root
     cwd .. "/" .. filename, -- Try from cwd
   }
 
-  local file_opened = false
   for _, path in ipairs(paths_to_try) do
     if vim.fn.filereadable(vim.fn.expand(path)) == 1 then
-      file_opened = true
+      Tricks.inspect(path)
       return path
     end
   end
 
-  if not file_opened then
-    LazyVim.info("File not found: " .. filename)
-  end
-
+  LazyVim.info("File not found: " .. filename)
   return nil
 end
 
