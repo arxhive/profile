@@ -20,9 +20,9 @@ end
 
 function M.yank_fenced()
   M.select_fenced()
-  vim.api.nvim_feedkeys("y", "m", true)
+  vim.api.nvim_feedkeys("y", "n", true)
   vim.schedule(function()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "m", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
   end)
   -- vim.api.nvim_command("nohl") -- Clear search highlights after yanking
 
@@ -419,6 +419,34 @@ function M.filename_for_fenced()
   return filename
 end
 
+-- try to get the lines for a filename in the fenced block
+function M.lines_for_fenced()
+  local is_fenced, head, _ = Tricks.get_fenced()
+
+  if not is_fenced then
+    return nil, nil
+  end
+
+  -- Get the line above the block to find filename
+  -- expected file format:
+  -- [file:msi-connector/cmd/token_strategies/helpers.go](msi-connector/cmd/token_strategies/helpers.go) line:1-15
+  local potential_filename_line = vim.fn.getline(head - 2)
+  -- If the line above is blank, try the line before that
+  if potential_filename_line == "" then
+    potential_filename_line = vim.fn.getline(head - 3)
+  end
+
+  -- Try to extract line numbers from the format: line:631-634 or line:631
+  local start_line, end_line = potential_filename_line:match("line:(%d+)%-(%d+)")
+  if not start_line then
+    -- Try single line format: line:631
+    start_line = potential_filename_line:match("line:(%d+)")
+    end_line = start_line
+  end
+
+  return start_line and tonumber(start_line) or nil, end_line and tonumber(end_line) or nil
+end
+
 -- insert to a new file or append to an existing one
 function M.insert_to_new_file_or_append()
   local is_fenced, head, tail = Tricks.get_fenced()
@@ -643,6 +671,48 @@ function M.copilot_chat_accept_all()
     require("noice").cmd("messages")
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")
+  end
+end
+
+function M.jump_to_lines()
+  local filename = M.filename_for_fenced()
+  if filename then
+    local start_line, end_line = M.lines_for_fenced()
+    vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
+
+    -- Try multiple path combinations
+    local root = Tricks.rootdir()
+    local cwd = vim.fn.getcwd()
+    local paths_to_try = {
+      filename, -- Try as-is (could be absolute or relative from cwd)
+      root .. "/" .. filename, -- Try from root
+      cwd .. "/" .. filename, -- Try from cwd
+    }
+
+    local file_opened = false
+    for _, path in ipairs(paths_to_try) do
+      if vim.fn.filereadable(vim.fn.expand(path)) == 1 then
+        vim.cmd("edit " .. vim.fn.fnameescape(path))
+        file_opened = true
+        break
+      end
+    end
+
+    if not file_opened then
+      LazyVim.error("File not found: " .. filename)
+      return
+    end
+
+    if start_line then
+      -- Jump to the specified lines
+      vim.api.nvim_win_set_cursor(0, { start_line, 0 })
+      if end_line and end_line ~= start_line then
+        vim.cmd("normal! V")
+        vim.api.nvim_win_set_cursor(0, { end_line, 0 })
+      end
+    else
+      LazyVim.error("No lines specified for the fenced block")
+    end
   end
 end
 

@@ -217,7 +217,7 @@ vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
 -- vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 
 -- Navigation experiments
-vim.keymap.set("n", "<C-w>", "<C-W>w", {desc = "Prev window"})
+vim.keymap.set({ "n", "v" }, "<C-w>", "<C-W>w", {desc = "Prev window"})
 -- vim.keymap.set("n", "1", "<C-W>h", {desc = "Left window"})
 -- vim.keymap.set("n", "2", "<C-W>j", {desc = "Bottom window"})
 -- vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})
@@ -444,5 +444,6 @@ vim.keymap.set("n", "<leader>aT", Beasts.touch_from_filename_list, { desc = "Tou
 vim.keymap.set("n", "<leader>ai", Beasts.insert_to_new_file_or_append, { desc = "Insert to file" })
 vim.keymap.set("n", "<leader>aI", Beasts.insert_many_fenced_to_files, { desc = "Insert all to files" })
 vim.keymap.set("n", "<leader>aa", Beasts.copilot_chat_accept_all, { desc = "Accept all suggestions" })
+vim.keymap.set("n", "<leader>aj", Beasts.jump_to_lines, { desc = "Jump to lines" })
 
 -- stylua: ignore end
