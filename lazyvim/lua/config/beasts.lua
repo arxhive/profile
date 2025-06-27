@@ -766,7 +766,7 @@ end
 function M.readmode(content, filetype)
   -- Create a new buffer with minimal height
   vim.cmd("new")
-  vim.cmd("resize 0 | vertical resize 0")
+  vim.cmd("resize 0")
 
   -- Set the filetype for the new buffer
   vim.bo.filetype = filetype
@@ -797,6 +797,16 @@ function M.readmode(content, filetype)
   else
     LazyVim.error("Snacks.zen not available")
   end
+end
+
+function M.zen_copilot_response()
+  local copilot_chat = require("CopilotChat")
+
+  -- Get the latest response from CopilotChat
+  local response = copilot_chat.response()
+
+  -- Display in readmode with markdown filetype
+  M.readmode(response, "markdown")
 end
 
 return M
