@@ -163,6 +163,8 @@ vim.keymap.set("n", "<leader>gw", function()
   Tricks.silentterm("gh " .. relative_path)
 end, { desc = "Git Browse" })
 
+vim.keymap.set("n", "<leader>gO", Beasts.git_show, { desc = "Git show original" })
+
 -- copy origin file url
 vim.keymap.set("n", "<leader>gy", function()
   local current_file_path = vim.fn.expand('%:p') -- get the full path of the current file
@@ -217,7 +219,7 @@ vim.keymap.set("n", "<S-CR>", "i<CR><ESC>kg_", { desc = "Break the line" })
 -- vim.keymap.set("i", "jj", "<ESC>", { desc = "Escape edit mode" })
 
 -- Navigation experiments
-vim.keymap.set({ "n", "v" }, "<C-w>", "<C-W>w", {desc = "Prev window"})
+vim.keymap.set({ "n", "v" }, "<C-w>", "<C-W>w", { desc = "Prev window", nowait = true, silent = true })
 -- vim.keymap.set("n", "1", "<C-W>h", {desc = "Left window"})
 -- vim.keymap.set("n", "2", "<C-W>j", {desc = "Bottom window"})
 -- vim.keymap.set("n", "3", "<C-W>k", {desc = "Top window"})

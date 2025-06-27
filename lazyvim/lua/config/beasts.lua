@@ -732,4 +732,67 @@ function M.jump_to_lines()
   end
 end
 
+function M.git_show()
+  -- 1. Get file type of the current file
+  local filetype = vim.bo.filetype
+
+  -- 2. Get current file path relative to git repo
+  local full_path = vim.fn.expand("%:p")
+  local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+
+  if vim.v.shell_error ~= 0 then
+    LazyVim.error("Not in a git repository")
+    return
+  end
+
+  -- Get relative path from git root
+  local filename = full_path:sub(#git_root + 2) -- +2 to skip the trailing slash
+
+  -- 3. Execute git show and copy to clipboard
+  local show_cmd = string.format('git show "$(git rev-parse --abbrev-ref HEAD):%s" | pbcopy', filename)
+  local result = vim.fn.system(show_cmd)
+
+  if vim.v.shell_error ~= 0 then
+    LazyVim.error("Failed to get file from git: " .. result)
+    return
+  end
+
+  -- Get the clipboard content directly
+  local content = vim.fn.getreg("+")
+
+  M.readmode(content, filetype)
+end
+
+function M.readmode(content, filetype)
+  -- Create a new buffer with minimal height
+  vim.cmd("new")
+  vim.cmd("resize 0 | vertical resize 0")
+
+  -- Set the filetype for the new buffer
+  vim.bo.filetype = filetype
+
+  -- Set it in the buffer
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n", { plain = true }))
+
+  -- Store buffer number for cleanup
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  -- Map 'q' to close zen mode, close window, and delete buffer
+  vim.keymap.set("n", "q", function()
+    -- require("snacks").zen.close()
+    vim.cmd("close")
+    vim.cmd("bdelete! " .. bufnr)
+  end, { buffer = bufnr, nowait = true, silent = true })
+
+  -- Execute Zen mode
+  local ok, snacks = pcall(require, "snacks")
+  if ok and snacks.zen then
+    vim.schedule(function()
+      snacks.zen.zen({ toggles = { dim = false } })
+    end)
+  else
+    LazyVim.error("Snacks.zen not available")
+  end
+end
+
 return M
