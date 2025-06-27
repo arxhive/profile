@@ -774,6 +774,10 @@ function M.readmode(content, filetype)
   -- Set it in the buffer
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n", { plain = true }))
 
+  -- Make the buffer read-only
+  vim.bo.readonly = true
+  vim.bo.modifiable = false
+
   -- Store buffer number for cleanup
   local bufnr = vim.api.nvim_get_current_buf()
 
