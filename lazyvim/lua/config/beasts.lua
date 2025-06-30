@@ -618,6 +618,9 @@ function M.insert_many_fenced_to_files()
 end
 
 function M.copilot_chat_accept_all()
+  local copilot = require("CopilotChat")
+  copilot.open()
+
   local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local start_marker = nil
   local end_marker = nil
@@ -654,6 +657,7 @@ function M.copilot_chat_accept_all()
     local created = 0
     local updated = 0
     local blinders = 0 -- diff without a filename header
+    local skipped = 0
 
     -- Filter blocks to only include those between start_line and end_line
     local session_blocks = {}
@@ -664,51 +668,138 @@ function M.copilot_chat_accept_all()
     end
 
     -- Process each block
-    local copilot = require("CopilotChat")
     for _, block in ipairs(session_blocks) do
       -- Move to the block
       vim.api.nvim_win_set_cursor(0, { block.start + 1, 0 })
 
+      -- Get filename and check if file exists
+      local filename = M.filename_header_for_fenced()
+      local live_filename = M.live_file_for_fenced()
+      local is_new_file = filename and vim.fn.filereadable(filename) ~= 1
+
       -- Handle new files
-      local success = M.try_a_new_file()
-      if success then
-        created = created + 1
-      -- Or update existing file using copilot-chat native tools
-      else
-        local filename = M.live_file_for_fenced()
-        if filename then
-          vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
-          -- Open the file in a buffer first
-          vim.cmd("edit " .. vim.fn.fnameescape(filename))
+      if is_new_file then
+        local action = M.prompt_for_copilot_action(filename, "Create a new file?")
+        if action == "decline" then
+          -- Clear selection and restore cursor
+          vim.cmd("normal! <Esc>")
+          vim.api.nvim_win_set_cursor(0, original_cursor)
+          LazyVim.info("Copilot changes declined. Stopped processing.")
+          return
+        elseif action == "skip" then
+          skipped = skipped + 1
+          LazyVim.info("Skipped creating new file: " .. filename)
+        else
+          -- Try to create the new file
+          local success = M.try_a_new_file()
+          if success then
+            created = created + 1
+            blocks_processed = blocks_processed + 1
+          end
+        end
+      -- Handle existing files
+      elseif live_filename then
+        -- Select code according to the fenced block
+        local code_start, code_end = M.lines_for_fenced()
+
+        -- Update the existing file
+        vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
+
+        -- Open the file in a buffer first
+        vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
+        if code_start and code_end then
+          vim.api.nvim_win_set_cursor(0, { code_start, 0 })
+          vim.cmd("normal! V")
+          vim.api.nvim_win_set_cursor(0, { code_end, 0 })
+        else
+          LazyVim.error("No code found for the fenced block")
+          return
+        end
+
+        local action = M.prompt_for_copilot_action(live_filename, "Apply the changes?")
+        if action == "decline" then
+          -- Clear selection and restore cursor
+          vim.cmd("normal! <Esc>")
+          vim.api.nvim_win_set_cursor(0, original_cursor)
+          LazyVim.info("Copilot changes declined. Stopped processing.")
+          return
+        elseif action == "skip" then
+          skipped = skipped + 1
+          LazyVim.info("Skipped updating: " .. live_filename)
+        else
           -- Jump back to the chat buffer
+          vim.cmd("normal! <Esc>")
           vim.cmd("wincmd p")
 
           copilot.config.mappings.accept_diff.callback(copilot.get_source())
+          -- copy the diff and replace the selected code between: code_start and code_end
+          -- TODO: Complete my own implementation to handle the diff
+          -- The tricks is to reestimate code lines to updated after every applied diff
+          -- There is no problem with applied the single diff
+          -- but but if there are miltiple diff code lines will mess up between them
 
+          -- local diff = copilot.get_source()
+          -- if not diff or diff == "" then
+          --   LazyVim.error("No diff found for the block")
+          --   return
+          -- end
           vim.api.nvim_command("wincmd h") -- move to back to buffer to save changes
+          -- Apply the diff to the current buffer
+          -- vim.api.nvim_buf_set_lines(0, code_start - 1, code_end, false, vim.split(diff, "\n", { plain = true }))
+
+          -- Save the file
           vim.cmd("w")
           vim.cmd("wincmd p")
 
           updated = updated + 1
-
-        -- blindly accept any change without filename header
-        else
-          copilot.config.mappings.accept_diff.callback(copilot.get_source())
-          blinders = blinders + 1
+          blocks_processed = blocks_processed + 1
         end
+      -- Handle diffs without filename header
+      else
+        -- No filename, blindly accept
+        copilot.config.mappings.accept_diff.callback(copilot.get_source())
+        blinders = blinders + 1
+        blocks_processed = blocks_processed + 1
       end
 
-      LazyVim.info("Accept on line: " .. block.start + 1)
-      blocks_processed = blocks_processed + 1
+      -- Clear selection after processing
+      vim.cmd("normal! <Esc>")
     end
 
     -- Restore original cursor position
     vim.api.nvim_win_set_cursor(0, original_cursor)
 
-    LazyVim.info("Copilot diff work:\nFiles created: " .. created .. "\nHunks updated: " .. updated .. "\nBlinders: " .. blinders .. "\nAccepted total: " .. blocks_processed)
+    LazyVim.info(
+      "Copilot diff work:\nFiles created: "
+        .. created
+        .. "\nHunks updated: "
+        .. updated
+        .. "\nBlinders: "
+        .. blinders
+        .. "\nSkipped: "
+        .. skipped
+        .. "\nAccepted total: "
+        .. blocks_processed
+    )
     require("noice").cmd("messages")
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")
+  end
+end
+
+-- Simple interactive prompt using vim's input() function
+function M.prompt_for_copilot_action(filename, message)
+  local choice = vim.fn.input(filename .. "\n\n" .. message .. " (a/s/d): ", "a")
+  choice = choice:lower()
+
+  if choice == "a" or choice == "accept" then
+    return "accept"
+  elseif choice == "s" or choice == "skip" then
+    return "skip"
+  elseif choice == "d" or choice == "decline" then
+    return "decline"
+  else
+    return "skip" -- default to skip
   end
 end
 
