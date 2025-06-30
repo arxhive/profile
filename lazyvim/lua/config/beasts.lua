@@ -760,10 +760,10 @@ function M.git_show()
   -- Get the clipboard content directly
   local content = vim.fn.getreg("+")
 
-  M.readmode(content, filetype)
+  M.zenmode(content, filetype)
 end
 
-function M.readmode(content, filetype)
+function M.zenmode(content, filetype)
   -- Create a new buffer with minimal height
   vim.cmd("new")
   vim.cmd("resize 0")
@@ -799,14 +799,14 @@ function M.readmode(content, filetype)
   end
 end
 
-function M.zen_copilot_response()
+function M.copilot_response_zenmode()
   local copilot_chat = require("CopilotChat")
 
   -- Get the latest response from CopilotChat
   local response = copilot_chat.response()
 
   -- Display in readmode with markdown filetype
-  M.readmode(response, "markdown")
+  M.zenmode(response, "markdown")
 end
 
 return M

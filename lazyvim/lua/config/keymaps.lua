@@ -447,6 +447,6 @@ vim.keymap.set("n", "<leader>ai", Beasts.new_file_or_append, { desc = "Insert to
 vim.keymap.set("n", "<leader>aI", Beasts.insert_many_fenced_to_files, { desc = "Insert all to files" })
 vim.keymap.set("n", "<leader>aa", Beasts.copilot_chat_accept_all, { desc = "Accept all suggestions" })
 vim.keymap.set("n", "<leader>aj", Beasts.jump_to_lines, { desc = "Jump to lines" })
-vim.keymap.set("n", "<leader>ar", Beasts.zen_copilot_response, { desc = "Zen last response" })
+vim.keymap.set("n", "<leader>az", Beasts.copilot_response_zenmode, { desc = "Zen last response" })
 
 -- stylua: ignore end
