@@ -363,9 +363,31 @@ vim.keymap.set("v", "<leader>ce", function()
 end, { desc = "Escape regex characters" })
 
 -- Python helpers
-vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt", true) end, { desc = "Venv create" })
-vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate", true) end, { desc = "Venv activate" })
-vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate", true) end, { desc = "Venv deactivate" })
+vim.keymap.set("n", "<leader>cpv", function()
+  Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt", true)
+  local venv_path = "venv"
+  vim.env.VIRTUAL_ENV = vim.fn.fnamemodify(venv_path, ":p")
+  vim.env.PATH = vim.env.VIRTUAL_ENV .. "/bin:" .. vim.env.PATH
+  LazyVim.notify("Activated venv: " .. vim.env.VIRTUAL_ENV)
+  vim.api.nvim_command("LspRestart")
+end, { desc = "Venv create" })
+
+vim.keymap.set("n", "<leader>cpa", function()
+  local venv_path = "venv"
+  vim.env.VIRTUAL_ENV = vim.fn.fnamemodify(venv_path, ":p")
+  vim.env.PATH = vim.env.VIRTUAL_ENV .. "/bin:" .. vim.env.PATH
+  LazyVim.notify("Activated venv: " .. vim.env.VIRTUAL_ENV)
+  vim.api.nvim_command("LspRestart")
+end, { desc = "Venv activate" })
+
+vim.keymap.set("n", "<leader>cpd", function()
+  vim.env.VIRTUAL_ENV = nil
+  -- Remove venv/bin from PATH
+  local path = vim.env.PATH or ""
+  path = path:gsub("[^:]+/venv/bin:?", "")
+  vim.env.PATH = path
+  LazyVim.notify("Deactivated venv")
+end, { desc = "Venv deactivate" })
 
 -- Go helpers
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
