@@ -133,11 +133,13 @@ vim.api.nvim_create_user_command("Kindle", function()
     vim.keymap.set("n", "<leader>cLs", function()
       LazyVim.notify("Start LSP")
       vim.api.nvim_command("LspStart")
+      vim.api.nvim_command("Copilot enable")
     end, { desc = "LSP Start" })
 
     vim.keymap.set("n", "<leader>cLr", function()
       LazyVim.notify("Restart LSP")
       vim.api.nvim_command("LspRestart")
+      vim.api.nvim_command("Copilot enable")
     end, { desc = "LSP Restart" })
 
     vim.keymap.set("n", "<leader>cLS", function()
