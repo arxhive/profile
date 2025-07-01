@@ -78,6 +78,8 @@ return {
               return "explorer"
             elseif explorer and explorer:is_focused() then
               return "files"
+            elseif vim.env.VIRTUAL_ENV ~= nil then
+              return "venv"
             else
               return ""
             end
