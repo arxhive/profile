@@ -363,9 +363,9 @@ vim.keymap.set("v", "<leader>ce", function()
 end, { desc = "Escape regex characters" })
 
 -- Python helpers
-vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt") end, { desc = "Venv create" })
-vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate") end, { desc = "Venv activate" })
-vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate") end, { desc = "Venv deactivate" })
+vim.keymap.set("n", "<leader>cpv", function() Tricks.sidecart("python -m venv venv && source venv/bin/activate && pip install -r requirements.txt", true) end, { desc = "Venv create" })
+vim.keymap.set("n", "<leader>cpa", function() Tricks.sidecart("source venv/bin/activate", true) end, { desc = "Venv activate" })
+vim.keymap.set("n", "<leader>cpd", function() Tricks.sidecart("deactivate", true) end, { desc = "Venv deactivate" })
 
 -- Go helpers
 vim.keymap.set("n", "<leader>xc", function() Tricks.sidecart("golangci-lint run") end, { desc = "Run lint cli" })
