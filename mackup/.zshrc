@@ -125,6 +125,7 @@ alias ls="gls -1 -al --color --group-directories-first"
 alias gb='fzf-git-branch'
 alias gco='fzf-git-checkout'
 alias drm='drm-fzf'
+alias drr='drr-fzf'
 
 # Docker backward compatibility for Mac M1
 docker() {

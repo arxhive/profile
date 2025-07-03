@@ -88,6 +88,11 @@ alias pyi="pip install -r requirements.txt"
 alias d=docker
 alias dps="docker ps"
 alias dls="docker images"
+function drun() {
+  docker image rm $@ 2>/dev/null
+  docker build -t $@ . && docker run --name $@ -p 8000:8000 $@
+}
+# $NF is a special built-in variable that allows you to easily reference the last field of the current record (line) being processed.
 function dbash() {
 	CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
   if [ ! -z $CONTAINER ]
@@ -96,10 +101,11 @@ function dbash() {
   fi
 }
 function dlogs() {
-  CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
-  if [ ! -z $CONTAINER ]
+  CONTAINER_ROW=`docker ps --all --format "table {{.Names}}\t{{.Status}}" | rg -v NAMES | fzf --header CONTAINERS`
+  if [ ! -z $CONTAINER_ROW ] # containes container name and status
   then
-    docker logs -f $CONTAINER
+    CONTAINER=`echo $CONTAINER_ROW | awk '-F' ' ' '{print $1}'` # get name only
+    docker logs -f $CONTAINER | less
   fi
 }
 function dkick() {
@@ -122,6 +128,23 @@ function drm-fzf() {
     echo "rm image: $image"
     docker image rm $image
     echo "clean now"
+  fi
+}
+# aliased to drr
+function drr-fzf() {
+  CONTAINER=`docker ps --all | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf --header CONTAINERS`
+  if [ ! -z $CONTAINER ]
+  then
+    local image=`docker ps --all | grep $CONTAINER | awk '-F ' ' {print $2}'`
+
+    echo "rm container and volume"
+    docker rm --force --volumes $CONTAINER
+
+    echo "rm image: $image"
+    docker image rm $image
+
+    echo "build and start a new container: $CONTAINER"
+    drun $CONTAINER
   fi
 }
 function ddel() {
