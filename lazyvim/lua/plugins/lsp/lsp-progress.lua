@@ -26,7 +26,8 @@ return {
         end
 
         -- local sign = "" -- nf-fa-gear \uf013
-        local lsp_clients = vim.lsp.get_clients()
+        -- bufnr = 0 means current active buffer only
+        local lsp_clients = vim.lsp.get_clients({ bufnr = 0 })
         local messages_map = {}
         for _, climsg in ipairs(client_messages) do
           messages_map[climsg.name] = climsg.body
