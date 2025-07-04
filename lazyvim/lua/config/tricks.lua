@@ -25,14 +25,14 @@ end
 -- @param go_back boolean? whether or not to return to original window
 -- @param open boolean? whether or not to open terminal window
 
-function M.sidecart(cmd, fromRoot)
-  local curDir = fromRoot and M.rootdir() or vim.fn.expand("%:h")
-  term.exec(cmd, 3, 100, curDir, "vertical", "sidecart", true, true)
+function M.sidecart(cmd, from_root)
+  local dir = from_root and M.rootdir() or vim.fn.expand("%:h") -- root or cwd
+  term.exec(cmd, 3, 100, dir, "vertical", "sidecart", true, true)
 end
 
-function M.floatterm(cmd)
-  local curDir = vim.fn.expand("%:h") -- % for cwd
-  term.exec(cmd, 4, 100, curDir, "float", " Toggle Term ", false, true)
+function M.floatterm(cmd, from_root)
+  local dir = from_root and M.rootdir() or vim.fn.expand("%:h") -- root or cwd
+  term.exec(cmd, 4, 100, dir, "float", " Toggle Term ", false, true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
 end
 
@@ -42,11 +42,30 @@ function M.silentterm(cmd)
 end
 
 function M.activatetermcwd()
-  local is_not_open = #require("toggleterm.terminal").get_all(true) == 0
+  local is_not_open = #require("toggleterm.terminal").get_all(false) == 0
   if is_not_open then
     Tricks.sidecart("")
   else
     vim.api.nvim_command("TermExec cmd=' cd %:p:h && clear' go_back=1 dir=%:p:h") -- space to avoid history
+  end
+end
+
+function M.kill_term_process()
+  local toggleterm = require("toggleterm.terminal")
+
+  -- ignore hidded terminals to avoid mess with float terms on Tab and S-Tab
+  local is_open = #toggleterm.get_all(false) > 0
+  if is_open then
+    -- lifehack to focus on  toggleterm in focus from any state
+    vim.api.nvim_command("TermExec cmd='' go_back=0")
+    vim.api.nvim_command("wincmd l | wincmd l | wincmd l")
+
+    local current_id = toggleterm.get_focused_id()
+    local current_term = toggleterm.get(current_id, true)
+
+    if current_term then
+      current_term:shutdown()
+    end
   end
 end
 

@@ -84,7 +84,24 @@ vim.keymap.set("n", "<leader>bp", function()
   else
     LazyVim.info("Cannot build")
   end
-end, { desc = "Install and Build" })
+end, { desc = "Package / Build / Install" })
+
+vim.keymap.set("n", "<leader>bdr", function()
+  local build_name = Tricks.rootdir_name()
+
+  Tricks.kill_term_process()
+  Tricks.sidecart("docker rm --force --volumes " .. build_name, true)
+  Tricks.sidecart("docker image rm " .. build_name, true)
+  Tricks.sidecart("drun " .. build_name, true)
+end, { desc = "Docker Clean, Build and Run" })
+
+vim.keymap.set("n", "<leader>bdc", function()
+  local build_name = Tricks.rootdir_name()
+
+  Tricks.kill_term_process()
+  Tricks.sidecart("docker rm --force --volumes " .. build_name, true)
+  Tricks.sidecart("docker image rm " .. build_name, true)
+end, { desc = "Docker Clean" })
 
 -- Run Tests in CLI
 vim.keymap.set("n", "<leader>tc", function()

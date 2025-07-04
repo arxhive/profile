@@ -33,6 +33,7 @@ return {
       { "<leader>ctw", group = "workspace" },
       { "<leader>cm", group = "metals" },
       { "<leader>cL", group = "LSP" },
+      { "<leader>bd", group = "docker" },
       { "<leader>2", hidden = true },
       { "<leader>3", hidden = true },
       { "<leader>4", hidden = true },

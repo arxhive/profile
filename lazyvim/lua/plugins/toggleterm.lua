@@ -89,10 +89,7 @@ return {
       "<leader>qt",
       function()
         -- 3 <C-l> just in case if I have more than 1 vsplit open
-        vim.api.nvim_command("wincmd l")
-        vim.api.nvim_command("wincmd l")
-        vim.api.nvim_command("wincmd l")
-        -- vim.api.nvim_command("close")
+        vim.api.nvim_command("wincmd l | wincmd l | wincmd l")
 
         local toggleterm = require("toggleterm.terminal")
         local current_id = toggleterm.get_focused_id()
