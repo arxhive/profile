@@ -68,7 +68,10 @@ return {
     {
       "<leader>wt",
       function()
-        local is_open = #require("toggleterm.terminal").get_all(true) > 0
+        local toggleterm = require("toggleterm.terminal")
+
+        -- ignore hidded terminals to avoid mess with float terms on Tab and S-Tab
+        local is_open = #toggleterm.get_all(false) > 0
         if is_open then
           -- lifehack to focus on  toggleterm in focus from any state
           vim.api.nvim_command("TermExec cmd='' go_back=0")
@@ -89,9 +92,59 @@ return {
         vim.api.nvim_command("wincmd l")
         vim.api.nvim_command("wincmd l")
         vim.api.nvim_command("wincmd l")
-        vim.api.nvim_command("close")
+        -- vim.api.nvim_command("close")
+
+        local toggleterm = require("toggleterm.terminal")
+        local current_id = toggleterm.get_focused_id()
+        local current_term = toggleterm.get(current_id, true)
+
+        if current_term then
+          current_term:shutdown()
+        end
       end,
       desc = "Quit Toggle Term",
+    },
+    {
+      "<Tab>",
+      function()
+        local path = Tricks.refined("%:h:p")
+        local toggleterm = require("toggleterm.terminal")
+        local terminal = require("toggleterm.terminal").Terminal
+
+        -- if the terminal is already open, just focus it
+        local active_term = toggleterm.get(101, true)
+        if active_term and active_term:is_open() then
+          active_term:toggle(100, "float")
+          return
+        end
+
+        -- else create a new instance and toggle
+        local root_dir_term = terminal:new({ dir = path, display_name = " Toggle Term cwd ", hidden = true, id = 101 })
+        root_dir_term:toggle(100, "float")
+      end,
+      mode = { "n", "x" },
+      desc = "Terminal current folder",
+    },
+    {
+      "<S-Tab>",
+      function()
+        local path = Tricks.rootdir()
+        local toggleterm = require("toggleterm.terminal")
+        local terminal = require("toggleterm.terminal").Terminal
+
+        -- if the terminal is already open, just focus it
+        local active_term = toggleterm.get(102, true)
+        if active_term and active_term:is_open() then
+          active_term:toggle(100, "float")
+          return
+        end
+
+        -- else create a new instance and toggle
+        local root_dir_term = terminal:new({ dir = path, display_name = " Toggle Term root ", hidden = true, id = 102 })
+        root_dir_term:toggle(100, "float")
+      end,
+      mode = { "n", "x" },
+      desc = "Terminal root",
     },
   },
 }

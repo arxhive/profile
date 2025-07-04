@@ -96,20 +96,6 @@ vim.keymap.set({ "i" }, "<M-space>", " ", { silent = true }) -- a workaround for
 
 vim.keymap.set({ "n" }, "<BS>", "i", { silent = true }) -- key del on mac to insert mode
 
--- Terminal
-vim.keymap.set({ "n", "i", "x" }, "<S-Tab>",
-  function()
-    local path = Tricks.rootdir()
-    require("toggleterm").toggle(1, 100, path, "float", " Toggle Term root ")
-  end, { desc = "Terminal root" })
-
-vim.keymap.set({ "n", "x" }, "<Tab>",
-  function()
-    local path = Tricks.refined("%:h:p")
-    require("toggleterm").toggle(2, 100, path, "float", " Toggle Term cwd ")
-  end, { desc = "Terminal current folder" }
-)
-
 -- a tricky way to set terminal bindings
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
