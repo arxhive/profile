@@ -176,6 +176,7 @@ vim.keymap.set("n", "<leader>gy", function()
 end, { desc = "Git Yank Origin" })
 
 vim.keymap.set("n", "<leader>go", function() Tricks.floatterm("gco") end, { desc = "Checkout" })
+vim.keymap.set("n", "<leader>gr", function() Tricks.floatterm("git-tags") end, { desc = "Tag refs" })
 
 -- Buffers
 -- vim.keymap.set("n", "<C-`>", ":BufferLineCycleNext<CR>", { noremap = false, desc = "Next Buffer" })

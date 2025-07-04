@@ -197,7 +197,17 @@ fzf-git-checkout() {
   fi
 }
 
+git-tags() {
+  TAG=`git show-ref --tags | fzf --header TAGS`
+  if [ ! -z $TAG ] # selected tag ref with sha
+  then
+    sha=`echo $TAG | awk '-F' ' ' '{print $1}'` # get sha
+    git checkout $sha
+  fi
+}
+
 rf() {
   local search_term=${1}
   rg "$search_term" | fzf
 }
+
