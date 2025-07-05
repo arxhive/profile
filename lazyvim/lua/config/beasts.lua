@@ -681,14 +681,10 @@ function M.copilot_chat_accept_all()
       if is_new_file then
         local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block.start + 1 .. "-" .. block.ending - 1)
         if action == "decline" then
-          -- Clear selection and restore cursor
-          vim.cmd("normal! <Esc>")
           vim.api.nvim_win_set_cursor(0, copilot_cursor)
           LazyVim.info("Copilot changes declined. Stopped processing.")
           return
         elseif action == "skip" then
-          -- Clear selection and restore cursor
-          vim.cmd("normal! <Esc>")
           vim.api.nvim_win_set_cursor(0, copilot_cursor)
           skipped = skipped + 1
           LazyVim.info("Skipped creating new file: " .. filename)
