@@ -187,7 +187,10 @@ Validate you changes before proposing the final solution.]]
         },
         {
           "<leader>as",
-          copilot_chat.stop,
+          function()
+            copilot_chat.stop()
+            vim.cmd("stopinsert")
+          end,
           desc = "CopilotChat Stop",
           mode = { "n", "v" },
         },

@@ -646,7 +646,7 @@ function M.copilot_chat_accept_all()
   -- If we found both markers, process the blocks between them
   if start_marker and end_marker then
     -- Store the current cursor position
-    local original_cursor = vim.api.nvim_win_get_cursor(0)
+    local copilot_cursor = vim.api.nvim_win_get_cursor(0)
 
     -- Move to the start line
     vim.api.nvim_win_set_cursor(0, { start_marker - 1, 0 })
@@ -679,14 +679,17 @@ function M.copilot_chat_accept_all()
 
       -- Handle new files
       if is_new_file then
-        local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block.start + 1 .. "-" .. block.ending - 1 .. "?")
+        local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block.start + 1 .. "-" .. block.ending - 1)
         if action == "decline" then
           -- Clear selection and restore cursor
           vim.cmd("normal! <Esc>")
-          vim.api.nvim_win_set_cursor(0, original_cursor)
+          vim.api.nvim_win_set_cursor(0, copilot_cursor)
           LazyVim.info("Copilot changes declined. Stopped processing.")
           return
         elseif action == "skip" then
+          -- Clear selection and restore cursor
+          vim.cmd("normal! <Esc>")
+          vim.api.nvim_win_set_cursor(0, copilot_cursor)
           skipped = skipped + 1
           LazyVim.info("Skipped creating new file: " .. filename)
         else
@@ -703,7 +706,7 @@ function M.copilot_chat_accept_all()
         local code_start, code_end = M.lines_for_fenced()
 
         -- Update the existing file
-        vim.api.nvim_command("wincmd h") -- move to left window to activate a file a new buffer
+        vim.api.nvim_command("wincmd h") -- move to left window to activate a file in a new buffer
 
         -- Open the file in a buffer first
         vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
@@ -716,14 +719,17 @@ function M.copilot_chat_accept_all()
           return
         end
 
-        local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block.start + 1 .. "-" .. block.ending - 1 .. "?")
+        local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block.start + 1 .. "-" .. block.ending - 1)
         if action == "decline" then
           -- Clear selection and restore cursor
           vim.cmd("normal! <Esc>")
-          vim.api.nvim_win_set_cursor(0, original_cursor)
+          vim.api.nvim_win_set_cursor(0, copilot_cursor)
           LazyVim.info("Copilot changes declined. Stopped processing.")
           return
         elseif action == "skip" then
+          -- Clear selection and restore cursor
+          vim.cmd("normal! <Esc>")
+          vim.api.nvim_win_set_cursor(0, copilot_cursor)
           skipped = skipped + 1
           LazyVim.info("Skipped updating: " .. live_filename)
         else
@@ -767,7 +773,7 @@ function M.copilot_chat_accept_all()
     end
 
     -- Restore original cursor position
-    vim.api.nvim_win_set_cursor(0, original_cursor)
+    vim.api.nvim_win_set_cursor(0, copilot_cursor)
 
     LazyVim.info(
       "Copilot diff work:\nFiles created: "
@@ -781,7 +787,10 @@ function M.copilot_chat_accept_all()
         .. "\nAccepted total: "
         .. blocks_processed
     )
-    require("noice").cmd("messages")
+    vim.schedule(function()
+      require("noice").cmd("messages")
+      vim.cmd("stopinsert")
+    end)
   else
     LazyVim.error("Could not find '#### in' and '## out' markers")
   end
