@@ -767,12 +767,9 @@ function M.copilot_chat_accept_all()
         blinders = blinders + 1
         blocks_processed = blocks_processed + 1
       end
-
-      -- Clear selection after processing
-      vim.cmd("normal! <Esc>")
     end
 
-    -- Restore original cursor position
+    -- Restore original copilot chat cursor position
     vim.api.nvim_win_set_cursor(0, copilot_cursor)
 
     LazyVim.info(
