@@ -48,6 +48,9 @@ return {
             NoiceCmdlinePopupTitleFilter = { fg = prompt_bg, bg = accent },
             NoiceCmdlinePopupTitleInput = { fg = prompt_bg, bg = accent },
 
+            NoiceConfirm = { bg = popup_bg },
+            NoiceConfirmBorder = { bg = popup_bg, fg = popup_bg },
+
             -- NoiceMini = { bg = colors.mantle },
 
             TelescopeBorder = { bg = popup_bg, fg = popup_bg },
