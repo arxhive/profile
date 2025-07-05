@@ -76,9 +76,9 @@ return {
         prompts = prompts,
         context = { "buffer", "git:staged", "git:unstaged" },
         mappings = {
-          complete = {
+          submit_prompt = {
+            normal = "<CR>",
             insert = "<C-CR>",
-            normal = "<C-CR>",
           },
           show_diff = {
             full_diff = true,
