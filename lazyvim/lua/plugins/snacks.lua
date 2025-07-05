@@ -49,6 +49,7 @@ return {
     picker = {
       enabled = true,
       ui_select = true,
+      input = true,
       formatters = {
         file = {
           filename_first = false, -- display filename before the file path

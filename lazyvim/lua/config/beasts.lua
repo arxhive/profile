@@ -679,7 +679,7 @@ function M.copilot_chat_accept_all()
 
       -- Handle new files
       if is_new_file then
-        local action = M.prompt_for_copilot_action(filename, "Create a new file?")
+        local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block.start + 1 .. "-" .. block.ending - 1 .. "?")
         if action == "decline" then
           -- Clear selection and restore cursor
           vim.cmd("normal! <Esc>")
@@ -716,7 +716,7 @@ function M.copilot_chat_accept_all()
           return
         end
 
-        local action = M.prompt_for_copilot_action(live_filename, "Apply the changes?")
+        local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block.start + 1 .. "-" .. block.ending - 1 .. "?")
         if action == "decline" then
           -- Clear selection and restore cursor
           vim.cmd("normal! <Esc>")
@@ -789,18 +789,24 @@ end
 
 -- Simple interactive prompt using vim's input() function
 function M.prompt_for_copilot_action(filename, message)
-  local choice = vim.fn.input(filename .. "\n\n" .. message .. " (a/s/d): ", "a")
-  choice = choice:lower()
+  vim.schedule(function()
+    local choice = vim.fn.confirm(
+      message .. "\n\n" .. filename,
+      "&Accept\n&Skip\n&Decline",
+      1, -- default to Accept
+      "Question"
+    )
 
-  if choice == "a" or choice == "accept" then
-    return "accept"
-  elseif choice == "s" or choice == "skip" then
-    return "skip"
-  elseif choice == "d" or choice == "decline" then
-    return "decline"
-  else
-    return "skip" -- default to skip
-  end
+    if choice == 1 then
+      return "accept"
+    elseif choice == 2 then
+      return "skip"
+    elseif choice == 3 then
+      return "decline"
+    else
+      return "skip" -- default to skip if canceled (choice == 0)
+    end
+  end)
 end
 
 function M.jump_to_lines()
