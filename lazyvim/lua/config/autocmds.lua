@@ -164,6 +164,7 @@ end, {})
 function PersistenceKindle()
   require("persistence").load({ last = true })
   vim.schedule(function()
+    -- This reloads the current file from disk, overwriting any unsaved changes in the buffer.
     vim.api.nvim_command("e")
   end)
   vim.api.nvim_command("Kindle")
