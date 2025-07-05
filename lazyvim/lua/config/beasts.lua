@@ -707,30 +707,52 @@ function M.copilot_chat_accept_all()
         -- Open the file in a buffer first
         vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
         if code_start and code_end then
-          vim.api.nvim_win_set_cursor(0, { code_start, 0 })
-          vim.cmd("normal! V")
-          vim.api.nvim_win_set_cursor(0, { code_end, 0 })
+          -- vim.api.nvim_win_set_cursor(0, { code_start, 0 })
+          -- vim.cmd("normal! V")
+          -- vim.api.nvim_command("normal! V")
+          -- vim.api.nvim_win_set_cursor(0, { code_end, 0 })
+
+          -- Set visual line selection using a single command
+          vim.cmd(string.format(
+            [[
+            normal! %dGV%dG
+            sleep 1000m
+            ]],
+            code_start,
+            code_end
+          ))
+          -- Clear Visual Selection
+          -- The `\x1b` is the escape character in its hexadecimal form, which should properly exit visual mode. This is more reliable than trying to use `<Esc>` in a normal command.
+          vim.cmd("normal! \x1b")
         else
-          LazyVim.error("No code found for the fenced block")
-          return
+          LazyVim.error("No code found for the fenced block. Skip")
+          skipped = skipped + 1
+          -- Jump back to the chat buffer
+          vim.cmd("wincmd p")
         end
 
         local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block.start + 1 .. "-" .. block.ending - 1)
         if action == "decline" then
           -- Clear selection and restore cursor
-          vim.cmd("normal! <Esc>")
+          -- vim.cmd("normal! <Esc>")
           vim.api.nvim_win_set_cursor(0, copilot_cursor)
-          LazyVim.info("Copilot changes declined. Stopped processing.")
+          vim.cmd("stopinsert")
+          LazyVim.info("Copilot changes declined. Stop processing.")
+          -- Jump back to the chat buffer
+          vim.cmd("wincmd p")
           return
         elseif action == "skip" then
           -- Clear selection and restore cursor
-          vim.cmd("normal! <Esc>")
+          -- vim.cmd("normal! <Esc>")
           vim.api.nvim_win_set_cursor(0, copilot_cursor)
           skipped = skipped + 1
-          LazyVim.info("Skipped updating: " .. live_filename)
-        else
+          LazyVim.info("Skip updating: " .. live_filename)
           -- Jump back to the chat buffer
-          vim.cmd("normal! <Esc>")
+          -- vim.cmd("w")
+          vim.cmd("wincmd p")
+        elseif action == "accept" then
+          -- Jump back to the chat buffer
+          -- vim.cmd("normal! <Esc>")
           vim.cmd("wincmd p")
 
           copilot.config.mappings.accept_diff.callback(copilot.get_source())
@@ -755,13 +777,20 @@ function M.copilot_chat_accept_all()
 
           updated = updated + 1
           blocks_processed = blocks_processed + 1
+        else
+          -- If the action is not recognized, skip this block
+          LazyVim.warn("Unknown action: " .. action .. ". Skipping block.")
+          skipped = skipped + 1
+          -- Jump back to the chat buffer
+          vim.cmd("wincmd p")
         end
       -- Handle diffs without filename header
       else
-        -- No filename, blindly accept
-        copilot.config.mappings.accept_diff.callback(copilot.get_source())
+        -- No filename, blindly accept maybe
+        LazyVim.warn("No filename header found for the fenced block: " .. block.start + 1 .. "-" .. block.ending - 1)
+        -- copilot.config.mappings.accept_diff.callback(copilot.get_source())
         blinders = blinders + 1
-        blocks_processed = blocks_processed + 1
+        -- blocks_processed = blocks_processed + 1
       end
     end
 
@@ -791,24 +820,23 @@ end
 
 -- Simple interactive prompt using vim's input() function
 function M.prompt_for_copilot_action(filename, message)
-  vim.schedule(function()
-    local choice = vim.fn.confirm(
-      message .. "\n\n" .. filename,
-      "&Accept\n&Skip\n&Decline",
-      1, -- default to Accept
-      "Question"
-    )
+  -- doesn't work well when called having a visual selection
+  local choice = vim.fn.confirm(
+    message .. "\n\n" .. filename,
+    "&Accept\n&Skip\n&Decline",
+    1, -- default to Accept
+    "Question"
+  )
 
-    if choice == 1 then
-      return "accept"
-    elseif choice == 2 then
-      return "skip"
-    elseif choice == 3 then
-      return "decline"
-    else
-      return "skip" -- default to skip if canceled (choice == 0)
-    end
-  end)
+  if choice == 1 then
+    return "accept"
+  elseif choice == 2 then
+    return "skip"
+  elseif choice == 3 then
+    return "decline"
+  else
+    return "skip" -- default to skip if canceled (choice == 0)
+  end
 end
 
 function M.jump_to_lines()
