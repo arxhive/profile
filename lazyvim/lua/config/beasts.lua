@@ -617,6 +617,26 @@ function M.insert_many_fenced_to_files()
   end
 end
 
+function M.blink_lines(code_end, code_start)
+  -- vim.api.nvim_win_set_cursor(0, { code_start, 0 })
+  -- vim.cmd("normal! V")
+  -- vim.api.nvim_command("normal! V")
+  -- vim.api.nvim_win_set_cursor(0, { code_end, 0 })
+
+  -- Set visual line selection using a single command
+  vim.cmd(string.format(
+    [[
+    normal! %dGV%dG
+    sleep 1000m
+    ]],
+    code_start,
+    code_end
+  ))
+  -- Clear Visual Selection
+  -- The `\x1b` is the escape character in its hexadecimal form, which should properly exit visual mode. This is more reliable than trying to use `<Esc>` in a normal command.
+  vim.cmd("normal! \x1b")
+end
+
 function M.copilot_chat_accept_all()
   local copilot = require("CopilotChat")
   copilot.open()
@@ -707,23 +727,7 @@ function M.copilot_chat_accept_all()
         -- Open the file in a buffer first
         vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
         if code_start and code_end then
-          -- vim.api.nvim_win_set_cursor(0, { code_start, 0 })
-          -- vim.cmd("normal! V")
-          -- vim.api.nvim_command("normal! V")
-          -- vim.api.nvim_win_set_cursor(0, { code_end, 0 })
-
-          -- Set visual line selection using a single command
-          vim.cmd(string.format(
-            [[
-            normal! %dGV%dG
-            sleep 1000m
-            ]],
-            code_start,
-            code_end
-          ))
-          -- Clear Visual Selection
-          -- The `\x1b` is the escape character in its hexadecimal form, which should properly exit visual mode. This is more reliable than trying to use `<Esc>` in a normal command.
-          vim.cmd("normal! \x1b")
+          blink_lines(code_end, code_start)
         else
           LazyVim.error("No code found for the fenced block. Skip")
           skipped = skipped + 1
