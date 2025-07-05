@@ -160,6 +160,15 @@ vim.api.nvim_create_user_command("Kindle", function()
   end
 end, {})
 
+-- Load last session and fire Kindle from vvs alias
+function PersistenceKindle()
+  require("persistence").load({ last = true })
+  vim.schedule(function()
+    vim.api.nvim_command("e")
+  end)
+  vim.api.nvim_command("Kindle")
+end
+
 -- Toggle diagnostics (or use built-in implementation <leader>ud)
 -- vim.g.diagnostics_active = true
 -- function _G.toggle_diagnostics()

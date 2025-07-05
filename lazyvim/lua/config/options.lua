@@ -5,6 +5,9 @@ vim.opt.guicursor = ""
 
 vim.opt.relativenumber = false
 
+--A utomatically reloads a file if it has been modified externally
+vim.opt.autoread = true
+
 vim.opt.swapfile = false
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
