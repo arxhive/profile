@@ -637,6 +637,47 @@ local function blink_lines(code_end, code_start)
   vim.cmd("normal! \x1b")
 end
 
+local function apply_diff()
+  local copilot_cursor = vim.api.nvim_win_get_cursor(0)
+  local is_fenced, diff_start, diff_end = Tricks.get_fenced()
+  if not is_fenced then
+    LazyVim.error("Not in a fenced block, cannot accept changes")
+    return
+  end
+
+  -- Get filename and check if file exists
+  local live_filename = M.live_file_for_fenced()
+  local code_start, code_end = M.lines_for_fenced()
+
+  if not live_filename or not code_start or not code_end then
+    LazyVim.error("Missing file or line information")
+    return
+  end
+
+  -- 1. Copy content from block_start to block_end (excluding fence markers)
+  local chat_bufnr = vim.api.nvim_get_current_buf()
+  -- block_start-1 because nvim_buf_get_lines uses 0-based indexing
+  local diff_content = vim.api.nvim_buf_get_lines(chat_bufnr, diff_start - 1, diff_end, true)
+  Tricks.inspect(diff_content)
+
+  -- 2. Open the target file and replace content between code_start and code_end
+  vim.cmd("wincmd h") -- move to left window to activate a file in a new buffer
+  vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
+  local target_bufnr = vim.api.nvim_get_current_buf()
+
+  -- Replace existing content (code_start-1 because nvim_buf_set_lines uses 0-based indexing)
+  vim.api.nvim_buf_set_lines(target_bufnr, code_start - 1, code_end, true, diff_content)
+
+  -- Save the file
+  vim.cmd("write")
+
+  -- Return to the chat buffer
+  vim.cmd("wincmd p")
+  vim.api.nvim_win_set_cursor(0, copilot_cursor)
+
+  LazyVim.info("Applied diff to " .. live_filename .. " lines " .. code_start .. "-" .. code_end)
+end
+
 function M.copilot_chat_accept()
   local copilot_cursor = vim.api.nvim_win_get_cursor(0)
   local is_fenced, block_start, block_end = Tricks.get_fenced()
@@ -652,7 +693,7 @@ function M.copilot_chat_accept()
 
   -- Handle new files
   if is_new_file then
-    local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block_start + 1 .. "-" .. block_end - 1)
+    local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block_start .. "-" .. block_end)
     if action == "decline" then
       vim.api.nvim_win_set_cursor(0, copilot_cursor)
       return
@@ -681,7 +722,7 @@ function M.copilot_chat_accept()
       return
     end
 
-    local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block_start + 1 .. "-" .. block_end - 1)
+    local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block_start .. "-" .. block_end)
     if action == "decline" then
       vim.api.nvim_win_set_cursor(0, copilot_cursor)
       vim.cmd("stopinsert")
@@ -700,12 +741,7 @@ function M.copilot_chat_accept()
       -- vim.cmd("normal! <Esc>")
       vim.cmd("wincmd p")
 
-      copilot.config.mappings.accept_diff.callback(copilot.get_source())
-      -- copy the diff and replace the selected code between: code_start and code_end
-      -- TODO: Complete my own implementation to handle the diff
-      -- The tricks is to reestimate code lines to updated after every applied diff
-      -- There is no problem with applied the single diff
-      -- but but if there are miltiple diff code lines will mess up between them
+      apply_diff()
 
       -- local diff = copilot.get_source()
       -- if not diff or diff == "" then
