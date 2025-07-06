@@ -617,7 +617,7 @@ function M.insert_many_fenced_to_files()
   end
 end
 
-function M.blink_lines(code_end, code_start)
+local function blink_lines(code_end, code_start)
   -- vim.api.nvim_win_set_cursor(0, { code_start, 0 })
   -- vim.cmd("normal! V")
   -- vim.api.nvim_command("normal! V")
@@ -635,6 +635,105 @@ function M.blink_lines(code_end, code_start)
   -- Clear Visual Selection
   -- The `\x1b` is the escape character in its hexadecimal form, which should properly exit visual mode. This is more reliable than trying to use `<Esc>` in a normal command.
   vim.cmd("normal! \x1b")
+end
+
+function M.copilot_chat_accept()
+  local copilot_cursor = vim.api.nvim_win_get_cursor(0)
+  local is_fenced, block_start, block_end = Tricks.get_fenced()
+  if not is_fenced then
+    LazyVim.error("Not in a fenced block, cannot accept changes")
+    return
+  end
+
+  -- Get filename and check if file exists
+  local filename = M.filename_header_for_fenced()
+  local live_filename = M.live_file_for_fenced()
+  local is_new_file = filename and vim.fn.filereadable(filename) ~= 1
+
+  -- Handle new files
+  if is_new_file then
+    local action = M.prompt_for_copilot_action(filename, "Create a new file for diff: " .. block_start + 1 .. "-" .. block_end - 1)
+    if action == "decline" then
+      vim.api.nvim_win_set_cursor(0, copilot_cursor)
+      return
+    elseif action == "skip" then
+      vim.api.nvim_win_set_cursor(0, copilot_cursor)
+    elseif action == "accept" then
+      -- Try to create the new file
+      local success = M.try_a_new_file()
+    end
+    -- Handle existing files
+  elseif live_filename then
+    -- Select code according to the fenced block
+    local code_start, code_end = M.lines_for_fenced()
+
+    -- Update the existing file
+    vim.api.nvim_command("wincmd h") -- move to left window to activate a file in a new buffer
+
+    -- Open the file in a buffer first
+    vim.cmd("edit " .. vim.fn.fnameescape(live_filename))
+    if code_start and code_end then
+      blink_lines(code_end, code_start)
+    else
+      LazyVim.error("No code found for the fenced block. Skip")
+      -- Jump back to the chat buffer
+      vim.cmd("wincmd p")
+      return
+    end
+
+    local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block_start + 1 .. "-" .. block_end - 1)
+    if action == "decline" then
+      vim.api.nvim_win_set_cursor(0, copilot_cursor)
+      vim.cmd("stopinsert")
+      -- Jump back to the chat buffer
+      vim.cmd("wincmd p")
+      return
+    elseif action == "skip" then
+      -- Clear selection and restore cursor
+      -- vim.cmd("normal! <Esc>")
+      vim.api.nvim_win_set_cursor(0, copilot_cursor)
+      -- Jump back to the chat buffer
+      -- vim.cmd("w")
+      vim.cmd("wincmd p")
+    elseif action == "accept" then
+      -- Jump back to the chat buffer
+      -- vim.cmd("normal! <Esc>")
+      vim.cmd("wincmd p")
+
+      copilot.config.mappings.accept_diff.callback(copilot.get_source())
+      -- copy the diff and replace the selected code between: code_start and code_end
+      -- TODO: Complete my own implementation to handle the diff
+      -- The tricks is to reestimate code lines to updated after every applied diff
+      -- There is no problem with applied the single diff
+      -- but but if there are miltiple diff code lines will mess up between them
+
+      -- local diff = copilot.get_source()
+      -- if not diff or diff == "" then
+      --   LazyVim.error("No diff found for the block")
+      --   return
+      -- end
+      vim.api.nvim_command("wincmd h") -- move to back to buffer to save changes
+      -- Apply the diff to the current buffer
+      -- vim.api.nvim_buf_set_lines(0, code_start - 1, code_end, false, vim.split(diff, "\n", { plain = true }))
+
+      -- Save the file
+      vim.cmd("w")
+      vim.cmd("wincmd p")
+    else
+      -- If the action is not recognized, skip this block
+      LazyVim.warn("Unknown action: " .. action .. ". Skipping block.")
+      -- Jump back to the chat buffer
+      vim.cmd("wincmd p")
+    end
+    -- Handle diffs without filename header
+  else
+    -- No filename, blindly accept maybe
+    LazyVim.warn("No filename header found for the fenced block: " .. block_start + 1 .. "-" .. block_end - 1)
+    -- copilot.config.mappings.accept_diff.callback(copilot.get_source())
+  end
+
+  -- Restore original copilot chat cursor position
+  vim.api.nvim_win_set_cursor(0, copilot_cursor)
 end
 
 function M.copilot_chat_accept_all()
@@ -708,7 +807,7 @@ function M.copilot_chat_accept_all()
           vim.api.nvim_win_set_cursor(0, copilot_cursor)
           skipped = skipped + 1
           LazyVim.info("Skipped creating new file: " .. filename)
-        else
+        elseif action == "accept" then
           -- Try to create the new file
           local success = M.try_a_new_file()
           if success then
@@ -729,10 +828,13 @@ function M.copilot_chat_accept_all()
         if code_start and code_end then
           blink_lines(code_end, code_start)
         else
-          LazyVim.error("No code found for the fenced block. Skip")
+          LazyVim.error("No code found for the fenced block. Stop processing")
           skipped = skipped + 1
           -- Jump back to the chat buffer
           vim.cmd("wincmd p")
+          -- funny, lua doesn't support continue statement
+          -- ignore this for now since this is an exceptional situation
+          return
         end
 
         local action = M.prompt_for_copilot_action(live_filename, "Apply diff: " .. block.start + 1 .. "-" .. block.ending - 1)
